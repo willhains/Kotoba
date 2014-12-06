@@ -22,7 +22,7 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
 	{
 		// Delay slightly to make typing smoother
-		Timer("type delay", 0.5)
+		Timer("type delay", 1.0)
 		{
 			// Check if dictionary contains typed word
 			let searchText = searchBar.text
