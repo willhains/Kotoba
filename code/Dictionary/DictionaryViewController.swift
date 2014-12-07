@@ -18,13 +18,12 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 	override func viewDidAppear(animated: Bool)
 	{
 		// Increase size of font and height of search bar
-		let helveticaNeueBig = UIFont(name: "Helvetica Neue", size: 24)
 		for subview in findAllSubviews(self.searchBar)
 		{
 			if subview is UITextField
 			{
 				let textField = subview as UITextField
-				textField.font = helveticaNeueBig
+				textField.font = UIFont(name: "Helvetica Neue", size: 24)
 				textField.bounds.size.height = 88
 			}
 		}
@@ -36,7 +35,7 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 	func searchDictionary()
 	{
 		// Check if dictionary contains typed word
-		let searchText = searchBar.text
+		let searchText = self.searchBar.text
 		if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
 		{
 			// Remove the existing dictionary view controller, if it exists
@@ -71,13 +70,14 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 	
 	func searchBarTextDidEndEditing(searchBar: UISearchBar)
 	{
+		// Search immediately
 		searchDictionary()
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar)
 	{
 		// Hide keyboard
-		searchBar.resignFirstResponder()
+		self.searchBar.resignFirstResponder()
 	}
 }
 
