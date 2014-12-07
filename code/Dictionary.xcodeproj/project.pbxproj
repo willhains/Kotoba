@@ -13,18 +13,7 @@
 		BE918C551A22A5F5006043CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE918C531A22A5F5006043CF /* Main.storyboard */; };
 		BE918C571A22A5F5006043CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE918C561A22A5F5006043CF /* Images.xcassets */; };
 		BE918C5A1A22A5F5006043CF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE918C581A22A5F5006043CF /* LaunchScreen.xib */; };
-		BE918C661A22A5F5006043CF /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C651A22A5F5006043CF /* DictionaryTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		BE918C601A22A5F5006043CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BE918C421A22A5F5006043CF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BE918C491A22A5F5006043CF;
-			remoteInfo = Dictionary;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		BE6F2A661A22FC8D008A7784 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
@@ -35,20 +24,10 @@
 		BE918C541A22A5F5006043CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE918C561A22A5F5006043CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BE918C591A22A5F5006043CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		BE918C5F1A22A5F5006043CF /* DictionaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DictionaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE918C641A22A5F5006043CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE918C651A22A5F5006043CF /* DictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		BE918C471A22A5F5006043CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BE918C5C1A22A5F5006043CF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -62,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				BE918C4C1A22A5F5006043CF /* Dictionary */,
-				BE918C621A22A5F5006043CF /* DictionaryTests */,
 				BE918C4B1A22A5F5006043CF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,7 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				BE918C4A1A22A5F5006043CF /* Dictionary.app */,
-				BE918C5F1A22A5F5006043CF /* DictionaryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,23 +75,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BE918C621A22A5F5006043CF /* DictionaryTests */ = {
-			isa = PBXGroup;
-			children = (
-				BE918C651A22A5F5006043CF /* DictionaryTests.swift */,
-				BE918C631A22A5F5006043CF /* Supporting Files */,
-			);
-			path = DictionaryTests;
-			sourceTree = "<group>";
-		};
-		BE918C631A22A5F5006043CF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				BE918C641A22A5F5006043CF /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,24 +95,6 @@
 			productReference = BE918C4A1A22A5F5006043CF /* Dictionary.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BE918C5E1A22A5F5006043CF /* DictionaryTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BE918C6C1A22A5F5006043CF /* Build configuration list for PBXNativeTarget "DictionaryTests" */;
-			buildPhases = (
-				BE918C5B1A22A5F5006043CF /* Sources */,
-				BE918C5C1A22A5F5006043CF /* Frameworks */,
-				BE918C5D1A22A5F5006043CF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BE918C611A22A5F5006043CF /* PBXTargetDependency */,
-			);
-			name = DictionaryTests;
-			productName = DictionaryTests;
-			productReference = BE918C5F1A22A5F5006043CF /* DictionaryTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -164,10 +106,6 @@
 				TargetAttributes = {
 					BE918C491A22A5F5006043CF = {
 						CreatedOnToolsVersion = 6.2;
-					};
-					BE918C5E1A22A5F5006043CF = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = BE918C491A22A5F5006043CF;
 					};
 				};
 			};
@@ -185,7 +123,6 @@
 			projectRoot = "";
 			targets = (
 				BE918C491A22A5F5006043CF /* Dictionary */,
-				BE918C5E1A22A5F5006043CF /* DictionaryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -198,13 +135,6 @@
 				BE918C551A22A5F5006043CF /* Main.storyboard in Resources */,
 				BE918C5A1A22A5F5006043CF /* LaunchScreen.xib in Resources */,
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BE918C5D1A22A5F5006043CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,23 +151,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BE918C5B1A22A5F5006043CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BE918C661A22A5F5006043CF /* DictionaryTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		BE918C611A22A5F5006043CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BE918C491A22A5F5006043CF /* Dictionary */;
-			targetProxy = BE918C601A22A5F5006043CF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BE918C531A22A5F5006043CF /* Main.storyboard */ = {
@@ -362,42 +276,6 @@
 			};
 			name = Release;
 		};
-		BE918C6D1A22A5F5006043CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DictionaryTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dictionary.app/Dictionary";
-			};
-			name = Debug;
-		};
-		BE918C6E1A22A5F5006043CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = DictionaryTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dictionary.app/Dictionary";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -415,15 +293,6 @@
 			buildConfigurations = (
 				BE918C6A1A22A5F5006043CF /* Debug */,
 				BE918C6B1A22A5F5006043CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BE918C6C1A22A5F5006043CF /* Build configuration list for PBXNativeTarget "DictionaryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BE918C6D1A22A5F5006043CF /* Debug */,
-				BE918C6E1A22A5F5006043CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
