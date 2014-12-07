@@ -12,6 +12,8 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 {
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var dictionaryContainer: UIView!
+	
+	var referenceViewController: UIReferenceLibraryViewController?
 
 	override func viewDidAppear(animated: Bool)
 	{
@@ -40,14 +42,24 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 			let searchText = searchBar.text
 			if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
 			{
+				// Remove the existing dictionary view controller, if it exists
+				if let refVC = self.referenceViewController
+				{
+					refVC.removeFromParentViewController()
+					refVC.view.removeFromSuperview()
+				}
+				
 				// Create the dictionary view controller
-				let referenceViewController = UIReferenceLibraryViewController(term: searchText)
+				let refVC = UIReferenceLibraryViewController(term: searchText)
 				
 				// Display the dictionary view inside the container view
-				self.addChildViewController(referenceViewController)
-				referenceViewController.view.frame = self.dictionaryContainer.frame
-				self.view.addSubview(referenceViewController.view)
-				referenceViewController.didMoveToParentViewController(self)
+				self.addChildViewController(refVC)
+				refVC.view.frame = self.dictionaryContainer.frame
+				self.view.addSubview(refVC.view)
+				refVC.didMoveToParentViewController(self)
+				
+				// Remember for later
+				self.referenceViewController = refVC
 			}
 		}
 	}
