@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Dictionary View Controller-->
@@ -16,9 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lYB-s3-xLb">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="lYB-s3-xLb">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lYB-s3-xLb" secondAttribute="height" multiplier="150:22" id="CGY-wN-hfT"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits" autocorrectionType="yes" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="CGY-wN-hfT"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Gx4-Hy-0xp"/>
                                 </connections>
@@ -30,9 +38,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lYB-s3-xLb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7xj-O3-YjK"/>
-                            <constraint firstItem="pqK-O6-A2P" firstAttribute="trailing" secondItem="lYB-s3-xLb" secondAttribute="trailing" id="IbM-Hd-dsm"/>
                             <constraint firstAttribute="trailing" secondItem="lYB-s3-xLb" secondAttribute="trailing" id="Mk6-Xv-X3a"/>
                             <constraint firstItem="pqK-O6-A2P" firstAttribute="top" secondItem="lYB-s3-xLb" secondAttribute="bottom" id="SF7-Vh-pwU"/>
+                            <constraint firstAttribute="trailing" secondItem="pqK-O6-A2P" secondAttribute="trailing" id="XxS-Hr-B2m"/>
                             <constraint firstItem="pqK-O6-A2P" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="pWW-c8-4Pj"/>
                             <constraint firstItem="lYB-s3-xLb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tIk-RA-zaB"/>
                             <constraint firstItem="pqK-O6-A2P" firstAttribute="leading" secondItem="lYB-s3-xLb" secondAttribute="leading" id="xfC-Nw-WFK"/>
