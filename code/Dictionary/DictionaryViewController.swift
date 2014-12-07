@@ -33,35 +33,45 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 		self.searchBar.becomeFirstResponder()
 	}
 	
+	func searchDictionary()
+	{
+		// Check if dictionary contains typed word
+		let searchText = searchBar.text
+		if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
+		{
+			// Remove the existing dictionary view controller, if it exists
+			if let refVC = self.referenceViewController
+			{
+				refVC.removeFromParentViewController()
+				refVC.view.removeFromSuperview()
+			}
+			
+			// Create the dictionary view controller
+			let refVC = UIReferenceLibraryViewController(term: searchText)
+			
+			// Display the dictionary view inside the container view
+			self.addChildViewController(refVC)
+			refVC.view.frame = self.dictionaryContainer.frame
+			self.view.addSubview(refVC.view)
+			refVC.didMoveToParentViewController(self)
+			
+			// Remember for later
+			self.referenceViewController = refVC
+		}
+	}
+	
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
 	{
 		// Delay slightly to make typing smoother
 		Timer("type delay", 1.0)
 		{
-			// Check if dictionary contains typed word
-			let searchText = searchBar.text
-			if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
-			{
-				// Remove the existing dictionary view controller, if it exists
-				if let refVC = self.referenceViewController
-				{
-					refVC.removeFromParentViewController()
-					refVC.view.removeFromSuperview()
-				}
-				
-				// Create the dictionary view controller
-				let refVC = UIReferenceLibraryViewController(term: searchText)
-				
-				// Display the dictionary view inside the container view
-				self.addChildViewController(refVC)
-				refVC.view.frame = self.dictionaryContainer.frame
-				self.view.addSubview(refVC.view)
-				refVC.didMoveToParentViewController(self)
-				
-				// Remember for later
-				self.referenceViewController = refVC
-			}
+			self.searchDictionary()
 		}
+	}
+	
+	func searchBarTextDidEndEditing(searchBar: UISearchBar)
+	{
+		searchDictionary()
 	}
 	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar)
