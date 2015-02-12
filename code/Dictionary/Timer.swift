@@ -14,7 +14,7 @@ class Timer
     let name: String?
     let delay: Double
     let handler: Void -> Void
-	let repeats = false
+	let repeats: Bool
 	
 	private var nsTimer: NSTimer?
 	
@@ -30,6 +30,7 @@ class Timer
         self.name = name
         self.delay = delay
         self.handler = handler
+		self.repeats = false
         
         timers[name] = self
         start()
@@ -37,10 +38,10 @@ class Timer
 	
 	private init(repeat delay: Double, _ handler: Void -> Void)
 	{
-		repeats = true
-		
+		self.name = nil
 		self.delay = delay
 		self.handler = handler
+		self.repeats = true
 		
 		start()
 	}

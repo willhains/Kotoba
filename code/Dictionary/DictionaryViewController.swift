@@ -80,7 +80,7 @@ func forEachSubview<V: UIView>(ofView view: UIView, thatIsA type: V.Type, actUpo
 {
 	for subview in view.subviews
 	{
-		if subview.isKindOfClass(type) { actUponSubview(subview as V) }
-		forEachSubview(ofView: subview as UIView, thatIsA: type, actUponSubview)
+		if let subview = subview as? V { actUponSubview(subview) }
+		forEachSubview(ofView: subview as! UIView, thatIsA: type, actUponSubview)
 	}
 }
