@@ -17,13 +17,13 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 
 	override func viewDidAppear(animated: Bool)
 	{
-		// Increase size of font and height of search bar
-		forEachSubview(ofView: self.searchBar, thatIsA: UITextField.self)
-		{
-			textField in
-			textField.font = UIFont(name: "Helvetica Neue", size: 24)
-			textField.bounds.size.height = 88
-		}
+//		// Increase size of font and height of search bar
+//		forEachSubview(ofView: self.searchBar, thatIsA: UITextField.self)
+//		{
+//			textField in
+//			textField.font = UIFont(name: "Helvetica Neue", size: 24)
+//			textField.bounds.size.height = 88
+//		}
 		
 		// Show the keyboard on launch, so you can start typing right away
 		self.searchBar.becomeFirstResponder()
@@ -33,26 +33,29 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 	{
 		// Check if dictionary contains typed word
 		let searchText = self.searchBar.text
-		if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
+		if let searchText = searchText
 		{
-			// Remove the existing dictionary view controller, if it exists
-			if let refVC = self.referenceViewController
+			if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
 			{
-				refVC.removeFromParentViewController()
-				refVC.view.removeFromSuperview()
+				// Remove the existing dictionary view controller, if it exists
+				if let refVC = self.referenceViewController
+				{
+					refVC.removeFromParentViewController()
+					refVC.view.removeFromSuperview()
+				}
+				
+				// Create the dictionary view controller
+				let refVC = UIReferenceLibraryViewController(term: searchText)
+				
+				// Display the dictionary view inside the container view
+				self.addChildViewController(refVC)
+				refVC.view.frame = self.dictionaryContainer.frame
+				self.view.addSubview(refVC.view)
+				refVC.didMoveToParentViewController(self)
+				
+				// Remember for later
+				self.referenceViewController = refVC
 			}
-			
-			// Create the dictionary view controller
-			let refVC = UIReferenceLibraryViewController(term: searchText)
-			
-			// Display the dictionary view inside the container view
-			self.addChildViewController(refVC)
-			refVC.view.frame = self.dictionaryContainer.frame
-			self.view.addSubview(refVC.view)
-			refVC.didMoveToParentViewController(self)
-			
-			// Remember for later
-			self.referenceViewController = refVC
 		}
 	}
 	
@@ -81,6 +84,6 @@ func forEachSubview<V: UIView>(ofView view: UIView, thatIsA type: V.Type, actUpo
 	for subview in view.subviews
 	{
 		if let subview = subview as? V { actUponSubview(subview) }
-		forEachSubview(ofView: subview as! UIView, thatIsA: type, actUponSubview)
+		if let subview = subview as? UIView { forEachSubview(ofView: subview, thatIsA: type, actUponSubview) }
 	}
 }

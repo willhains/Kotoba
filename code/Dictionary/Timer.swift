@@ -36,7 +36,7 @@ class Timer
         start()
 	}
 	
-	private init(repeat delay: Double, _ handler: Void -> Void)
+	private init(`repeat` delay: Double, _ handler: Void -> Void)
 	{
 		self.name = nil
 		self.delay = delay
@@ -46,15 +46,15 @@ class Timer
 		start()
 	}
 	
-    class func repeat(before delay: Double, _ handler: Void -> Void) -> Timer
+    class func `repeat`(before delay: Double, _ handler: Void -> Void) -> Timer
 	{
         handler()
-        return Timer(repeat: delay, handler)
+        return Timer(`repeat`: delay, handler)
     }
     
-    class func repeat(after delay: Double, _ handler: Void -> Void) -> Timer
+    class func `repeat`(after delay: Double, _ handler: Void -> Void) -> Timer
 	{
-        return Timer(repeat: delay, handler)
+        return Timer(`repeat`: delay, handler)
     }
     
     class func named(name: String) -> Timer?
