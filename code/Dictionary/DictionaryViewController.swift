@@ -21,7 +21,7 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 		forEachSubview(ofView: self.searchBar, thatIsA: UITextField.self)
 		{
 			textField in
-			textField.font = UIFont.systemFontOfSize(24)
+			textField.font = .systemFontOfSize(24)
 			textField.bounds.size.height = 88
 		}
 		
