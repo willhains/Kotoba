@@ -17,13 +17,13 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 
 	override func viewDidAppear(animated: Bool)
 	{
-//		// Increase size of font and height of search bar
-//		forEachSubview(ofView: self.searchBar, thatIsA: UITextField.self)
-//		{
-//			textField in
-//			textField.font = UIFont(name: "Helvetica Neue", size: 24)
-//			textField.bounds.size.height = 88
-//		}
+		// Increase size of font and height of search bar
+		forEachSubview(ofView: self.searchBar, thatIsA: UITextField.self)
+		{
+			textField in
+			textField.font = UIFont(name: "Helvetica Neue", size: 24)
+			textField.bounds.size.height = 88
+		}
 		
 		// Show the keyboard on launch, so you can start typing right away
 		self.searchBar.becomeFirstResponder()
