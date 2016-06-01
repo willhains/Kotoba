@@ -33,7 +33,6 @@ class Timer
 		self.repeats = false
         
         timers[name] = self
-        start()
 	}
 	
 	private init(`repeat` delay: Double, _ handler: Void -> Void)
@@ -42,19 +41,17 @@ class Timer
 		self.delay = delay
 		self.handler = handler
 		self.repeats = true
-		
-		start()
 	}
 	
     class func `repeat`(before delay: Double, _ handler: Void -> Void) -> Timer
 	{
         handler()
-        return Timer(`repeat`: delay, handler)
+        return Timer(repeat: delay, handler)
     }
     
     class func `repeat`(after delay: Double, _ handler: Void -> Void) -> Timer
 	{
-        return Timer(`repeat`: delay, handler)
+        return Timer(repeat: delay, handler)
     }
     
     class func named(name: String) -> Timer?
@@ -65,7 +62,7 @@ class Timer
     func start()
 	{
         if nsTimer != nil { return }
-        nsTimer = NSTimer(timeInterval: delay, target: self, selector: "execute", userInfo: nil, repeats: repeats)
+        nsTimer = NSTimer(timeInterval: delay, target: self, selector: #selector(Timer.execute), userInfo: nil, repeats: repeats)
         NSRunLoop.currentRunLoop().addTimer(nsTimer!, forMode: NSRunLoopCommonModes)
     }
     

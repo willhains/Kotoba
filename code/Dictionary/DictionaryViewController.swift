@@ -62,7 +62,7 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
 	{
 		// Delay slightly to make typing smoother
-		Timer("type delay", 1.0, searchDictionary)
+		Timer("type delay", 1.0, searchDictionary).start()
 	}
 	
 	func searchBarTextDidEndEditing(searchBar: UISearchBar)
@@ -84,6 +84,6 @@ func forEachSubview<V: UIView>(ofView view: UIView, thatIsA type: V.Type, actUpo
 	for subview in view.subviews
 	{
 		if let subview = subview as? V { actUponSubview(subview) }
-		if let subview = subview as? UIView { forEachSubview(ofView: subview, thatIsA: type, actUponSubview) }
+		forEachSubview(ofView: subview, thatIsA: type, actUponSubview: actUponSubview)
 	}
 }
