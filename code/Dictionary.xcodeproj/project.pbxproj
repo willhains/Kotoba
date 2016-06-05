@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE6F2A671A22FC8D008A7784 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F2A661A22FC8D008A7784 /* Timer.swift */; };
 		BE75999F1D046365006FBB80 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75999E1D046365006FBB80 /* Values.swift */; };
 		BE7599A11D04636E006FBB80 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* Model.swift */; };
 		BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C4F1A22A5F5006043CF /* AppDelegate.swift */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BE6F2A661A22FC8D008A7784 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		BE75999E1D046365006FBB80 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BE918C4A1A22A5F5006043CF /* Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +60,6 @@
 			children = (
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
 				BE918C511A22A5F5006043CF /* ViewController.swift */,
-				BE6F2A661A22FC8D008A7784 /* Timer.swift */,
 				BE7599A01D04636E006FBB80 /* Model.swift */,
 				BE75999E1D046365006FBB80 /* Values.swift */,
 				BE918C531A22A5F5006043CF /* Main.storyboard */,
@@ -153,7 +150,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE7599A11D04636E006FBB80 /* Model.swift in Sources */,
-				BE6F2A671A22FC8D008A7784 /* Timer.swift in Sources */,
 				BE918C521A22A5F5006043CF /* ViewController.swift in Sources */,
 				BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */,
 				BE75999F1D046365006FBB80 /* Values.swift in Sources */,

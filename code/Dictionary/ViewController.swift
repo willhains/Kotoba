@@ -12,59 +12,26 @@ class DictionaryViewController: UIViewController
 {
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
-	
-	var referenceViewController: UIReferenceLibraryViewController?
 }
 
 // MARK:- Search Bar delegate
 extension DictionaryViewController: UISearchBarDelegate
 {
-	func searchDictionary()
-	{
-		// Check if dictionary contains typed word
-		let searchText = self.searchBar.text
-		if let searchText = searchText
-		{
-			if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
-			{
-				// Remove the existing dictionary view controller, if it exists
-				if let refVC = self.referenceViewController
-				{
-					refVC.removeFromParentViewController()
-					refVC.view.removeFromSuperview()
-				}
-				
-				// Create the dictionary view controller
-				let refVC = UIReferenceLibraryViewController(term: searchText)
-				
-				// Display the dictionary view inside the container view
-				self.addChildViewController(refVC)
-				refVC.view.frame = self.tableView.frame
-				self.view.addSubview(refVC.view)
-				refVC.didMoveToParentViewController(self)
-				
-				// Remember for later
-				self.referenceViewController = refVC
-			}
-		}
-	}
-	
-	func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
-	{
-		// Delay slightly to make typing smoother
-		Timer("type delay", 1.0, searchDictionary).start()
-	}
-	
-	func searchBarTextDidEndEditing(searchBar: UISearchBar)
-	{
-		// Search immediately
-		searchDictionary()
-	}
-	
 	func searchBarSearchButtonClicked(searchBar: UISearchBar)
 	{
-		// Hide keyboard
-		self.searchBar.resignFirstResponder()
+		// Search the dictionary
+		if let searchText = searchBar.text
+		{
+			let dictionaryVC = UIReferenceLibraryViewController(term: searchText)
+			presentViewController(dictionaryVC, animated: true)
+			{
+				if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
+				{
+					// Clear the search bar
+					self.searchBar.text = nil
+				}
+			}
+		}
 	}
 }
 
