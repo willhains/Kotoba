@@ -14,6 +14,52 @@ class DictionaryViewController: UIViewController
 	
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+	
+	deinit
+	{
+		NSNotificationCenter.defaultCenter().removeObserver(self)
+	}
+}
+
+// MARK:- Keyboard avoiding
+extension DictionaryViewController
+{
+	override func viewDidLoad()
+	{
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: #selector(DictionaryViewController.keyboardWillShow(_:)),
+			name:UIKeyboardWillShowNotification,
+			object: nil);
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: #selector(DictionaryViewController.keyboardWillHide(_:)),
+			name:UIKeyboardWillHideNotification,
+			object: nil);
+		
+		// Show the keyboard on launch, so you can start typing right away
+		self.searchBar.becomeFirstResponder()
+	}
+	
+	func keyboardWillShow(sender: NSNotification)
+	{
+		let info = sender.userInfo!
+		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().height
+		bottomConstraint.constant = keyboardSize - bottomLayoutGuide.length
+		
+		let duration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		UIView.animateWithDuration(duration) { self.view.layoutIfNeeded() }
+	}
+	
+	func keyboardWillHide(sender: NSNotification)
+	{
+		let info = sender.userInfo!
+		bottomConstraint.constant = 0
+		
+		let duration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		UIView.animateWithDuration(duration) { self.view.layoutIfNeeded() }
+	}
 }
 
 // MARK:- Table View Delegate
@@ -96,12 +142,6 @@ extension DictionaryViewController: UISearchBarDelegate
 // MARK:- Giant search bar
 extension DictionaryViewController
 {
-	override func viewDidLoad()
-	{
-		// Show the keyboard on launch, so you can start typing right away
-		self.searchBar.becomeFirstResponder()
-	}
-	
 	override func viewDidAppear(animated: Bool)
 	{
 		// Increase size of font and height of search bar

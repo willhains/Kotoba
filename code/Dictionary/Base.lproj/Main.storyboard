@@ -64,6 +64,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="7Vp-59-dZe" id="AYT-rj-L5T"/>
                         <outlet property="searchBar" destination="lYB-s3-xLb" id="Ut5-Dv-21R"/>
                         <outlet property="tableView" destination="dIa-xb-dSS" id="uqn-4x-l8X"/>
                     </connections>
