@@ -14,20 +14,6 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 	@IBOutlet weak var tableView: UITableView!
 	
 	var referenceViewController: UIReferenceLibraryViewController?
-
-	override func viewDidAppear(animated: Bool)
-	{
-		// Increase size of font and height of search bar
-		forEachSubview(ofView: self.searchBar, thatIsA: UITextField.self)
-		{
-			textField in
-			textField.font = .systemFontOfSize(24)
-			textField.bounds.size.height = 88
-		}
-		
-		// Show the keyboard on launch, so you can start typing right away
-		self.searchBar.becomeFirstResponder()
-	}
 	
 	func searchDictionary()
 	{
@@ -78,12 +64,30 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 	}
 }
 
-// Cheater's function to rummage through the subviews of the given UIView
-func forEachSubview<V: UIView>(ofView view: UIView, thatIsA type: V.Type, actUponSubview: V -> Void)
+// MARK:- Giant search bar
+extension DictionaryViewController
 {
-	for subview in view.subviews
+	override func viewDidAppear(animated: Bool)
 	{
-		if let subview = subview as? V { actUponSubview(subview) }
-		forEachSubview(ofView: subview, thatIsA: type, actUponSubview: actUponSubview)
+		// Increase size of font and height of search bar
+		forEachSubview(ofView: self.searchBar, thatIsA: UITextField.self)
+		{
+			textField in
+			textField.font = .systemFontOfSize(24)
+			textField.bounds.size.height = 88
+		}
+		
+		// Show the keyboard on launch, so you can start typing right away
+		self.searchBar.becomeFirstResponder()
+	}
+	
+	// Rummage through the subviews of the given UIView
+	func forEachSubview<V: UIView>(ofView view: UIView, thatIsA type: V.Type, actUponSubview: V -> Void)
+	{
+		for subview in view.subviews
+		{
+			if let subview = subview as? V { actUponSubview(subview) }
+			forEachSubview(ofView: subview, thatIsA: type, actUponSubview: actUponSubview)
+		}
 	}
 }
