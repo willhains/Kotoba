@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BE6F2A671A22FC8D008A7784 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6F2A661A22FC8D008A7784 /* Timer.swift */; };
+		BE75999F1D046365006FBB80 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75999E1D046365006FBB80 /* Values.swift */; };
+		BE7599A11D04636E006FBB80 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* Model.swift */; };
 		BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C4F1A22A5F5006043CF /* AppDelegate.swift */; };
 		BE918C521A22A5F5006043CF /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C511A22A5F5006043CF /* DictionaryViewController.swift */; };
 		BE918C551A22A5F5006043CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE918C531A22A5F5006043CF /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		BE6F2A661A22FC8D008A7784 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		BE75999E1D046365006FBB80 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
+		BE7599A01D04636E006FBB80 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		BE918C4A1A22A5F5006043CF /* Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE918C4E1A22A5F5006043CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE918C4F1A22A5F5006043CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
 				BE918C511A22A5F5006043CF /* DictionaryViewController.swift */,
 				BE6F2A661A22FC8D008A7784 /* Timer.swift */,
+				BE7599A01D04636E006FBB80 /* Model.swift */,
+				BE75999E1D046365006FBB80 /* Values.swift */,
 				BE918C531A22A5F5006043CF /* Main.storyboard */,
 				BE918C561A22A5F5006043CF /* Images.xcassets */,
 				BE918C581A22A5F5006043CF /* LaunchScreen.xib */,
@@ -146,9 +152,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE7599A11D04636E006FBB80 /* Model.swift in Sources */,
 				BE6F2A671A22FC8D008A7784 /* Timer.swift in Sources */,
 				BE918C521A22A5F5006043CF /* DictionaryViewController.swift in Sources */,
 				BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */,
+				BE75999F1D046365006FBB80 /* Values.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +217,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -246,7 +254,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -261,7 +269,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Dictionary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.willhains.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -277,7 +284,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Dictionary/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.willhains.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
