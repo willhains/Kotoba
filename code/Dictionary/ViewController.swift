@@ -16,6 +16,35 @@ class DictionaryViewController: UIViewController
 	@IBOutlet weak var tableView: UITableView!
 }
 
+// MARK:- Table View Delegate
+extension DictionaryViewController: UITableViewDelegate
+{
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+	{
+		// Search the dictionary
+		let searchText = words[indexPath.row].text
+		let dictionaryVC = UIReferenceLibraryViewController(term: searchText)
+		presentViewController(dictionaryVC, animated: true)
+		{
+			self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		}
+	}
+	
+	func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+	{
+		return true
+	}
+	
+	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+	{
+		if editingStyle == .Delete
+		{
+			self.words.deleteWord(atIndex: indexPath.row)
+			self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+		}
+	}
+}
+
 // MARK:- Data source
 extension DictionaryViewController: UITableViewDataSource
 {
