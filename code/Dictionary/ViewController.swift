@@ -75,6 +75,7 @@ extension DictionaryViewController
 			textField in
 			textField.font = .systemFontOfSize(24)
 			textField.bounds.size.height = 88
+			textField.autocapitalizationType = .None
 		}
 		
 		// Show the keyboard on launch, so you can start typing right away
