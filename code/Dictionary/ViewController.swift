@@ -96,6 +96,12 @@ extension DictionaryViewController: UISearchBarDelegate
 // MARK:- Giant search bar
 extension DictionaryViewController
 {
+	override func viewDidLoad()
+	{
+		// Show the keyboard on launch, so you can start typing right away
+		self.searchBar.becomeFirstResponder()
+	}
+	
 	override func viewDidAppear(animated: Bool)
 	{
 		// Increase size of font and height of search bar
@@ -106,9 +112,6 @@ extension DictionaryViewController
 			textField.bounds.size.height = 88
 			textField.autocapitalizationType = .None
 		}
-		
-		// Show the keyboard on launch, so you can start typing right away
-		self.searchBar.becomeFirstResponder()
 	}
 	
 	// Rummage through the subviews of the given UIView
