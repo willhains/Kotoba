@@ -16,6 +16,27 @@ class DictionaryViewController: UIViewController
 	@IBOutlet weak var tableView: UITableView!
 }
 
+// MARK:- Data source
+extension DictionaryViewController: UITableViewDataSource
+{
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int
+	{
+		return 1
+	}
+	
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	{
+		return words.count
+	}
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+	{
+		let cell = tableView.dequeueReusableCellWithIdentifier("Word", forIndexPath: indexPath)
+		cell.textLabel?.text = words[indexPath.row].text
+		return cell
+	}
+}
+
 // MARK:- Search Bar delegate
 extension DictionaryViewController: UISearchBarDelegate
 {
@@ -31,6 +52,9 @@ extension DictionaryViewController: UISearchBarDelegate
 				{
 					// Add word to list of words
 					self.words.addWord(Word(text: searchText))
+					
+					// Update the table view
+					self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
 					
 					// Clear the search bar
 					self.searchBar.text = nil
