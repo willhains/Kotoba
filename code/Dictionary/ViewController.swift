@@ -8,13 +8,17 @@
 
 import UIKit
 
-class DictionaryViewController: UIViewController, UISearchBarDelegate
+class DictionaryViewController: UIViewController
 {
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
 	
 	var referenceViewController: UIReferenceLibraryViewController?
-	
+}
+
+// MARK:- Search Bar delegate
+extension DictionaryViewController: UISearchBarDelegate
+{
 	func searchDictionary()
 	{
 		// Check if dictionary contains typed word
