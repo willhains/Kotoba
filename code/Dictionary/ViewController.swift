@@ -11,7 +11,7 @@ import UIKit
 class DictionaryViewController: UIViewController, UISearchBarDelegate
 {
 	@IBOutlet weak var searchBar: UISearchBar!
-	@IBOutlet weak var dictionaryContainer: UIView!
+	@IBOutlet weak var tableView: UITableView!
 	
 	var referenceViewController: UIReferenceLibraryViewController?
 
@@ -49,7 +49,7 @@ class DictionaryViewController: UIViewController, UISearchBarDelegate
 				
 				// Display the dictionary view inside the container view
 				self.addChildViewController(refVC)
-				refVC.view.frame = self.dictionaryContainer.frame
+				refVC.view.frame = self.tableView.frame
 				self.view.addSubview(refVC.view)
 				refVC.didMoveToParentViewController(self)
 				

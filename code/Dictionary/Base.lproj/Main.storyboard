@@ -61,6 +61,7 @@
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="lYB-s3-xLb" id="Ut5-Dv-21R"/>
+                        <outlet property="tableView" destination="dIa-xb-dSS" id="uqn-4x-l8X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
