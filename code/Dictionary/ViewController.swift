@@ -10,6 +10,8 @@ import UIKit
 
 class DictionaryViewController: UIViewController
 {
+	let words = WordList()
+	
 	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var tableView: UITableView!
 }
@@ -27,6 +29,9 @@ extension DictionaryViewController: UISearchBarDelegate
 			{
 				if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
 				{
+					// Add word to list of words
+					self.words.addWord(Word(text: searchText))
+					
 					// Clear the search bar
 					self.searchBar.text = nil
 				}
