@@ -1,4 +1,4 @@
-# Dictionary
+# Kotoba
 
 Quickly search the built-in iOS dictionary to see definitions of words.
 
