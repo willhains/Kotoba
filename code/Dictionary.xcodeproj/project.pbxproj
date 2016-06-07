@@ -19,7 +19,7 @@
 /* Begin PBXFileReference section */
 		BE75999E1D046365006FBB80 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		BE918C4A1A22A5F5006043CF /* Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE918C4A1A22A5F5006043CF /* Kotoba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kotoba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE918C4E1A22A5F5006043CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE918C4F1A22A5F5006043CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE918C511A22A5F5006043CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		BE918C4B1A22A5F5006043CF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BE918C4A1A22A5F5006043CF /* Dictionary.app */,
+				BE918C4A1A22A5F5006043CF /* Kotoba.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,9 +81,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BE918C491A22A5F5006043CF /* Dictionary */ = {
+		BE918C491A22A5F5006043CF /* Kotoba */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BE918C691A22A5F5006043CF /* Build configuration list for PBXNativeTarget "Dictionary" */;
+			buildConfigurationList = BE918C691A22A5F5006043CF /* Build configuration list for PBXNativeTarget "Kotoba" */;
 			buildPhases = (
 				BE918C461A22A5F5006043CF /* Sources */,
 				BE918C471A22A5F5006043CF /* Frameworks */,
@@ -93,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = Dictionary;
+			name = Kotoba;
 			productName = Dictionary;
-			productReference = BE918C4A1A22A5F5006043CF /* Dictionary.app */;
+			productReference = BE918C4A1A22A5F5006043CF /* Kotoba.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -126,7 +126,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BE918C491A22A5F5006043CF /* Dictionary */,
+				BE918C491A22A5F5006043CF /* Kotoba */,
 			);
 		};
 /* End PBXProject section */
@@ -300,7 +300,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BE918C691A22A5F5006043CF /* Build configuration list for PBXNativeTarget "Dictionary" */ = {
+		BE918C691A22A5F5006043CF /* Build configuration list for PBXNativeTarget "Kotoba" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BE918C6A1A22A5F5006043CF /* Debug */,
