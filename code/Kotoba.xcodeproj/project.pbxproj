@@ -85,6 +85,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE918C691A22A5F5006043CF /* Build configuration list for PBXNativeTarget "Kotoba" */;
 			buildPhases = (
+				BE776E551D087C7700D4A315 /* ShellScript */,
 				BE918C461A22A5F5006043CF /* Sources */,
 				BE918C471A22A5F5006043CF /* Frameworks */,
 				BE918C481A22A5F5006043CF /* Resources */,
@@ -110,6 +111,7 @@
 				TargetAttributes = {
 					BE918C491A22A5F5006043CF = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 8B38X92RJ6;
 					};
 				};
 			};
@@ -143,6 +145,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BE776E551D087C7700D4A315 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\"); echo $buildNumber\nbuildNumber=$(($buildNumber + 1)); echo $buildNumber\nbuildNumber=$(printf \"%d\" $buildNumber); echo $buildNumber\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE918C461A22A5F5006043CF /* Sources */ = {
