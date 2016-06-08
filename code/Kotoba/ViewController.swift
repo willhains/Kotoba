@@ -1,6 +1,6 @@
 //
-//  DictionaryViewController
-//  Dictionary
+//  KotobaViewController
+//  Kotoba
 //
 //  Created by Will Hains on 2014-11-24.
 //  Copyright (c) 2014 Will Hains. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DictionaryViewController: UIViewController
+class KotobaViewController: UIViewController
 {
 	let words = WordList()
 	
@@ -23,18 +23,18 @@ class DictionaryViewController: UIViewController
 }
 
 // MARK:- Keyboard avoiding
-extension DictionaryViewController
+extension KotobaViewController
 {
 	override func viewDidLoad()
 	{
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: #selector(DictionaryViewController.keyboardWillShow(_:)),
+			selector: #selector(KotobaViewController.keyboardWillShow(_:)),
 			name:UIKeyboardWillShowNotification,
 			object: nil);
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
-			selector: #selector(DictionaryViewController.keyboardWillHide(_:)),
+			selector: #selector(KotobaViewController.keyboardWillHide(_:)),
 			name:UIKeyboardWillHideNotification,
 			object: nil);
 		
@@ -63,14 +63,14 @@ extension DictionaryViewController
 }
 
 // MARK:- Table View Delegate
-extension DictionaryViewController: UITableViewDelegate
+extension KotobaViewController: UITableViewDelegate
 {
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
-		// Search the dictionary
+		// Search the Kotoba
 		let searchText = words[indexPath.row].text
-		let dictionaryVC = UIReferenceLibraryViewController(term: searchText)
-		presentViewController(dictionaryVC, animated: true)
+		let KotobaVC = UIReferenceLibraryViewController(term: searchText)
+		presentViewController(KotobaVC, animated: true)
 		{
 			self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		}
@@ -92,7 +92,7 @@ extension DictionaryViewController: UITableViewDelegate
 }
 
 // MARK:- Data source
-extension DictionaryViewController: UITableViewDataSource
+extension KotobaViewController: UITableViewDataSource
 {
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int
 	{
@@ -113,15 +113,15 @@ extension DictionaryViewController: UITableViewDataSource
 }
 
 // MARK:- Search Bar delegate
-extension DictionaryViewController: UISearchBarDelegate
+extension KotobaViewController: UISearchBarDelegate
 {
 	func searchBarSearchButtonClicked(searchBar: UISearchBar)
 	{
-		// Search the dictionary
+		// Search the Kotoba
 		if let searchText = searchBar.text
 		{
-			let dictionaryVC = UIReferenceLibraryViewController(term: searchText)
-			presentViewController(dictionaryVC, animated: true)
+			let KotobaVC = UIReferenceLibraryViewController(term: searchText)
+			presentViewController(KotobaVC, animated: true)
 			{
 				if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
 				{
@@ -140,7 +140,7 @@ extension DictionaryViewController: UISearchBarDelegate
 }
 
 // MARK:- Giant search bar
-extension DictionaryViewController
+extension KotobaViewController
 {
 	override func viewDidAppear(animated: Bool)
 	{
