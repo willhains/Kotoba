@@ -159,7 +159,7 @@ extension KotobaViewController: UISearchBarDelegate
 						message: "Have you set up your iOS dictionaries?\n"
 							+ "Tap \"Manage\" below to download dictionaries for the languages you want.",
 						preferredStyle: .Alert)
-					alert.addAction(UIAlertAction(title: "Got it", style: .Default, handler: nil))
+					alert.addAction(UIAlertAction(title: "Got It", style: .Default, handler: nil))
 					refVC.presentViewController(alert, animated: true, completion: nil)
 				}
 			}
