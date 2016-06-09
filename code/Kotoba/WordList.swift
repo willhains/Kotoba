@@ -8,18 +8,16 @@
 
 import Foundation
 
-class WordList
+private let _WORD_LIST_KEY = "words"
+
+final class WordList
 {
 	private let _defaults = NSUserDefaults.standardUserDefaults()
 	
 	private var _words: [String]
 	{
-		get { return _defaults.objectForKey("words") as? [String] ?? [] }
-		
-		set(words)
-		{
-			_defaults.setObject(words, forKey: "words")
-		}
+		get { return _defaults.objectForKey(_WORD_LIST_KEY) as? [String] ?? [] }
+		set(words) { _defaults.setObject(words, forKey: _WORD_LIST_KEY) }
 	}
 	
 	subscript(index: Int) -> Word

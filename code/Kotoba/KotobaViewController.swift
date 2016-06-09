@@ -10,6 +10,7 @@ import UIKit
 
 class KotobaViewController: UIViewController
 {
+	let prefs = Preferences()
 	let words = WordList()
 	
 	@IBOutlet weak var searchBar: UISearchBar!
@@ -65,12 +66,12 @@ extension KotobaViewController
 // MARK:- Reference Library
 extension KotobaViewController
 {
-	func showDefinitionForWord(word: Word, andThen completion: (definitionFound: Bool) -> ())
+	func showDefinitionForWord(word: Word, andThen completion: (referenceVC: UIReferenceLibraryViewController) -> ())
 	{
-		let definitionFound = UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(word.text)
-		presentViewController(UIReferenceLibraryViewController(term: word.text), animated: true)
+		let refVC = UIReferenceLibraryViewController(term: word.text)
+		presentViewController(refVC, animated: true)
 		{
-			completion(definitionFound: definitionFound)
+			completion(referenceVC: refVC)
 		}
 	}
 }
@@ -135,8 +136,10 @@ extension KotobaViewController: UISearchBarDelegate
 		{
 			showDefinitionForWord(word)
 			{
-				definitionFound in
-				if definitionFound
+				refVC in
+				
+				// Word is found in dictionary
+				if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(word.text)
 				{
 					// Add word to list of words
 					self.words.addWord(word)
@@ -146,6 +149,18 @@ extension KotobaViewController: UISearchBarDelegate
 					
 					// Clear the search bar
 					self.searchBar.text = nil
+				}
+
+				// Prompt the user to set up their iOS dictionaries
+				self.prefs.firstTimeManageDictionariesPrompt
+				{
+					let alert = UIAlertController(
+						title: "Add Dictionaries",
+						message: "Have you set up your iOS dictionaries?\n"
+							+ "Tap \"Manage\" below to download dictionaries for the languages you want.",
+						preferredStyle: .Alert)
+					alert.addAction(UIAlertAction(title: "Got it", style: .Default, handler: nil))
+					refVC.presentViewController(alert, animated: true, completion: nil)
 				}
 			}
 		}
