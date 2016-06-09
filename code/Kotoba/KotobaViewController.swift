@@ -69,8 +69,8 @@ extension KotobaViewController: UITableViewDelegate
 	{
 		// Search the Kotoba
 		let searchText = words[indexPath.row].text
-		let KotobaVC = UIReferenceLibraryViewController(term: searchText)
-		presentViewController(KotobaVC, animated: true)
+		let kotobaVC = UIReferenceLibraryViewController(term: searchText)
+		presentViewController(kotobaVC, animated: true)
 		{
 			self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		}
@@ -120,8 +120,8 @@ extension KotobaViewController: UISearchBarDelegate
 		// Search the Kotoba
 		if let searchText = searchBar.text
 		{
-			let KotobaVC = UIReferenceLibraryViewController(term: searchText)
-			presentViewController(KotobaVC, animated: true)
+			let kotobaVC = UIReferenceLibraryViewController(term: searchText)
+			presentViewController(kotobaVC, animated: true)
 			{
 				if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
 				{
