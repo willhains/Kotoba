@@ -62,16 +62,29 @@ extension KotobaViewController
 	}
 }
 
+// MARK:- Reference Library
+extension KotobaViewController
+{
+	func showDefinitionForWord(word: Word, andThen completion: (definitionFound: Bool) -> ())
+	{
+		let definitionFound = UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(word.text)
+		presentViewController(UIReferenceLibraryViewController(term: word.text), animated: true)
+		{
+			completion(definitionFound: definitionFound)
+		}
+	}
+}
+
 // MARK:- Table View Delegate
 extension KotobaViewController: UITableViewDelegate
 {
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
-		// Search the Kotoba
-		let searchText = words[indexPath.row].text
-		let kotobaVC = UIReferenceLibraryViewController(term: searchText)
-		presentViewController(kotobaVC, animated: true)
+		// Search the dictionary
+		let word = words[indexPath.row]
+		showDefinitionForWord(word)
 		{
+			_ in
 			self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		}
 	}
@@ -117,16 +130,16 @@ extension KotobaViewController: UISearchBarDelegate
 {
 	func searchBarSearchButtonClicked(searchBar: UISearchBar)
 	{
-		// Search the Kotoba
-		if let searchText = searchBar.text
+		// Search the dictionary
+		if let word = searchBar.text.map(Word.init)
 		{
-			let kotobaVC = UIReferenceLibraryViewController(term: searchText)
-			presentViewController(kotobaVC, animated: true)
+			showDefinitionForWord(word)
 			{
-				if UIReferenceLibraryViewController.dictionaryHasDefinitionForTerm(searchText)
+				definitionFound in
+				if definitionFound
 				{
 					// Add word to list of words
-					self.words.addWord(Word(text: searchText))
+					self.words.addWord(word)
 					
 					// Update the table view
 					self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
