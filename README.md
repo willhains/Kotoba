@@ -4,8 +4,6 @@ Quickly search the built-in iOS dictionary to see definitions of words. Collect 
 
 ## Installation (iPhone only)
 
-Coming soon to the iOS App Store...
-
 If you have Xcode:
 
 1. Clone or download Kotoba from GitHub.
@@ -58,7 +56,7 @@ As far as I know, it works fine. But if you find any bugs, or have suggestions f
 
 Look, ladies and gents, you are much smarter than I. I am a working developer, but Swift/iOS is not my day job. I made this open-source for two reasons:
 
-- Honestly, I'm not sure whether Kotoba will be approved for the App Store. If it's open-source, the Xcode-savvy can at least install it on their personal devices.
+- Honestly, I suspected Kotoba wouldn't be approved for the App Store. If it's open-source, the Xcode-savvy can at least install it on their personal devices.
 - If smarter, more experienced Swift developers can suggest improvements or fix my bugs, I will learn from them.
 
 Which is a nice segway to...
