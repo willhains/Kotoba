@@ -166,29 +166,3 @@ extension KotobaViewController: UISearchBarDelegate
 		}
 	}
 }
-
-// MARK:- Giant search bar
-extension KotobaViewController
-{
-	override func viewDidAppear(animated: Bool)
-	{
-		// Increase size of font and height of search bar
-		forEachSubview(ofView: self.searchBar, thatIsA: UITextField.self)
-		{
-			textField in
-			textField.font = .systemFontOfSize(24)
-			textField.bounds.size.height = 88
-			textField.autocapitalizationType = .None
-		}
-	}
-	
-	// Rummage through the subviews of the given UIView
-	func forEachSubview<V: UIView>(ofView view: UIView, thatIsA type: V.Type, actUponSubview: V -> Void)
-	{
-		for subview in view.subviews
-		{
-			if let subview = subview as? V { actUponSubview(subview) }
-			forEachSubview(ofView: subview, thatIsA: type, actUponSubview: actUponSubview)
-		}
-	}
-}
