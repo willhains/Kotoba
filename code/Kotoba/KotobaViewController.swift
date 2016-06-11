@@ -23,11 +23,23 @@ class KotobaViewController: UIViewController
 	}
 }
 
+// MARK:- Fix for weird search bar zoom animation at start-up
+extension KotobaViewController
+{
+	override func viewWillAppear(animated: Bool)
+	{
+		super.viewWillAppear(animated)
+		self.view.layoutIfNeeded()
+	}
+}
+
 // MARK:- Keyboard avoiding
 extension KotobaViewController
 {
 	override func viewDidLoad()
 	{
+		super.viewDidLoad()
+		
 		NSNotificationCenter.defaultCenter().addObserver(
 			self,
 			selector: #selector(KotobaViewController.keyboardWillShow(_:)),
