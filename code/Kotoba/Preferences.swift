@@ -14,7 +14,7 @@ final class Preferences
 {
 	private let _defaults = NSUserDefaults.standardUserDefaults()
 	
-	func firstTimeManageDictionariesPrompt(action: Void -> Void)
+	func ifFirstTimeToShowReferenceLibrary(doAction action: Void -> Void)
 	{
 		if !_defaults.boolForKey(_MANAGE_DICTIONARIES_PROMPT_DISPLAYED_KEY)
 		{

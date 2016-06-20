@@ -7,27 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE75999F1D046365006FBB80 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75999E1D046365006FBB80 /* Word.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
 		BE776E571D09D60700D4A315 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE776E561D09D60700D4A315 /* Preferences.swift */; };
+		BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */; };
 		BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C4F1A22A5F5006043CF /* AppDelegate.swift */; };
-		BE918C521A22A5F5006043CF /* KotobaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C511A22A5F5006043CF /* KotobaViewController.swift */; };
+		BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C511A22A5F5006043CF /* WordListViewController.swift */; };
 		BE918C551A22A5F5006043CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE918C531A22A5F5006043CF /* Main.storyboard */; };
 		BE918C571A22A5F5006043CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE918C561A22A5F5006043CF /* Images.xcassets */; };
-		BE918C5A1A22A5F5006043CF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE918C581A22A5F5006043CF /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE75999E1D046365006FBB80 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		BE776E561D09D60700D4A315 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWordViewController.swift; sourceTree = "<group>"; };
 		BE918C4A1A22A5F5006043CF /* Kotoba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kotoba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE918C4E1A22A5F5006043CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE918C4F1A22A5F5006043CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE918C511A22A5F5006043CF /* KotobaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaViewController.swift; sourceTree = "<group>"; };
+		BE918C511A22A5F5006043CF /* WordListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListViewController.swift; sourceTree = "<group>"; };
 		BE918C541A22A5F5006043CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE918C561A22A5F5006043CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		BE918C591A22A5F5006043CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,13 +63,14 @@
 			isa = PBXGroup;
 			children = (
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
-				BE918C511A22A5F5006043CF /* KotobaViewController.swift */,
+				BE918C511A22A5F5006043CF /* WordListViewController.swift */,
+				BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */,
+				BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */,
 				BE7599A01D04636E006FBB80 /* WordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				BE75999E1D046365006FBB80 /* Word.swift */,
 				BE918C531A22A5F5006043CF /* Main.storyboard */,
 				BE918C561A22A5F5006043CF /* Images.xcassets */,
-				BE918C581A22A5F5006043CF /* LaunchScreen.xib */,
 				BE918C4D1A22A5F5006043CF /* Supporting Files */,
 			);
 			path = Kotoba;
@@ -142,7 +145,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE918C551A22A5F5006043CF /* Main.storyboard in Resources */,
-				BE918C5A1A22A5F5006043CF /* LaunchScreen.xib in Resources */,
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,8 +173,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
-				BE918C521A22A5F5006043CF /* KotobaViewController.swift in Sources */,
+				BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */,
+				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
 				BE776E571D09D60700D4A315 /* Preferences.swift in Sources */,
+				BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */,
 				BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */,
 				BE75999F1D046365006FBB80 /* Word.swift in Sources */,
 			);
@@ -187,14 +191,6 @@
 				BE918C541A22A5F5006043CF /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		BE918C581A22A5F5006043CF /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BE918C591A22A5F5006043CF /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

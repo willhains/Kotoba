@@ -30,7 +30,12 @@ final class WordList
 	func addWord(word: Word)
 	{
 		var words = _words
-		words.insert(word.text, atIndex: 0)
+		let lowercase = word.text.lowercaseString
+		if let existingIndex = words.indexOf(lowercase)
+		{
+			words.removeAtIndex(existingIndex)
+		}
+		words.insert(lowercase, atIndex: 0)
 		_words = words
 	}
 	
