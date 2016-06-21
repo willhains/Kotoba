@@ -26,16 +26,6 @@ final class AddWordViewController: UIViewController
 	}
 }
 
-// MARK:- Fix for weird search bar zoom animation at start-up
-extension AddWordViewController
-{
-	override func viewWillAppear(animated: Bool)
-	{
-		super.viewWillAppear(animated)
-		self.view.layoutIfNeeded()
-	}
-}
-
 // MARK:- Keyboard avoiding
 extension AddWordViewController
 {
@@ -57,6 +47,8 @@ extension AddWordViewController
 	
 	override func viewDidAppear(animated: Bool)
 	{
+		super.viewDidAppear(animated)
+		
 		// Show the keyboard on launch, so you can start typing right away
 		self.textField.becomeFirstResponder()
 	}
