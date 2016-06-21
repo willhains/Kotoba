@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE08442A1D19838100449980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE0844281D19838100449980 /* LaunchScreen.storyboard */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE75999F1D046365006FBB80 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75999E1D046365006FBB80 /* Word.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE0844291D19838100449980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE75999E1D046365006FBB80 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				BE75999E1D046365006FBB80 /* Word.swift */,
 				BE918C531A22A5F5006043CF /* Main.storyboard */,
+				BE0844281D19838100449980 /* LaunchScreen.storyboard */,
 				BE918C561A22A5F5006043CF /* Images.xcassets */,
 				BE918C4D1A22A5F5006043CF /* Supporting Files */,
 			);
@@ -144,6 +147,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE08442A1D19838100449980 /* LaunchScreen.storyboard in Resources */,
 				BE918C551A22A5F5006043CF /* Main.storyboard in Resources */,
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
 			);
@@ -185,6 +189,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BE0844281D19838100449980 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE0844291D19838100449980 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		BE918C531A22A5F5006043CF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

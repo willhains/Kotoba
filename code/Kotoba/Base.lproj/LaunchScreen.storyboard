@@ -5,44 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Word List VC-->
-        <scene sceneID="hlw-Ih-phw">
-            <objects>
-                <tableViewController id="PII-AL-jNA" userLabel="Word List VC" customClass="WordListViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kNU-bZ-hng">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Word" textLabel="Eh3-mK-Sxg" style="IBUITableViewCellStyleDefault" id="zq0-Qe-pPh">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zq0-Qe-pPh" id="RwW-O5-MoZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eh3-mK-Sxg">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="PII-AL-jNA" id="fPs-9h-0TB"/>
-                            <outlet property="delegate" destination="PII-AL-jNA" id="mPg-74-lzb"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="History" id="d1d-CM-VoC"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9s3-di-ABt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1417" y="117"/>
-        </scene>
         <!--Add Word VC-->
         <scene sceneID="SoF-qW-FaW">
             <objects>
@@ -62,9 +24,6 @@
                                         <rect key="frame" x="20" y="220.5" width="560" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="JNO-hA-UHa" id="gMV-3x-7t1"/>
-                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,6 +35,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.59215686270000001" green="0.14117647059999999" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="TjI-Ef-oFV" firstAttribute="leading" secondItem="4xg-Iq-PCO" secondAttribute="leading" id="Li6-E3-z3g"/>
                             <constraint firstItem="g4O-Ht-B3Z" firstAttribute="top" secondItem="TjI-Ef-oFV" secondAttribute="bottom" constant="44" id="OuP-es-frd"/>
@@ -85,15 +45,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Word Lookup" id="YQw-TU-c8o">
                         <barButtonItem key="rightBarButtonItem" title="History" id="lxn-9Q-keE">
-                            <connections>
-                                <segue destination="PII-AL-jNA" kind="show" id="KTZ-QU-EDq"/>
-                            </connections>
+                            <color key="tintColor" red="0.59215686270000001" green="0.14117647059999999" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="bottomConstraint" destination="OuP-es-frd" id="euf-jj-q5P"/>
-                        <outlet property="textField" destination="NcX-Q6-lwW" id="1fK-yo-bUz"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGZ-IU-TR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
