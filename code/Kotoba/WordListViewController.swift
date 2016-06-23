@@ -10,7 +10,6 @@ import UIKit
 
 class WordListViewController: UITableViewController
 {
-	let prefs = Preferences()
 	let words = WordList()
 }
 

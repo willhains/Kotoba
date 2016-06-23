@@ -11,7 +11,6 @@ import UIKit
 
 final class AddWordViewController: UIViewController
 {
-	let prefs = Preferences()
 	let words = WordList()
 
 	@IBOutlet weak var textField: UITextField!

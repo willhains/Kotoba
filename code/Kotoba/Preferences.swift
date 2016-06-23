@@ -8,18 +8,25 @@
 
 import Foundation
 
-private let _MANAGE_DICTIONARIES_PROMPT_DISPLAYED_KEY = "manageDictionariesPromptDisplayed"
-
-final class Preferences
+protocol Preferences
 {
-	private let _defaults = NSUserDefaults.standardUserDefaults()
-	
-	func ifFirstTimeToShowReferenceLibrary(doAction action: Void -> Void)
+	func shouldDisplayFirstUseDictionaryPrompt() -> Bool
+	func didDisplayFirstUseDictionaryPrompt()
+}
+
+private let _DICTIONARY_PROMPT_DISPLAYED = "firstUseDictionaryPromptDisplayed"
+
+extension NSUserDefaults: Preferences
+{
+	func shouldDisplayFirstUseDictionaryPrompt() -> Bool
 	{
-		if !_defaults.boolForKey(_MANAGE_DICTIONARIES_PROMPT_DISPLAYED_KEY)
-		{
-			action()
-			_defaults.setBool(true, forKey: _MANAGE_DICTIONARIES_PROMPT_DISPLAYED_KEY)
-		}
+		return !boolForKey(_DICTIONARY_PROMPT_DISPLAYED)
+	}
+	
+	func didDisplayFirstUseDictionaryPrompt()
+	{
+		setBool(true, forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
 }
+
+let prefs: Preferences = NSUserDefaults.standardUserDefaults()

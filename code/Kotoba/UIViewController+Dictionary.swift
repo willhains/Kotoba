@@ -18,7 +18,7 @@ extension UIViewController
 		presentViewController(refVC, animated: true, completion: nil)
 		
 		// Prompt the user to set up their iOS dictionaries
-		Preferences().ifFirstTimeToShowReferenceLibrary
+		if prefs.shouldDisplayFirstUseDictionaryPrompt()
 		{
 			let alert = UIAlertController(
 				title: "Add Dictionaries",
@@ -27,6 +27,8 @@ extension UIViewController
 				preferredStyle: .Alert)
 			alert.addAction(UIAlertAction(title: "Got It", style: .Default, handler: nil))
 			refVC.presentViewController(alert, animated: true, completion: nil)
+			
+			prefs.didDisplayFirstUseDictionaryPrompt()
 		}
 		
 		// Return whether definition for word was found
