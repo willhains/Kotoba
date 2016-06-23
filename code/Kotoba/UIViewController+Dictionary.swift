@@ -9,15 +9,16 @@
 import Foundation
 import UIKit
 
-// MARK:- Reference Library
 extension UIViewController
 {
+	/// Present the system dictionary as a modal view, showing the definition of `word`.
+	/// - returns: `true` if the system dictionary found a definition, `false` otherwise.
 	func showDefinitionForWord(word: Word) -> Bool
 	{
 		let refVC = UIReferenceLibraryViewController(term: word.text)
 		presentViewController(refVC, animated: true, completion: nil)
 		
-		// Prompt the user to set up their iOS dictionaries
+		// Prompt the user to set up their iOS dictionaries, the first time they use this only
 		if prefs.shouldDisplayFirstUseDictionaryPrompt()
 		{
 			let alert = UIAlertController(
@@ -28,6 +29,7 @@ extension UIViewController
 			alert.addAction(UIAlertAction(title: "Got It", style: .Default, handler: nil))
 			refVC.presentViewController(alert, animated: true, completion: nil)
 			
+			// Update preferences to silence this prompt next time
 			prefs.didDisplayFirstUseDictionaryPrompt()
 		}
 		

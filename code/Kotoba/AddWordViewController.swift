@@ -16,11 +16,13 @@ final class AddWordViewController: UIViewController
 
 	deinit
 	{
+		// This is for keyboard avoiding, but `deinit` can't be moved into an extension :(
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 }
 
 // MARK:- Keyboard avoiding
+// Solution adapted from http://stackoverflow.com/a/16044603/554518
 extension AddWordViewController
 {
 	override func viewDidLoad()
@@ -37,14 +39,6 @@ extension AddWordViewController
 			selector: #selector(AddWordViewController.keyboardWillHide(_:)),
 			name:UIKeyboardWillHideNotification,
 			object: nil);
-	}
-	
-	override func viewDidAppear(animated: Bool)
-	{
-		super.viewDidAppear(animated)
-		
-		// Show the keyboard on launch, so you can start typing right away
-		self.textField.becomeFirstResponder()
 	}
 
 	func keyboardWillShow(sender: NSNotification)
@@ -64,6 +58,16 @@ extension AddWordViewController
 
 		let duration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animateWithDuration(duration) { self.view.layoutIfNeeded() }
+	}
+}
+
+// MARK:- Show keyboard on launch
+extension AddWordViewController
+{
+	override func viewDidAppear(animated: Bool)
+	{
+		super.viewDidAppear(animated)
+		self.textField.becomeFirstResponder()
 	}
 }
 

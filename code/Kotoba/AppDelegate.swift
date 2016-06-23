@@ -8,6 +8,9 @@
 
 import UIKit
 
+// Theme colour for app icon and tint
+let redThemeColour = UIColor(hue: 5.0, saturation: 0.73, brightness: 0.65, alpha: 1.0)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
@@ -15,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	
 	func application(application: UIApplication, willFinishLaunchingWithOptions _: [NSObject: AnyObject]?) -> Bool
 	{
-		UIView.appearance().tintColor =
-			UIColor(hue: 5.0, saturation: 0.73, brightness: 0.65, alpha: 1.0)
+		// Set tint colour to match icon
+		UIView.appearance().tintColor = redThemeColour
 		return true
 	}
 }

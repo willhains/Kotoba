@@ -10,14 +10,18 @@ import UIKit
 
 class WordListViewController: UITableViewController {}
 
-// MARK:- Table View Delegate
+// MARK:- Add "Edit" button
 extension WordListViewController
 {
 	override func viewDidLoad()
 	{
 		self.navigationItem.rightBarButtonItem = self.editButtonItem()
 	}
-	
+}
+
+// MARK:- Tap a word in the list to see its description
+extension WordListViewController
+{
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
 		// Search the dictionary
@@ -27,7 +31,11 @@ extension WordListViewController
 		// Reset the table view
 		self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
-	
+}
+
+// MARK:- Swipe left to delete words
+extension WordListViewController
+{
 	override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
 	{
 		return true
@@ -48,6 +56,7 @@ extension WordListViewController
 {
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int
 	{
+		// Just a single, simple list
 		return 1
 	}
 	
