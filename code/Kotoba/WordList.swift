@@ -8,6 +8,11 @@
 
 import Foundation
 
+struct Word
+{
+	let text: String
+}
+
 private let _WORD_LIST_KEY = "words"
 
 final class WordList
