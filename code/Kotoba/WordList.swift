@@ -13,16 +13,33 @@ struct Word
 	let text: String
 }
 
+protocol WordList
+{
+	subscript(index: Int) -> Word { get }
+	var count: Int { get }
+	func addWord(word: Word)
+	func deleteWord(atIndex index: Int)
+}
+
+extension Array where Element: Equatable
+{
+	mutating func remove(element: Element)
+	{
+		if let existingIndex = indexOf(element)
+		{
+			removeAtIndex(existingIndex)
+		}
+	}
+}
+
 private let _WORD_LIST_KEY = "words"
 
-final class WordList
+extension NSUserDefaults: WordList
 {
-	private let _defaults = NSUserDefaults.standardUserDefaults()
-	
 	private var _words: [String]
 	{
-		get { return _defaults.objectForKey(_WORD_LIST_KEY) as? [String] ?? [] }
-		set(words) { _defaults.setObject(words, forKey: _WORD_LIST_KEY) }
+		get { return objectForKey(_WORD_LIST_KEY) as? [String] ?? [] }
+		set(words) { setObject(words, forKey: _WORD_LIST_KEY) }
 	}
 	
 	subscript(index: Int) -> Word
@@ -36,10 +53,7 @@ final class WordList
 	{
 		var words = _words
 		let lowercase = word.text.lowercaseString
-		if let existingIndex = words.indexOf(lowercase)
-		{
-			words.removeAtIndex(existingIndex)
-		}
+		words.remove(lowercase)
 		words.insert(lowercase, atIndex: 0)
 		_words = words
 	}
@@ -51,3 +65,5 @@ final class WordList
 		_words = words
 	}
 }
+
+let words: WordList = NSUserDefaults.standardUserDefaults()

@@ -11,13 +11,8 @@ import UIKit
 
 final class AddWordViewController: UIViewController
 {
-	let words = WordList()
-
 	@IBOutlet weak var textField: UITextField!
 	@IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-
-	// TODO: This is a horrible dependency; refactor to a protocol later.
-	weak var wordListViewController: WordListViewController?
 
 	deinit
 	{
@@ -72,7 +67,7 @@ extension AddWordViewController
 	}
 }
 
-// MARK:- Search Bar delegate
+// MARK:- Text Field delegate
 extension AddWordViewController: UITextFieldDelegate
 {
 	func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -83,7 +78,7 @@ extension AddWordViewController: UITextFieldDelegate
 			if showDefinitionForWord(word)
 			{
 				// Add word to list of words
-				WordList().addWord(word)
+				words.addWord(word)
 				
 				// Clear the text field when word is successfully found
 				textField.text = nil

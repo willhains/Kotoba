@@ -8,10 +8,7 @@
 
 import UIKit
 
-class WordListViewController: UITableViewController
-{
-	let words = WordList()
-}
+class WordListViewController: UITableViewController {}
 
 // MARK:- Table View Delegate
 extension WordListViewController
@@ -40,7 +37,7 @@ extension WordListViewController
 	{
 		if editingStyle == .Delete
 		{
-			self.words.deleteWord(atIndex: indexPath.row)
+			words.deleteWord(atIndex: indexPath.row)
 			self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 		}
 	}
