@@ -71,22 +71,29 @@ extension AddWordViewController
 	}
 }
 
+// MARK:- Missing API of Optional
+extension Optional
+{
+	/// Return `nil` if `includeElement` evaluates to `false`.
+	func filter(@noescape includeElement: (Wrapped) -> Bool) -> Optional<Wrapped>
+	{
+		return flatMap { includeElement($0) ? self : nil }
+	}
+}
+
 // MARK:- Text Field delegate
 extension AddWordViewController: UITextFieldDelegate
 {
 	func textFieldShouldReturn(textField: UITextField) -> Bool
 	{
 		// Search the dictionary
-		if let word = textField.text.map(Word.init)
+		if let word = textField.text.map(Word.init).filter(showDefinitionForWord)
 		{
-			if showDefinitionForWord(word)
-			{
-				// Add word to list of words
-				words.addWord(word)
-				
-				// Clear the text field when word is successfully found
-				textField.text = nil
-			}
+			// Add word to list of words
+			words.addWord(word)
+			
+			// Clear the text field when word is successfully found
+			textField.text = nil
 		}
 		return true
 	}
