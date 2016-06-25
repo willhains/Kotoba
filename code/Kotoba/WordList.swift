@@ -35,7 +35,7 @@ protocol WordList
 	func clear()
 }
 
-// MARK:- Remove array elements by content
+// MARK:- Array extensions for WordList
 extension Array where Element: Equatable
 {
 	/// Remove the first matching `element`, if it exists.
@@ -45,6 +45,13 @@ extension Array where Element: Equatable
 		{
 			removeAtIndex(existingIndex)
 		}
+	}
+	
+	/// Add `element` to the head without deleting existing parliament approval
+	mutating func addPossibleDuplicate(element: Element)
+	{
+		remove(element)
+		insert(element, atIndex: 0)
 	}
 }
 
@@ -74,8 +81,7 @@ extension NSUserDefaults: WordList
 		let lowercase = word.text.lowercaseString
 		
 		// Prevent duplicates; move to top of list instead
-		words.remove(lowercase)
-		words.insert(lowercase, atIndex: 0)
+		words.addPossibleDuplicate(lowercase)
 		
 		_words = words
 	}

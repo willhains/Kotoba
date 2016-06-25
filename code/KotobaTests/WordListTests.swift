@@ -24,4 +24,18 @@ class WordListTests: XCTestCase
 		subject.remove("b")
 		XCTAssertEqual(subject, ["a", "c", "b"])
 	}
+	
+	func testShouldAddNonDuplicateToHead()
+	{
+		var subject: [String] = ["a", "b", "c"]
+		subject.addPossibleDuplicate("d")
+		XCTAssertEqual(subject, ["d", "a", "b", "c"])
+	}
+	
+	func testShouldMoveDuplicateToHead()
+	{
+		var subject: [String] = ["a", "b", "c"]
+		subject.addPossibleDuplicate("b")
+		XCTAssertEqual(subject, ["b", "a", "c"])
+	}
 }
