@@ -18,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	
 	func application(application: UIApplication, willFinishLaunchingWithOptions _: [NSObject: AnyObject]?) -> Bool
 	{
+		// Reset user defaults for UI tests
+		if NSProcessInfo.processInfo().arguments.contains("UITEST")
+		{
+			prefs.reset()
+			words.clear()
+		}
+		
 		// Set tint colour to match icon
 		UIView.appearance().tintColor = redThemeColour
 		return true

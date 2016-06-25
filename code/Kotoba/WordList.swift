@@ -30,6 +30,9 @@ protocol WordList
 	
 	/// Delete the word at `index` from the word list.
 	func deleteWord(atIndex index: Int)
+	
+	/// Delete all words from the word list.
+	func clear()
 }
 
 // MARK:- Remove array elements by content
@@ -69,8 +72,11 @@ extension NSUserDefaults: WordList
 	{
 		var words = _words
 		let lowercase = word.text.lowercaseString
+		
+		// Prevent duplicates; move to top of list instead
 		words.remove(lowercase)
 		words.insert(lowercase, atIndex: 0)
+		
 		_words = words
 	}
 	
@@ -79,6 +85,11 @@ extension NSUserDefaults: WordList
 		var words = _words
 		words.removeAtIndex(index)
 		_words = words
+	}
+	
+	func clear()
+	{
+		_words = []
 	}
 }
 

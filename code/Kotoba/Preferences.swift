@@ -13,13 +13,16 @@ import Foundation
 /// The user's preferences/state.
 protocol Preferences
 {
-	/// Asks preferences if the user should be prompted to download system dictionaries.
+	/// Ask preferences if the user should be prompted to download system dictionaries.
 	/// - returns: `true` if the user has never seen the prompt before; `false` otherwise.
 	func shouldDisplayFirstUseDictionaryPrompt() -> Bool
 	
-	/// Updates preferences that the user has been prompted to download system dictionaries.
+	/// Update preferences that the user has been prompted to download system dictionaries.
 	/// Called before the user actually has done so.
 	func didDisplayFirstUseDictionaryPrompt()
+	
+	/// Reset user's preferences/state.
+	func reset()
 }
 
 // MARK:- Preferences implementation backed by NSUserDefaults
@@ -36,6 +39,11 @@ extension NSUserDefaults: Preferences
 	func didDisplayFirstUseDictionaryPrompt()
 	{
 		setBool(true, forKey: _DICTIONARY_PROMPT_DISPLAYED)
+	}
+	
+	func reset()
+	{
+		removeObjectForKey(_DICTIONARY_PROMPT_DISPLAYED)
 	}
 }
 

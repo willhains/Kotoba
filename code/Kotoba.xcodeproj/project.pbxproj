@@ -18,10 +18,18 @@
 		BE918C571A22A5F5006043CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE918C561A22A5F5006043CF /* Images.xcassets */; };
 		BEA413C61D1DC32F00D177C2 /* AddWordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA413C51D1DC32F00D177C2 /* AddWordViewControllerTests.swift */; };
 		BEA413C81D1DC6B400D177C2 /* WordListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA413C71D1DC6B400D177C2 /* WordListTests.swift */; };
+		BEB2324F1D1DD3B800369560 /* KotobaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB2324E1D1DD3B800369560 /* KotobaUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		BEA413BC1D1CABB600D177C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE918C421A22A5F5006043CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE918C491A22A5F5006043CF;
+			remoteInfo = Kotoba;
+		};
+		BEB232511D1DD3B800369560 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BE918C421A22A5F5006043CF /* Project object */;
 			proxyType = 1;
@@ -46,6 +54,9 @@
 		BEA413BB1D1CABB600D177C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEA413C51D1DC32F00D177C2 /* AddWordViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWordViewControllerTests.swift; sourceTree = "<group>"; };
 		BEA413C71D1DC6B400D177C2 /* WordListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListTests.swift; sourceTree = "<group>"; };
+		BEB2324C1D1DD3B800369560 /* KotobaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KotobaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB2324E1D1DD3B800369560 /* KotobaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaUITests.swift; sourceTree = "<group>"; };
+		BEB232501D1DD3B800369560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +74,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BEB232491D1DD3B800369560 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -71,6 +89,7 @@
 			children = (
 				BE918C4C1A22A5F5006043CF /* Kotoba */,
 				BEA413B81D1CABB600D177C2 /* KotobaTests */,
+				BEB2324D1D1DD3B800369560 /* KotobaUITests */,
 				BE918C4B1A22A5F5006043CF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,6 +99,7 @@
 			children = (
 				BE918C4A1A22A5F5006043CF /* Kotoba.app */,
 				BEA413B71D1CABB600D177C2 /* KotobaTests.xctest */,
+				BEB2324C1D1DD3B800369560 /* KotobaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,6 +137,15 @@
 				BEA413C71D1DC6B400D177C2 /* WordListTests.swift */,
 			);
 			path = KotobaTests;
+			sourceTree = "<group>";
+		};
+		BEB2324D1D1DD3B800369560 /* KotobaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BEB2324E1D1DD3B800369560 /* KotobaUITests.swift */,
+				BEB232501D1DD3B800369560 /* Info.plist */,
+			);
+			path = KotobaUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +187,24 @@
 			productReference = BEA413B71D1CABB600D177C2 /* KotobaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BEB2324B1D1DD3B800369560 /* KotobaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEB232551D1DD3B800369560 /* Build configuration list for PBXNativeTarget "KotobaUITests" */;
+			buildPhases = (
+				BEB232481D1DD3B800369560 /* Sources */,
+				BEB232491D1DD3B800369560 /* Frameworks */,
+				BEB2324A1D1DD3B800369560 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEB232521D1DD3B800369560 /* PBXTargetDependency */,
+			);
+			name = KotobaUITests;
+			productName = KotobaUITests;
+			productReference = BEB2324C1D1DD3B800369560 /* KotobaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -174,6 +221,10 @@
 						DevelopmentTeam = 8B38X92RJ6;
 					};
 					BEA413B61D1CABB600D177C2 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = BE918C491A22A5F5006043CF;
+					};
+					BEB2324B1D1DD3B800369560 = {
 						CreatedOnToolsVersion = 7.3;
 						TestTargetID = BE918C491A22A5F5006043CF;
 					};
@@ -194,6 +245,7 @@
 			targets = (
 				BE918C491A22A5F5006043CF /* Kotoba */,
 				BEA413B61D1CABB600D177C2 /* KotobaTests */,
+				BEB2324B1D1DD3B800369560 /* KotobaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -210,6 +262,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BEA413B51D1CABB600D177C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEB2324A1D1DD3B800369560 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,6 +316,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BEB232481D1DD3B800369560 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEB2324F1D1DD3B800369560 /* KotobaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -264,6 +331,11 @@
 			isa = PBXTargetDependency;
 			target = BE918C491A22A5F5006043CF /* Kotoba */;
 			targetProxy = BEA413BC1D1CABB600D177C2 /* PBXContainerItemProxy */;
+		};
+		BEB232521D1DD3B800369560 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE918C491A22A5F5006043CF /* Kotoba */;
+			targetProxy = BEB232511D1DD3B800369560 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -428,6 +500,35 @@
 			};
 			name = Release;
 		};
+		BEB232531D1DD3B800369560 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = KotobaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.KotobaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Kotoba;
+			};
+			name = Debug;
+		};
+		BEB232541D1DD3B800369560 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = KotobaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.KotobaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Kotoba;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -454,6 +555,15 @@
 			buildConfigurations = (
 				BEA413BE1D1CABB600D177C2 /* Debug */,
 				BEA413BF1D1CABB600D177C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEB232551D1DD3B800369560 /* Build configuration list for PBXNativeTarget "KotobaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEB232531D1DD3B800369560 /* Debug */,
+				BEB232541D1DD3B800369560 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
