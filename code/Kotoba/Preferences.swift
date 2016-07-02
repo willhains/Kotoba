@@ -29,23 +29,23 @@ protocol Preferences
 
 private let _DICTIONARY_PROMPT_DISPLAYED = "firstUseDictionaryPromptDisplayed"
 
-extension NSUserDefaults: Preferences
+extension UserDefaults: Preferences
 {
 	func shouldDisplayFirstUseDictionaryPrompt() -> Bool
 	{
-		return !boolForKey(_DICTIONARY_PROMPT_DISPLAYED)
+		return !bool(forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
 	
 	func didDisplayFirstUseDictionaryPrompt()
 	{
-		setBool(true, forKey: _DICTIONARY_PROMPT_DISPLAYED)
+		set(true, forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
 	
 	func reset()
 	{
-		removeObjectForKey(_DICTIONARY_PROMPT_DISPLAYED)
+		removeObject(forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
 }
 
 /// The preferences/state of the current user.
-let prefs: Preferences = NSUserDefaults.standardUserDefaults()
+let prefs: Preferences = UserDefaults.standard()

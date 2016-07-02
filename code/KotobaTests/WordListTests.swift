@@ -28,14 +28,14 @@ class WordListTests: XCTestCase
 	func testShouldAddNonDuplicateToHead()
 	{
 		var subject: [String] = ["a", "b", "c"]
-		subject.addPossibleDuplicate("d")
+		subject.add(possibleDuplicate: "d")
 		XCTAssertEqual(subject, ["d", "a", "b", "c"])
 	}
 	
 	func testShouldMoveDuplicateToHead()
 	{
 		var subject: [String] = ["a", "b", "c"]
-		subject.addPossibleDuplicate("b")
+		subject.add(possibleDuplicate: "b")
 		XCTAssertEqual(subject, ["b", "a", "c"])
 	}
 }

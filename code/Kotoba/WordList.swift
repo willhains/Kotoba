@@ -26,10 +26,10 @@ protocol WordList
 	var count: Int { get }
 	
 	/// Add `word` to the word list.
-	func addWord(word: Word)
+	func add(word: Word)
 	
 	/// Delete the word at `index` from the word list.
-	func deleteWord(atIndex index: Int)
+	func delete(wordAt index: Int)
 	
 	/// Delete all words from the word list.
 	func clear()
@@ -39,19 +39,19 @@ protocol WordList
 extension Array where Element: Equatable
 {
 	/// Remove the first matching `element`, if it exists.
-	mutating func remove(element: Element)
+	mutating func remove(_ element: Element)
 	{
-		if let existingIndex = indexOf(element)
+		if let existingIndex = index(of: element)
 		{
-			removeAtIndex(existingIndex)
+			self.remove(at: existingIndex)
 		}
 	}
 	
 	/// Add `element` to the head without deleting existing parliament approval
-	mutating func addPossibleDuplicate(element: Element)
+	mutating func add(possibleDuplicate element: Element)
 	{
 		remove(element)
-		insert(element, atIndex: 0)
+		insert(element, at: 0)
 	}
 }
 
@@ -59,13 +59,13 @@ extension Array where Element: Equatable
 
 private let _WORD_LIST_KEY = "words"
 
-extension NSUserDefaults: WordList
+extension UserDefaults: WordList
 {
 	// Read/write an array of Strings to represent word list
 	private var _words: [String]
 	{
-		get { return objectForKey(_WORD_LIST_KEY) as? [String] ?? [] }
-		set(words) { setObject(words, forKey: _WORD_LIST_KEY) }
+		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
+		set(words) { set(words, forKey: _WORD_LIST_KEY) }
 	}
 	
 	subscript(index: Int) -> Word
@@ -75,21 +75,21 @@ extension NSUserDefaults: WordList
 	
 	var count: Int { return _words.count }
 	
-	func addWord(word: Word)
+	func add(word: Word)
 	{
 		var words = _words
-		let lowercase = word.text.lowercaseString
+		let lowercase = word.text.lowercased()
 		
 		// Prevent duplicates; move to top of list instead
-		words.addPossibleDuplicate(lowercase)
+		words.add(possibleDuplicate: lowercase)
 		
 		_words = words
 	}
 	
-	func deleteWord(atIndex index: Int)
+	func delete(wordAt index: Int)
 	{
 		var words = _words
-		words.removeAtIndex(index)
+		words.remove(at: index)
 		_words = words
 	}
 	
@@ -100,4 +100,4 @@ extension NSUserDefaults: WordList
 }
 
 /// The word list model for current user.
-let words: WordList = NSUserDefaults.standardUserDefaults()
+let words: WordList = UserDefaults.standard()

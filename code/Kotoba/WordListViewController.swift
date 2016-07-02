@@ -22,31 +22,31 @@ extension WordListViewController
 // MARK:- Tap a word in the list to see its description
 extension WordListViewController
 {
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
 		// Search the dictionary
 		let word = words[indexPath.row]
-		showDefinitionForWord(word)
+		let _ = showDefinition(forWord: word)
 		
 		// Reset the table view
-		self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		self.tableView.deselectRow(at: indexPath, animated: true)
 	}
 }
 
 // MARK:- Swipe left to delete words
 extension WordListViewController
 {
-	override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
 	{
 		return true
 	}
 	
-	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
 	{
-		if editingStyle == .Delete
+		if editingStyle == .delete
 		{
-			words.deleteWord(atIndex: indexPath.row)
-			self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+			words.delete(wordAt: indexPath.row)
+			self.tableView.deleteRows(at: [indexPath], with: .automatic)
 		}
 	}
 }
@@ -54,20 +54,20 @@ extension WordListViewController
 // MARK:- Data source
 extension WordListViewController
 {
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+	override func numberOfSections(in tableView: UITableView) -> Int
 	{
 		// Just a single, simple list
 		return 1
 	}
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
 		return words.count
 	}
 	
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		let cell = tableView.dequeueReusableCellWithIdentifier("Word", forIndexPath: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
 		cell.textLabel?.text = words[indexPath.row].text
 		return cell
 	}

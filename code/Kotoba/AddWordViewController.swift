@@ -17,7 +17,7 @@ final class AddWordViewController: UIViewController
 	deinit
 	{
 		// This is for keyboard avoiding, but `deinit` can't be moved into an extension :(
-		NSNotificationCenter.defaultCenter().removeObserver(self)
+		NotificationCenter.default().removeObserver(self)
 	}
 }
 
@@ -29,42 +29,42 @@ extension AddWordViewController
 	{
 		super.viewDidLoad()
 
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default().addObserver(
 			self,
-			selector: #selector(AddWordViewController.keyboardWillShow(_:)),
-			name:UIKeyboardWillShowNotification,
+			selector: #selector(AddWordViewController.keyboardWillShow(notification:)),
+			name:.UIKeyboardWillShow,
 			object: nil);
-		NSNotificationCenter.defaultCenter().addObserver(
+		NotificationCenter.default().addObserver(
 			self,
-			selector: #selector(AddWordViewController.keyboardWillHide(_:)),
-			name:UIKeyboardWillHideNotification,
+			selector: #selector(AddWordViewController.keyboardWillHide(notification:)),
+			name:.UIKeyboardWillHide,
 			object: nil);
 	}
 
-	func keyboardWillShow(sender: NSNotification)
+	func keyboardWillShow(notification: Notification)
 	{
-		let info = sender.userInfo!
-		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().height
+		let info = notification.userInfo!
+		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue().height
 		bottomConstraint.constant = (keyboardSize - bottomLayoutGuide.length)
 
-		let duration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		UIView.animateWithDuration(duration) { self.view.layoutIfNeeded() }
+		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
 
-	func keyboardWillHide(sender: NSNotification)
+	func keyboardWillHide(notification: Notification)
 	{
-		let info = sender.userInfo!
+		let info = notification.userInfo!
 		bottomConstraint.constant = 44
 
-		let duration: NSTimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		UIView.animateWithDuration(duration) { self.view.layoutIfNeeded() }
+		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
 }
 
 // MARK:- Show keyboard on launch
 extension AddWordViewController
 {
-	override func viewDidAppear(animated: Bool)
+	override func viewDidAppear(_ animated: Bool)
 	{
 		super.viewDidAppear(animated)
 		self.textField.becomeFirstResponder()
@@ -75,7 +75,7 @@ extension AddWordViewController
 extension Optional
 {
 	/// Return `nil` if `includeElement` evaluates to `false`.
-	func filter(@noescape includeElement: (Wrapped) -> Bool) -> Optional<Wrapped>
+	func filter(_ includeElement: @noescape (Wrapped) -> Bool) -> Optional<Wrapped>
 	{
 		return flatMap { includeElement($0) ? self : nil }
 	}
@@ -84,13 +84,13 @@ extension Optional
 // MARK:- Text Field delegate
 extension AddWordViewController: UITextFieldDelegate
 {
-	func textFieldShouldReturn(textField: UITextField) -> Bool
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool
 	{
 		// Search the dictionary
-		if let word = textField.text.map(Word.init).filter(showDefinitionForWord)
+		if let word = textField.text.map(Word.init).filter(showDefinition)
 		{
 			// Add word to list of words
-			words.addWord(word)
+			words.add(word: word)
 			
 			// Clear the text field when word is successfully found
 			textField.text = nil
