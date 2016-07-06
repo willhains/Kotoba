@@ -48,4 +48,4 @@ extension UserDefaults: Preferences
 }
 
 /// The preferences/state of the current user.
-let prefs: Preferences = UserDefaults.standard()
+let prefs: Preferences = UserDefaults.standard

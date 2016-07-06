@@ -17,7 +17,7 @@ final class AddWordViewController: UIViewController
 	deinit
 	{
 		// This is for keyboard avoiding, but `deinit` can't be moved into an extension :(
-		NotificationCenter.default().removeObserver(self)
+		NotificationCenter.default.removeObserver(self)
 	}
 }
 
@@ -29,12 +29,12 @@ extension AddWordViewController
 	{
 		super.viewDidLoad()
 
-		NotificationCenter.default().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(AddWordViewController.keyboardWillShow(notification:)),
 			name:.UIKeyboardWillShow,
 			object: nil);
-		NotificationCenter.default().addObserver(
+		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(AddWordViewController.keyboardWillHide(notification:)),
 			name:.UIKeyboardWillHide,

@@ -100,4 +100,4 @@ extension UserDefaults: WordList
 }
 
 /// The word list model for current user.
-let words: WordList = UserDefaults.standard()
+let words: WordList = UserDefaults.standard

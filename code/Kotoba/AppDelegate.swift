@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions _: [NSObject: AnyObject]?) -> Bool
 	{
 		// Reset user defaults for UI tests
-		if ProcessInfo.processInfo().arguments.contains("UITEST")
+		if ProcessInfo.processInfo.arguments.contains("UITEST")
 		{
 			prefs.reset()
 			words.clear()
