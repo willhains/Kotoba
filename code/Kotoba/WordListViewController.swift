@@ -8,12 +8,19 @@
 
 import UIKit
 
-class WordListViewController: UITableViewController {}
+class WordListViewController: UITableViewController
+{
+	override func viewDidLoad()
+	{
+		super.viewDidLoad()
+		prepareEditButton()
+	}
+}
 
 // MARK:- Add "Edit" button
 extension WordListViewController
 {
-	override func viewDidLoad()
+	func prepareEditButton()
 	{
 		self.navigationItem.rightBarButtonItem = self.editButtonItem()
 	}
