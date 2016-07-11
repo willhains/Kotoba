@@ -16,8 +16,19 @@ final class AddWordViewController: UIViewController
 
 	deinit
 	{
-		// This is for keyboard avoiding, but `deinit` can't be moved into an extension :(
 		NotificationCenter.default.removeObserver(self)
+	}
+	
+	override func viewDidLoad()
+	{
+		super.viewDidLoad()
+		prepareKeyboardAvoidance()
+	}
+	
+	override func viewDidAppear(_ animated: Bool)
+	{
+		super.viewDidAppear(animated)
+		showKeyboardOnLaunch()
 	}
 }
 
@@ -25,10 +36,8 @@ final class AddWordViewController: UIViewController
 // Solution adapted from http://stackoverflow.com/a/16044603/554518
 extension AddWordViewController
 {
-	override func viewDidLoad()
+	func prepareKeyboardAvoidance()
 	{
-		super.viewDidLoad()
-
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(AddWordViewController.keyboardWillShow(notification:)),
@@ -64,9 +73,8 @@ extension AddWordViewController
 // MARK:- Show keyboard on launch
 extension AddWordViewController
 {
-	override func viewDidAppear(_ animated: Bool)
+	func showKeyboardOnLaunch()
 	{
-		super.viewDidAppear(animated)
 		self.textField.becomeFirstResponder()
 	}
 }
