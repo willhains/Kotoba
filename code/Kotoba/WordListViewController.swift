@@ -8,14 +8,55 @@
 
 import UIKit
 
-class WordListViewController: UITableViewController {}
+class WordListViewController: UITableViewController
+{
+	override func viewDidLoad()
+	{
+		super.viewDidLoad()
+		prepareEditButton()
+		prepareSelfSizingTableCells()
+	}
+	
+	deinit
+	{
+		NSNotificationCenter.defaultCenter().removeObserver(self)
+	}
+}
 
 // MARK:- Add "Edit" button
 extension WordListViewController
 {
-	override func viewDidLoad()
+	func prepareEditButton()
 	{
 		self.navigationItem.rightBarButtonItem = self.editButtonItem()
+	}
+	
+	func prepareTextLabelForDynamicType(label: UILabel?)
+	{
+		label?.font = .preferredFontForTextStyle(UIFontTextStyleBody)
+	}
+}
+
+// MARK:- Dynamic Type
+extension WordListViewController
+{
+	func prepareSelfSizingTableCells()
+	{
+		// Self-sizing table rows
+		tableView.estimatedRowHeight = 44
+		tableView.rowHeight = UITableViewAutomaticDimension
+		
+		// Update view when dynamic type changes
+		NSNotificationCenter.defaultCenter().addObserver(
+			self,
+			selector: #selector(WordListViewController.dynamicTypeSizeDidChange),
+			name: UIContentSizeCategoryDidChangeNotification,
+			object: nil)
+	}
+	
+	func dynamicTypeSizeDidChange()
+	{
+		self.tableView.reloadData()
 	}
 }
 
@@ -69,6 +110,7 @@ extension WordListViewController
 	{
 		let cell = tableView.dequeueReusableCellWithIdentifier("Word", forIndexPath: indexPath)
 		cell.textLabel?.text = words[indexPath.row].text
+		prepareTextLabelForDynamicType(cell.textLabel)
 		return cell
 	}
 }
