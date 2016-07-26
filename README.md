@@ -59,7 +59,7 @@ Look, ladies and gents, you are much smarter than I. I am a working developer, b
 - Honestly, I suspected Kotoba wouldn't be approved for the App Store. If it's open-source, the Xcode-savvy can at least install it on their personal devices.
 - If smarter, more experienced Swift developers can suggest improvements or fix my bugs, I will learn from them.
 
-Which is a nice segway to...
+Which is a nice segue to...
 
 ## How to Contribute
 
