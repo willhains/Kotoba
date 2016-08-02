@@ -53,7 +53,7 @@ extension AddWordViewController
 	func keyboardWillShow(notification: Notification)
 	{
 		let info = notification.userInfo!
-		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue().height
+		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
 		bottomConstraint.constant = (keyboardSize - bottomLayoutGuide.length)
 
 		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue

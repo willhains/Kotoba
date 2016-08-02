@@ -28,7 +28,7 @@ extension WordListViewController
 {
 	func prepareEditButton()
 	{
-		self.navigationItem.rightBarButtonItem = self.editButtonItem()
+		self.navigationItem.rightBarButtonItem = self.editButtonItem
 	}
 	
 	func prepareTextLabelForDynamicType(label: UILabel?)
