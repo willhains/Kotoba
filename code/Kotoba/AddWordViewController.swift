@@ -83,7 +83,7 @@ extension AddWordViewController
 extension Optional
 {
 	/// Return `nil` if `includeElement` evaluates to `false`.
-	func filter(_ includeElement: @noescape (Wrapped) -> Bool) -> Optional<Wrapped>
+	func filter(_ includeElement: (Wrapped) -> Bool) -> Optional<Wrapped>
 	{
 		return flatMap { includeElement($0) ? self : nil }
 	}

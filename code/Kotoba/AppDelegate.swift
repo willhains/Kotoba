@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 {
 	var window: UIWindow?
 	
-	func application(_ application: UIApplication, willFinishLaunchingWithOptions _: [NSObject: AnyObject]?) -> Bool
+	func application(
+		_ application: UIApplication,
+		didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil)
+		-> Bool
 	{
 		// Reset user defaults for UI tests
 		if ProcessInfo.processInfo.arguments.contains("UITEST")

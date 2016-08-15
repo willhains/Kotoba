@@ -33,7 +33,7 @@ extension WordListViewController
 	
 	func prepareTextLabelForDynamicType(label: UILabel?)
 	{
-		label?.font = .preferredFont(forTextStyle: UIFontTextStyleBody)
+		label?.font = .preferredFont(forTextStyle: .body)
 	}
 }
 
