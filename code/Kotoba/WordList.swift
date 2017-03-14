@@ -62,7 +62,7 @@ private let _WORD_LIST_KEY = "words"
 extension UserDefaults: WordList
 {
 	// Read/write an array of Strings to represent word list
-	private var _words: [String]
+	fileprivate var _words: [String]
 	{
 		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
 		set(words) { set(words, forKey: _WORD_LIST_KEY) }

@@ -48,7 +48,7 @@ class KotobaUITests: XCTestCase
 		history.tap()
 	}
 	
-	func assertTableContents(_ words: [String])
+	func assertTableContents(_ words: String...)
 	{
 		let app = XCUIApplication()
 		let table = app.tables.element
@@ -98,7 +98,7 @@ class KotobaUITests: XCTestCase
 		enter(word: "three")
 		closeDictionary()
 		showHistory()
-		assertTableContents(["three", "two", "one"])
+		assertTableContents("three", "two", "one")
 		
 		app.navigationBars.buttons["Word Lookup"].tap()
 		enter(word: "two")
@@ -106,7 +106,7 @@ class KotobaUITests: XCTestCase
 		showHistory()
 		
 		// Should move duplicate entry to top
-		assertTableContents(["two", "three", "one"])
+		assertTableContents("two", "three", "one")
 	}
 	
 	func testTappingWordInHistoryShowsDefinition()
@@ -140,7 +140,7 @@ class KotobaUITests: XCTestCase
 		let table = app.tables.element
 		table.cells.element(boundBy: 1).swipeLeft()
 		app.buttons["Delete"].tap()
-		assertTableContents(["three", "one"])
+		assertTableContents("three", "one")
 		
 		// Edit mode to delete
 		app.buttons["Edit"].tap()
