@@ -219,16 +219,16 @@
 					BE918C491A22A5F5006043CF = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 8B38X92RJ6;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					BEA413B61D1CABB600D177C2 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						TestTargetID = BE918C491A22A5F5006043CF;
 					};
 					BEB2324B1D1DD3B800369560 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						TestTargetID = BE918C491A22A5F5006043CF;
 					};
 				};
