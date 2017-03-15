@@ -29,7 +29,7 @@ class KotobaUITests: XCTestCase
 	{
 		let app = XCUIApplication()
 		let textField = app.textFields["Type a Word"]
-		textField.typeText("\(word)\n")
+		textField.typeText("\(word)\r")
 	}
 	
 	func closeDictionary()
