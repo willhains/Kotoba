@@ -50,7 +50,7 @@ extension AddWordViewController
 			object: nil);
 	}
 
-	func keyboardWillShow(notification: Notification)
+	@objc func keyboardWillShow(notification: Notification)
 	{
 		let info = notification.userInfo!
 		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
@@ -60,7 +60,7 @@ extension AddWordViewController
 		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
 
-	func keyboardWillHide(notification: Notification)
+	@objc func keyboardWillHide(notification: Notification)
 	{
 		let info = notification.userInfo!
 		bottomConstraint.constant = 44
