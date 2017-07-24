@@ -12,8 +12,7 @@ import UIKit
 final class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
-	@IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-
+	
 	deinit
 	{
 		NotificationCenter.default.removeObserver(self)
@@ -54,7 +53,7 @@ extension AddWordViewController
 	{
 		let info = notification.userInfo!
 		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-		bottomConstraint.constant = (keyboardSize - bottomLayoutGuide.length)
+		additionalSafeAreaInsets.bottom = keyboardSize
 
 		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
@@ -63,7 +62,7 @@ extension AddWordViewController
 	@objc func keyboardWillHide(notification: Notification)
 	{
 		let info = notification.userInfo!
-		bottomConstraint.constant = 44
+		additionalSafeAreaInsets.bottom = 0
 
 		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
