@@ -54,7 +54,7 @@ extension WordListViewController
 			object: nil)
 	}
 	
-	func dynamicTypeSizeDidChange()
+	@objc func dynamicTypeSizeDidChange()
 	{
 		self.tableView.reloadData()
 	}

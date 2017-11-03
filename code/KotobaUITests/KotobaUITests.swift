@@ -53,12 +53,12 @@ class KotobaUITests: XCTestCase
 		let app = XCUIApplication()
 		let table = app.tables.element
 		XCTAssert(table.exists)
-		let cellCount: UInt = table.cells.count
+		let cellCount: UInt = UInt(table.cells.count)
 		let wordCount: UInt = UInt(words.count)
 		XCTAssert(cellCount == wordCount)
 		for (index, word) in words.enumerated()
 		{
-			let cell = table.cells.element(boundBy: UInt(index))
+			let cell = table.cells.element(boundBy: index)
 			let text = cell.staticTexts[word]
 			XCTAssert(text.exists)
 		}
