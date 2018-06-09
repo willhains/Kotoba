@@ -23,8 +23,10 @@ extension UIViewController
 		{
 			let alert = UIAlertController(
 				title: "Add Dictionaries",
-				message: "Have you set up your iOS dictionaries?\n"
-					+ "Tap \"Manage\" below to download dictionaries for the languages you want.",
+				message: """
+                    Have you set up your iOS dictionaries?
+                    Tap "Manage" below to download dictionaries for the languages you want.
+                    """,
 				preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "Got It", style: .default, handler: nil))
 			dictionaryViewController.present(alert, animated: true, completion: nil)
