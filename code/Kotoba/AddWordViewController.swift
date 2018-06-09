@@ -40,22 +40,22 @@ extension AddWordViewController
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(AddWordViewController.keyboardWillShow(notification:)),
-			name:.UIKeyboardWillShow,
+			name:UIResponder.keyboardWillShowNotification,
 			object: nil);
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(AddWordViewController.keyboardWillHide(notification:)),
-			name:.UIKeyboardWillHide,
+			name:UIResponder.keyboardWillHideNotification,
 			object: nil);
 	}
 
 	@objc func keyboardWillShow(notification: Notification)
 	{
 		let info = notification.userInfo!
-		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
+		let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
 		additionalSafeAreaInsets.bottom = keyboardSize
 
-		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
 
@@ -64,7 +64,7 @@ extension AddWordViewController
 		let info = notification.userInfo!
 		additionalSafeAreaInsets.bottom = 0
 
-		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
 }

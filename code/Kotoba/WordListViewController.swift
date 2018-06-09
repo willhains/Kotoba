@@ -33,7 +33,7 @@ extension WordListViewController
 	
 	func prepareTextLabelForDynamicType(label: UILabel?)
 	{
-		label?.font = .preferredFont(forTextStyle: .body)
+		label?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
 	}
 }
 
@@ -44,13 +44,13 @@ extension WordListViewController
 	{
 		// Self-sizing table rows
 		tableView.estimatedRowHeight = 44
-		tableView.rowHeight = UITableViewAutomaticDimension
+		tableView.rowHeight = UITableView.automaticDimension
 		
 		// Update view when dynamic type changes
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(WordListViewController.dynamicTypeSizeDidChange),
-			name: .UIContentSizeCategoryDidChange,
+			name: UIContentSizeCategory.didChangeNotification,
 			object: nil)
 	}
 	
@@ -82,7 +82,7 @@ extension WordListViewController
 		return true
 	}
 	
-	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
 	{
 		if editingStyle == .delete
 		{
