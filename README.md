@@ -27,7 +27,7 @@ The original idea came from [@gruber](https://twitter.com/gruber) in a DM to [@D
 
 > Ever find a good iPhone dictionary app?
 >
-> Best I’ve found is Terminology, but it’s so bad I usually just fire up Vesper and use the system “Define” service.
+> Best I’ve found is Terminology, but it’s so complicated I usually just fire up Vesper and use the system “Define” service.
 >
 > The system one is good; and it’s perfect for when I’m reading in an app. I find it fiddly to use though when I’m reading a printed book.
 >
