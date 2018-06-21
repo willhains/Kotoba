@@ -71,6 +71,15 @@ extension AddWordViewController
 	}
 }
 
+//MARK:- IBAction(s)
+extension AddWordViewController {
+  @IBAction func speakButton(_ sender: UIButton)
+  {
+    let pronouncer = WordPronouncer()
+    pronouncer.pronounce(textField.text!)
+  }
+}
+
 // MARK:- Show keyboard on launch
 extension AddWordViewController
 {
@@ -108,7 +117,9 @@ extension AddWordViewController: UITextFieldDelegate
 	}
 }
 
-extension AddWordViewController {
+// MARK:- Text field observation
+extension AddWordViewController
+{
   private func observeTextField()
   {
     NotificationCenter.default.addObserver(self,
