@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		14BC475A20DBF3D400A840C6 /* ViewAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC475920DBF3D400A840C6 /* ViewAnimatable.swift */; };
 		14BC475D20DBF43B00A840C6 /* UIView+ViewAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC475C20DBF43B00A840C6 /* UIView+ViewAnimatable.swift */; };
+		14BC475F20DBF8CA00A840C6 /* WordPronouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC475E20DBF8CA00A840C6 /* WordPronouncer.swift */; };
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		14BC475920DBF3D400A840C6 /* ViewAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAnimatable.swift; sourceTree = "<group>"; };
 		14BC475C20DBF43B00A840C6 /* UIView+ViewAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ViewAnimatable.swift"; sourceTree = "<group>"; };
+		14BC475E20DBF8CA00A840C6 /* WordPronouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPronouncer.swift; sourceTree = "<group>"; };
 		691B8E1520DAB5A100B11216 /* Workarounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workarounds.swift; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
 				14BC475820DBE75F00A840C6 /* View Controller */,
+				14BC475E20DBF8CA00A840C6 /* WordPronouncer.swift */,
 				BE7599A01D04636E006FBB80 /* WordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				691B8E1520DAB5A100B11216 /* Workarounds.swift */,
@@ -330,6 +333,7 @@
 				BE776E571D09D60700D4A315 /* Preferences.swift in Sources */,
 				BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */,
 				BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */,
+				14BC475F20DBF8CA00A840C6 /* WordPronouncer.swift in Sources */,
 				14BC475D20DBF43B00A840C6 /* UIView+ViewAnimatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
