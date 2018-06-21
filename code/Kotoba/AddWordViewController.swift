@@ -12,16 +12,18 @@ import UIKit
 final class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
-	
+  @IBOutlet weak var speakWordButton: UIButton!
+  
 	deinit
 	{
 		NotificationCenter.default.removeObserver(self)
 	}
 	
-	override func viewDidLoad()
+  override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		prepareKeyboardAvoidance()
+    observeTextField()
 	}
 	
 	override func viewDidAppear(_ animated: Bool)
@@ -104,4 +106,21 @@ extension AddWordViewController: UITextFieldDelegate
 		}
 		return true
 	}
+}
+
+extension AddWordViewController {
+  private func observeTextField()
+  {
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(handleTextFieldChange(_:)),
+                                           name: .UITextFieldTextDidChange,
+                                           object: textField)
+  }
+  
+  @objc func handleTextFieldChange(_ notification: Notification)
+  {
+    guard let textField = notification.object as? UITextField else { return }
+    guard let text = textField.text else { return }
+    speakWordButton.animate(visible: (text.count > 0))
+  }
 }
