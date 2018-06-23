@@ -30,6 +30,7 @@ final class AddWordViewController: UIViewController
 	{
 		super.viewDidAppear(animated)
 		showKeyboardOnLaunch()
+    hideTextFieldOnShow()
 	}
 }
 
@@ -85,8 +86,19 @@ extension AddWordViewController
 {
 	func showKeyboardOnLaunch()
 	{
-		self.textField.becomeFirstResponder()
+		textField.becomeFirstResponder()
 	}
+}
+
+extension AddWordViewController
+{
+  func hideTextFieldOnShow()
+  {
+    var visible = false
+    guard let text = textField.text else { speakWordButton.animate(visible: visible); return }
+    visible = (text.trimmingCharacters(in: .whitespacesAndNewlines).count > 0) ? true : false
+    speakWordButton.animate(visible: visible)
+  }
 }
 
 // MARK:- Missing API of Optional
