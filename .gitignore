@@ -17,3 +17,6 @@ DerivedData
 *.ipa
 *.xcuserstate
 
+# AppCode
+code/.idea
+
