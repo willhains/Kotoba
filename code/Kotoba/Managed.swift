@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-protocol Maanged {
+protocol Managed {
   var entityName: String { get }
   var defaultSortDescriptors: [NSSortDescriptor] { get }
 }

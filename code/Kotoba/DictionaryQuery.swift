@@ -27,3 +27,11 @@ final class DictionaryQuery: NSManagedObject {
     word = String()
   }
 }
+
+extension DictionaryQuery: Managed {
+  var entityName: String { return "DictionaryQuery" }
+  var defaultSortDescriptors: [NSSortDescriptor] {
+    let sortDescriptor = NSSortDescriptor(key: DictionaryQueryAttribute.date.rawValue, ascending: true)
+    return [sortDescriptor]
+  }
+}
