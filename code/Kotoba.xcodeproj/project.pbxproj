@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		14AA453420FE8A3E008D1FD5 /* Kotoba.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14AA453220FE8A3E008D1FD5 /* Kotoba.xcdatamodeld */; };
+		14C8329C20FF313E0081F1BB /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8329B20FF313E0081F1BB /* CoreDataStackManager.swift */; };
+		14C8329E20FF33CD0081F1BB /* ContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8329D20FF33CD0081F1BB /* ContextProvider.swift */; };
+		14C832A120FF38440081F1BB /* DictionaryQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C832A020FF38440081F1BB /* DictionaryQuery.swift */; };
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
@@ -41,6 +44,9 @@
 
 /* Begin PBXFileReference section */
 		14AA453320FE8A3E008D1FD5 /* Kotoba.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kotoba.xcdatamodel; sourceTree = "<group>"; };
+		14C8329B20FF313E0081F1BB /* CoreDataStackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		14C8329D20FF33CD0081F1BB /* ContextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextProvider.swift; sourceTree = "<group>"; };
+		14C832A020FF38440081F1BB /* DictionaryQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryQuery.swift; sourceTree = "<group>"; };
 		691B8E1520DAB5A100B11216 /* Workarounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workarounds.swift; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
@@ -89,9 +95,20 @@
 		14AA453520FE8A47008D1FD5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				14C832A020FF38440081F1BB /* DictionaryQuery.swift */,
 				14AA453220FE8A3E008D1FD5 /* Kotoba.xcdatamodeld */,
+				14C8329F20FF33E10081F1BB /* Protocols */,
+				14C8329B20FF313E0081F1BB /* CoreDataStackManager.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		14C8329F20FF33E10081F1BB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				14C8329D20FF33CD0081F1BB /* ContextProvider.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		BE918C411A22A5F5006043CF = {
@@ -313,7 +330,10 @@
 			files = (
 				691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */,
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
+				14C8329C20FF313E0081F1BB /* CoreDataStackManager.swift in Sources */,
+				14C832A120FF38440081F1BB /* DictionaryQuery.swift in Sources */,
 				BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */,
+				14C8329E20FF33CD0081F1BB /* ContextProvider.swift in Sources */,
 				14AA453420FE8A3E008D1FD5 /* Kotoba.xcdatamodeld in Sources */,
 				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
 				BE776E571D09D60700D4A315 /* Preferences.swift in Sources */,
