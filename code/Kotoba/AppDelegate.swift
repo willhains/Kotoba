@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
       if !success { print("Could not initialise CoreData stack") }
     }
     
+    migrateDatabaseIfRequired()
+    // Reset user defaults for UI tests
 		if ProcessInfo.processInfo.arguments.contains("UITEST")
 		{
 			prefs.reset()
@@ -36,4 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		UIView.appearance().tintColor = redThemeColour
 		return true
 	}
+}
+
+extension AppDelegate {
+  func migrateDatabaseIfRequired()
+  {
+    if Migrator.isMigrationRequired
+    {
+      //TODO: present activity indicator to user
+      Migrator.migrateDatabase(inContext: stackManager.backgroundContext) { success in
+        //TODO: remove activity indicator
+      }
+    }
+  }
 }
