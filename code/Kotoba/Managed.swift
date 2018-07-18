@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 protocol Managed {
-  var entityName: String { get }
-  var defaultSortDescriptors: [NSSortDescriptor] { get }
+  static var entityName: String { get }
+  static var defaultSortDescriptors: [NSSortDescriptor] { get }
 }
