@@ -15,13 +15,17 @@ let redThemeColour = UIColor(hue: 5.0, saturation: 0.73, brightness: 0.65, alpha
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
 	var window: UIWindow?
+  var stackManager: CoreDataStackManager!
 	
 	func application(
 		_ application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil)
 		-> Bool
 	{
-		// Reset user defaults for UI tests
+    stackManager = CoreDataStackManager(modelName: "Kotoba") { success in
+      if !success { print("Could not initialise CoreData stack") }
+    }
+    
 		if ProcessInfo.processInfo.arguments.contains("UITEST")
 		{
 			prefs.reset()
