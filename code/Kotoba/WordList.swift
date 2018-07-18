@@ -33,6 +33,9 @@ protocol WordList
 	
 	/// Delete all words from the word list.
 	func clear()
+  
+  /// Returns an `Array` of all the words in the database
+  func allWords() -> [String]
 }
 
 // MARK:- Array extensions for WordList
@@ -97,6 +100,11 @@ extension UserDefaults: WordList
 	{
 		_words = []
 	}
+  
+  func allWords() -> [String]
+  {
+    return _words
+  }
 }
 
 /// The word list model for current user.
