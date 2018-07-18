@@ -18,5 +18,5 @@ DerivedData
 *.xcuserstate
 
 # AppCode
-code/.idea
+*.idea
 
