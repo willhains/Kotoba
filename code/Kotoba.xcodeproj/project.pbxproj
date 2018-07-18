@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14AA453420FE8A3E008D1FD5 /* Kotoba.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14AA453220FE8A3E008D1FD5 /* Kotoba.xcdatamodeld */; };
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14AA453320FE8A3E008D1FD5 /* Kotoba.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kotoba.xcdatamodel; sourceTree = "<group>"; };
 		691B8E1520DAB5A100B11216 /* Workarounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workarounds.swift; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14AA453520FE8A47008D1FD5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14AA453220FE8A3E008D1FD5 /* Kotoba.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		BE918C411A22A5F5006043CF = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		BE918C4C1A22A5F5006043CF /* Kotoba */ = {
 			isa = PBXGroup;
 			children = (
+				14AA453520FE8A47008D1FD5 /* Model */,
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
 				BE918C511A22A5F5006043CF /* WordListViewController.swift */,
 				BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */,
@@ -303,6 +314,7 @@
 				691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */,
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
 				BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */,
+				14AA453420FE8A3E008D1FD5 /* Kotoba.xcdatamodeld in Sources */,
 				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
 				BE776E571D09D60700D4A315 /* Preferences.swift in Sources */,
 				BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */,
@@ -599,6 +611,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		14AA453220FE8A3E008D1FD5 /* Kotoba.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14AA453320FE8A3E008D1FD5 /* Kotoba.xcdatamodel */,
+			);
+			currentVersion = 14AA453320FE8A3E008D1FD5 /* Kotoba.xcdatamodel */;
+			path = Kotoba.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BE918C421A22A5F5006043CF /* Project object */;
 }
