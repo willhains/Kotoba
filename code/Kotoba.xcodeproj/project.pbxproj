@@ -11,6 +11,7 @@
 		14C8329C20FF313E0081F1BB /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8329B20FF313E0081F1BB /* CoreDataStackManager.swift */; };
 		14C8329E20FF33CD0081F1BB /* ContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C8329D20FF33CD0081F1BB /* ContextProvider.swift */; };
 		14C832A120FF38440081F1BB /* DictionaryQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C832A020FF38440081F1BB /* DictionaryQuery.swift */; };
+		14C832A320FF3AEC0081F1BB /* Managed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C832A220FF3AEC0081F1BB /* Managed.swift */; };
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
@@ -47,6 +48,7 @@
 		14C8329B20FF313E0081F1BB /* CoreDataStackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		14C8329D20FF33CD0081F1BB /* ContextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextProvider.swift; sourceTree = "<group>"; };
 		14C832A020FF38440081F1BB /* DictionaryQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryQuery.swift; sourceTree = "<group>"; };
+		14C832A220FF3AEC0081F1BB /* Managed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managed.swift; sourceTree = "<group>"; };
 		691B8E1520DAB5A100B11216 /* Workarounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workarounds.swift; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				14C8329D20FF33CD0081F1BB /* ContextProvider.swift */,
+				14C832A220FF3AEC0081F1BB /* Managed.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */,
+				14C832A320FF3AEC0081F1BB /* Managed.swift in Sources */,
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
 				14C8329C20FF313E0081F1BB /* CoreDataStackManager.swift in Sources */,
 				14C832A120FF38440081F1BB /* DictionaryQuery.swift in Sources */,
