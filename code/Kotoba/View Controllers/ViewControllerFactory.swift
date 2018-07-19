@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 final class ViewControllerFactory {
-  static func newWordListViewController() -> WordListViewController {
-    let wordListViewController = WordListViewController()
+  static func newWordListViewController(context: NSManagedObjectContext) -> WordListViewController {
+    let wordListDataSource = WordListDataSource(request: DictionaryQuery.sortedFetchRequest,
+                                                context: context)
+    let wordListViewController = WordListViewController(dataSource: wordListDataSource)
+    wordListDataSource.tableView = wordListViewController.tableView
+    wordListDataSource.delegate = wordListViewController
     return wordListViewController
   }
 }

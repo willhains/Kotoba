@@ -11,19 +11,22 @@ import CoreData
 
 final class WordListDataSource: NSObject {
   let fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>
-  weak var delegate: TableViewDataSourceDelegate?
+  weak var tableView: UITableView?
+  weak var delegate: TableViewDataSourceDelegate? {
+    didSet {
+      tableView?.dataSource = self
+      tableView?.reloadData()
+    }
+  }
   
   init(request: NSFetchRequest<NSFetchRequestResult>,
-       context: NSManagedObjectContext,
-       tableView: UITableView,
-       delegate: TableViewDataSourceDelegate) {
+       context: NSManagedObjectContext) {
     self.fetchResultsController = NSFetchedResultsController(fetchRequest: request,
                                                              managedObjectContext: context,
                                                              sectionNameKeyPath: nil,
                                                              cacheName: nil)
-    self.delegate = delegate
     super.init()
-    tableView.dataSource = self
+    try? fetchResultsController.performFetch()
   }
 }
 
