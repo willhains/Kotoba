@@ -114,6 +114,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		1496AFA62100BFE7001F652B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE918C511A22A5F5006043CF /* WordListViewController.swift */,
+				BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		14AA453520FE8A47008D1FD5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,9 +169,8 @@
 				1496AFA520FF566B001F652B /* Extensions */,
 				1472D95620FF3F7800379C19 /* Database Migrator */,
 				14AA453520FE8A47008D1FD5 /* Model */,
+				1496AFA62100BFE7001F652B /* View Controllers */,
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
-				BE918C511A22A5F5006043CF /* WordListViewController.swift */,
-				BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */,
 				BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */,
 				BE7599A01D04636E006FBB80 /* WordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
