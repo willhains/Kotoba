@@ -12,6 +12,7 @@ import UIKit
 final class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
+  var contextProvider: ContextProvider?
 	
 	deinit
 	{
@@ -30,6 +31,9 @@ final class AddWordViewController: UIViewController
 		showKeyboardOnLaunch()
 	}
 }
+
+// MARK:- Setting ContextProvider
+extension AddWordViewController: ContextProviderSettable { }
 
 // MARK:- Keyboard avoiding
 // Solution adapted from http://stackoverflow.com/a/16044603/554518
@@ -83,7 +87,8 @@ extension AddWordViewController
 {
   @IBAction func showWordList(sender: UIBarButtonItem)
   {
-    let wordListViewController = ViewControllerFactory.newWordListViewController()
+    guard let context = contextProvider?.mainContext else { return }
+    let wordListViewController = ViewControllerFactory.newWordListViewController(context: context)
     navigationController?.pushViewController(wordListViewController, animated: true)
   }
 }
