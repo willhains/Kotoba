@@ -46,7 +46,7 @@ extension AppDelegate {
     if Migrator.isMigrationRequired
     {
       //TODO: present activity indicator to user
-      Migrator.migrateDatabase(inContext: stackManager.backgroundContext) { success in
+      Migrator.migrateDatabase(inContext: stackManager.backgroundContext) {
         //TODO: remove activity indicator
       }
     }

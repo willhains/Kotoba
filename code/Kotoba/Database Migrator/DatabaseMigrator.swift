@@ -12,7 +12,7 @@ import CoreData
 protocol DatabaseMigrator {
   static var isMigrationRequired: Bool { get }
   static func migrateDatabase(inContext context: NSManagedObjectContext,
-                              completion: @escaping (Bool) -> Void)
+                              completion: @escaping () -> Void)
 }
 
 final class Migrator: DatabaseMigrator {
@@ -21,17 +21,17 @@ final class Migrator: DatabaseMigrator {
   }
 
   static func migrateDatabase(inContext context: NSManagedObjectContext,
-                              completion: @escaping (Bool) -> Void) {
+                              completion: @escaping () -> Void) {
     DispatchQueue.global(qos: .default).async {
       context.makeChanges { [unowned context] in
         for oldWordEntry in words.allWords() {
           let newWord: DictionaryQuery = context.insertObject()
           newWord.word = oldWordEntry
         }
+        removeOldDatabaseEntries()
+        DispatchQueue.main.async { completion() }
       }
     }
-    
-    removeOldDatabaseEntries()
   }
 
   private static func removeOldDatabaseEntries() {
