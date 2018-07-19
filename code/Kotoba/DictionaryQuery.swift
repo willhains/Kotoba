@@ -39,8 +39,9 @@ final class DictionaryQuery: NSManagedObject {
 extension DictionaryQuery: Managed {
   static var entityName: String { return "DictionaryQuery" }
   static var defaultSortDescriptors: [NSSortDescriptor] {
-    let sortDescriptor = NSSortDescriptor(key: DictionaryQueryAttribute.date.rawValue, ascending: true)
-    return [sortDescriptor]
+    let alphabeticSortDescriptor = NSSortDescriptor(key: DictionaryQueryAttribute.word.rawValue, ascending: true)
+    let dateSortDescriptor = NSSortDescriptor(key: DictionaryQueryAttribute.date.rawValue, ascending: true)
+    return [alphabeticSortDescriptor, dateSortDescriptor]
   }
 }
 
