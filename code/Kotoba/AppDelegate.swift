@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     }
     
     migrateDatabaseIfRequired()
+    setContextProvider()
     // Reset user defaults for UI tests
 		if ProcessInfo.processInfo.arguments.contains("UITEST")
 		{
@@ -40,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 	}
 }
 
-extension AppDelegate {
+extension AppDelegate
+{
   func migrateDatabaseIfRequired()
   {
     if Migrator.isMigrationRequired
@@ -50,5 +52,15 @@ extension AppDelegate {
         //TODO: remove activity indicator
       }
     }
+  }
+}
+
+extension AppDelegate
+{
+  func setContextProvider()
+  {
+    let navigationController = window!.rootViewController as! UINavigationController
+    let addWordViewController = navigationController.topViewController! as! AddWordViewController
+    addWordViewController.contextProvider = stackManager
   }
 }
