@@ -78,6 +78,16 @@ extension AddWordViewController
 	}
 }
 
+// MARK:- IBAction
+extension AddWordViewController
+{
+  @IBAction func showWordList(sender: UIBarButtonItem)
+  {
+    let wordListViewController = ViewControllerFactory.newWordListViewController()
+    navigationController?.pushViewController(wordListViewController, animated: true)
+  }
+}
+
 // MARK:- Missing API of Optional
 extension Optional
 {

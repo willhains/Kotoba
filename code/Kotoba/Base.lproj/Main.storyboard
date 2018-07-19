@@ -77,7 +77,7 @@
                     <navigationItem key="navigationItem" title="Word Lookup" id="YQw-TU-c8o">
                         <barButtonItem key="rightBarButtonItem" title="History" id="lxn-9Q-keE">
                             <connections>
-                                <segue destination="PII-AL-jNA" kind="show" id="KTZ-QU-EDq"/>
+                                <action selector="showWordListWithSender:" destination="JNO-hA-UHa" id="jX2-FB-sSz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
