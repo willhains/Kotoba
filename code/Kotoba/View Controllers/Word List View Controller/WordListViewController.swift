@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class WordListViewController: UITableViewController
 {
+  let dataSource: TableViewDataSource
+  
+  init(dataSource: TableViewDataSource)
+  {
+    self.dataSource = dataSource
+    super.init(style: .plain)
+  }
+  
+  required init?(coder aDecoder: NSCoder)
+  {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+    prepareTableView()
 		prepareEditButton()
 		prepareSelfSizingTableCells()
 	}
@@ -23,10 +38,35 @@ class WordListViewController: UITableViewController
 	}
 }
 
+extension WordListViewController: TableViewDataSourceDelegate
+{
+  func cellIdentifier(for indexPath: IndexPath) -> String
+  {
+    return "Word"
+  }
+  
+  func configure(cell: UITableViewCell, with object: NSFetchRequestResult, at indexPath: IndexPath)
+  {
+    guard let word = object as? WordUI else { return }
+    print(word)
+    
+    cell.textLabel?.text = word.wordString
+    prepareTextLabelForDynamicType(label: cell.textLabel)
+  }
+}
+
+extension WordListViewController
+{
+  private func prepareTableView()
+  {
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Word")
+  }
+}
+
 // MARK:- Add "Edit" button
 extension WordListViewController
 {
-	func prepareEditButton()
+	private func prepareEditButton()
 	{
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
 	}
@@ -40,7 +80,7 @@ extension WordListViewController
 // MARK:- Dynamic Type
 extension WordListViewController
 {
-	func prepareSelfSizingTableCells()
+	private func prepareSelfSizingTableCells()
 	{
 		// Self-sizing table rows
 		tableView.estimatedRowHeight = 44
@@ -89,28 +129,5 @@ extension WordListViewController
 			words.delete(wordAt: indexPath.row)
 			self.tableView.deleteRows(at: [indexPath], with: .automatic)
 		}
-	}
-}
-
-// MARK:- Data source
-extension WordListViewController
-{
-	override func numberOfSections(in tableView: UITableView) -> Int
-	{
-		// Just a single, simple list
-		return 1
-	}
-	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-	{
-		return words.count
-	}
-	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-	{
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-		cell.textLabel?.text = words[indexPath.row].text
-		prepareTextLabelForDynamicType(label: cell.textLabel)
-		return cell
 	}
 }
