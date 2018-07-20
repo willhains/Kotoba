@@ -35,8 +35,6 @@ final class Migrator: DatabaseMigrator {
   }
 
   private static func removeOldDatabaseEntries() {
-    for word in words.allWords() {
-      words.delete(wordAt: words.allWords().index(of: word)!)
-    }
+    words.clear()
   }
 }
