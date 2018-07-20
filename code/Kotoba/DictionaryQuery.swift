@@ -19,8 +19,9 @@ protocol WordUI {
   var wordString: String { get }
   var favorite: Bool { get set }
   var entryDate: Date { get set }
+  var isNewEntry: Bool { get }
 
-  func findOrCreateNew(word: String, inContext context: NSManagedObjectContext) -> WordUI
+  static func findOrAdd(word: String, inContext context: NSManagedObjectContext) -> WordUI
 }
 
 final class DictionaryQuery: NSManagedObject {
@@ -55,19 +56,22 @@ extension DictionaryQuery: WordUI {
     get { return date }
     set { date = newValue }
   }
+  var isNewEntry: Bool {
+    return objectID.isTemporaryID
+  }
 
-  func findOrCreateNew(word: String, inContext context: NSManagedObjectContext) -> WordUI {
+  static func findOrAdd(word: String, inContext context: NSManagedObjectContext) -> WordUI {
     let predicate = NSPredicate(format: "%K == %@", DictionaryQueryAttribute.word.rawValue, word)
-    let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: DictionaryQuery.entityName)
-    fetch.predicate = predicate
+    let request = NSFetchRequest<NSFetchRequestResult>(entityName: DictionaryQuery.entityName)
+    request.sortDescriptors = DictionaryQuery.defaultSortDescriptors
+    request.predicate = predicate
     
-    guard let dictionaryQuery = try? context.fetch(fetch).first as? DictionaryQuery
-      else {
-        let newDictionaryQuery: DictionaryQuery = context.insertObject()
-        newDictionaryQuery.word = word
-        return newDictionaryQuery
+    guard let dictionaryQuery = try! context.fetch(request).first as? DictionaryQuery else {
+      let dictionaryQuery: DictionaryQuery = context.insertObject()
+      dictionaryQuery.word = word
+      return dictionaryQuery
     }
     
-    return dictionaryQuery!
+    return dictionaryQuery
   }
 }

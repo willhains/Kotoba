@@ -116,7 +116,7 @@ extension AddWordViewController: UITextFieldDelegate
         if let context = self.contextProvider?.backgroundContext
         {
           context.makeChanges {
-            var word = DictionaryQuery.findOrCreateNew(word: text, inContext: context)
+            var word = DictionaryQuery.findOrAdd(word: text, inContext: context)
             if !word.isNewEntry { word.entryDate = Date() }
           }
         }
