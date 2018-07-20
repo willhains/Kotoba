@@ -10,6 +10,7 @@
 		143B1E252101CB1D0012991B /* UITableView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B1E242101CB1D0012991B /* UITableView+Additions.swift */; };
 		143B1E272101D8B80012991B /* ContextMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B1E262101D8B80012991B /* ContextMerger.swift */; };
 		143B1E292101EA7D0012991B /* WordListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B1E282101EA7D0012991B /* WordListTableViewCell.swift */; };
+		143B1E2C2101ECB60012991B /* CustomDateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B1E2B2101ECB60012991B /* CustomDateFormatters.swift */; };
 		1472D95820FF3F9000379C19 /* DatabaseMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1472D95720FF3F9000379C19 /* DatabaseMigrator.swift */; };
 		1496AFA420FF5658001F652B /* NSManagedObjectContext+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496AFA320FF5658001F652B /* NSManagedObjectContext+Additions.swift */; };
 		1496AFAA2100C138001F652B /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496AFA92100C138001F652B /* TableViewDataSource.swift */; };
@@ -55,6 +56,7 @@
 		143B1E242101CB1D0012991B /* UITableView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Additions.swift"; sourceTree = "<group>"; };
 		143B1E262101D8B80012991B /* ContextMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMerger.swift; sourceTree = "<group>"; };
 		143B1E282101EA7D0012991B /* WordListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListTableViewCell.swift; sourceTree = "<group>"; };
+		143B1E2B2101ECB60012991B /* CustomDateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatters.swift; sourceTree = "<group>"; };
 		1472D95720FF3F9000379C19 /* DatabaseMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseMigrator.swift; sourceTree = "<group>"; };
 		1496AFA320FF5658001F652B /* NSManagedObjectContext+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Additions.swift"; sourceTree = "<group>"; };
 		1496AFA92100C138001F652B /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				143B1E282101EA7D0012991B /* WordListTableViewCell.swift */,
+				BE918C531A22A5F5006043CF /* Main.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,7 +220,7 @@
 				BE7599A01D04636E006FBB80 /* WordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				691B8E1520DAB5A100B11216 /* Workarounds.swift */,
-				BE918C531A22A5F5006043CF /* Main.storyboard */,
+				143B1E2B2101ECB60012991B /* CustomDateFormatters.swift */,
 				BE918C561A22A5F5006043CF /* Images.xcassets */,
 				BE918C4D1A22A5F5006043CF /* Supporting Files */,
 			);
@@ -409,6 +412,7 @@
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
 				14C8329C20FF313E0081F1BB /* CoreDataStackManager.swift in Sources */,
 				14C832A120FF38440081F1BB /* DictionaryQuery.swift in Sources */,
+				143B1E2C2101ECB60012991B /* CustomDateFormatters.swift in Sources */,
 				1496AFA420FF5658001F652B /* NSManagedObjectContext+Additions.swift in Sources */,
 				1496AFAC2100C314001F652B /* WordListDataSource.swift in Sources */,
 				1496AFAE2100CE18001F652B /* ViewControllerFactory.swift in Sources */,
