@@ -60,6 +60,8 @@ extension WordListViewController
   private func prepareTableView()
   {
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Word")
+    tableView.dataSource = dataSource
+    tableView.reloadData()
   }
 }
 
