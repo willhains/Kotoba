@@ -12,7 +12,7 @@ final class CustomDateFormatters {
   static let shared: CustomDateFormatters = CustomDateFormatters()
   let wordQueryDateFormatter: DateFormatter
   
-  init() {
+  private init() {
     wordQueryDateFormatter = DateFormatter()
     wordQueryDateFormatter.calendar = Calendar.current
     wordQueryDateFormatter.locale = Locale.current
