@@ -11,7 +11,8 @@ import CoreData
 
 class WordListViewController: UITableViewController
 {
-  let dataSource: TableViewDataSource
+  private let dataSource: TableViewDataSource
+  private let cellIdentifier = "WordCell"
   
   init(dataSource: TableViewDataSource)
   {
@@ -38,28 +39,11 @@ class WordListViewController: UITableViewController
 	}
 }
 
-extension WordListViewController: TableViewDataSourceDelegate
-{
-  func cellIdentifier(for indexPath: IndexPath) -> String
-  {
-    return "Word"
-  }
-  
-  func configure(cell: UITableViewCell, with object: NSFetchRequestResult, at indexPath: IndexPath)
-  {
-    guard let word = object as? WordUI else { return }
-    print(word)
-    
-    cell.textLabel?.text = word.wordString
-    prepareTextLabelForDynamicType(label: cell.textLabel)
-  }
-}
-
 extension WordListViewController
 {
   private func prepareTableView()
   {
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Word")
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     tableView.dataSource = dataSource
     tableView.reloadData()
   }
@@ -96,10 +80,30 @@ extension WordListViewController
 			object: nil)
 	}
 	
-	@objc func dynamicTypeSizeDidChange()
+	@objc private func dynamicTypeSizeDidChange()
 	{
 		self.tableView.reloadData()
 	}
+}
+
+// MARK:- data source delegate
+extension WordListViewController: TableViewDataSourceDelegate
+{
+  func cellIdentifier(for indexPath: IndexPath) -> String
+  {
+    return cellIdentifier
+  }
+  
+  func configure(cell: UITableViewCell, with object: NSFetchRequestResult, at indexPath: IndexPath)
+  {
+    guard let word = object as? WordUI else { return }
+    cell.textLabel?.text = word.wordString
+    prepareTextLabelForDynamicType(label: cell.textLabel)
+  }
+  
+  func currentTableView() -> UITableView? {
+    return tableView
+  }
 }
 
 // MARK:- Tap a word in the list to see its description
@@ -113,23 +117,5 @@ extension WordListViewController
 		
 		// Reset the table view
 		self.tableView.deselect()
-	}
-}
-
-// MARK:- Swipe left to delete words
-extension WordListViewController
-{
-	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-	{
-		return true
-	}
-	
-	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-	{
-		if editingStyle == .delete
-		{
-			words.delete(wordAt: indexPath.row)
-			self.tableView.deleteRows(at: [indexPath], with: .automatic)
-		}
 	}
 }
