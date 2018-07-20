@@ -20,4 +20,5 @@ protocol TableViewDataSource: UITableViewDataSource {
   var delegate: TableViewDataSourceDelegate? { get set }
   init(request: NSFetchRequest<NSFetchRequestResult>,
        context: NSManagedObjectContext)
+  func object(at indexPath: IndexPath) -> NSFetchRequestResult
 }

@@ -13,9 +13,9 @@ extension UIViewController
 {
 	/// Present the system dictionary as a modal view, showing the definition of `word`.
 	/// - returns: `true` if the system dictionary found a definition, `false` otherwise.
-	func showDefinition(forWord word: Word) -> Bool
+	func showDefinition(forWord word: String) -> Bool
 	{
-		let dictionaryViewController = UIReferenceLibraryViewController(term: word.text)
+		let dictionaryViewController = UIReferenceLibraryViewController(term: word)
 		present(dictionaryViewController, animated: true, completion: nil)
 		
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
@@ -36,6 +36,6 @@ extension UIViewController
 		}
 		
 		// Return whether definition for word was found
-		return UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
+		return UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word)
 	}
 }

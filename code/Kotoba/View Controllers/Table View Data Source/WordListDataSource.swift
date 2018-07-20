@@ -41,4 +41,8 @@ extension WordListDataSource: TableViewDataSource {
     delegate?.configure(cell: cell, with: fetchResultsController.object(at: indexPath), at: indexPath)
     return cell
   }
+  
+  func object(at indexPath: IndexPath) -> NSFetchRequestResult {
+    return fetchResultsController.object(at: indexPath)
+  }
 }
