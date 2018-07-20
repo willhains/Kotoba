@@ -57,10 +57,11 @@ extension WordListViewController
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
 	}
 	
-	func prepareTextLabelForDynamicType(label: UILabel?)
-	{
-		label?.font = .preferredFont(forTextStyle: .body)
-	}
+  func prepareCellForDynamicType(cell: UITableViewCell)
+  {
+    cell.textLabel?.font = .preferredFont(forTextStyle: .body)
+    cell.detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
+  }
 }
 
 // MARK:- Dynamic Type
@@ -98,7 +99,9 @@ extension WordListViewController: TableViewDataSourceDelegate
   {
     guard let word = object as? WordUI else { return }
     cell.textLabel?.text = word.wordString
-    prepareTextLabelForDynamicType(label: cell.textLabel)
+    cell.detailTextLabel?.text = "Query Date: "+CustomDateFormatters.shared.wordQueryDateFormatter.string(from: word.entryDate)
+    cell.detailTextLabel?.textColor = .lightGray
+    prepareCellForDynamicType(cell: cell)
   }
   
   func currentTableView() -> UITableView? {
