@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		143B1E252101CB1D0012991B /* UITableView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B1E242101CB1D0012991B /* UITableView+Additions.swift */; };
 		1472D95820FF3F9000379C19 /* DatabaseMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1472D95720FF3F9000379C19 /* DatabaseMigrator.swift */; };
 		1496AFA420FF5658001F652B /* NSManagedObjectContext+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496AFA320FF5658001F652B /* NSManagedObjectContext+Additions.swift */; };
 		1496AFAA2100C138001F652B /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496AFA92100C138001F652B /* TableViewDataSource.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		143B1E242101CB1D0012991B /* UITableView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Additions.swift"; sourceTree = "<group>"; };
 		1472D95720FF3F9000379C19 /* DatabaseMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseMigrator.swift; sourceTree = "<group>"; };
 		1496AFA320FF5658001F652B /* NSManagedObjectContext+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Additions.swift"; sourceTree = "<group>"; };
 		1496AFA92100C138001F652B /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				1496AFA62100BFE7001F652B /* View Controllers */,
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
 				BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */,
+				143B1E242101CB1D0012991B /* UITableView+Additions.swift */,
 				BE7599A01D04636E006FBB80 /* WordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				691B8E1520DAB5A100B11216 /* Workarounds.swift */,
@@ -401,6 +404,7 @@
 				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
 				1472D95820FF3F9000379C19 /* DatabaseMigrator.swift in Sources */,
 				BE776E571D09D60700D4A315 /* Preferences.swift in Sources */,
+				143B1E252101CB1D0012991B /* UITableView+Additions.swift in Sources */,
 				BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */,
 				BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */,
 			);

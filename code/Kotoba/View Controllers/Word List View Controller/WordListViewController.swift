@@ -108,11 +108,11 @@ extension WordListViewController
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
 		// Search the dictionary
-    guard let word = dataSource.object(at: indexPath) as? WordUI else { return }
+    guard let word = dataSource.object(at: indexPath) as? WordUI else { self.tableView.deselect(); return }
     let _ = showDefinition(forWord: word.wordString)
 		
 		// Reset the table view
-		self.tableView.deselectRow(at: indexPath, animated: true)
+		self.tableView.deselect()
 	}
 }
 
