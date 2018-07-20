@@ -11,13 +11,16 @@ import CoreData
 
 final class CoreDataStackManager {
   private var container: NSPersistentContainer!
+  private var contextMerger: ContextMerger!
 
   init(modelName: String, completion: @escaping (Bool) -> Void) {
     container = NSPersistentContainer(name: modelName)
-    container.loadPersistentStores { description, error in
+    container.loadPersistentStores { [unowned self] description, error in
       let success = error == nil
+      self.container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
       completion(success)
      }
+    contextMerger = ContextMerger(contextProvider: self)
   }
 }
 
