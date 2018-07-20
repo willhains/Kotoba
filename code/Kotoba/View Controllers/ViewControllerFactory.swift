@@ -14,7 +14,6 @@ final class ViewControllerFactory {
     let wordListDataSource = WordListDataSource(request: DictionaryQuery.sortedFetchRequest,
                                                 context: context)
     let wordListViewController = WordListViewController(dataSource: wordListDataSource)
-    wordListDataSource.tableView = wordListViewController.tableView
     wordListDataSource.delegate = wordListViewController
     return wordListViewController
   }

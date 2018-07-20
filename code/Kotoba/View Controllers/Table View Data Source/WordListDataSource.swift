@@ -11,13 +11,7 @@ import CoreData
 
 final class WordListDataSource: NSObject {
   let fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>
-  weak var tableView: UITableView?
-  weak var delegate: TableViewDataSourceDelegate? {
-    didSet {
-      tableView?.dataSource = self
-      tableView?.reloadData()
-    }
-  }
+  weak var delegate: TableViewDataSourceDelegate?
   
   init(request: NSFetchRequest<NSFetchRequestResult>,
        context: NSManagedObjectContext) {

@@ -17,7 +17,6 @@ protocol TableViewDataSourceDelegate: class {
 }
 
 protocol TableViewDataSource: UITableViewDataSource {
-  var tableView: UITableView? { get set }
   var delegate: TableViewDataSourceDelegate? { get set }
   init(request: NSFetchRequest<NSFetchRequestResult>,
        context: NSManagedObjectContext)
