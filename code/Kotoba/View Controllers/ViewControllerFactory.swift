@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 final class ViewControllerFactory {
-  static func newWordListViewController(context: NSManagedObjectContext) -> WordListViewController {
+  static func newWordListViewController(contextProvider: ContextProvider) -> WordListViewController {
     let wordListDataSource = WordListDataSource(request: DictionaryQuery.sortedFetchRequest,
-                                                context: context)
+                                                contextProvider: contextProvider)
     let wordListViewController = WordListViewController(dataSource: wordListDataSource)
     wordListDataSource.delegate = wordListViewController
     return wordListViewController
