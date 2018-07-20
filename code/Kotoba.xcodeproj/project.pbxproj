@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		143B1E252101CB1D0012991B /* UITableView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B1E242101CB1D0012991B /* UITableView+Additions.swift */; };
 		143B1E272101D8B80012991B /* ContextMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B1E262101D8B80012991B /* ContextMerger.swift */; };
+		143B1E292101EA7D0012991B /* WordListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143B1E282101EA7D0012991B /* WordListTableViewCell.swift */; };
 		1472D95820FF3F9000379C19 /* DatabaseMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1472D95720FF3F9000379C19 /* DatabaseMigrator.swift */; };
 		1496AFA420FF5658001F652B /* NSManagedObjectContext+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496AFA320FF5658001F652B /* NSManagedObjectContext+Additions.swift */; };
 		1496AFAA2100C138001F652B /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496AFA92100C138001F652B /* TableViewDataSource.swift */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		143B1E242101CB1D0012991B /* UITableView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Additions.swift"; sourceTree = "<group>"; };
 		143B1E262101D8B80012991B /* ContextMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMerger.swift; sourceTree = "<group>"; };
+		143B1E282101EA7D0012991B /* WordListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListTableViewCell.swift; sourceTree = "<group>"; };
 		1472D95720FF3F9000379C19 /* DatabaseMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseMigrator.swift; sourceTree = "<group>"; };
 		1496AFA320FF5658001F652B /* NSManagedObjectContext+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Additions.swift"; sourceTree = "<group>"; };
 		1496AFA92100C138001F652B /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		143B1E2A2101EA880012991B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				143B1E282101EA7D0012991B /* WordListTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1472D95620FF3F7800379C19 /* Database Migrator */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 		BE918C4C1A22A5F5006043CF /* Kotoba */ = {
 			isa = PBXGroup;
 			children = (
+				143B1E2A2101EA880012991B /* Views */,
 				1496AFA520FF566B001F652B /* Extensions */,
 				1472D95620FF3F7800379C19 /* Database Migrator */,
 				14AA453520FE8A47008D1FD5 /* Model */,
@@ -393,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */,
+				143B1E292101EA7D0012991B /* WordListTableViewCell.swift in Sources */,
 				14C832A320FF3AEC0081F1BB /* Managed.swift in Sources */,
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
 				14C8329C20FF313E0081F1BB /* CoreDataStackManager.swift in Sources */,

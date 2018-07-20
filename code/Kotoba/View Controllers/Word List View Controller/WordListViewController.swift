@@ -43,7 +43,7 @@ extension WordListViewController
 {
   private func prepareTableView()
   {
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    tableView.register(WordListTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     tableView.dataSource = dataSource
     tableView.reloadData()
   }
