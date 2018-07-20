@@ -87,8 +87,8 @@ extension AddWordViewController
 {
   @IBAction func showWordList(sender: UIBarButtonItem)
   {
-    guard let context = contextProvider?.mainContext else { return }
-    let wordListViewController = ViewControllerFactory.newWordListViewController(context: context)
+    guard let provider = contextProvider else { return }
+    let wordListViewController = ViewControllerFactory.newWordListViewController(contextProvider: provider)
     navigationController?.pushViewController(wordListViewController, animated: true)
   }
 }
