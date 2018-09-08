@@ -26,7 +26,7 @@ final class Migrator: DatabaseMigrator {
       context.makeChanges { [unowned context] in
         for oldWordEntry in words.allWords() {
           let newWord: DictionaryQuery = context.insertObject()
-          newWord.word = oldWordEntry.trimmingCharacters(in: .whitespacesAndNewlines)
+          newWord.word = oldWordEntry
         }
         removeOldDatabaseEntries()
         DispatchQueue.main.async { completion() }
