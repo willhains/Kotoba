@@ -9,11 +9,13 @@
 import Foundation
 import CoreData
 
-protocol ContextProvider {
+protocol ContextProvider
+{
   var mainContext: NSManagedObjectContext { get }
   var backgroundContext: NSManagedObjectContext { get }
 }
 
-protocol ContextProviderSettable {
+protocol ContextProviderSettable
+{
   var contextProvider: ContextProvider? { get set }
 }

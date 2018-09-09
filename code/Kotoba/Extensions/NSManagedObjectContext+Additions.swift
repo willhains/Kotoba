@@ -9,27 +9,35 @@
 import Foundation
 import CoreData
 
-extension NSManagedObjectContext {
-  func makeChanges(_ changes: @escaping () -> Void) {
+extension NSManagedObjectContext
+{
+  func makeChanges(_ changes: @escaping () -> Void)
+  {
     perform { [weak self] in
       changes()
       _ = self?.saveOrRollBack()
     }
   }
   
-  private func saveOrRollBack() -> Bool {
-    do {
+  private func saveOrRollBack() -> Bool
+  {
+    do
+    {
       try save()
       return true
-    } catch {
+    }
+    catch
+    {
       rollback()
       return false
     }
   }
 }
 
-extension NSManagedObjectContext {
-  func insertObject<A: NSManagedObject>() -> A where A: Managed {
+extension NSManagedObjectContext
+{
+  func insertObject<A: NSManagedObject>() -> A where A: Managed
+  {
     guard let object = NSEntityDescription.insertNewObject(forEntityName: A.entityName, into: self) as? A
       else { fatalError("Wrong object type") }
     return object

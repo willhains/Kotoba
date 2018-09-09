@@ -8,8 +8,12 @@
 
 import UIKit
 
-extension UITableView {
+extension UITableView
+{
   func deselect() {
-    if let indexPath = indexPathForSelectedRow { deselectRow(at: indexPath, animated: true) }
+    if let indexPath = indexPathForSelectedRow
+    {
+      deselectRow(at: indexPath, animated: true)
+    }
   }
 }

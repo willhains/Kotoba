@@ -8,11 +8,13 @@
 
 import Foundation
 
-final class CustomDateFormatters {
+final class CustomDateFormatters
+{
   static let shared: CustomDateFormatters = CustomDateFormatters()
   let wordQueryDateFormatter: DateFormatter
   
-  private init() {
+  private init()
+  {
     wordQueryDateFormatter = DateFormatter()
     wordQueryDateFormatter.calendar = Calendar.current
     wordQueryDateFormatter.locale = Locale.current

@@ -115,9 +115,13 @@ extension AddWordViewController: UITextFieldDelegate
       DispatchQueue.global(qos: .default).async { [unowned self] in
         if let context = self.contextProvider?.backgroundContext
         {
-          context.makeChanges {
-            var word = DictionaryQuery.findOrAdd(word: text, inContext: context)
-            if !word.isNewEntry { word.entryDate = Date() }
+          context.makeChanges
+            {
+              var word = DictionaryQuery.findOrAdd(word: text, inContext: context)
+              if !word.isNewEntry
+              {
+                word.entryDate = Date()
+              }
           }
         }
       }

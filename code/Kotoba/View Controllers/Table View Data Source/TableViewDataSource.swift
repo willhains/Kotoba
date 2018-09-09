@@ -9,7 +9,8 @@
 import UIKit
 import CoreData
 
-protocol TableViewDataSourceDelegate: class {
+protocol TableViewDataSourceDelegate: class
+{
   func cellIdentifier(for indexPath: IndexPath) -> String
   func configure(cell: UITableViewCell,
                  with object: NSFetchRequestResult,
@@ -17,7 +18,8 @@ protocol TableViewDataSourceDelegate: class {
   func currentTableView() -> UITableView?
 }
 
-protocol TableViewDataSource: UITableViewDataSource {
+protocol TableViewDataSource: UITableViewDataSource
+{
   var delegate: TableViewDataSourceDelegate? { get set }
   var allowRowEdit: Bool { get set }
   init(request: NSFetchRequest<NSFetchRequestResult>,
