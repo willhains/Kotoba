@@ -10,14 +10,14 @@ import Foundation
 
 final class CustomDateFormatters
 {
-  static let shared: CustomDateFormatters = CustomDateFormatters()
-  let wordQueryDateFormatter: DateFormatter
-  
-  private init()
-  {
-    wordQueryDateFormatter = DateFormatter()
-    wordQueryDateFormatter.calendar = Calendar.current
-    wordQueryDateFormatter.locale = Locale.current
-    wordQueryDateFormatter.dateStyle = .medium
-  }
+	static let shared: CustomDateFormatters = CustomDateFormatters()
+	let wordQueryDateFormatter: DateFormatter
+	
+	private init()
+	{
+		wordQueryDateFormatter = DateFormatter()
+		wordQueryDateFormatter.calendar = Calendar.current
+		wordQueryDateFormatter.locale = Locale.current
+		wordQueryDateFormatter.dateStyle = .medium
+	}
 }

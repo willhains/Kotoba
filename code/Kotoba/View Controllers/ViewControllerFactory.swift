@@ -11,12 +11,12 @@ import CoreData
 
 final class ViewControllerFactory
 {
-  static func newWordListViewController(contextProvider: ContextProvider) -> WordListViewController
-  {
-    let wordListDataSource = WordListDataSource(request: DictionaryQuery.sortedFetchRequest,
-                                                contextProvider: contextProvider)
-    let wordListViewController = WordListViewController(dataSource: wordListDataSource)
-    wordListDataSource.delegate = wordListViewController
-    return wordListViewController
-  }
+	static func newWordListViewController(contextProvider: ContextProvider) -> WordListViewController
+	{
+		let wordListDataSource = WordListDataSource(request: DictionaryQuery.sortedFetchRequest,
+													contextProvider: contextProvider)
+		let wordListViewController = WordListViewController(dataSource: wordListDataSource)
+		wordListDataSource.delegate = wordListViewController
+		return wordListViewController
+	}
 }

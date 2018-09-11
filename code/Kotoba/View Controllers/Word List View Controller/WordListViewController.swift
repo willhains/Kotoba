@@ -11,24 +11,24 @@ import CoreData
 
 class WordListViewController: UITableViewController
 {
-  private let dataSource: TableViewDataSource
-  private let cellIdentifier = "WordCell"
-  
-  init(dataSource: TableViewDataSource)
-  {
-    self.dataSource = dataSource
-    super.init(style: .plain)
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    fatalError("init(coder:) has not been implemented")
-  }
-  
+	private let dataSource: TableViewDataSource
+	private let cellIdentifier = "WordCell"
+	
+	init(dataSource: TableViewDataSource)
+	{
+		self.dataSource = dataSource
+		super.init(style: .plain)
+	}
+	
+	required init?(coder aDecoder: NSCoder)
+	{
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-    prepareTableView()
+		prepareTableView()
 		prepareEditButton()
 		prepareSelfSizingTableCells()
 	}
@@ -41,12 +41,12 @@ class WordListViewController: UITableViewController
 
 extension WordListViewController
 {
-  private func prepareTableView()
-  {
-    tableView.register(WordListTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-    tableView.dataSource = dataSource
-    tableView.reloadData()
-  }
+	private func prepareTableView()
+	{
+		tableView.register(WordListTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+		tableView.dataSource = dataSource
+		tableView.reloadData()
+	}
 }
 
 // MARK:- Add "Edit" button
@@ -57,11 +57,11 @@ extension WordListViewController
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
 	}
 	
-  func prepareCellForDynamicType(cell: UITableViewCell)
-  {
-    cell.textLabel?.font = .preferredFont(forTextStyle: .body)
-    cell.detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
-  }
+	func prepareCellForDynamicType(cell: UITableViewCell)
+	{
+		cell.textLabel?.font = .preferredFont(forTextStyle: .body)
+		cell.detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
+	}
 }
 
 // MARK:- Dynamic Type
@@ -90,23 +90,23 @@ extension WordListViewController
 // MARK:- data source delegate
 extension WordListViewController: TableViewDataSourceDelegate
 {
-  func cellIdentifier(for indexPath: IndexPath) -> String
-  {
-    return cellIdentifier
-  }
-  
-  func configure(cell: UITableViewCell, with object: NSFetchRequestResult, at indexPath: IndexPath)
-  {
-    guard let word = object as? WordUI else { return }
-    cell.textLabel?.text = word.wordString
-    cell.detailTextLabel?.text = "Query Date: "+CustomDateFormatters.shared.wordQueryDateFormatter.string(from: word.entryDate)
-    cell.detailTextLabel?.textColor = .lightGray
-    prepareCellForDynamicType(cell: cell)
-  }
-  
-  func currentTableView() -> UITableView? {
-    return tableView
-  }
+	func cellIdentifier(for indexPath: IndexPath) -> String
+	{
+		return cellIdentifier
+	}
+	
+	func configure(cell: UITableViewCell, with object: NSFetchRequestResult, at indexPath: IndexPath)
+	{
+		guard let word = object as? WordUI else { return }
+		cell.textLabel?.text = word.wordString
+		cell.detailTextLabel?.text = "Query Date: "+CustomDateFormatters.shared.wordQueryDateFormatter.string(from: word.entryDate)
+		cell.detailTextLabel?.textColor = .lightGray
+		prepareCellForDynamicType(cell: cell)
+	}
+	
+	func currentTableView() -> UITableView? {
+		return tableView
+	}
 }
 
 // MARK:- Tap a word in the list to see its description
@@ -115,8 +115,8 @@ extension WordListViewController
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
 		// Search the dictionary
-    guard let word = dataSource.object(at: indexPath) as? WordUI else { self.tableView.deselect(); return }
-    let _ = showDefinition(forWord: word.wordString)
+		guard let word = dataSource.object(at: indexPath) as? WordUI else { self.tableView.deselect(); return }
+		let _ = showDefinition(forWord: word.wordString)
 		
 		// Reset the table view
 		self.tableView.deselect()

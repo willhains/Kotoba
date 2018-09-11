@@ -12,7 +12,7 @@ import UIKit
 final class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
-  var contextProvider: ContextProvider?
+	var contextProvider: ContextProvider?
 	
 	deinit
 	{
@@ -52,22 +52,22 @@ extension AddWordViewController
 			name:.UIKeyboardWillHide,
 			object: nil);
 	}
-
+	
 	@objc func keyboardWillShow(notification: Notification)
 	{
 		let info = notification.userInfo!
 		let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
 		additionalSafeAreaInsets.bottom = keyboardSize
-
+		
 		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
-
+	
 	@objc func keyboardWillHide(notification: Notification)
 	{
 		let info = notification.userInfo!
 		additionalSafeAreaInsets.bottom = 0
-
+		
 		let duration: TimeInterval = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
@@ -85,12 +85,12 @@ extension AddWordViewController
 // MARK:- IBAction
 extension AddWordViewController
 {
-  @IBAction func showWordList(sender: UIBarButtonItem)
-  {
-    guard let provider = contextProvider else { return }
-    let wordListViewController = ViewControllerFactory.newWordListViewController(contextProvider: provider)
-    navigationController?.pushViewController(wordListViewController, animated: true)
-  }
+	@IBAction func showWordList(sender: UIBarButtonItem)
+	{
+		guard let provider = contextProvider else { return }
+		let wordListViewController = ViewControllerFactory.newWordListViewController(contextProvider: provider)
+		navigationController?.pushViewController(wordListViewController, animated: true)
+	}
 }
 
 // MARK:- Missing API of Optional
@@ -109,25 +109,25 @@ extension AddWordViewController: UITextFieldDelegate
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool
 	{
 		// Search the dictionary
-    guard let text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return true }
-    if showDefinition(forWord: text)
-    {
-      DispatchQueue.global(qos: .default).async { [unowned self] in
-        if let context = self.contextProvider?.backgroundContext
-        {
-          context.makeChanges
-            {
-              var word = DictionaryQuery.findOrAdd(word: text, inContext: context)
-              if !word.isNewEntry
-              {
-                word.entryDate = Date()
-              }
-          }
-        }
-      }
-      // Clear the text field when word is successfully found
-      textField.text = nil
-    }
+		guard let text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return true }
+		if showDefinition(forWord: text)
+		{
+			DispatchQueue.global(qos: .default).async { [unowned self] in
+				if let context = self.contextProvider?.backgroundContext
+				{
+					context.makeChanges
+						{
+							var word = DictionaryQuery.findOrAdd(word: text, inContext: context)
+							if !word.isNewEntry
+							{
+								word.entryDate = Date()
+							}
+					}
+				}
+			}
+			// Clear the text field when word is successfully found
+			textField.text = nil
+		}
 		return true
 	}
 }

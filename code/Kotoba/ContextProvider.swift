@@ -11,11 +11,11 @@ import CoreData
 
 protocol ContextProvider
 {
-  var mainContext: NSManagedObjectContext { get }
-  var backgroundContext: NSManagedObjectContext { get }
+	var mainContext: NSManagedObjectContext { get }
+	var backgroundContext: NSManagedObjectContext { get }
 }
 
 protocol ContextProviderSettable
 {
-  var contextProvider: ContextProvider? { get set }
+	var contextProvider: ContextProvider? { get set }
 }

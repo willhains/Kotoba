@@ -15,20 +15,20 @@ let redThemeColor = UIColor(hue: 5.0, saturation: 0.73, brightness: 0.65, alpha:
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
 	var window: UIWindow?
-  var stackManager: CoreDataStackManager!
+	var stackManager: CoreDataStackManager!
 	
 	func application(
 		_ application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil)
 		-> Bool
 	{
-    stackManager = CoreDataStackManager(modelName: "Kotoba") { success in
-      if !success { print("Could not initialise CoreData stack") }
-    }
-    
-    migrateDatabaseIfRequired()
-    setContextProvider()
-    // Reset user defaults for UI tests
+		stackManager = CoreDataStackManager(modelName: "Kotoba") { success in
+			if !success { print("Could not initialise CoreData stack") }
+		}
+		
+		migrateDatabaseIfRequired()
+		setContextProvider()
+		// Reset user defaults for UI tests
 		if ProcessInfo.processInfo.arguments.contains("UITEST")
 		{
 			prefs.reset()
@@ -43,24 +43,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
 extension AppDelegate
 {
-  func migrateDatabaseIfRequired()
-  {
-    if Migrator.isMigrationRequired
-    {
-      //TODO: present activity indicator to user
-      Migrator.migrateDatabase(inContext: stackManager.backgroundContext) {
-        //TODO: remove activity indicator
-      }
-    }
-  }
+	func migrateDatabaseIfRequired()
+	{
+		if Migrator.isMigrationRequired
+		{
+			//TODO: present activity indicator to user
+			Migrator.migrateDatabase(inContext: stackManager.backgroundContext) {
+				//TODO: remove activity indicator
+			}
+		}
+	}
 }
 
 extension AppDelegate
 {
-  func setContextProvider()
-  {
-    let navigationController = window!.rootViewController as! UINavigationController
-    let addWordViewController = navigationController.topViewController! as! AddWordViewController
-    addWordViewController.contextProvider = stackManager
-  }
+	func setContextProvider()
+	{
+		let navigationController = window!.rootViewController as! UINavigationController
+		let addWordViewController = navigationController.topViewController! as! AddWordViewController
+		addWordViewController.contextProvider = stackManager
+	}
 }
