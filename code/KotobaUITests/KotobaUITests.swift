@@ -25,7 +25,7 @@ class KotobaUITests: XCTestCase
 		app.launch()
     }
 	
-	func enter(word: String)
+	private func _enter(word: String)
 	{
 		let app = XCUIApplication()
 		let textField = app.textFields["Type a Word"]
@@ -33,23 +33,29 @@ class KotobaUITests: XCTestCase
 		textField.typeText("\(word)\r")
 	}
 	
-	func closeDictionary()
+	private func _dismissFirstTimeDictionaryPrompt()
 	{
 		let app = XCUIApplication()
 		let gotIt = app.buttons["Got It"]
 		if gotIt.exists { gotIt.tap() }
+	}
+	
+	private func _closeDictionary()
+	{
+		_dismissFirstTimeDictionaryPrompt()
+		let app = XCUIApplication()
 		let done = app.buttons["Done"]
 		done.tap()
 	}
 	
-	func showHistory()
+	private func _showHistory()
 	{
 		let app = XCUIApplication()
 		let history = app.buttons["History"]
 		history.tap()
 	}
 	
-	func assertTableContents(_ words: String...)
+	private func _assertTableContents(_ words: String...)
 	{
 		let app = XCUIApplication()
 		let table = app.tables.element
@@ -64,25 +70,25 @@ class KotobaUITests: XCTestCase
 			XCTAssert(text.exists)
 		}
 	}
-    
+	
     func testShouldDisplayDictionaryDownloadPromptOnlyFirstTime()
 	{
 		let app = XCUIApplication()
-		enter(word: "test")
+		_enter(word: "test")
 		
 		let gotItButton = app.buttons["Got It"]
 		XCTAssert(gotItButton.exists)
 		
 		gotItButton.tap()
 		app.buttons["Done"].tap()
-		enter(word: "another")
+		_enter(word: "another")
 		XCTAssert(app.alerts.count == 0)
 	}
 	
 	func testHistoryShouldBeEmpty()
 	{
 		let app = XCUIApplication()
-		showHistory()
+		_showHistory()
 		
 		let table = app.tables.element
 		XCTAssert(table.exists)
@@ -92,30 +98,30 @@ class KotobaUITests: XCTestCase
 	func testHistoryShowsAddedWordsInReverseOrder()
 	{
 		let app = XCUIApplication()
-		enter(word: "one")
-		closeDictionary()
-		enter(word: "two")
-		closeDictionary()
-		enter(word: "three")
-		closeDictionary()
-		showHistory()
-		assertTableContents("three", "two", "one")
+		_enter(word: "one")
+		_closeDictionary()
+		_enter(word: "two")
+		_closeDictionary()
+		_enter(word: "three")
+		_closeDictionary()
+		_showHistory()
+		_assertTableContents("three", "two", "one")
 		
 		app.navigationBars.buttons["Word Lookup"].tap()
-		enter(word: "two")
-		closeDictionary()
-		showHistory()
+		_enter(word: "two")
+		_closeDictionary()
+		_showHistory()
 		
 		// Should move duplicate entry to top
-		assertTableContents("two", "three", "one")
+		_assertTableContents("two", "three", "one")
 	}
 	
 	func testTappingWordInHistoryShowsDefinition()
 	{
 		let app = XCUIApplication()
-		enter(word: "one")
-		closeDictionary()
-		showHistory()
+		_enter(word: "one")
+		_closeDictionary()
+		_showHistory()
 		
 		let table = app.tables.element
 		let oneCell = table.cells.element
@@ -129,19 +135,19 @@ class KotobaUITests: XCTestCase
 	func testDeleteWords()
 	{
 		let app = XCUIApplication()
-		enter(word: "one")
-		closeDictionary()
-		enter(word: "two")
-		closeDictionary()
-		enter(word: "three")
-		closeDictionary()
-		showHistory()
+		_enter(word: "one")
+		_closeDictionary()
+		_enter(word: "two")
+		_closeDictionary()
+		_enter(word: "three")
+		_closeDictionary()
+		_showHistory()
 		
 		// Swipe left to delete
 		let table = app.tables.element
 		table.cells.element(boundBy: 1).swipeLeft()
 		app.buttons["Delete"].tap()
-		assertTableContents("three", "one")
+		_assertTableContents("three", "one")
 		
 		// Edit mode to delete
 		app.buttons["Edit"].tap()
