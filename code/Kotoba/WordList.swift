@@ -47,7 +47,7 @@ extension Array where Element: Equatable
 		}
 	}
 	
-	/// Add `element` to the head without deleting existing parliament approval
+	/// Add `element` to the head without deleting existing
 	mutating func add(possibleDuplicate element: Element)
 	{
 		remove(element)
