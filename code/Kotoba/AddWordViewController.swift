@@ -109,15 +109,11 @@ extension AddWordViewController: UITextFieldDelegate
 {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool
 	{
-		// Search the dictionary
-		if let word = textField.text.map(Word.init).filter(showDefinition)
-		{
-			// Add word to list of words
-			words.add(word: word)
-			
-			// Clear the text field when word is successfully found
-			textField.text = nil
-		}
+		textField.text
+			.map(Word.init)
+			.filter(showDefinition) // Search the dictionary (stops here when word is not found)
+			.map(words.add) // Add word to list of words
+			.map { textField.text = nil } // Clear the text field when word is successfully found
 		return true
 	}
 }
