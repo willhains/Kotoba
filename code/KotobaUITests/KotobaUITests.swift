@@ -157,7 +157,7 @@ class KotobaUITests: XCTestCase
 		let table = app.tables.element
 		table.cells.element(boundBy: 1).swipeLeft()
 		app.buttons["Delete"].tap()
-		_assertTableContents("three", "one")
+		XCTAssert(table.cells.count == 2)
 		
 		// Edit mode to delete
 		app.buttons["Edit"].tap()
