@@ -23,6 +23,16 @@ class KotobaUITests: XCTestCase
         let app = XCUIApplication()
 		app.launchArguments = ["UITEST"]
 		app.launch()
+		
+		// Ensure there is at least one English dictionary
+		app.toolbars["Toolbar"].buttons["Manage"].tap()
+		let downloadButton = app.tables.cells
+			.containing(.staticText, identifier:"American English")
+			.firstMatch
+			.buttons["Download Dictionary"]
+		if downloadButton.exists { downloadButton.tap() }
+		app.navigationBars.buttons.element(boundBy: 0).tap()
+		app.buttons["Done"].tap()
     }
 	
 	private func _enter(word: String)

@@ -21,6 +21,7 @@ final class AddWordViewController: UIViewController
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+		_allowUITestToManageDictionaries()
 		prepareKeyboardAvoidance()
 	}
 	
@@ -28,6 +29,21 @@ final class AddWordViewController: UIViewController
 	{
 		super.viewDidAppear(animated)
 		showKeyboardOnLaunch()
+	}
+}
+
+// MARK:- Affordances for UI Testing
+extension AddWordViewController
+{
+	/// For UI Testing, show the system dictionary immediately, to allow the test code to set up at least one dictionary.
+	private func _allowUITestToManageDictionaries()
+	{
+		if ProcessInfo.processInfo.arguments.contains("UITEST")
+			&& prefs.shouldDisplayFirstUseDictionaryPrompt()
+		{
+			let dictionaryViewController = UIReferenceLibraryViewController(term: "Kotoba")
+			present(dictionaryViewController, animated: true, completion: nil)
+		}
 	}
 }
 
