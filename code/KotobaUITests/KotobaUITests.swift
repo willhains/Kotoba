@@ -29,6 +29,7 @@ class KotobaUITests: XCTestCase
 	{
 		let app = XCUIApplication()
 		let textField = app.textFields["Type a Word"]
+		textField.clear()
 		textField.typeText("\(word)\r")
 	}
 	
@@ -148,5 +149,23 @@ class KotobaUITests: XCTestCase
 		table.buttons["Delete"].tap()
 		app.buttons["Done"].tap()
 		XCTAssert(table.cells.count == 1)
+	}
+}
+
+// from https://stackoverflow.com/a/32894080
+extension XCUIElement
+{
+	func clear()
+	{
+		guard let stringValue = self.value as? String else
+		{
+			XCTFail("Tried to clear and enter text into a non string value")
+			return
+		}
+		let deleteString = stringValue
+			.map { _ in XCUIKeyboardKey.delete }
+			.map { $0.rawValue }
+			.joined(separator: "")
+		self.typeText(deleteString)
 	}
 }
