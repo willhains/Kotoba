@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		-> Bool
 	{
 		// Reset user defaults for UI tests
-		if ProcessInfo.processInfo.arguments.contains("UITEST")
+		if options.appMode == .testing
 		{
 			prefs.reset()
 			words.clear()
