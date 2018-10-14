@@ -50,6 +50,7 @@ extension AppDelegate
 	{
 		if Migrator.isMigrationRequired
 		{
+			// WH: Unfinished? Or perhaps raise a separate issue for this one, and implement it later.
 			// TODO: present activity indicator to user
 			Migrator.migrateDatabase(inContext: stackManager.backgroundContext)
 			{

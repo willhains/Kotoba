@@ -12,6 +12,7 @@ import CoreData
 enum DictionaryQueryAttribute: String
 {
 	case date = "date"
+	// WH: Just checking in case I missed something... this is not actually used anywhere (yet), right? Is this intended for a feature in another PR?
 	case isFavourite = "isFavourite"
 	case word = "word"
 }
