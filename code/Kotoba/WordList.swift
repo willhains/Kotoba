@@ -13,7 +13,18 @@ import Foundation
 /// Represents a saved word.
 struct Word
 {
+	/// The string representation of the word, guaranteed to be trimmed, lowercase, and non-empty.
 	let text: String
+	
+	/// Trims and converts `rawString` to construct a `Word`.
+	/// - returns: `nil` if `rawString` is empty.
+	init?(_ rawString: String)
+	{
+		let trimmed = rawString.trimmingCharacters(in: .whitespacesAndNewlines)
+		guard !trimmed.isEmpty else { return nil }
+		let lowercase = trimmed.lowercased()
+		self.text = lowercase
+	}
 }
 
 /// Model of user's saved words.
@@ -70,7 +81,7 @@ extension UserDefaults: WordList
 	
 	subscript(index: Int) -> Word
 	{
-		get { return Word(text: _words[index]) }
+		get { return Word(_words[index])! }
 	}
 	
 	var count: Int { return _words.count }

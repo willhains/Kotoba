@@ -114,7 +114,7 @@ class WordListCell: UITableViewCell
 	/// The word displayed by the table cell.
 	var word: Word?
 	{
-		get { return textLabel?.text.map(Word.init) }
+		get { return textLabel?.text.flatMap(Word.init) }
 		set { textLabel?.text = newValue?.text }
 	}
 	
