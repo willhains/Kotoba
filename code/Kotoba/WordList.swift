@@ -48,5 +48,6 @@ extension UserDefaults: WordList
 	}
 }
 
+// WH: Let's rename this to make it clearer that it's legacy, for first-time upgrade to CoreData only. Or at least name it something that indicates its relationship to UserDefaults.
 /// The word list model for current user.
 let words: WordList = UserDefaults.standard

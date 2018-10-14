@@ -21,6 +21,7 @@ extension NSManagedObjectContext
 		}
 	}
 	
+	// WH: I always prefix private members with underscore. Is that not a thing in Swift?
 	private func saveOrRollBack() -> Bool
 	{
 		do
@@ -38,6 +39,7 @@ extension NSManagedObjectContext
 
 extension NSManagedObjectContext
 {
+	// WH: Let's rename `A` to something meaningful, like `EntityType` (if that's not already used for something).
 	func insertObject<A: NSManagedObject>() -> A where A: Managed
 	{
 		guard let object = NSEntityDescription.insertNewObject(forEntityName: A.entityName, into: self) as? A

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Will Hains. All rights reserved.
 //
 
+// WH: I don't understand the project layout here. This VC is in its own "Word List View Controller" group, while the AddWordVC is one level up. Tbh, I've never understood why Xcode separates the project layout from the layout on disk; it would be much simpler to have them in sync... but that's another story.
+
 import UIKit
 import CoreData
 

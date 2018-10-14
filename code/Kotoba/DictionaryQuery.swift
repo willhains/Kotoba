@@ -17,6 +17,7 @@ enum DictionaryQueryAttribute: String
 	case word = "word"
 }
 
+// WH: Why "UI" in the name? This looks more like a model API.
 // WH: I think I'd prefer to have this information represented by the (reinstated) `Word` struct, separating the representation of the data from the act of fetching it from the data store.
 protocol WordUI
 {
@@ -28,6 +29,7 @@ protocol WordUI
 	static func findOrAdd(word: String, inContext context: NSManagedObjectContext) -> WordUI
 }
 
+// WH: I find the use of "Query" in this context confusing, since we "query" databases (including the SQLite behind CoreData). I think we should rename this entity to something like "DictionaryEntry". "Entry" makes sense in this case, because we don't add it to the data store unless a definition is found.
 final class DictionaryQuery: NSManagedObject
 {
 	@NSManaged var date: Date!
