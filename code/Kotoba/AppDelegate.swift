@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Theme colour for app icon and tint
+/// Theme colour for app icon and tint
 let redThemeColour = UIColourTheme(hue: 5.0, saturation: 0.73, brightness: 0.65)
 
 @UIApplicationMain

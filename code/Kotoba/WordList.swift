@@ -28,7 +28,7 @@ protocol WordList
 	/// Add `word` to the word list.
 	func add(word: Word)
 	
-	/// Delete the word at `index` from the word list.
+	/// Delete the word at the specified index from the word list.
 	func delete(wordAt index: Int)
 	
 	/// Delete all words from the word list.

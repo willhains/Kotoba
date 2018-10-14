@@ -8,14 +8,19 @@
 
 import Foundation
 
+/// Launch options for the app, which can be set in the scheme
 protocol AppOptions
 {
+	/// Which mode to start the app in
 	var appMode: AppMode { get }
 }
 
 enum AppMode
 {
+	/// App is being used interactively by a user (production).
 	case user
+	
+	/// App is being tested by Xcode.
 	case testing
 }
 
@@ -29,4 +34,5 @@ extension ProcessInfo: AppOptions
 	}
 }
 
+/// `AppOptions` backed by `ProcessInfo.processInfo`
 let options: AppOptions = ProcessInfo.processInfo
