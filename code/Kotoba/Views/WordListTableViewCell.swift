@@ -7,6 +7,7 @@
 //
 
 import UIKit
+// WH: Where did the WordListVC go? It's disappeared from Main.storyboard!
 
 class WordListTableViewCell: UITableViewCell
 {
@@ -17,15 +18,18 @@ class WordListTableViewCell: UITableViewCell
 	
 	required init?(coder aDecoder: NSCoder)
 	{
+		// WH: Can we just call super.init(coder: aDecoder) instead of fatalError?
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// WH: Isn't this redundant?
 	override func awakeFromNib()
 	{
 		super.awakeFromNib()
 		// Initialization code
 	}
 	
+	// WH: Isn't this redundant?
 	override func setSelected(_ selected: Bool, animated: Bool)
 	{
 		super.setSelected(selected, animated: animated)

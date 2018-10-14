@@ -20,6 +20,7 @@ protocol WordList
 	/// Returns an `Array` of all the words in the database
 	func allWords() -> [String]
 }
+// WH: I was expecting the CoreData implementation to be a facade class conforming to the `WordList` protocol (even if that meant updating/modifying the `WordList` API a bit). The implementation on the core_data branch leaks the CoreData implementation details all through the project. I feel it would be better, if possible, to encapsulate the CoreData implementation and hide it from the rest of the app. Just as the implementation backed by UserDefaults was temporary, I could see replacing CoreData in the future with CloudKit, if I can figure out how to make Kotoba pass Apple's App Store review.
 
 // MARK:- WordList implementation backed by NSUserDefaults
 
