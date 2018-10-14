@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B6D95E9F2172256C00ED6691 /* AppOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D95E9E2172256C00ED6691 /* AppOptions.swift */; };
+		B6D95EA12172D6FD00ED6691 /* UIColourTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D95EA02172D6FD00ED6691 /* UIColourTheme.swift */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
 		BE776E571D09D60700D4A315 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE776E561D09D60700D4A315 /* Preferences.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		B6D95E9E2172256C00ED6691 /* AppOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppOptions.swift; sourceTree = "<group>"; };
+		B6D95EA02172D6FD00ED6691 /* UIColourTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColourTheme.swift; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		BE776E561D09D60700D4A315 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -109,11 +111,12 @@
 			children = (
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
 				B6D95E9E2172256C00ED6691 /* AppOptions.swift */,
+				BE776E561D09D60700D4A315 /* Preferences.swift */,
+				BE7599A01D04636E006FBB80 /* WordList.swift */,
 				BE918C511A22A5F5006043CF /* WordListViewController.swift */,
 				BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */,
 				BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */,
-				BE7599A01D04636E006FBB80 /* WordList.swift */,
-				BE776E561D09D60700D4A315 /* Preferences.swift */,
+				B6D95EA02172D6FD00ED6691 /* UIColourTheme.swift */,
 				BE918C531A22A5F5006043CF /* Main.storyboard */,
 				BE918C561A22A5F5006043CF /* Images.xcassets */,
 				BE918C4D1A22A5F5006043CF /* Supporting Files */,
@@ -303,6 +306,7 @@
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
 				BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */,
 				B6D95E9F2172256C00ED6691 /* AppOptions.swift in Sources */,
+				B6D95EA12172D6FD00ED6691 /* UIColourTheme.swift in Sources */,
 				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
 				BE776E571D09D60700D4A315 /* Preferences.swift in Sources */,
 				BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */,
