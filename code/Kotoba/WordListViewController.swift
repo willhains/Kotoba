@@ -30,11 +30,6 @@ extension WordListViewController
 	{
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
 	}
-	
-	func prepareTextLabelForDynamicType(label: UILabel?)
-	{
-		label?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
-	}
 }
 
 // MARK:- Dynamic Type
@@ -52,6 +47,11 @@ extension WordListViewController
 			selector: #selector(WordListViewController.dynamicTypeSizeDidChange),
 			name: UIContentSizeCategory.didChangeNotification,
 			object: nil)
+	}
+	
+	func prepareTextLabelForDynamicType(label: UILabel?)
+	{
+		label?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
 	}
 	
 	@objc func dynamicTypeSizeDidChange()
