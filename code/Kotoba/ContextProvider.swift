@@ -6,7 +6,7 @@
 //  Copyright © 2018 Will Hains. All rights reserved.
 //
 
-import Foundation
+import Foundation // WH: Redundant import?
 import CoreData
 
 protocol ContextProvider
