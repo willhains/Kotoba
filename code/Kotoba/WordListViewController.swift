@@ -49,11 +49,6 @@ extension WordListViewController
 			object: nil)
 	}
 	
-	func prepareTextLabelForDynamicType(label: UILabel?)
-	{
-		label?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
-	}
-	
 	@objc func dynamicTypeSizeDidChange()
 	{
 		self.tableView.reloadData()
@@ -108,9 +103,31 @@ extension WordListViewController
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-		cell.textLabel?.text = words[indexPath.row].text
-		prepareTextLabelForDynamicType(label: cell.textLabel)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath) as! WordListCell
+		cell.word = words[indexPath.row]
 		return cell
+	}
+}
+
+class WordListCell: UITableViewCell
+{
+	/// The word displayed by the table cell.
+	var word: Word?
+	{
+		get { return textLabel?.text.map(Word.init) }
+		set { textLabel?.text = newValue?.text }
+	}
+	
+	required init?(coder aDecoder: NSCoder)
+	{
+		super.init(coder: aDecoder)
+	}
+	
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
+	{
+		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		
+		// Prepare text label for dynamic type
+		textLabel?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
 	}
 }
