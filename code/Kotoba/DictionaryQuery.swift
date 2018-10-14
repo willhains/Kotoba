@@ -46,8 +46,8 @@ extension DictionaryQuery: Managed
 	static var entityName: String
 	{
 		return String(describing: DictionaryQuery.self)
-		
 	}
+	
 	static var defaultSortDescriptors: [NSSortDescriptor]
 	{
 		let alphabeticSortDescriptor = NSSortDescriptor(key: DictionaryQueryAttribute.word.rawValue, ascending: true)
@@ -60,18 +60,21 @@ extension DictionaryQuery: WordUI
 {
 	var wordString: String
 	{
-		return  self.word
+		return self.word
 	}
+	
 	var favourite: Bool
 	{
 		get { return isFavourite.boolValue }
 		set { isFavourite = NSNumber(booleanLiteral: newValue) }
 	}
+	
 	var entryDate: Date
 	{
 		get { return date }
 		set { date = newValue }
 	}
+	
 	var isNewEntry: Bool
 	{
 		return objectID.isTemporaryID
@@ -84,8 +87,7 @@ extension DictionaryQuery: WordUI
 		request.sortDescriptors = DictionaryQuery.defaultSortDescriptors
 		request.predicate = predicate
 		
-		guard let dictionaryQuery = try! context.fetch(request).first as? DictionaryQuery
-			else
+		guard let dictionaryQuery = try! context.fetch(request).first as? DictionaryQuery else
 		{
 			let dictionaryQuery: DictionaryQuery = context.insertObject()
 			dictionaryQuery.word = word

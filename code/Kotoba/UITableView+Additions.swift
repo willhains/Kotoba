@@ -10,7 +10,8 @@ import UIKit
 
 extension UITableView
 {
-	func deselect() {
+	func deselect()
+	{
 		if let indexPath = indexPathForSelectedRow
 		{
 			deselectRow(at: indexPath, animated: true)

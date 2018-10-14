@@ -22,12 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil)
 		-> Bool
 	{
-		stackManager = CoreDataStackManager(modelName: "Kotoba") { success in
+		stackManager = CoreDataStackManager(modelName: "Kotoba")
+		{
+			success in
 			if !success { print("Could not initialise CoreData stack") }
 		}
 		
 		migrateDatabaseIfRequired()
 		setContextProvider()
+		
 		// Reset user defaults for UI tests
 		if ProcessInfo.processInfo.arguments.contains("UITEST")
 		{
@@ -47,9 +50,10 @@ extension AppDelegate
 	{
 		if Migrator.isMigrationRequired
 		{
-			//TODO: present activity indicator to user
-			Migrator.migrateDatabase(inContext: stackManager.backgroundContext) {
-				//TODO: remove activity indicator
+			// TODO: present activity indicator to user
+			Migrator.migrateDatabase(inContext: stackManager.backgroundContext)
+			{
+				// TODO: remove activity indicator
 			}
 		}
 	}

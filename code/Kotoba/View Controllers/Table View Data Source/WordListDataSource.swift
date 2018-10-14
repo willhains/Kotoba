@@ -16,13 +16,14 @@ final class WordListDataSource: NSObject
 	weak var delegate: TableViewDataSourceDelegate?
 	var allowRowEdit: Bool = true
 	
-	init(request: NSFetchRequest<NSFetchRequestResult>,
-		 contextProvider: ContextProvider) {
+	init(request: NSFetchRequest<NSFetchRequestResult>, contextProvider: ContextProvider)
+	{
 		self.contextProvider = contextProvider
-		self.fetchResultsController = NSFetchedResultsController(fetchRequest: request,
-																 managedObjectContext: contextProvider.mainContext,
-																 sectionNameKeyPath: nil,
-																 cacheName: nil)
+		self.fetchResultsController = NSFetchedResultsController(
+			fetchRequest: request,
+			managedObjectContext: contextProvider.mainContext,
+			sectionNameKeyPath: nil,
+			cacheName: nil)
 		super.init()
 		try? fetchResultsController.performFetch()
 		fetchResultsController.delegate = self
@@ -31,7 +32,7 @@ final class WordListDataSource: NSObject
 
 extension WordListDataSource: TableViewDataSource
 {
-	//MARK: - displaying data
+	// MARK:- displaying data
 	func numberOfSections(in tableView: UITableView) -> Int
 	{
 		guard let sectionCount = fetchResultsController.sections?.count else { return 0 }
@@ -52,7 +53,7 @@ extension WordListDataSource: TableViewDataSource
 		return cell
 	}
 	
-	//MARK: - editing data
+	// MARK:- editing data
 	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { return allowRowEdit }
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
@@ -63,7 +64,7 @@ extension WordListDataSource: TableViewDataSource
 		}
 	}
 	
-	//MARK: - getting object
+	// MARK:- getting object
 	func object(at indexPath: IndexPath) -> NSFetchRequestResult
 	{
 		return fetchResultsController.object(at: indexPath)
@@ -77,14 +78,14 @@ extension WordListDataSource
 		guard let dictionaryQuery = fetchResultsController.object(at: indexPath) as? NSManagedObject else { return }
 		let id = dictionaryQuery.objectID
 		DispatchQueue.global(qos: .default).async
+		{
+			[unowned self] in
+			let context = self.contextProvider.backgroundContext
+			let backgroundDictionaryQuery = context.object(with: id)
+			context.makeChanges
 			{
-				[unowned self] in
-				let context = self.contextProvider.backgroundContext
-				let backgroundDictionaryQuery = context.object(with: id)
-				context.makeChanges
-					{
-						context.delete(backgroundDictionaryQuery)
-				}
+				context.delete(backgroundDictionaryQuery)
+			}
 		}
 	}
 }
@@ -96,11 +97,13 @@ extension WordListDataSource: NSFetchedResultsControllerDelegate
 		delegate?.currentTableView()?.beginUpdates()
 	}
 	
-	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-					didChange anObject: Any,
-					at indexPath: IndexPath?,
-					for type: NSFetchedResultsChangeType,
-					newIndexPath: IndexPath?) {
+	func controller(
+		_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+		didChange anObject: Any,
+		at indexPath: IndexPath?,
+		for type: NSFetchedResultsChangeType,
+		newIndexPath: IndexPath?)
+	{
 		if type == .delete
 		{
 			delegate?.currentTableView()?.deleteRows(at: [indexPath!], with: .automatic)

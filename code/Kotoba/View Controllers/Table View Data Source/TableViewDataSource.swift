@@ -12,9 +12,7 @@ import CoreData
 protocol TableViewDataSourceDelegate: class
 {
 	func cellIdentifier(for indexPath: IndexPath) -> String
-	func configure(cell: UITableViewCell,
-				   with object: NSFetchRequestResult,
-				   at indexPath: IndexPath)
+	func configure(cell: UITableViewCell, with object: NSFetchRequestResult, at indexPath: IndexPath)
 	func currentTableView() -> UITableView?
 }
 
@@ -22,7 +20,6 @@ protocol TableViewDataSource: UITableViewDataSource
 {
 	var delegate: TableViewDataSourceDelegate? { get set }
 	var allowRowEdit: Bool { get set }
-	init(request: NSFetchRequest<NSFetchRequestResult>,
-		 contextProvider: ContextProvider)
+	init(request: NSFetchRequest<NSFetchRequestResult>, contextProvider: ContextProvider)
 	func object(at indexPath: IndexPath) -> NSFetchRequestResult
 }

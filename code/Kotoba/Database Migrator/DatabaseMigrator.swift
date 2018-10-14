@@ -9,10 +9,12 @@
 import Foundation
 import CoreData
 
-protocol DatabaseMigrator {
+protocol DatabaseMigrator
+{
 	static var isMigrationRequired: Bool { get }
-	static func migrateDatabase(inContext context: NSManagedObjectContext,
-								completion: @escaping () -> Void)
+	static func migrateDatabase(
+		inContext context: NSManagedObjectContext,
+		completion: @escaping () -> Void)
 }
 
 final class Migrator: DatabaseMigrator
@@ -22,24 +24,26 @@ final class Migrator: DatabaseMigrator
 		return words.count > 0
 	}
 	
-	static func migrateDatabase(inContext context: NSManagedObjectContext,
-								completion: @escaping () -> Void)
+	static func migrateDatabase(
+		inContext context: NSManagedObjectContext,
+		completion: @escaping () -> Void)
 	{
 		DispatchQueue.global(qos: .default).async
+		{
+			context.makeChanges
 			{
-				context.makeChanges
-					{ [unowned context] in
-						for oldWordEntry in words.allWords()
-						{
-							let newWord: DictionaryQuery = context.insertObject()
-							newWord.word = oldWordEntry.trimmingCharacters(in: .whitespacesAndNewlines)
-						}
-						removeOldDatabaseEntries()
-						DispatchQueue.main.async
-							{
-								completion()
-						}
+				[unowned context] in
+				for oldWordEntry in words.allWords()
+				{
+					let newWord: DictionaryQuery = context.insertObject()
+					newWord.word = oldWordEntry.trimmingCharacters(in: .whitespacesAndNewlines)
 				}
+				removeOldDatabaseEntries()
+				DispatchQueue.main.async
+				{
+					completion()
+				}
+			}
 		}
 	}
 	

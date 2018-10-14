@@ -13,7 +13,9 @@ extension NSManagedObjectContext
 {
 	func makeChanges(_ changes: @escaping () -> Void)
 	{
-		perform { [weak self] in
+		perform
+		{
+			[weak self] in
 			changes()
 			_ = self?.saveOrRollBack()
 		}

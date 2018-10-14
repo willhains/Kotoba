@@ -18,11 +18,11 @@ final class CoreDataStackManager
 	{
 		container = NSPersistentContainer(name: modelName)
 		container.loadPersistentStores
-			{
-				[unowned self] description, error in
-				let success = error == nil
-				self.container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
-				completion(success)
+		{
+			[unowned self] description, error in
+			let success = error == nil
+			self.container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+			completion(success)
 		}
 		contextMerger = ContextMerger(contextProvider: self)
 	}

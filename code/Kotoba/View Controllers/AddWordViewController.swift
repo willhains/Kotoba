@@ -112,19 +112,22 @@ extension AddWordViewController: UITextFieldDelegate
 		guard let text = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return true }
 		if showDefinition(forWord: text)
 		{
-			DispatchQueue.global(qos: .default).async { [unowned self] in
+			DispatchQueue.global(qos: .default).async
+			{
+				[unowned self] in
 				if let context = self.contextProvider?.backgroundContext
 				{
 					context.makeChanges
+					{
+						var word = DictionaryQuery.findOrAdd(word: text, inContext: context)
+						if !word.isNewEntry
 						{
-							var word = DictionaryQuery.findOrAdd(word: text, inContext: context)
-							if !word.isNewEntry
-							{
-								word.entryDate = Date()
-							}
+							word.entryDate = Date()
+						}
 					}
 				}
 			}
+			
 			// Clear the text field when word is successfully found
 			textField.text = nil
 		}
