@@ -12,14 +12,14 @@ import CoreData
 enum DictionaryQueryAttribute: String
 {
 	case date = "date"
-	case isFavorite = "isFavorite"
+	case isFavourite = "isFavourite"
 	case word = "word"
 }
 
 protocol WordUI
 {
 	var wordString: String { get }
-	var favorite: Bool { get set }
+	var favourite: Bool { get set }
 	var entryDate: Date { get set }
 	var isNewEntry: Bool { get }
 	
@@ -29,14 +29,14 @@ protocol WordUI
 final class DictionaryQuery: NSManagedObject
 {
 	@NSManaged var date: Date!
-	@NSManaged var isFavorite: NSNumber!
+	@NSManaged var isFavourite: NSNumber!
 	@NSManaged var word: String!
 	
 	override func awakeFromInsert()
 	{
 		super.awakeFromInsert()
 		date = Date()
-		isFavorite = NSNumber(booleanLiteral: false)
+		isFavourite = NSNumber(booleanLiteral: false)
 		word = String()
 	}
 }
@@ -62,10 +62,10 @@ extension DictionaryQuery: WordUI
 	{
 		return  self.word
 	}
-	var favorite: Bool
+	var favourite: Bool
 	{
-		get { return isFavorite.boolValue }
-		set { isFavorite = NSNumber(booleanLiteral: newValue) }
+		get { return isFavourite.boolValue }
+		set { isFavourite = NSNumber(booleanLiteral: newValue) }
 	}
 	var entryDate: Date
 	{
