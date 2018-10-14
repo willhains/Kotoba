@@ -41,6 +41,7 @@ extension UserDefaults: WordList
 		_words = []
 	}
 	
+	// WH: You deleted the `Word` struct, saying it is redundant, but I don't think so. I much prefer to wrap value types, especially for `String`, to avoid the so-called "stringly-typed" problem. Wrapping value types has many benefits -- they can have meaningful, domain-oriented names; their initialisers can enforce validation rules on the content; and the API can be restricted and extended in domain-aware ways. `String` is the worst offender, since it can contain almost literally any data, and there are always so many strings flying all over the place. Wrapping strings in custom value types gives type safety; `String` is effectively type-unsafe.
 	func allWords() -> [String]
 	{
 		return _words

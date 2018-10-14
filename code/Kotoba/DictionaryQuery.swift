@@ -17,6 +17,7 @@ enum DictionaryQueryAttribute: String
 	case word = "word"
 }
 
+// WH: I think I'd prefer to have this information represented by the (reinstated) `Word` struct, separating the representation of the data from the act of fetching it from the data store.
 protocol WordUI
 {
 	var wordString: String { get }
