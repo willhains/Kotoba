@@ -6,7 +6,6 @@
 //  Copyright © 2018 Will Hains. All rights reserved.
 //
 
-import Foundation // WH: Redundant import?
 import CoreData
 
 extension NSManagedObjectContext
