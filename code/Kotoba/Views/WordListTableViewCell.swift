@@ -8,6 +8,12 @@
 
 import UIKit
 // WH: Where did the WordListVC go? It's disappeared from Main.storyboard!
+// GH: I'm sorry, that was out of scoof for this PR and should have definitely
+// discussed it with you before. I removed the VC from the storyboard
+// out of habbit, got used to not using storyboards too much at my previous
+// company, and to do it in code.
+// We did this at work to avoud and magic settings to be set in interface builder,
+// and to avoid storyboard merge conflicts.
 
 class WordListTableViewCell: UITableViewCell
 {
@@ -20,18 +26,5 @@ class WordListTableViewCell: UITableViewCell
 	{
 		// WH: Can we just call super.init(coder: aDecoder) instead of fatalError?
 		fatalError("init(coder:) has not been implemented")
-	}
-	
-	// WH: Isn't this redundant?
-	override func awakeFromNib()
-	{
-		super.awakeFromNib()
-		// Initialization code
-	}
-	
-	// WH: Isn't this redundant?
-	override func setSelected(_ selected: Bool, animated: Bool)
-	{
-		super.setSelected(selected, animated: animated)
 	}
 }
