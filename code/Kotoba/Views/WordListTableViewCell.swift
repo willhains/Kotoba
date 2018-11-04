@@ -24,7 +24,6 @@ class WordListTableViewCell: UITableViewCell
 	
 	required init?(coder aDecoder: NSCoder)
 	{
-		// WH: Can we just call super.init(coder: aDecoder) instead of fatalError?
-		fatalError("init(coder:) has not been implemented")
+		super.init(coder: aDecoder)
 	}
 }
