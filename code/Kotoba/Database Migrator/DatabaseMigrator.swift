@@ -6,7 +6,6 @@
 //  Copyright © 2018 Will Hains. All rights reserved.
 //
 
-import Foundation // WH: Redundant import?
 import CoreData
 
 // WH: Rather than an all-static API, I'd prefer to have an actual class instance, even if that instance is declared as a global constant, or a property in AppDelegate.
