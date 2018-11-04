@@ -48,11 +48,12 @@ extension AppDelegate
 {
 	func migrateDatabaseIfRequired()
 	{
-		if Migrator.isMigrationRequired
+		let migrator = Migrator()
+		if migrator.isMigrationRequired
 		{
 			// WH: Unfinished? Or perhaps raise a separate issue for this one, and implement it later.
 			// TODO: present activity indicator to user
-			Migrator.migrateDatabase(inContext: stackManager.backgroundContext)
+			migrator.migrateDatabase(inContext: stackManager.backgroundContext)
 			{
 				// TODO: remove activity indicator
 			}

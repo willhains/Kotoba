@@ -11,20 +11,20 @@ import CoreData
 // WH: Rather than an all-static API, I'd prefer to have an actual class instance, even if that instance is declared as a global constant, or a property in AppDelegate.
 protocol DatabaseMigrator
 {
-	static var isMigrationRequired: Bool { get }
-	static func migrateDatabase(
+	var isMigrationRequired: Bool { get }
+	func migrateDatabase(
 		inContext context: NSManagedObjectContext,
 		completion: @escaping () -> Void)
 }
 
 final class Migrator: DatabaseMigrator
 {
-	static var isMigrationRequired: Bool
+	var isMigrationRequired: Bool
 	{
 		return words.count > 0
 	}
 	
-	static func migrateDatabase(
+	func migrateDatabase(
 		inContext context: NSManagedObjectContext,
 		completion: @escaping () -> Void)
 	{
@@ -32,13 +32,13 @@ final class Migrator: DatabaseMigrator
 		{
 			context.makeChanges
 			{
-				[unowned context] in
+				[weak self, unowned context] in
 				for oldWordEntry in words.allWords()
 				{
 					let newWord: DictionaryQuery = context.insertObject()
 					newWord.word = oldWordEntry.trimmingCharacters(in: .whitespacesAndNewlines)
 				}
-				removeOldDatabaseEntries()
+				self?.removeOldDatabaseEntries()
 				DispatchQueue.main.async
 				{
 					completion()
@@ -47,7 +47,7 @@ final class Migrator: DatabaseMigrator
 		}
 	}
 	
-	private static func removeOldDatabaseEntries()
+	private func removeOldDatabaseEntries()
 	{
 		words.clear()
 	}
