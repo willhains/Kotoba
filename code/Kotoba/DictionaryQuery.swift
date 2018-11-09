@@ -6,13 +6,14 @@
 //  Copyright © 2018 Will Hains. All rights reserved.
 //
 
-import Foundation // WH: Redundant import?
 import CoreData
 
 enum DictionaryQueryAttribute: String
 {
 	case date = "date"
 	// WH: Just checking in case I missed something... this is not actually used anywhere (yet), right? Is this intended for a feature in another PR?
+	// GH: that's right. I was thinking of adding the option of favoriting some words to display them in a separate list, however
+	// currently the property is not in use.
 	case isFavourite = "isFavourite"
 	case word = "word"
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2016 Will Hains. All rights reserved.
 //
 
-import Foundation // WH: Redundant import?
 import UIKit
 
 final class AddWordViewController: UIViewController
