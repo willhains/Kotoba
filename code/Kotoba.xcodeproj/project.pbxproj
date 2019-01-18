@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
+		B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F5588E21F20E8D0053F800 /* Launch.storyboard */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
 		BE776E571D09D60700D4A315 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE776E561D09D60700D4A315 /* Preferences.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		691B8E1520DAB5A100B11216 /* Workarounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workarounds.swift; sourceTree = "<group>"; };
+		B6F5588E21F20E8D0053F800 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		BE776E561D09D60700D4A315 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				BE7599A01D04636E006FBB80 /* WordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				691B8E1520DAB5A100B11216 /* Workarounds.swift */,
+				B6F5588E21F20E8D0053F800 /* Launch.storyboard */,
 				BE918C531A22A5F5006043CF /* Main.storyboard */,
 				BE918C561A22A5F5006043CF /* Images.xcassets */,
 				BE918C4D1A22A5F5006043CF /* Supporting Files */,
@@ -260,6 +263,7 @@
 			files = (
 				BE918C551A22A5F5006043CF /* Main.storyboard in Resources */,
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
+				B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +462,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8B38X92RJ6;
@@ -476,7 +479,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8B38X92RJ6;
