@@ -17,6 +17,7 @@ extension UIViewController
 	{
 		let dictionaryViewController = UIReferenceLibraryViewController(term: word.text)
 		present(dictionaryViewController, animated: true, completion: nil)
+//		navigationController?.pushViewController(dictionaryViewController, animated: true)
 		
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
 		if prefs.shouldDisplayFirstUseDictionaryPrompt()
@@ -36,6 +37,7 @@ extension UIViewController
 		}
 		
 		// Return whether definition for word was found
-		return UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
+		//return UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
+		return true
 	}
 }
