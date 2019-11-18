@@ -22,12 +22,14 @@ final class AddWordViewController: UIViewController
 	{
 		super.viewDidLoad()
 		prepareKeyboardAvoidance()
+		
+		self.navigationController?.navigationBar.titleTextAttributes = [ .font: UIFont.systemFont(ofSize: 22.0, weight: .bold) ]
 	}
 	
-	override func viewDidAppear(_ animated: Bool)
-	{
-		super.viewDidAppear(animated)
-		showKeyboardOnLaunch()
+	override func viewWillAppear(_ animated: Bool) {
+		debugLog()
+		super.viewWillAppear(animated)
+		showKeyboard()
 	}
 }
 
@@ -72,19 +74,9 @@ extension AddWordViewController
 // MARK:- Show keyboard on launch
 extension AddWordViewController
 {
-	func showKeyboardOnLaunch()
+	func showKeyboard()
 	{
 		self.textField.becomeFirstResponder()
-	}
-}
-
-// MARK:- Missing API of Optional
-extension Optional
-{
-	/// Return `nil` if `includeElement` evaluates to `false`.
-	func filter(_ includeElement: (Wrapped) -> Bool) -> Optional<Wrapped>
-	{
-		return flatMap { includeElement($0) ? self : nil }
 	}
 }
 
@@ -93,15 +85,36 @@ extension AddWordViewController: UITextFieldDelegate
 {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool
 	{
-		// Search the dictionary
-		if let word = textField.text.map(Word.init).filter(showDefinition)
-		{
-			// Add word to list of words
-			words.add(word: word)
+		if let text = textField.text {
+			let word = Word.init(text: text)
+			debugLog("word = \(word)")
 			
-			// Clear the text field when word is successfully found
-			textField.text = nil
+			// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do
+			// a definition lookup. Previously, Kotoba did both these things at the same time on the same queue.
+			//
+			// The gymnastics below are to hide the slowness: after the view controller is presented, the definition lookup
+			// proceeds on a background queue. If there's a definition, the text field is cleared: if you spend little time
+			// reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really
+			// quick, you can see it not appear in the History view, too. Better this than slowness.
+			
+			self.showDefinition(forWord: word, completion: {
+				debugLog("presented dictionary view controlller")
+				
+				DispatchQueue.global().async {
+					debugLog("checking definition")
+					let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
+					debugLog("hasDefinition = \(hasDefinition)")
+					if hasDefinition {
+						words.add(word: word)
+						DispatchQueue.main.async {
+							textField.text = nil
+						}
+					}
+				}
+			})
 		}
+		
 		return true
 	}
+	
 }
