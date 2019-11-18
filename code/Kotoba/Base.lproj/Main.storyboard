@@ -69,7 +69,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W0c-l2-07F"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Word Lookup" id="YQw-TU-c8o">
+                    <navigationItem key="navigationItem" title="Kotoba" id="YQw-TU-c8o">
+                        <barButtonItem key="backBarButtonItem" title=" " id="12J-us-Q9r"/>
                         <barButtonItem key="rightBarButtonItem" title="History" id="lxn-9Q-keE">
                             <connections>
                                 <segue destination="PII-AL-jNA" kind="show" id="KTZ-QU-EDq"/>
