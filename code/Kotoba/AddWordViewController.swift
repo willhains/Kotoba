@@ -23,7 +23,9 @@ final class AddWordViewController: UIViewController
 		super.viewDidLoad()
 		prepareKeyboardAvoidance()
 		
-		self.navigationController?.navigationBar.titleTextAttributes = [ .font: UIFont.systemFont(ofSize: 22.0, weight: .bold) ]
+		let titleFont = UIFont.systemFont(ofSize: 22.0, weight: .bold)
+		let titleColor = UIColor.init(named: "appHeader") ?? UIColor.label
+		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
