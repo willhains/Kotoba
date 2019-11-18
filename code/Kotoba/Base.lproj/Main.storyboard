@@ -52,9 +52,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="42" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
-                                <rect key="frame" x="20" y="265.5" width="280" height="51"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
+                                <rect key="frame" x="10" y="267.5" width="300" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="3xP-rx-8MB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="JNO-hA-UHa" id="gMV-3x-7t1"/>
@@ -64,7 +67,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerX" secondItem="W0c-l2-07F" secondAttribute="centerX" id="0yv-gt-YIW"/>
-                            <constraint firstItem="NcX-Q6-lwW" firstAttribute="width" secondItem="4xg-Iq-PCO" secondAttribute="width" constant="-40" id="KFr-Iw-7TC"/>
                             <constraint firstItem="NcX-Q6-lwW" firstAttribute="firstBaseline" secondItem="W0c-l2-07F" secondAttribute="centerY" id="xRg-NG-Nmb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W0c-l2-07F"/>
