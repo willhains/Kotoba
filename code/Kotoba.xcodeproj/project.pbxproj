@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4440B41C236CF92100369CE8 /* Colors.xcassets */; };
+		44CFA6AB2381F0CB00D7ECCC /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
 		B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F5588E21F20E8D0053F800 /* Launch.storyboard */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		4440B41C236CF92100369CE8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		44CFA6AA2381F0CB00D7ECCC /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		691B8E1520DAB5A100B11216 /* Workarounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workarounds.swift; sourceTree = "<group>"; };
 		B6F5588E21F20E8D0053F800 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				BE918C531A22A5F5006043CF /* Main.storyboard */,
 				BE918C561A22A5F5006043CF /* Images.xcassets */,
 				4440B41C236CF92100369CE8 /* Colors.xcassets */,
+				44CFA6AA2381F0CB00D7ECCC /* Debug.swift */,
 				BE918C4D1A22A5F5006043CF /* Supporting Files */,
 			);
 			path = Kotoba;
@@ -314,6 +317,7 @@
 				BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */,
 				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
 				BE776E571D09D60700D4A315 /* Preferences.swift in Sources */,
+				44CFA6AB2381F0CB00D7ECCC /* Debug.swift in Sources */,
 				BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */,
 				BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */,
 			);
@@ -475,6 +479,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iconfactory.Kotoba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
