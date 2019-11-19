@@ -67,7 +67,7 @@ extension WordListViewController
 	{
 		// Search the dictionary
 		let word = words[indexPath.row]
-		let _ = showDefinition(forWord: word)
+		showDefinition(forWord: word)
 		
 		// Reset the table view
 		self.tableView.deselectRow(at: indexPath, animated: true)

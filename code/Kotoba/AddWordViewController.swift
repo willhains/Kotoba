@@ -22,12 +22,52 @@ final class AddWordViewController: UIViewController
 	{
 		super.viewDidLoad()
 		prepareKeyboardAvoidance()
+		
+		let titleFont = UIFont.init(name: "AmericanTypewriter-Bold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
+		let titleColor = UIColor.init(named: "appHeader") ?? UIColor.label
+		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
 	}
 	
-	override func viewDidAppear(_ animated: Bool)
-	{
-		super.viewDidAppear(animated)
-		showKeyboardOnLaunch()
+	override func viewWillAppear(_ animated: Bool) {
+		debugLog()
+		super.viewWillAppear(animated)
+		showKeyboard()
+	}
+	
+	@objc func applicationDidBecomeActive(notification: NSNotification) {
+		debugLog()
+		checkPasteboard()
+	}
+	
+	func initiateSearch(forWord word: Word) {
+		debugLog("word = \(word)")
+		
+		// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do
+		// a definition lookup. Previously, Kotoba did both these things at the same time on the same queue.
+		//
+		// The gymnastics below are to hide the slowness: after the view controller is presented, the definition lookup
+		// proceeds on a background queue. If there's a definition, the text field is cleared: if you spend little time
+		// reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really
+		// quick, you can see it not appear in the History view, too. Better this than slowness.
+		
+		self.showDefinition(forWord: word, completion: {
+			debugLog("presented dictionary view controlller")
+			
+			DispatchQueue.global().async {
+				debugLog("checking definition")
+				let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
+				debugLog("hasDefinition = \(hasDefinition)")
+				if hasDefinition {
+					words.add(word: word)
+					DispatchQueue.main.async {
+						self.textField.text = nil
+					}
+				}
+			}
+		})
+
 	}
 }
 
@@ -72,19 +112,37 @@ extension AddWordViewController
 // MARK:- Show keyboard on launch
 extension AddWordViewController
 {
-	func showKeyboardOnLaunch()
+	func showKeyboard()
 	{
 		self.textField.becomeFirstResponder()
 	}
-}
-
-// MARK:- Missing API of Optional
-extension Optional
-{
-	/// Return `nil` if `includeElement` evaluates to `false`.
-	func filter(_ includeElement: (Wrapped) -> Bool) -> Optional<Wrapped>
+	
+	func checkPasteboard()
 	{
-		return flatMap { includeElement($0) ? self : nil }
+		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) {
+			self.textField.text = text
+
+			let alert = UIAlertController(
+				title: "Search with Clipboard",
+				message: """
+				This text is on the clipboard:
+				
+				\(text)
+				
+				Do you want to use it for a search?
+				""",
+				preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Search", style: .default, handler: { _ in
+				let word = Word.init(text: text)
+				self.initiateSearch(forWord: word)
+			}))
+			let preferredAction = UIAlertAction(title: "Ignore", style: .default, handler: { _ in
+				self.textField.text = nil
+			})
+			alert.addAction(preferredAction)
+			alert.preferredAction = preferredAction
+			self.present(alert, animated: true, completion: nil)
+		}
 	}
 }
 
@@ -93,15 +151,12 @@ extension AddWordViewController: UITextFieldDelegate
 {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool
 	{
-		// Search the dictionary
-		if let word = textField.text.map(Word.init).filter(showDefinition)
-		{
-			// Add word to list of words
-			words.add(word: word)
-			
-			// Clear the text field when word is successfully found
-			textField.text = nil
+		if let text = textField.text {
+			let word = Word.init(text: text)
+			initiateSearch(forWord: word)
 		}
+		
 		return true
 	}
+	
 }

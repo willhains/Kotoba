@@ -13,14 +13,13 @@ extension UIViewController
 {
 	/// Present the system dictionary as a modal view, showing the definition of `word`.
 	/// - returns: `true` if the system dictionary found a definition, `false` otherwise.
-	func showDefinition(forWord word: Word) -> Bool
+	func showDefinition(forWord word: Word, completion: (() -> Void)? = nil)
 	{
 		let dictionaryViewController = UIReferenceLibraryViewController(term: word.text)
-		present(dictionaryViewController, animated: true, completion: nil)
+		self.present(dictionaryViewController, animated: true, completion: completion)
 		
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
-		if prefs.shouldDisplayFirstUseDictionaryPrompt()
-		{
+		if prefs.shouldDisplayFirstUseDictionaryPrompt() {
 			let alert = UIAlertController(
 				title: "Add Dictionaries",
 				message: """
@@ -34,8 +33,5 @@ extension UIViewController
 			// Update preferences to silence this prompt next time
 			prefs.didDisplayFirstUseDictionaryPrompt()
 		}
-		
-		// Return whether definition for word was found
-		return UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
 	}
 }
