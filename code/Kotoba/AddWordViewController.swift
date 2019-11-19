@@ -30,18 +30,26 @@ final class AddWordViewController: UIViewController
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
+	override func viewWillAppear(_ animated: Bool)
+	{
 		debugLog()
 		super.viewWillAppear(animated)
 		showKeyboard()
 	}
 	
-	@objc func applicationDidBecomeActive(notification: NSNotification) {
+	@objc func applicationDidBecomeActive(notification: NSNotification)
+	{
 		debugLog()
 		checkPasteboard()
 	}
-	
-	func initiateSearch(forWord word: Word) {
+}
+
+// MARK:- Async word lookup
+// Solution donated by Craig Hockenberry
+extension AddWordViewController
+{
+	func initiateSearch(forWord word: Word)
+	{
 		debugLog("word = \(word)")
 		
 		// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do
@@ -52,22 +60,22 @@ final class AddWordViewController: UIViewController
 		// reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really
 		// quick, you can see it not appear in the History view, too. Better this than slowness.
 		
-		self.showDefinition(forWord: word, completion: {
+		self.showDefinition(forWord: word)
+		{
 			debugLog("presented dictionary view controlller")
 			
-			DispatchQueue.global().async {
+			DispatchQueue.global().async
+			{
 				debugLog("checking definition")
 				let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
 				debugLog("hasDefinition = \(hasDefinition)")
-				if hasDefinition {
+				if hasDefinition
+				{
 					words.add(word: word)
-					DispatchQueue.main.async {
-						self.textField.text = nil
-					}
+					DispatchQueue.main.async { self.textField.text = nil }
 				}
 			}
-		})
-
+		}
 	}
 }
 
@@ -109,7 +117,7 @@ extension AddWordViewController
 	}
 }
 
-// MARK:- Show keyboard on launch
+// MARK:- Launch behaviour
 extension AddWordViewController
 {
 	func showKeyboard()
@@ -119,7 +127,8 @@ extension AddWordViewController
 	
 	func checkPasteboard()
 	{
-		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) {
+		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+		{
 			self.textField.text = text
 
 			let alert = UIAlertController(
@@ -132,13 +141,18 @@ extension AddWordViewController
 				Do you want to use it for a search?
 				""",
 				preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "Search", style: .default, handler: { _ in
+			let alertAction = UIAlertAction(title: "Search", style: .default)
+			{
+				_ in
 				let word = Word.init(text: text)
 				self.initiateSearch(forWord: word)
-			}))
-			let preferredAction = UIAlertAction(title: "Ignore", style: .default, handler: { _ in
+			}
+			alert.addAction(alertAction)
+			let preferredAction = UIAlertAction(title: "Ignore", style: .default)
+			{
+				_ in
 				self.textField.text = nil
-			})
+			}
 			alert.addAction(preferredAction)
 			alert.preferredAction = preferredAction
 			self.present(alert, animated: true, completion: nil)
@@ -151,12 +165,12 @@ extension AddWordViewController: UITextFieldDelegate
 {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool
 	{
-		if let text = textField.text {
+		if let text = textField.text
+		{
 			let word = Word.init(text: text)
 			initiateSearch(forWord: word)
 		}
 		
 		return true
 	}
-	
 }
