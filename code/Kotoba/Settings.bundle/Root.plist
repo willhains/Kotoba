@@ -29,9 +29,9 @@
 
 		<dict>
 			<key>FooterText</key>
-			<string>Your history can be stored in iCloud. If you turn on this setting, any words stored locally will be merged into a list on iCloud.</string>
+			<string>Your search history can be stored in iCloud. When you turn on this setting, any words stored locally will be merged into a list on iCloud.</string>
 			<key>Title</key>
-			<string>Display Options</string>
+			<string>Storage Options</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -41,7 +41,7 @@
 			<key>Key</key>
 			<string>use_icloud</string>
 			<key>Title</key>
-			<string>History in iCloud</string>
+			<string>Use iCloud</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

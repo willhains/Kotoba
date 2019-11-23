@@ -74,7 +74,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Kotoba" id="YQw-TU-c8o">
                         <barButtonItem key="backBarButtonItem" title=" " id="12J-us-Q9r"/>
-                        <barButtonItem key="rightBarButtonItem" title="History" id="lxn-9Q-keE">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu">
+                            <connections>
+                                <action selector="openSettings:" destination="JNO-hA-UHa" id="qYM-St-E6o"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="History" image="book" catalog="system" id="lxn-9Q-keE">
                             <connections>
                                 <segue destination="PII-AL-jNA" kind="show" id="KTZ-QU-EDq"/>
                             </connections>
@@ -112,6 +117,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book" catalog="system" width="64" height="50"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
         <namedColor name="appBarTint">
             <color red="0.44934159517288208" green="0.14759334921836853" blue="0.12026796489953995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

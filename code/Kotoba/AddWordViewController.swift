@@ -71,6 +71,19 @@ final class AddWordViewController: UIViewController
 	}
 }
 
+// MARK:- Actions
+extension AddWordViewController
+{
+
+	@IBAction func openSettings(_: AnyObject) {
+		debugLog()
+		if let url = URL.init(string: UIApplication.openSettingsURLString) {
+			UIApplication.shared.open(url)
+		}
+	}
+
+}
+
 // MARK:- Keyboard avoiding
 // Solution adapted from http://stackoverflow.com/a/16044603/554518
 extension AddWordViewController
