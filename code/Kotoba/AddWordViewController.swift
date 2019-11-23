@@ -23,8 +23,8 @@ final class AddWordViewController: UIViewController
 		super.viewDidLoad()
 		prepareKeyboardAvoidance()
 		
-		let titleFont = UIFont.init(name: "AmericanTypewriter-Bold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
-		let titleColor = UIColor.init(named: "appHeader") ?? UIColor.label
+		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
+		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
