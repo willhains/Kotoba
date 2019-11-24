@@ -91,7 +91,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Kotoba" id="YQw-TU-c8o">
                         <barButtonItem key="backBarButtonItem" title=" " id="12J-us-Q9r"/>
-                        <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu">
+                            <connections>
+                                <action selector="openSettings:" destination="uOi-qz-WDH" id="4YQ-lg-Hu2"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" image="book" catalog="system" id="lxn-9Q-keE">
                             <connections>
                                 <segue destination="PII-AL-jNA" kind="show" id="KTZ-QU-EDq"/>
