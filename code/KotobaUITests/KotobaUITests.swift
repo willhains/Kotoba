@@ -100,7 +100,7 @@ class KotobaUITests: XCTestCase
 		showHistory()
 		assertTableContents("three", "two", "one")
 		
-		app.navigationBars.buttons["Word Lookup"].tap()
+		app.navigationBars.buttons["Kotoba"].tap()
 		enter(word: "two")
 		closeDictionary()
 		showHistory()

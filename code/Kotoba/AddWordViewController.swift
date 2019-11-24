@@ -30,20 +30,27 @@ final class AddWordViewController: UIViewController
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
+	override func viewWillAppear(_ animated: Bool)
+	{
 		debugLog()
 		super.viewWillAppear(animated)
 		showKeyboard()
 	}
 	
-	@objc func applicationDidBecomeActive(notification: NSNotification) {
+	@objc func applicationDidBecomeActive(notification: NSNotification)
+	{
 		debugLog()
 		checkPasteboard()
-		
 		checkMigration()
 	}
-	
-	func initiateSearch(forWord word: Word) {
+}
+
+// MARK:- Async word lookup
+// Solution donated by Craig Hockenberry
+extension AddWordViewController
+{
+	func initiateSearch(forWord word: Word)
+	{
 		debugLog("word = \(word)")
 		
 		// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do
@@ -54,36 +61,36 @@ final class AddWordViewController: UIViewController
 		// reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really
 		// quick, you can see it not appear in the History view, too. Better this than slowness.
 		
-		self.showDefinition(forWord: word, completion: {
+		self.showDefinition(forWord: word)
+		{
 			debugLog("presented dictionary view controlller")
 			
-			DispatchQueue.global().async {
+			DispatchQueue.global().async
+			{
 				debugLog("checking definition")
 				let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
 				debugLog("hasDefinition = \(hasDefinition)")
-				if hasDefinition {
+				if hasDefinition
+				{
 					words.add(word: word)
-					DispatchQueue.main.async {
-						self.textField.text = nil
-					}
+					DispatchQueue.main.async { self.textField.text = nil }
 				}
 			}
-		})
-
+		}
 	}
 }
 
 // MARK:- Actions
 extension AddWordViewController
 {
-
-	@IBAction func openSettings(_: AnyObject) {
+	@IBAction func openSettings(_: AnyObject)
+	{
 		debugLog()
-		if let url = URL.init(string: UIApplication.openSettingsURLString) {
+		if let url = URL.init(string: UIApplication.openSettingsURLString)
+		{
 			UIApplication.shared.open(url)
 		}
 	}
-
 }
 
 // MARK:- Keyboard avoiding
@@ -126,22 +133,25 @@ extension AddWordViewController
 
 private let _LAST_PASTEBOARD_TEXT_KEY = "last_pasteboard_text"
 
-// MARK:- Show keyboard on launch
+// MARK:- Launch behaviour
 extension AddWordViewController
 {
 	func showKeyboard()
 	{
 		self.textField.becomeFirstResponder()
 	}
-
+	
 	func checkPasteboard()
 	{
-		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespaces) {
+		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+		{
 			// ignore text that has newlines in it
-			if text.rangeOfCharacter(from: CharacterSet.newlines) == nil {
+			if text.rangeOfCharacter(from: CharacterSet.newlines) == nil
+			{
 				// ignore text that hasn't changed since the last time we ran
 				let lastPasteboardText = UserDefaults.standard.string(forKey: _LAST_PASTEBOARD_TEXT_KEY)
-				if text != lastPasteboardText {
+				if text != lastPasteboardText
+				{
 					self.textField.text = text
 					
 					let alert = UIAlertController(
@@ -154,13 +164,18 @@ extension AddWordViewController
 						Do you want to use it for a search?
 						""",
 						preferredStyle: .alert)
-					alert.addAction(UIAlertAction(title: "Search", style: .default, handler: { _ in
+					let alertAction = UIAlertAction(title: "Search", style: .default)
+					{
+						_ in
 						let word = Word.init(text: text)
 						self.initiateSearch(forWord: word)
-					}))
-					let preferredAction = UIAlertAction(title: "Ignore", style: .default, handler: { _ in
+					}
+					alert.addAction(alertAction)
+					let preferredAction = UIAlertAction(title: "Ignore", style: .default)
+					{
+						_ in
 						self.textField.text = nil
-					})
+					}
 					alert.addAction(preferredAction)
 					alert.preferredAction = preferredAction
 					self.present(alert, animated: true, completion: nil)
@@ -171,40 +186,53 @@ extension AddWordViewController
 		}
 	}
 	
-	func checkMigration() {
-		if WordList.useRemote {
-			if WordList.hasLocalData {
+	func checkMigration()
+	{
+		if WordList.useRemote
+		{
+			if WordList.hasLocalData
+			{
 				let alert = UIAlertController(
 					title: "Migrate to iCloud",
 					message: "Do you want to add the words in the local list to iCloud?",
 					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: "Keep on Local", style: .default, handler: { _ in
+				let alertAction = UIAlertAction(title: "Keep on Local", style: .default)
+				{
+					_ in
 					WordList.useRemote = false
-				}))
-				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default, handler: { _ in
+				}
+				alert.addAction(alertAction)
+				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default)
+				{
+					_ in
 					self.migrateWordsToRemote()
-				})
+				}
 				alert.addAction(preferredAction)
 				alert.preferredAction = preferredAction
 				self.present(alert, animated: true, completion: nil)
 			}
 		}
-		else {
-			if WordList.hasRemoteData {
+		else
+		{
+			if WordList.hasRemoteData
+			{
 				let alert = UIAlertController(
 					title: "Migrate to Local Storage",
 					message: "Do you want to move the word list from iCloud to local storage?",
 					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: "Move to Local", style: .default, handler: { _ in
+				let alertAction = UIAlertAction(title: "Move to Local", style: .default)
+				{
+					_ in
 					debugLog("migrating remote data")
 					self.migrateWordsToLocal()
-				}))
-				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default, handler: { _ in
+				}
+				alert.addAction(alertAction)
+				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default)
+				{
+					_ in
 					debugLog("keeping remote data")
 					WordList.useRemote = true
-				})
-					
-
+				}
 				alert.addAction(preferredAction)
 				alert.preferredAction = preferredAction
 				self.present(alert, animated: true, completion: nil)
@@ -212,20 +240,24 @@ extension AddWordViewController
 		}
 	}
 	
-	func migrateWordsToRemote() {
+	func migrateWordsToRemote()
+	{
 		let localWords = WordList(local: true)
 		let indices = 0..<localWords.count // NOTE: would be cleaner if WordList was a Sequence
-		for index in indices {
+		for index in indices
+		{
 			let localWord = localWords[index]
 			words.add(word: localWord)
 		}
 		localWords.remove()
 	}
 
-	func migrateWordsToLocal() {
+	func migrateWordsToLocal()
+	{
 		let remoteWords = WordList(local: false)
 		let indices = 0..<remoteWords.count // NOTE: would be cleaner if WordList was a Sequence
-		for index in indices {
+		for index in indices
+		{
 			let remoteWord = remoteWords[index]
 			words.add(word: remoteWord)
 		}
@@ -238,12 +270,12 @@ extension AddWordViewController: UITextFieldDelegate
 {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool
 	{
-		if let text = textField.text {
+		if let text = textField.text
+		{
 			let word = Word.init(text: text)
 			initiateSearch(forWord: word)
 		}
 		
 		return true
 	}
-	
 }

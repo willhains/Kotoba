@@ -41,7 +41,7 @@ extension Array where Element: Equatable
 	/// Remove the first matching `element`, if it exists.
 	mutating func remove(_ element: Element)
 	{
-		if let existingIndex = index(of: element)
+		if let existingIndex = firstIndex(of: element)
 		{
 			self.remove(at: existingIndex)
 		}
@@ -60,62 +60,79 @@ extension Array where Element: Equatable
 private let _WORD_LIST_KEY = "words"
 private let _USE_REMOTE_KEY = "use_icloud"
 
-class WordList {
-
-	class var useRemote: Bool {
-		get {
+class WordList
+{
+	class var useRemote: Bool
+	{
+		get
+		{
 			return UserDefaults.standard.bool(forKey: _USE_REMOTE_KEY)
 		}
-		set {
+		set
+		{
 			UserDefaults.standard.set(newValue, forKey: _USE_REMOTE_KEY)
 			UserDefaults.standard.synchronize()
 		}
 	}
 
-	class var hasLocalData: Bool {
+	class var hasLocalData: Bool
+	{
 		return (UserDefaults.standard.object(forKey: _WORD_LIST_KEY) as? [String]) != nil
 	}
 
-	class var hasRemoteData: Bool {
+	class var hasRemoteData: Bool
+	{
 		return (NSUbiquitousKeyValueStore.default.object(forKey: _WORD_LIST_KEY) as? [String]) != nil
 	}
 
 	var local: Bool
 	
-	init(local: Bool = true) {
+	init(local: Bool = true)
+	{
 		self.local = local
 	}
 	
-	fileprivate var _words: [String] {
-		get {
-			if local {
+	fileprivate var _words: [String]
+	{
+		get
+		{
+			if local
+			{
 				return UserDefaults.standard.object(forKey: _WORD_LIST_KEY) as? [String] ?? []
 			}
-			else {
+			else
+			{
 				return NSUbiquitousKeyValueStore.default.object(forKey: _WORD_LIST_KEY) as? [String] ?? []
 			}
 			
 		}
-		set(words) {
-			if local {
+		set(words)
+		{
+			if local
+			{
 				UserDefaults.standard.set(words, forKey: _WORD_LIST_KEY)
 			}
-			else {
+			else
+			{
 				NSUbiquitousKeyValueStore.default.set(words, forKey: _WORD_LIST_KEY)
 			}
 		}
 	}
 	
-	func remove() {
-		if local {
+	func remove()
+	{
+		if local
+		{
 			UserDefaults.standard.removeObject(forKey: _WORD_LIST_KEY)
 		}
-		else {
+		else
+		{
 			NSUbiquitousKeyValueStore.default.removeObject(forKey: _WORD_LIST_KEY)
 		}
 	}
 
-	subscript(index: Int) -> Word {
+	subscript(index: Int) -> Word
+	{
 		get { return Word(text: _words[index]) }
 	}
 	
@@ -146,11 +163,14 @@ class WordList {
 }
 
 /// The word list model for current user.
-var words: WordList {
-	if WordList.useRemote {
+var words: WordList
+{
+	if WordList.useRemote
+	{
 		return WordList(local: false)
 	}
-	else {
+	else
+	{
 		return WordList(local: true)
 	}
 }

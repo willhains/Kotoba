@@ -19,7 +19,8 @@ extension UIViewController
 		self.present(dictionaryViewController, animated: true, completion: completion)
 		
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
-		if prefs.shouldDisplayFirstUseDictionaryPrompt() {
+		if prefs.shouldDisplayFirstUseDictionaryPrompt()
+		{
 			let alert = UIAlertController(
 				title: "Add Dictionaries",
 				message: """

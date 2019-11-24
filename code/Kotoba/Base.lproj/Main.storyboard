@@ -120,7 +120,7 @@
         <image name="book" catalog="system" width="64" height="50"/>
         <image name="gear" catalog="system" width="64" height="58"/>
         <namedColor name="appBarTint">
-            <color red="0.44934159517288208" green="0.14759334921836853" blue="0.12026796489953995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.44705882352941179" green="0.14509803921568629" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appHeader">
             <color red="0.40000000596046448" green="0.11400000005960464" blue="0.078000001609325409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

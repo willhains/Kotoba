@@ -13,6 +13,8 @@
 		44FD6CD32389CB0E00FF245E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44FD6CD22389CB0E00FF245E /* Settings.bundle */; };
 		44FD6CD62389CF1B00FF245E /* Setup_iCloud.txt in Resources */ = {isa = PBXBuildFile; fileRef = 44FD6CD52389CF1B00FF245E /* Setup_iCloud.txt */; };
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
+		B65A4E02238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
+		B65A4E03238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F5588E21F20E8D0053F800 /* Launch.storyboard */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
@@ -22,7 +24,6 @@
 		BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C511A22A5F5006043CF /* WordListViewController.swift */; };
 		BE918C551A22A5F5006043CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE918C531A22A5F5006043CF /* Main.storyboard */; };
 		BE918C571A22A5F5006043CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE918C561A22A5F5006043CF /* Images.xcassets */; };
-		BEA413C61D1DC32F00D177C2 /* AddWordViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA413C51D1DC32F00D177C2 /* AddWordViewControllerTests.swift */; };
 		BEA413C81D1DC6B400D177C2 /* WordListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA413C71D1DC6B400D177C2 /* WordListTests.swift */; };
 		BEB2324F1D1DD3B800369560 /* KotobaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB2324E1D1DD3B800369560 /* KotobaUITests.swift */; };
 /* End PBXBuildFile section */
@@ -65,7 +66,6 @@
 		BE918C561A22A5F5006043CF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BEA413B71D1CABB600D177C2 /* KotobaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KotobaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA413BB1D1CABB600D177C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BEA413C51D1DC32F00D177C2 /* AddWordViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWordViewControllerTests.swift; sourceTree = "<group>"; };
 		BEA413C71D1DC6B400D177C2 /* WordListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListTests.swift; sourceTree = "<group>"; };
 		BEB2324C1D1DD3B800369560 /* KotobaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KotobaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB2324E1D1DD3B800369560 /* KotobaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaUITests.swift; sourceTree = "<group>"; };
@@ -153,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				BEA413BB1D1CABB600D177C2 /* Info.plist */,
-				BEA413C51D1DC32F00D177C2 /* AddWordViewControllerTests.swift */,
 				BEA413C71D1DC6B400D177C2 /* WordListTests.swift */,
 			);
 			path = KotobaTests;
@@ -233,22 +232,24 @@
 			attributes = {
 				LastSwiftMigration = 0730;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Will Hains";
 				TargetAttributes = {
 					BE918C491A22A5F5006043CF = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = RYQWBTQRPT;
-						LastSwiftMigration = 1000;
+						DevelopmentTeam = 8B38X92RJ6;
+						LastSwiftMigration = 1120;
 					};
 					BEA413B61D1CABB600D177C2 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 1000;
+						DevelopmentTeam = 8B38X92RJ6;
+						LastSwiftMigration = 1120;
 						TestTargetID = BE918C491A22A5F5006043CF;
 					};
 					BEB2324B1D1DD3B800369560 = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 1000;
+						DevelopmentTeam = 8B38X92RJ6;
+						LastSwiftMigration = 1120;
 						TestTargetID = BE918C491A22A5F5006043CF;
 					};
 				};
@@ -342,8 +343,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEA413C61D1DC32F00D177C2 /* AddWordViewControllerTests.swift in Sources */,
 				BEA413C81D1DC6B400D177C2 /* WordListTests.swift in Sources */,
+				B65A4E02238435ED000C9A4F /* Debug.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEB2324F1D1DD3B800369560 /* KotobaUITests.swift in Sources */,
+				B65A4E03238435ED000C9A4F /* Debug.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +388,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -441,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -489,15 +493,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
-				DEVELOPMENT_TEAM = RYQWBTQRPT;
+				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iconfactory.internal.Kotoba;
+				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.Kotoba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -507,15 +511,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
-				DEVELOPMENT_TEAM = RYQWBTQRPT;
+				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.iconfactory.internal.Kotoba;
+				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.Kotoba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -525,13 +529,15 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = KotobaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.KotobaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kotoba.app/Kotoba";
 			};
 			name = Debug;
@@ -541,15 +547,17 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = KotobaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.KotobaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kotoba.app/Kotoba";
 			};
 			name = Release;
@@ -559,12 +567,13 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = KotobaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.KotobaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Kotoba;
 			};
 			name = Debug;
@@ -575,13 +584,14 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = KotobaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.KotobaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = Kotoba;
 			};
 			name = Release;

@@ -8,11 +8,10 @@
 
 import UIKit
 
-class KotobaNavigationController: UINavigationController {
-
+class KotobaNavigationController: UINavigationController
+{
 	override var preferredStatusBarStyle: UIStatusBarStyle
 	{
 		return .lightContent
 	}
-	
 }
