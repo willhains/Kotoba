@@ -39,6 +39,8 @@ final class AddWordViewController: UIViewController
 	@objc func applicationDidBecomeActive(notification: NSNotification) {
 		debugLog()
 		checkPasteboard()
+		
+		checkMigration()
 	}
 	
 	func initiateSearch(forWord word: Word) {
@@ -122,6 +124,8 @@ extension AddWordViewController
 	}
 }
 
+private let _LAST_PASTEBOARD_TEXT_KEY = "last_pasteboard_text"
+
 // MARK:- Show keyboard on launch
 extension AddWordViewController
 {
@@ -129,33 +133,105 @@ extension AddWordViewController
 	{
 		self.textField.becomeFirstResponder()
 	}
-	
+
 	func checkPasteboard()
 	{
-		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) {
-			self.textField.text = text
-
-			let alert = UIAlertController(
-				title: "Search with Clipboard",
-				message: """
-				This text is on the clipboard:
-				
-				\(text)
-				
-				Do you want to use it for a search?
-				""",
-				preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "Search", style: .default, handler: { _ in
-				let word = Word.init(text: text)
-				self.initiateSearch(forWord: word)
-			}))
-			let preferredAction = UIAlertAction(title: "Ignore", style: .default, handler: { _ in
-				self.textField.text = nil
-			})
-			alert.addAction(preferredAction)
-			alert.preferredAction = preferredAction
-			self.present(alert, animated: true, completion: nil)
+		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespaces) {
+			// ignore text that has newlines in it
+			if text.rangeOfCharacter(from: CharacterSet.newlines) == nil {
+				// ignore text that hasn't changed since the last time we ran
+				let lastPasteboardText = UserDefaults.standard.string(forKey: _LAST_PASTEBOARD_TEXT_KEY)
+				if text != lastPasteboardText {
+					self.textField.text = text
+					
+					let alert = UIAlertController(
+						title: "Search with Clipboard",
+						message: """
+						This text is on the clipboard:
+						
+						\(text)
+						
+						Do you want to use it for a search?
+						""",
+						preferredStyle: .alert)
+					alert.addAction(UIAlertAction(title: "Search", style: .default, handler: { _ in
+						let word = Word.init(text: text)
+						self.initiateSearch(forWord: word)
+					}))
+					let preferredAction = UIAlertAction(title: "Ignore", style: .default, handler: { _ in
+						self.textField.text = nil
+					})
+					alert.addAction(preferredAction)
+					alert.preferredAction = preferredAction
+					self.present(alert, animated: true, completion: nil)
+					
+					UserDefaults.standard.set(text, forKey: _LAST_PASTEBOARD_TEXT_KEY)
+				}
+			}
 		}
+	}
+	
+	func checkMigration() {
+		if WordList.useRemote {
+			debugLog("checking local data")
+			if WordList.hasLocalData {
+				let alert = UIAlertController(
+					title: "Migrate to iCloud",
+					message: "Do you want to migrate the local word list to iCloud?",
+					preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: "Keep Local", style: .default, handler: { _ in
+					debugLog("keeping local data")
+					WordList.useRemote = false
+				}))
+				let preferredAction = UIAlertAction(title: "Migrate", style: .default, handler: { _ in
+					debugLog("migrating local data")
+					self.migrateWordsToRemote()
+				})
+				alert.addAction(preferredAction)
+				alert.preferredAction = preferredAction
+				self.present(alert, animated: true, completion: nil)
+			}
+		}
+		else {
+			debugLog("checking remote data")
+			if WordList.hasRemoteData {
+				let alert = UIAlertController(
+					title: "Migrate to Local Storage",
+					message: "Do you want to migrate the iCloud word list to local storage?",
+					preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: "Keep Remote", style: .default, handler: { _ in
+					debugLog("keeping remote data")
+					WordList.useRemote = true
+				}))
+				let preferredAction = UIAlertAction(title: "Migrate", style: .default, handler: { _ in
+					debugLog("migrating remote data")
+					self.migrateWordsToLocal()
+				})
+				alert.addAction(preferredAction)
+				alert.preferredAction = preferredAction
+				self.present(alert, animated: true, completion: nil)
+			}
+		}
+	}
+	
+	func migrateWordsToRemote() {
+		let localWords = WordList(local: true)
+		let indices = 0..<localWords.count // NOTE: would be cleaner if WordList was a Sequence
+		for index in indices {
+			let localWord = localWords[index]
+			words.add(word: localWord)
+		}
+		localWords.remove()
+	}
+
+	func migrateWordsToLocal() {
+		let remoteWords = WordList(local: false)
+		let indices = 0..<remoteWords.count // NOTE: would be cleaner if WordList was a Sequence
+		for index in indices {
+			let remoteWord = remoteWords[index]
+			words.add(word: remoteWord)
+		}
+		remoteWords.remove()
 	}
 }
 

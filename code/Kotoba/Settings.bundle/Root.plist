@@ -26,12 +26,11 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 		</dict>
-
 		<dict>
 			<key>FooterText</key>
 			<string>Your search history can be stored in iCloud. When you turn on this setting, any words stored locally will be merged into a list on iCloud.</string>
 			<key>Title</key>
-			<string>Storage Options</string>
+			<string>Word List Storage</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
