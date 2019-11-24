@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import UIKit
+
+class AddWordTableViewCell: UITableViewCell
+{
+	@IBOutlet weak var textField: UITextField!
+	
+	
+}

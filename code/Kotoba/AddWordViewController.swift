@@ -167,7 +167,7 @@ extension AddWordViewController
 //					let alertAction = UIAlertAction(title: "Search", style: .default)
 //					{
 //						_ in
-//						let word = Word.init(text: text)
+//						let word = Word(text: text)
 //						self.initiateSearch(forWord: word)
 //					}
 //					alert.addAction(alertAction)
@@ -272,7 +272,7 @@ extension AddWordViewController: UITextFieldDelegate
 	{
 		if let text = textField.text
 		{
-			let word = Word.init(text: text)
+			let word = Word(text: text)
 			initiateSearch(forWord: word)
 		}
 		
@@ -289,7 +289,10 @@ extension AddWordViewController
 		// TODO: Filter out non-words and likely passwords (digits, symbols).
 		// TODO: Tokenise words in locale-independent way (not whitespace).
 		// TODO: De-duplicate.
-		UIPasteboard.general.string?.components(separatedBy: .whitespacesAndNewlines).map(Word.init) ?? []
+		UIPasteboard.general.string?
+			.trimmingCharacters(in: .whitespacesAndNewlines)
+			.components(separatedBy: .whitespacesAndNewlines)
+			.map(Word.init) ?? []
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -306,8 +309,9 @@ extension AddWordViewController
 	{
 		if indexPath.row == 0
 		{
-			let cell = tableView.dequeueReusableCell(withIdentifier: "Entry", for: indexPath)
-			// TODO: Set delegate of the text field to self
+			let cell = tableView.dequeueReusableCell(withIdentifier: "Entry", for: indexPath) as! AddWordTableViewCell
+			cell.textField.delegate = self
+			cell.textField.becomeFirstResponder()
 			return cell
 		}
 		
@@ -315,5 +319,12 @@ extension AddWordViewController
 		cell.textLabel?.text = pasteboardWords[indexPath.row - 1].text
 		cell.textLabel?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body) // TODO: Move to extension of UILabel
 		return cell
+	}
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+	{
+		guard indexPath.row > 0 else { return }
+		let word = pasteboardWords[indexPath.row - 1]
+		initiateSearch(forWord: word)
 	}
 }
