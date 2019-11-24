@@ -145,46 +145,6 @@ class WordList {
 	}
 }
 
-//extension UserDefaults: WordListable
-//{
-//	// Read/write an array of Strings to represent word list
-//	fileprivate var _words: [String]
-//	{
-//		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
-//		set(words) { set(words, forKey: _WORD_LIST_KEY) }
-//	}
-//
-//	subscript(index: Int) -> Word
-//	{
-//		get { return Word(text: _words[index]) }
-//	}
-//
-//	var count: Int { return _words.count }
-//
-//	func add(word: Word)
-//	{
-//		var words = _words
-//		let lowercase = word.text.lowercased()
-//
-//		// Prevent duplicates; move to top of list instead
-//		words.add(possibleDuplicate: lowercase)
-//
-//		_words = words
-//	}
-//
-//	func delete(wordAt index: Int)
-//	{
-//		var words = _words
-//		words.remove(at: index)
-//		_words = words
-//	}
-//
-//	func clear()
-//	{
-//		_words = []
-//	}
-//}
-
 /// The word list model for current user.
 var words: WordList {
 	if WordList.useRemote {
