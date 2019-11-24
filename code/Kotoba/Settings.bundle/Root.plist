@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>DefaultValue</key>
-			<string>$(MARKETING_VERSION) (647)</string>
+			<string>$(MARKETING_VERSION) (653)</string>
 			<key>Key</key>
 			<string>versionNumber</string>
 			<key>Title</key>

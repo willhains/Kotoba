@@ -11,8 +11,6 @@ import UIKit
 
 final class AddWordViewController: UITableViewController
 {
-//	@IBOutlet weak var textField: UITextField!
-	
 	deinit
 	{
 		NotificationCenter.default.removeObserver(self)
@@ -34,13 +32,11 @@ final class AddWordViewController: UITableViewController
 	{
 		debugLog()
 		super.viewWillAppear(animated)
-//		showKeyboard()
 	}
 	
 	@objc func applicationDidBecomeActive(notification: NSNotification)
 	{
 		debugLog()
-//		checkPasteboard()
 		checkMigration()
 	}
 }
@@ -73,7 +69,9 @@ extension AddWordViewController
 				if hasDefinition
 				{
 					words.add(word: word)
-//					DispatchQueue.main.async { self.textField.text = nil }
+					
+					// Reloading the row will create a fresh text field, effectively clearing the previously-searhed text
+					DispatchQueue.main.async { self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic) }
 				}
 			}
 		}
@@ -136,56 +134,6 @@ private let _LAST_PASTEBOARD_TEXT_KEY = "last_pasteboard_text"
 // MARK:- Launch behaviour
 extension AddWordViewController
 {
-//	func showKeyboard()
-//	{
-//		self.textField.becomeFirstResponder()
-//	}
-//
-//	func checkPasteboard()
-//	{
-//		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-//		{
-//			// ignore text that has newlines in it
-//			if text.rangeOfCharacter(from: CharacterSet.newlines) == nil
-//			{
-//				// ignore text that hasn't changed since the last time we ran
-//				let lastPasteboardText = UserDefaults.standard.string(forKey: _LAST_PASTEBOARD_TEXT_KEY)
-//				if text != lastPasteboardText
-//				{
-//					self.textField.text = text
-//
-//					let alert = UIAlertController(
-//						title: "Search with Clipboard",
-//						message: """
-//						This text is on the clipboard:
-//
-//						\(text)
-//
-//						Do you want to use it for a search?
-//						""",
-//						preferredStyle: .alert)
-//					let alertAction = UIAlertAction(title: "Search", style: .default)
-//					{
-//						_ in
-//						let word = Word(text: text)
-//						self.initiateSearch(forWord: word)
-//					}
-//					alert.addAction(alertAction)
-//					let preferredAction = UIAlertAction(title: "Ignore", style: .default)
-//					{
-//						_ in
-//						self.textField.text = nil
-//					}
-//					alert.addAction(preferredAction)
-//					alert.preferredAction = preferredAction
-//					self.present(alert, animated: true, completion: nil)
-//
-//					UserDefaults.standard.set(text, forKey: _LAST_PASTEBOARD_TEXT_KEY)
-//				}
-//			}
-//		}
-//	}
-	
 	func checkMigration()
 	{
 		if WordList.useRemote
@@ -310,8 +258,9 @@ extension AddWordViewController
 		if indexPath.row == 0
 		{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Entry", for: indexPath) as! AddWordTableViewCell
+			cell.textField.text = nil
 			cell.textField.delegate = self
-			cell.textField.becomeFirstResponder()
+			cell.textField.becomeFirstResponder() // show the keyboard
 			return cell
 		}
 		
