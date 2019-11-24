@@ -17,7 +17,7 @@ struct Word
 }
 
 /// Model of user's saved words.
-protocol WordList
+protocol WordListable
 {
 	/// Access saved words by index.
 	subscript(index: Int) -> Word { get }
@@ -58,16 +58,79 @@ extension Array where Element: Equatable
 // MARK:- WordList implementation backed by NSUserDefaults
 
 private let _WORD_LIST_KEY = "words"
+private let _USE_REMOTE_KEY = "use_icloud"
 
-extension UserDefaults: WordList
+class WordList
 {
-	// Read/write an array of Strings to represent word list
-	fileprivate var _words: [String]
+	class var useRemote: Bool
 	{
-		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
-		set(words) { set(words, forKey: _WORD_LIST_KEY) }
+		get
+		{
+			return UserDefaults.standard.bool(forKey: _USE_REMOTE_KEY)
+		}
+		set
+		{
+			UserDefaults.standard.set(newValue, forKey: _USE_REMOTE_KEY)
+			UserDefaults.standard.synchronize()
+		}
+	}
+
+	class var hasLocalData: Bool
+	{
+		return (UserDefaults.standard.object(forKey: _WORD_LIST_KEY) as? [String]) != nil
+	}
+
+	class var hasRemoteData: Bool
+	{
+		return (NSUbiquitousKeyValueStore.default.object(forKey: _WORD_LIST_KEY) as? [String]) != nil
+	}
+
+	var local: Bool
+	
+	init(local: Bool = true)
+	{
+		self.local = local
 	}
 	
+	fileprivate var _words: [String]
+	{
+		get
+		{
+			if local
+			{
+				return UserDefaults.standard.object(forKey: _WORD_LIST_KEY) as? [String] ?? []
+			}
+			else
+			{
+				return NSUbiquitousKeyValueStore.default.object(forKey: _WORD_LIST_KEY) as? [String] ?? []
+			}
+			
+		}
+		set(words)
+		{
+			if local
+			{
+				UserDefaults.standard.set(words, forKey: _WORD_LIST_KEY)
+			}
+			else
+			{
+				NSUbiquitousKeyValueStore.default.set(words, forKey: _WORD_LIST_KEY)
+			}
+		}
+	}
+	
+	func remove()
+	{
+		if local
+		{
+			UserDefaults.standard.removeObject(forKey: _WORD_LIST_KEY)
+		}
+		else
+		{
+			NSUbiquitousKeyValueStore.default.removeObject(forKey: _WORD_LIST_KEY)
+		}
+	}
+
 	subscript(index: Int) -> Word
 	{
 		get { return Word(text: _words[index]) }
@@ -100,4 +163,14 @@ extension UserDefaults: WordList
 }
 
 /// The word list model for current user.
-let words: WordList = UserDefaults.standard
+var words: WordList
+{
+	if WordList.useRemote
+	{
+		return WordList(local: false)
+	}
+	else
+	{
+		return WordList(local: true)
+	}
+}

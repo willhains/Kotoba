@@ -1,0 +1,28 @@
+
+### Create app identifier on developer portal at:
+
+	https://developer.apple.com/account/resources/identifiers/list
+
+	* Register a new Identifier
+
+		Platform: iOS
+		App ID Prefix: Pick the one that has Team ID
+		Description: Kotoba
+		Bundle ID: com.iconfactory.Kotoba (or whatever you use in the Xcode project)
+
+		Capabilities: Select iCloud, Include CloudKit support (requires Xcode 6)
+
+	> Continue
+
+		If you get an error about bundle ID not being available, go Back and change it to something unique like com.iconfactory.internal.Kotoba, then try again. You'll need to change the Xcode project to use the same bundle ID. You'll lose all previous word history at this point, because the words are stored in the app with the old bundle identifier. Yay provisioning.
+
+	> Register
+
+### Update Xcode settings
+
+	* Select the Target "Kotoba" and then the "Signing & Capabilities" tab
+
+	* Click the + icon to add iCloud.
+
+	* Under iCloud, the only checkbox you need is for "Key-value storage"
+
