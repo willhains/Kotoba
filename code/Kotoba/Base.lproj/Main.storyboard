@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -45,53 +44,61 @@
             </objects>
             <point key="canvasLocation" x="1417" y="117"/>
         </scene>
-        <!--Add Word VC-->
-        <scene sceneID="SoF-qW-FaW">
+        <!--Kotoba-->
+        <scene sceneID="eL0-ec-jvH">
             <objects>
-                <viewController id="JNO-hA-UHa" userLabel="Add Word VC" customClass="AddWordViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4xg-Iq-PCO">
+                <tableViewController id="uOi-qz-WDH" customClass="AddWordViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kJ4-Vd-GzS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
-                                <rect key="frame" x="10" y="267.5" width="300" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="3xP-rx-8MB"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="JNO-hA-UHa" id="gMV-3x-7t1"/>
-                                </connections>
-                            </textField>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerX" secondItem="W0c-l2-07F" secondAttribute="centerX" id="0yv-gt-YIW"/>
-                            <constraint firstItem="NcX-Q6-lwW" firstAttribute="firstBaseline" secondItem="W0c-l2-07F" secondAttribute="centerY" id="xRg-NG-Nmb"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="W0c-l2-07F"/>
-                    </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Entry" rowHeight="95" id="b9M-I2-W7K">
+                                <rect key="frame" x="0.0" y="28" width="320" height="95"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b9M-I2-W7K" id="gVV-Xk-Isw">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
+                                            <rect key="frame" x="35" y="23" width="250.5" height="49"/>
+                                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerY" secondItem="gVV-Xk-Isw" secondAttribute="centerY" id="lmO-Bs-T1S"/>
+                                        <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerX" secondItem="gVV-Xk-Isw" secondAttribute="centerX" id="muO-m9-EQN"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Word" id="qhL-id-VR1">
+                                <rect key="frame" x="0.0" y="123" width="320" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qhL-id-VR1" id="Bpp-Gk-5te">
+                                    <rect key="frame" x="0.0" y="0.0" width="293" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uOi-qz-WDH" id="mZh-z3-PFj"/>
+                            <outlet property="delegate" destination="uOi-qz-WDH" id="7L1-OW-Fqy"/>
+                        </connections>
+                    </tableView>
                     <navigationItem key="navigationItem" title="Kotoba" id="YQw-TU-c8o">
                         <barButtonItem key="backBarButtonItem" title=" " id="12J-us-Q9r"/>
-                        <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu">
-                            <connections>
-                                <action selector="openSettings:" destination="JNO-hA-UHa" id="qYM-St-E6o"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu"/>
                         <barButtonItem key="rightBarButtonItem" title="History" image="book" catalog="system" id="lxn-9Q-keE">
                             <connections>
                                 <segue destination="PII-AL-jNA" kind="show" id="KTZ-QU-EDq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="textField" destination="NcX-Q6-lwW" id="1fK-yo-bUz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WGZ-IU-TR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9O-ru-SNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="117"/>
+            <point key="canvasLocation" x="697.5" y="115.14084507042254"/>
         </scene>
         <!--Kotoba Navigation Controller-->
         <scene sceneID="8mo-0O-vG4">
@@ -108,7 +115,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="JNO-hA-UHa" kind="relationship" relationship="rootViewController" id="lQN-ur-Imf"/>
+                        <segue destination="uOi-qz-WDH" kind="relationship" relationship="rootViewController" id="uXP-Sg-14X"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUZ-cp-uhJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
