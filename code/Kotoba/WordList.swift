@@ -41,7 +41,7 @@ extension Array where Element: Equatable
 	/// Remove the first matching `element`, if it exists.
 	mutating func remove(_ element: Element)
 	{
-		if let existingIndex = index(of: element)
+		if let existingIndex = firstIndex(of: element)
 		{
 			self.remove(at: existingIndex)
 		}
