@@ -173,18 +173,15 @@ extension AddWordViewController
 	
 	func checkMigration() {
 		if WordList.useRemote {
-			debugLog("checking local data")
 			if WordList.hasLocalData {
 				let alert = UIAlertController(
 					title: "Migrate to iCloud",
-					message: "Do you want to migrate the local word list to iCloud?",
+					message: "Do you want to add the words in the local list to iCloud?",
 					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: "Keep Local", style: .default, handler: { _ in
-					debugLog("keeping local data")
+				alert.addAction(UIAlertAction(title: "Keep on Local", style: .default, handler: { _ in
 					WordList.useRemote = false
 				}))
-				let preferredAction = UIAlertAction(title: "Migrate", style: .default, handler: { _ in
-					debugLog("migrating local data")
+				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default, handler: { _ in
 					self.migrateWordsToRemote()
 				})
 				alert.addAction(preferredAction)
@@ -193,20 +190,21 @@ extension AddWordViewController
 			}
 		}
 		else {
-			debugLog("checking remote data")
 			if WordList.hasRemoteData {
 				let alert = UIAlertController(
 					title: "Migrate to Local Storage",
-					message: "Do you want to migrate the iCloud word list to local storage?",
+					message: "Do you want to move the word list from iCloud to local storage?",
 					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: "Keep Remote", style: .default, handler: { _ in
-					debugLog("keeping remote data")
-					WordList.useRemote = true
-				}))
-				let preferredAction = UIAlertAction(title: "Migrate", style: .default, handler: { _ in
+				alert.addAction(UIAlertAction(title: "Move to Local", style: .default, handler: { _ in
 					debugLog("migrating remote data")
 					self.migrateWordsToLocal()
+				}))
+				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default, handler: { _ in
+					debugLog("keeping remote data")
+					WordList.useRemote = true
 				})
+					
+
 				alert.addAction(preferredAction)
 				alert.preferredAction = preferredAction
 				self.present(alert, animated: true, completion: nil)
