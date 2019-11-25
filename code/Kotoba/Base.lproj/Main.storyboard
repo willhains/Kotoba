@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,64 +45,88 @@
             </objects>
             <point key="canvasLocation" x="1417" y="117"/>
         </scene>
-        <!--Kotoba-->
-        <scene sceneID="eL0-ec-jvH">
+        <!--Add Word VC-->
+        <scene sceneID="SoF-qW-FaW">
             <objects>
-                <tableViewController id="uOi-qz-WDH" customClass="AddWordViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kJ4-Vd-GzS">
+                <viewController id="JNO-hA-UHa" userLabel="Add Word VC" customClass="AddWordViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4xg-Iq-PCO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAn-oO-h9i">
+                                <rect key="frame" x="0.0" y="44" width="320" height="169.5"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
+                                        <rect key="frame" x="35" y="60.5" width="250.5" height="49"/>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JNO-hA-UHa" id="gMV-3x-7t1"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerX" secondItem="eAn-oO-h9i" secondAttribute="centerX" id="CX2-a1-3b3"/>
+                                    <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerY" secondItem="eAn-oO-h9i" secondAttribute="centerY" id="Txj-D2-XYW"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qT4-Og-WxZ">
+                                <rect key="frame" x="0.0" y="222.5" width="320" height="345.5"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPq-oQ-a3d">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="345.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="430" id="Ghh-F8-6lx"/>
+                                        </constraints>
+                                    </tableView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="dPq-oQ-a3d" firstAttribute="leading" secondItem="WuZ-OI-HO0" secondAttribute="leading" id="4Z0-l4-PGW"/>
+                                    <constraint firstItem="dPq-oQ-a3d" firstAttribute="top" secondItem="37G-b8-ZAV" secondAttribute="top" id="8bI-z6-0sM"/>
+                                    <constraint firstItem="dPq-oQ-a3d" firstAttribute="bottom" secondItem="WuZ-OI-HO0" secondAttribute="bottom" id="C8L-jp-TMW"/>
+                                    <constraint firstAttribute="bottom" secondItem="dPq-oQ-a3d" secondAttribute="bottom" id="Fee-z2-A54"/>
+                                    <constraint firstAttribute="trailing" secondItem="dPq-oQ-a3d" secondAttribute="trailing" id="hMh-Y7-cMg"/>
+                                    <constraint firstItem="dPq-oQ-a3d" firstAttribute="centerX" secondItem="qT4-Og-WxZ" secondAttribute="centerX" id="sDL-kJ-sOe"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="37G-b8-ZAV"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="WuZ-OI-HO0"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Entry" rowHeight="95" id="b9M-I2-W7K" customClass="AddWordTableViewCell" customModule="Kotoba" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="95"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b9M-I2-W7K" id="gVV-Xk-Isw">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
-                                            <rect key="frame" x="35" y="23" width="250.5" height="49"/>
-                                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerY" secondItem="gVV-Xk-Isw" secondAttribute="centerY" id="lmO-Bs-T1S"/>
-                                        <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerX" secondItem="gVV-Xk-Isw" secondAttribute="centerX" id="muO-m9-EQN"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="textField" destination="NcX-Q6-lwW" id="Ejd-Et-bcF"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Word" id="qhL-id-VR1">
-                                <rect key="frame" x="0.0" y="123" width="320" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qhL-id-VR1" id="Bpp-Gk-5te">
-                                    <rect key="frame" x="0.0" y="0.0" width="293" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="uOi-qz-WDH" id="mZh-z3-PFj"/>
-                            <outlet property="delegate" destination="uOi-qz-WDH" id="7L1-OW-Fqy"/>
-                        </connections>
-                    </tableView>
+                        <constraints>
+                            <constraint firstItem="eAn-oO-h9i" firstAttribute="height" secondItem="W0c-l2-07F" secondAttribute="height" multiplier="0.323606" id="7Be-za-Y8s"/>
+                            <constraint firstItem="qT4-Og-WxZ" firstAttribute="bottom" secondItem="W0c-l2-07F" secondAttribute="bottom" id="RHc-fy-6fq"/>
+                            <constraint firstItem="qT4-Og-WxZ" firstAttribute="top" secondItem="eAn-oO-h9i" secondAttribute="bottom" constant="9" id="Zf7-ND-dmu"/>
+                            <constraint firstItem="eAn-oO-h9i" firstAttribute="leading" secondItem="W0c-l2-07F" secondAttribute="leading" id="dfA-IW-asz"/>
+                            <constraint firstItem="eAn-oO-h9i" firstAttribute="leading" secondItem="qT4-Og-WxZ" secondAttribute="leading" id="lv2-xB-YmB"/>
+                            <constraint firstItem="eAn-oO-h9i" firstAttribute="centerX" secondItem="4xg-Iq-PCO" secondAttribute="centerX" id="sA8-sN-FSa"/>
+                            <constraint firstItem="eAn-oO-h9i" firstAttribute="top" secondItem="W0c-l2-07F" secondAttribute="top" id="wvW-9T-YdZ"/>
+                            <constraint firstItem="eAn-oO-h9i" firstAttribute="trailing" secondItem="qT4-Og-WxZ" secondAttribute="trailing" id="xBR-BK-wTa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="W0c-l2-07F"/>
+                    </view>
                     <navigationItem key="navigationItem" title="Kotoba" id="YQw-TU-c8o">
                         <barButtonItem key="backBarButtonItem" title=" " id="12J-us-Q9r"/>
-                        <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu">
+                            <connections>
+                                <action selector="openSettings:" destination="JNO-hA-UHa" id="qYM-St-E6o"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" image="book" catalog="system" id="lxn-9Q-keE">
                             <connections>
                                 <segue destination="PII-AL-jNA" kind="show" id="KTZ-QU-EDq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i9O-ru-SNf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="textField" destination="NcX-Q6-lwW" id="1fK-yo-bUz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WGZ-IU-TR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697.5" y="115.14084507042254"/>
+            <point key="canvasLocation" x="706.875" y="116.19718309859155"/>
         </scene>
         <!--Kotoba Navigation Controller-->
         <scene sceneID="8mo-0O-vG4">
@@ -118,7 +143,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="uOi-qz-WDH" kind="relationship" relationship="rootViewController" id="uXP-Sg-14X"/>
+                        <segue destination="JNO-hA-UHa" kind="relationship" relationship="rootViewController" id="lQN-ur-Imf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUZ-cp-uhJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
