@@ -76,7 +76,6 @@ extension AddWordViewController
 					DispatchQueue.main.async
 					{
 						self.textField.text = nil
-						self.tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 					}
 				}
 			}
@@ -240,19 +239,52 @@ extension AddWordViewController: UITextFieldDelegate
 }
 
 // MARK:- Table View delegate/datasource
+
+//  Adapted from https://medium.com/@sorenlind/three-ways-to-enumerate-the-words-in-a-string-using-swift-7da5504f0062
+extension String
+{
+	var words: [String]
+	{
+        var words = [String]()
+		self.enumerateSubstrings(in: range(of: self)!, options: .byWords)
+		{
+			(substring, _, _, _) -> () in
+			words.append(substring!)
+		}
+        return words
+    }
+}
+
+extension Array where Element: Hashable
+{
+	func deDuplicate() -> Array<Element>
+	{
+		var deDuped: [Element] = []
+		var uniques: Set<Element> = Set()
+		for element in self
+		{
+			if !uniques.contains(element)
+			{
+				uniques.insert(element)
+				deDuped.append(element)
+			}
+		}
+		return deDuped
+	}
+}
+
 extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 {
 	private var pasteboardWords: [Word]
 	{
-		// TODO: Remove punctuation.
 		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
 		// TODO: Filter out non-words and likely passwords (digits, symbols).
-		// TODO: Tokenise words in locale-independent way (not whitespace).
-		// TODO: De-duplicate.
 		UIPasteboard.general.string?
 			.trimmingCharacters(in: .whitespacesAndNewlines)
-			.components(separatedBy: .whitespacesAndNewlines)
-			.map(Word.init) ?? []
+			.words
+			.deDuplicate()
+			.map(Word.init)
+			?? []
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -273,5 +305,6 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 		guard indexPath.row > 0 else { return }
 		let word = pasteboardWords[indexPath.row]
 		initiateSearch(forWord: word)
+		tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 	}
 }
