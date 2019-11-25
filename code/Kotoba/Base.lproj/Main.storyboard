@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
-    <device id="retina4_0" orientation="portrait" appearance="dark"/>
+    <device id="retina3_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -13,7 +13,7 @@
             <objects>
                 <tableViewController id="PII-AL-jNA" userLabel="Word List VC" customClass="WordListViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kNU-bZ-hng">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -50,14 +50,14 @@
             <objects>
                 <viewController id="JNO-hA-UHa" userLabel="Add Word VC" customClass="AddWordViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4xg-Iq-PCO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAn-oO-h9i">
-                                <rect key="frame" x="0.0" y="44" width="320" height="169.5"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="141"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
-                                        <rect key="frame" x="35" y="60.5" width="250.5" height="49"/>
+                                        <rect key="frame" x="35" y="46" width="250" height="49"/>
                                         <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
@@ -72,14 +72,33 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qT4-Og-WxZ">
-                                <rect key="frame" x="0.0" y="222.5" width="320" height="345.5"/>
+                                <rect key="frame" x="0.0" y="185" width="320" height="295"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dPq-oQ-a3d">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="345.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="295"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="430" id="Ghh-F8-6lx"/>
-                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Word" textLabel="Cjq-1A-qED" style="IBUITableViewCellStyleDefault" id="lo8-im-0Cy">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lo8-im-0Cy" id="S7Y-EX-SGb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cjq-1A-qED">
+                                                            <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="JNO-hA-UHa" id="beI-hL-IxA"/>
+                                            <outlet property="delegate" destination="JNO-hA-UHa" id="RqE-nb-dMP"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <constraints>
@@ -97,8 +116,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="height" secondItem="W0c-l2-07F" secondAttribute="height" multiplier="0.323606" id="7Be-za-Y8s"/>
-                            <constraint firstItem="qT4-Og-WxZ" firstAttribute="bottom" secondItem="W0c-l2-07F" secondAttribute="bottom" id="RHc-fy-6fq"/>
-                            <constraint firstItem="qT4-Og-WxZ" firstAttribute="top" secondItem="eAn-oO-h9i" secondAttribute="bottom" constant="9" id="Zf7-ND-dmu"/>
+                            <constraint firstItem="qT4-Og-WxZ" firstAttribute="bottom" secondItem="4xg-Iq-PCO" secondAttribute="bottom" id="RHc-fy-6fq"/>
+                            <constraint firstItem="qT4-Og-WxZ" firstAttribute="top" secondItem="eAn-oO-h9i" secondAttribute="bottom" id="Zf7-ND-dmu"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="leading" secondItem="W0c-l2-07F" secondAttribute="leading" id="dfA-IW-asz"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="leading" secondItem="qT4-Og-WxZ" secondAttribute="leading" id="lv2-xB-YmB"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="centerX" secondItem="4xg-Iq-PCO" secondAttribute="centerX" id="sA8-sN-FSa"/>
@@ -121,6 +140,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="dPq-oQ-a3d" id="HNF-r7-DZ6"/>
                         <outlet property="textField" destination="NcX-Q6-lwW" id="1fK-yo-bUz"/>
                     </connections>
                 </viewController>

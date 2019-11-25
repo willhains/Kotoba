@@ -12,6 +12,7 @@ import UIKit
 final class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
+	@IBOutlet weak var tableView: UITableView!
 	
 	deinit
 	{
@@ -40,7 +41,6 @@ final class AddWordViewController: UIViewController
 	@objc func applicationDidBecomeActive(notification: NSNotification)
 	{
 		debugLog()
-		checkPasteboard()
 		checkMigration()
 	}
 }
@@ -73,7 +73,11 @@ extension AddWordViewController
 				if hasDefinition
 				{
 					words.add(word: word)
-					DispatchQueue.main.async { self.textField.text = nil }
+					DispatchQueue.main.async
+					{
+						self.textField.text = nil
+						self.tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
+					}
 				}
 			}
 		}
@@ -139,51 +143,6 @@ extension AddWordViewController
 	func showKeyboard()
 	{
 		self.textField.becomeFirstResponder()
-	}
-	
-	func checkPasteboard()
-	{
-		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-		{
-			// ignore text that has newlines in it
-			if text.rangeOfCharacter(from: CharacterSet.newlines) == nil
-			{
-				// ignore text that hasn't changed since the last time we ran
-				let lastPasteboardText = UserDefaults.standard.string(forKey: _LAST_PASTEBOARD_TEXT_KEY)
-				if text != lastPasteboardText
-				{
-					self.textField.text = text
-					
-					let alert = UIAlertController(
-						title: "Search with Clipboard",
-						message: """
-						This text is on the clipboard:
-						
-						\(text)
-						
-						Do you want to use it for a search?
-						""",
-						preferredStyle: .alert)
-					let alertAction = UIAlertAction(title: "Search", style: .default)
-					{
-						_ in
-						let word = Word.init(text: text)
-						self.initiateSearch(forWord: word)
-					}
-					alert.addAction(alertAction)
-					let preferredAction = UIAlertAction(title: "Ignore", style: .default)
-					{
-						_ in
-						self.textField.text = nil
-					}
-					alert.addAction(preferredAction)
-					alert.preferredAction = preferredAction
-					self.present(alert, animated: true, completion: nil)
-					
-					UserDefaults.standard.set(text, forKey: _LAST_PASTEBOARD_TEXT_KEY)
-				}
-			}
-		}
 	}
 	
 	func checkMigration()
@@ -272,10 +231,47 @@ extension AddWordViewController: UITextFieldDelegate
 	{
 		if let text = textField.text
 		{
-			let word = Word.init(text: text)
+			let word = Word(text: text)
 			initiateSearch(forWord: word)
 		}
 		
 		return true
+	}
+}
+
+// MARK:- Table View delegate/datasource
+extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
+{
+	private var pasteboardWords: [Word]
+	{
+		// TODO: Remove punctuation.
+		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
+		// TODO: Filter out non-words and likely passwords (digits, symbols).
+		// TODO: Tokenise words in locale-independent way (not whitespace).
+		// TODO: De-duplicate.
+		UIPasteboard.general.string?
+			.trimmingCharacters(in: .whitespacesAndNewlines)
+			.components(separatedBy: .whitespacesAndNewlines)
+			.map(Word.init) ?? []
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	{
+		return pasteboardWords.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+	{
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
+		cell.textLabel?.text = pasteboardWords[indexPath.row].text
+		cell.textLabel?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body) // TODO: Move to extension of UILabel
+		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+	{
+		guard indexPath.row > 0 else { return }
+		let word = pasteboardWords[indexPath.row]
+		initiateSearch(forWord: word)
 	}
 }
