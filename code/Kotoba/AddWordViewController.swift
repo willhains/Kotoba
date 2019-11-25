@@ -120,10 +120,15 @@ extension AddWordViewController
 	{
 		let info = notification.userInfo!
 		let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-		additionalSafeAreaInsets.bottom = keyboardSize
-
-		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
+		//let layoutMarginBottom = self.view.frame.maxY - self.view.layoutMarginsGuide.layoutFrame.maxY
+		//let layoutMarginBottom = CGFloat(34)
+		let layoutMarginBottom = self.view.safeAreaInsets.bottom
+		additionalSafeAreaInsets.bottom = keyboardSize - layoutMarginBottom
+		
+		
+		
+		//let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		//UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
 
 	@objc func keyboardWillHide(notification: Notification)
@@ -131,8 +136,8 @@ extension AddWordViewController
 		let info = notification.userInfo!
 		additionalSafeAreaInsets.bottom = 0
 
-		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
+		//let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		//UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
 	}
 }
 
@@ -307,7 +312,7 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
-		guard indexPath.row > 0 else { return }
+		guard indexPath.row >= 0 else { return }
 		let word = pasteboardWords[indexPath.row]
 		initiateSearch(forWord: word)
 		tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
