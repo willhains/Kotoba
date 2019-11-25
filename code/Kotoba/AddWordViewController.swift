@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
-final class AddWordViewController: UITableViewController
+final class AddWordViewController: UIViewController
 {
+	@IBOutlet weak var textField: UITextField!
+	@IBOutlet weak var tableView: UITableView!
+	
 	deinit
 	{
 		NotificationCenter.default.removeObserver(self)
@@ -26,12 +29,15 @@ final class AddWordViewController: UITableViewController
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+		
+		startMonitoringPasteboard()
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
 	{
 		debugLog()
 		super.viewWillAppear(animated)
+		showKeyboard()
 	}
 	
 	@objc func applicationDidBecomeActive(notification: NSNotification)
@@ -69,9 +75,10 @@ extension AddWordViewController
 				if hasDefinition
 				{
 					words.add(word: word)
-					
-					// Reloading the row will create a fresh text field, effectively clearing the previously-searhed text
-					DispatchQueue.main.async { self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic) }
+					DispatchQueue.main.async
+					{
+						self.textField.text = nil
+					}
 				}
 			}
 		}
@@ -134,6 +141,11 @@ private let _LAST_PASTEBOARD_TEXT_KEY = "last_pasteboard_text"
 // MARK:- Launch behaviour
 extension AddWordViewController
 {
+	func showKeyboard()
+	{
+		self.textField.becomeFirstResponder()
+	}
+	
 	func checkMigration()
 	{
 		if WordList.useRemote
@@ -228,52 +240,91 @@ extension AddWordViewController: UITextFieldDelegate
 	}
 }
 
-extension AddWordViewController
+// MARK:- Table View delegate/datasource
+
+//  Adapted from https://medium.com/@sorenlind/three-ways-to-enumerate-the-words-in-a-string-using-swift-7da5504f0062
+extension String
+{
+	var words: [String]
+	{
+        var words = [String]()
+		if let range = range(of: self)
+		{
+			self.enumerateSubstrings(in: range, options: .byWords)
+			{
+				(substring, _, _, _) -> () in
+				words.append(substring!)
+			}
+		}
+        return words
+    }
+}
+
+extension Array where Element: Hashable
+{
+	func deDuplicate() -> Array<Element>
+	{
+		var deDuped: [Element] = []
+		var uniques: Set<Element> = Set()
+		for element in self
+		{
+			if !uniques.contains(element)
+			{
+				uniques.insert(element)
+				deDuped.append(element)
+			}
+		}
+		return deDuped
+	}
+}
+
+extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 {
 	private var pasteboardWords: [Word]
 	{
-		// TODO: Remove punctuation.
 		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
 		// TODO: Filter out non-words and likely passwords (digits, symbols).
-		// TODO: Tokenise words in locale-independent way (not whitespace).
-		// TODO: De-duplicate.
 		UIPasteboard.general.string?
 			.trimmingCharacters(in: .whitespacesAndNewlines)
-			.components(separatedBy: .whitespacesAndNewlines)
-			.map(Word.init) ?? []
+			.words
+			.deDuplicate()
+			.map(Word.init)
+			?? []
 	}
 	
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return pasteboardWords.count + 1
+		return pasteboardWords.count
 	}
 	
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
-		return indexPath.row == 0 ? 95 : super.tableView(tableView, heightForRowAt: indexPath)
-	}
-	
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-	{
-		if indexPath.row == 0
-		{
-			let cell = tableView.dequeueReusableCell(withIdentifier: "Entry", for: indexPath) as! AddWordTableViewCell
-			cell.textField.text = nil
-			cell.textField.delegate = self
-			cell.textField.becomeFirstResponder() // show the keyboard
-			return cell
-		}
-		
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-		cell.textLabel?.text = pasteboardWords[indexPath.row - 1].text
+		cell.textLabel?.text = pasteboardWords[indexPath.row].text
 		cell.textLabel?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body) // TODO: Move to extension of UILabel
 		return cell
 	}
 	
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
 		guard indexPath.row > 0 else { return }
-		let word = pasteboardWords[indexPath.row - 1]
+		let word = pasteboardWords[indexPath.row]
 		initiateSearch(forWord: word)
+		tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
+	}
+}
+
+extension AddWordViewController: PasteboardWatcherDelegate
+{
+	private func startMonitoringPasteboard()
+	{
+		let pasteboard = PasteboardWatcher()
+		pasteboard.delegate = self
+		pasteboard.startPolling(every: 1)
+	}
+	
+	func pasteboardStringDidChange(newValue: String)
+	{
+		self.tableView.reloadData()
 	}
 }
