@@ -29,6 +29,8 @@ final class AddWordViewController: UIViewController
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+		
+		startMonitoringPasteboard()
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -246,10 +248,13 @@ extension String
 	var words: [String]
 	{
         var words = [String]()
-		self.enumerateSubstrings(in: range(of: self)!, options: .byWords)
+		if let range = range(of: self)
 		{
-			(substring, _, _, _) -> () in
-			words.append(substring!)
+			self.enumerateSubstrings(in: range, options: .byWords)
+			{
+				(substring, _, _, _) -> () in
+				words.append(substring!)
+			}
 		}
         return words
     }
@@ -306,5 +311,20 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 		let word = pasteboardWords[indexPath.row]
 		initiateSearch(forWord: word)
 		tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
+	}
+}
+
+extension AddWordViewController: PasteboardWatcherDelegate
+{
+	private func startMonitoringPasteboard()
+	{
+		let pasteboard = PasteboardWatcher()
+		pasteboard.delegate = self
+		pasteboard.startPolling(every: 1)
+	}
+	
+	func pasteboardStringDidChange(newValue: String)
+	{
+		self.tableView.reloadData()
 	}
 }
