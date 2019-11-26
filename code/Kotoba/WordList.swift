@@ -14,6 +14,8 @@ import Foundation
 struct Word
 {
 	let text: String
+	
+	// TODO #14: This is where metadata would go.
 }
 
 /// Model of user's saved words.
