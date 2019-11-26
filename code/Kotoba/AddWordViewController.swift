@@ -13,7 +13,19 @@ final class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
 	@IBOutlet weak var tableView: UITableView!
-	
+
+	@IBOutlet weak var suggestionView: UIView!
+
+	@IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
+	@IBOutlet weak var suggestionViewBottomLayoutConstraint: NSLayoutConstraint!
+	@IBOutlet weak var suggestionViewHeightLayoutConstraint: NSLayoutConstraint!
+
+	var showSuggestions = false
+	var suggestionHeight = CGFloat(200) // WILL: for now, this is a constant value, but it will eventually be computed based on the number of words on the clipboard
+
+	var keyboardVisible = false
+	var keyboardHeight = CGFloat(0)
+
 	deinit
 	{
 		NotificationCenter.default.removeObserver(self)
@@ -23,11 +35,22 @@ final class AddWordViewController: UIViewController
 	{
 		super.viewDidLoad()
 		prepareKeyboardAvoidance()
-		
+
 		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
 		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
+
+		#if true
+		#warning("This is just for testing")
+		self.showSuggestions = true
+		#endif
+
+		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
+		updateConstraintsForKeyboard()
 		
+		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
+		self.view.layoutIfNeeded()
+
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
 		
 		startMonitoringPasteboard()
@@ -37,6 +60,13 @@ final class AddWordViewController: UIViewController
 	{
 		debugLog()
 		super.viewWillAppear(animated)
+
+		#if true
+		#warning("This is just for testing")
+		self.showSuggestions = true
+		updateConstraintsForKeyboard()
+		#endif
+		
 		showKeyboard()
 	}
 	
@@ -49,6 +79,7 @@ final class AddWordViewController: UIViewController
 
 // MARK:- Async word lookup
 // Solution donated by Craig Hockenberry
+// WILL: I appreciate the nod, but it's a slippery slope considering the number of other changes I've maded and folks can dig through commits if they really want to blame someone :-)
 extension AddWordViewController
 {
 	func initiateSearch(forWord word: Word)
@@ -96,10 +127,23 @@ extension AddWordViewController
 			UIApplication.shared.open(url)
 		}
 	}
+	
+	@IBAction func dismissSuggestions(_: AnyObject)
+	{
+		debugLog()
+
+		self.showSuggestions.toggle()
+
+		let duration: TimeInterval = 0.2
+		UIView.animate(withDuration: duration) {
+			self.updateConstraintsForKeyboard()
+			self.view.layoutIfNeeded()
+		}
+	}
+
 }
 
-// MARK:- Keyboard avoiding
-// Solution adapted from http://stackoverflow.com/a/16044603/554518
+// MARK:- Keyboard notifications
 extension AddWordViewController
 {
 	func prepareKeyboardAvoidance()
@@ -116,34 +160,72 @@ extension AddWordViewController
 			object: nil);
 	}
 
+	private func updateConstraintsForKeyboard()
+	{
+		// NOTE: There are two primary views, each with a layout contraint for the bottom of the view.
+		//
+		// The first is the "suggestion view" that attaches either to the top of the keyboard (when shown) or a negative offset
+		// of its height (to hide the view.)
+		//
+		// The second view is the "typing view" that is either attached to the top of the suggestion view (when its visible) or
+		// to the bottom safe area inset (when its not.)
+		
+		// WILL: The approach you took adding safe area insets works fine for a more static layout. With the size & location of
+		// the suggestion view changing as the app is used, that's no longer the case, so I switched to more explicit layout.
+		
+		if self.keyboardVisible {
+			if self.showSuggestions	{
+				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeight
+				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight
+			}
+			else {
+				self.typingViewBottomLayoutConstraint.constant = keyboardHeight
+				self.suggestionViewBottomLayoutConstraint.constant = -suggestionHeight
+			}
+		}
+		else {
+			if self.showSuggestions	{
+				self.typingViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom + suggestionHeight
+				self.suggestionViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom
+			}
+			else {
+				self.typingViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom
+				self.suggestionViewBottomLayoutConstraint.constant = -suggestionHeight
+			}
+		}
+	}
+	
 	@objc func keyboardWillShow(notification: Notification)
 	{
 		let info = notification.userInfo!
-		let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-		//let layoutMarginBottom = self.view.frame.maxY - self.view.layoutMarginsGuide.layoutFrame.maxY
-		//let layoutMarginBottom = CGFloat(34)
-		let layoutMarginBottom = self.view.safeAreaInsets.bottom
-		additionalSafeAreaInsets.bottom = keyboardSize - layoutMarginBottom
+		keyboardVisible = true
+		keyboardHeight = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
 		
-		
-		
-		//let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		//UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
+		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		UIView.animate(withDuration: duration) {
+			self.updateConstraintsForKeyboard()
+			self.view.layoutIfNeeded()
+		}
 	}
 
 	@objc func keyboardWillHide(notification: Notification)
 	{
 		let info = notification.userInfo!
-		additionalSafeAreaInsets.bottom = 0
+		keyboardVisible = false
+		keyboardHeight = 0
 
-		//let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		//UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
+		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+		UIView.animate(withDuration: duration) {
+			self.updateConstraintsForKeyboard()
+			self.view.layoutIfNeeded()
+		}
 	}
+
 }
 
 private let _LAST_PASTEBOARD_TEXT_KEY = "last_pasteboard_text"
 
-// MARK:- Launch behaviour
+// MARK:- Utility
 extension AddWordViewController
 {
 	func showKeyboard()
@@ -267,6 +349,7 @@ extension String
 
 extension Array where Element: Hashable
 {
+	// WILL: This name feels clumsy. Maybe go with .removingDuplicates() or something more like .trimmingCharacters()
 	func deDuplicate() -> Array<Element>
 	{
 		var deDuped: [Element] = []
@@ -287,6 +370,10 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 {
 	private var pasteboardWords: [Word]
 	{
+		// WILL: Computed properties can hide complexity in Swift. There is a fair amount of string processing happening each time
+		// you access pasteboardWords (by index or getting a count). The underlying data doesn't change much (if at all) so another
+		// mechanism is needed. This is related to the other note below about polling the clipboard.
+		
 		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
 		// TODO: Filter out non-words and likely passwords (digits, symbols).
 		UIPasteboard.general.string?
@@ -330,6 +417,12 @@ extension AddWordViewController: PasteboardWatcherDelegate
 	
 	func pasteboardStringDidChange(newValue: String)
 	{
-		self.tableView.reloadData()
+		// WILL: This is problematic in two ways:
+		//
+		// 1) It can happen during an animation and affect table view constraints.
+		//
+		// 2) It's based on polling, which uses a timer, which doesn't run in the background and may behave unpredicably entering foreground (see #1).
+		
+		//self.tableView.reloadData()
 	}
 }

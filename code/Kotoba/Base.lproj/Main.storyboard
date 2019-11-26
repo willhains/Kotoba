@@ -16,6 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="separatorColor" name="appBarTint"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Word" textLabel="Eh3-mK-Sxg" style="IBUITableViewCellStyleDefault" id="zq0-Qe-pPh">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
@@ -53,11 +54,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAn-oO-h9i">
-                                <rect key="frame" x="0.0" y="44" width="320" height="236"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAn-oO-h9i" userLabel="Typing View">
+                                <rect key="frame" x="0.0" y="44" width="320" height="336"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
-                                        <rect key="frame" x="8" y="93.5" width="304" height="49"/>
+                                        <rect key="frame" x="8" y="143.5" width="304" height="49"/>
                                         <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
@@ -65,52 +66,97 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="appBackground"/>
                                 <constraints>
                                     <constraint firstItem="NcX-Q6-lwW" firstAttribute="leading" secondItem="eAn-oO-h9i" secondAttribute="leadingMargin" id="K7i-Ao-QiV"/>
                                     <constraint firstItem="NcX-Q6-lwW" firstAttribute="centerY" secondItem="eAn-oO-h9i" secondAttribute="centerY" id="Txj-D2-XYW"/>
                                     <constraint firstItem="NcX-Q6-lwW" firstAttribute="trailing" secondItem="eAn-oO-h9i" secondAttribute="trailingMargin" id="ocO-IY-ScU"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="always" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPq-oQ-a3d">
-                                <rect key="frame" x="0.0" y="280" width="320" height="200"/>
-                                <color key="backgroundColor" red="0.78368252520000004" green="1" blue="0.35060030219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cne-Xv-00P" userLabel="Suggestion View">
+                                <rect key="frame" x="0.0" y="380" width="320" height="100"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eRG-36-TTD" userLabel="Header View">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clipboard Suggestions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ5-YD-TOc">
+                                                <rect key="frame" x="20" y="12" width="173.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" name="appBarText"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kx-pn-jaT">
+                                                <rect key="frame" x="270" y="2" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="B67-tk-mQz"/>
+                                                    <constraint firstAttribute="height" constant="40" id="N1a-Sn-JWf"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal" image="xmark" catalog="system"/>
+                                                <connections>
+                                                    <action selector="dismissSuggestions:" destination="JNO-hA-UHa" eventType="touchUpInside" id="5pz-qJ-Cr8"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="appBarTint"/>
+                                        <constraints>
+                                            <constraint firstItem="5kx-pn-jaT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZZ5-YD-TOc" secondAttribute="trailing" constant="10" id="33Y-qP-8SR"/>
+                                            <constraint firstItem="ZZ5-YD-TOc" firstAttribute="centerY" secondItem="eRG-36-TTD" secondAttribute="centerY" id="Ije-ep-niO"/>
+                                            <constraint firstItem="ZZ5-YD-TOc" firstAttribute="leading" secondItem="eRG-36-TTD" secondAttribute="leading" constant="20" id="Q3c-n8-PdO"/>
+                                            <constraint firstAttribute="trailing" secondItem="5kx-pn-jaT" secondAttribute="trailing" constant="10" id="TFg-NT-Ax7"/>
+                                            <constraint firstAttribute="height" constant="44" id="UqQ-bX-Sq4"/>
+                                            <constraint firstItem="5kx-pn-jaT" firstAttribute="centerY" secondItem="eRG-36-TTD" secondAttribute="centerY" id="lIC-RP-3Bk"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPq-oQ-a3d">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="56"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="separatorColor" name="appBarTint"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Word" textLabel="Cjq-1A-qED" style="IBUITableViewCellStyleDefault" id="lo8-im-0Cy">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lo8-im-0Cy" id="S7Y-EX-SGb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cjq-1A-qED">
+                                                            <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="appBackground"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="JNO-hA-UHa" id="beI-hL-IxA"/>
+                                            <outlet property="delegate" destination="JNO-hA-UHa" id="RqE-nb-dMP"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Flm-IP-IPa"/>
+                                    <constraint firstAttribute="height" constant="100" id="C5i-YY-2s0"/>
+                                    <constraint firstItem="eRG-36-TTD" firstAttribute="centerX" secondItem="Cne-Xv-00P" secondAttribute="centerX" id="Kaw-rq-A4S"/>
+                                    <constraint firstItem="dPq-oQ-a3d" firstAttribute="top" secondItem="Cne-Xv-00P" secondAttribute="top" constant="44" id="WbL-hr-5vf"/>
+                                    <constraint firstItem="eRG-36-TTD" firstAttribute="top" secondItem="Cne-Xv-00P" secondAttribute="top" id="gAF-iR-pDv"/>
+                                    <constraint firstItem="eRG-36-TTD" firstAttribute="width" secondItem="Cne-Xv-00P" secondAttribute="width" id="nud-Ne-HLx"/>
+                                    <constraint firstItem="dPq-oQ-a3d" firstAttribute="leading" secondItem="Cne-Xv-00P" secondAttribute="leading" id="q4K-Ic-Vda"/>
+                                    <constraint firstAttribute="bottom" secondItem="dPq-oQ-a3d" secondAttribute="bottom" id="wzH-08-nl8"/>
+                                    <constraint firstAttribute="trailing" secondItem="dPq-oQ-a3d" secondAttribute="trailing" id="xoZ-DB-68D"/>
                                 </constraints>
-                                <color key="separatorColor" name="appBarTint"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Word" textLabel="Cjq-1A-qED" style="IBUITableViewCellStyleDefault" id="lo8-im-0Cy">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lo8-im-0Cy" id="S7Y-EX-SGb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cjq-1A-qED">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="secondarySystemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="JNO-hA-UHa" id="beI-hL-IxA"/>
-                                    <outlet property="delegate" destination="JNO-hA-UHa" id="RqE-nb-dMP"/>
-                                </connections>
-                            </tableView>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="dPq-oQ-a3d" firstAttribute="centerX" secondItem="W0c-l2-07F" secondAttribute="centerX" id="1Cb-in-2sf"/>
-                            <constraint firstItem="W0c-l2-07F" firstAttribute="bottom" secondItem="dPq-oQ-a3d" secondAttribute="bottom" id="DXM-da-oAS"/>
-                            <constraint firstItem="dPq-oQ-a3d" firstAttribute="top" secondItem="eAn-oO-h9i" secondAttribute="bottom" id="Lbq-xf-DWL"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="width" secondItem="4xg-Iq-PCO" secondAttribute="width" id="T6o-6h-0Pf"/>
-                            <constraint firstItem="dPq-oQ-a3d" firstAttribute="width" secondItem="4xg-Iq-PCO" secondAttribute="width" id="fA5-jT-K7a"/>
+                            <constraint firstItem="Cne-Xv-00P" firstAttribute="width" secondItem="4xg-Iq-PCO" secondAttribute="width" id="YZ9-hh-zjL"/>
+                            <constraint firstItem="Cne-Xv-00P" firstAttribute="centerX" secondItem="W0c-l2-07F" secondAttribute="centerX" id="af7-nS-cax"/>
+                            <constraint firstAttribute="bottom" secondItem="Cne-Xv-00P" secondAttribute="bottom" id="b9Y-x8-FEf"/>
+                            <constraint firstAttribute="bottom" secondItem="eAn-oO-h9i" secondAttribute="bottom" constant="100" id="oAI-bC-jjT"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="centerX" secondItem="4xg-Iq-PCO" secondAttribute="centerX" id="sA8-sN-FSa"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="top" secondItem="W0c-l2-07F" secondAttribute="top" id="wvW-9T-YdZ"/>
                         </constraints>
@@ -130,8 +176,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="suggestionView" destination="Cne-Xv-00P" id="O98-2P-ai2"/>
+                        <outlet property="suggestionViewBottomLayoutConstraint" destination="b9Y-x8-FEf" id="YLH-3s-FO4"/>
+                        <outlet property="suggestionViewHeightLayoutConstraint" destination="C5i-YY-2s0" id="eTp-ps-Pzh"/>
                         <outlet property="tableView" destination="dPq-oQ-a3d" id="HNF-r7-DZ6"/>
                         <outlet property="textField" destination="NcX-Q6-lwW" id="1fK-yo-bUz"/>
+                        <outlet property="typingViewBottomLayoutConstraint" destination="oAI-bC-jjT" id="DQQ-pM-yvN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGZ-IU-TR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,7 +198,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="appBarTint"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="appHeader"/>
+                            <color key="textColor" name="appBarText"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -164,11 +214,15 @@
     <resources>
         <image name="book" catalog="system" width="64" height="50"/>
         <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="xmark" catalog="system" width="64" height="56"/>
+        <namedColor name="appBackground">
+            <color red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appBarText">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="appBarTint">
             <color red="0.44705882352941179" green="0.14509803921568629" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="appHeader">
-            <color red="0.40000000596046448" green="0.11400000005960464" blue="0.078000001609325409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <color key="tintColor" name="appTint"/>
