@@ -160,6 +160,11 @@ class WordList
 	{
 		_words = []
 	}
+	
+	func asText() -> String
+	{
+		return _words.joined(separator: "\n")
+	}
 }
 
 /// The word list model for current user.

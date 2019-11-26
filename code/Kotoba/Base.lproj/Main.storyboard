@@ -39,7 +39,13 @@
                             <outlet property="delegate" destination="PII-AL-jNA" id="mPg-74-lzb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="History" id="d1d-CM-VoC"/>
+                    <navigationItem key="navigationItem" title="History" id="d1d-CM-VoC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="qsq-9b-iFP">
+                            <connections>
+                                <action selector="exportWordList:" destination="PII-AL-jNA" id="FTW-0o-HeA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9s3-di-ABt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
