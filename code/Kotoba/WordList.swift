@@ -133,7 +133,12 @@ class WordList
 
 	subscript(index: Int) -> Word
 	{
-		get { return Word(text: _words[index]) }
+		get {
+			let text = _words[index]
+			let word = UserDefaults.standard.CHOCKTUBA_DUH ? Word(text: text.uppercased()) : Word(text: text)
+			return word
+			
+		}
 	}
 	
 	var count: Int { return _words.count }

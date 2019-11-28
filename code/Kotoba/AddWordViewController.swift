@@ -43,6 +43,13 @@ final class AddWordViewController: UIViewController
 		super.viewDidLoad()
 		prepareKeyboardAvoidance()
 
+		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "CHOCKTUBA" : "Kotoba"
+		self.textField.placeholder = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE HERE DUH" : "Type a Word"
+
+		#warning("Get rid of this ugly hack by adding and IBOutlet to storyboard")
+		let suggestionsLabel = self.suggestionView.subviews.first?.subviews.first as! UILabel?
+		suggestionsLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE IT LAZY ASS" : "Clipboard Suggestions"
+		
 		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
 		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
@@ -338,7 +345,7 @@ extension AddWordViewController
 		if let currentPasteboardString = UIPasteboard.general.string {
 			haveSuggestions = true
 			if currentPasteboardString != hiddenPasteboardString {
-				sourcePasteboardString = currentPasteboardString
+				sourcePasteboardString = UserDefaults.standard.CHOCKTUBA_DUH ? currentPasteboardString.uppercased() : currentPasteboardString
 				
 				// TODO: Filter out too-simple words ("to", "and", "of", etc.).
 				// TODO: Filter out non-words and likely passwords (digits, symbols).

@@ -47,5 +47,20 @@ extension UserDefaults: Preferences
 	}
 }
 
+private let _CHOCKTUBA_DUH = "FIXTHISAPP"
+
+extension UserDefaults
+{
+	var CHOCKTUBA_DUH: Bool {
+		get {
+			return true
+			//return bool(forKey: _CHOCKTUBA_DUH)
+		}
+		set {
+			set(newValue, forKey: _CHOCKTUBA_DUH)
+		}
+	}
+}
+
 /// The preferences/state of the current user.
 let prefs: Preferences = UserDefaults.standard

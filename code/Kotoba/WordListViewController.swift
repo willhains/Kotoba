@@ -13,6 +13,9 @@ class WordListViewController: UITableViewController
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
+		
+		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "BIGGER IS BETTER" : "History"
+
 		prepareEditButton()
 		prepareSelfSizingTableCells()
 	}
