@@ -21,7 +21,9 @@ final class AddWordViewController: UIViewController
 	@IBOutlet weak var suggestionViewHeightLayoutConstraint: NSLayoutConstraint!
 
 	var showSuggestions = false
-	var suggestionHeight = CGFloat(200) // WILL: for now, this is a constant value, but it will eventually be computed based on the number of words on the clipboard
+	// WILL: for now, this is a constant value, but it will eventually be computed based on the number of words on the clipboard
+	// TODO: make sure that suggestionHeight takes landscape orientation into account (e.g. compact height will require a shorter height
+	var suggestionHeight = CGFloat(200)
 	let suggestionHeaderHeight = CGFloat(44) // NOTE: This value should match "Header View" in the storyboard
 
 	var haveSuggestions = false // NOTE: This value is true if the pasteboard contained text the last time it was checked
@@ -74,7 +76,7 @@ final class AddWordViewController: UIViewController
 		self.showSuggestions = true
 		updateConstraintsForKeyboard()
 		#else
-		checkPasteboard()
+		//checkPasteboard()
 		#endif
 		
 		showKeyboard()
@@ -84,7 +86,12 @@ final class AddWordViewController: UIViewController
 	{
 		debugLog()
 		checkMigration()
-		checkPasteboard()
+		
+		let duration: TimeInterval = 0.2
+		UIView.animate(withDuration: duration) {
+			self.checkPasteboard()
+			self.view.layoutIfNeeded()
+		}
 	}
 }
 
