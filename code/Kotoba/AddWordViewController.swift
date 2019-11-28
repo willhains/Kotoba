@@ -22,7 +22,12 @@ final class AddWordViewController: UIViewController
 
 	var showSuggestions = false
 	var suggestionHeight = CGFloat(200) // WILL: for now, this is a constant value, but it will eventually be computed based on the number of words on the clipboard
+	let suggestionHeaderHeight = CGFloat(44) // NOTE: This value should match "Header View" in the storyboard
 
+	var haveSuggestions = false // NOTE: This value is true if the pasteboard contained text the last time it was checked
+	var sourcePasteboardString: String?
+	var pasteboardWords: [Word] = []
+	
 	var keyboardVisible = false
 	var keyboardHeight = CGFloat(0)
 
@@ -40,9 +45,12 @@ final class AddWordViewController: UIViewController
 		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 
-		#if true
+		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation.
+		#if false
 		#warning("This is just for testing")
 		self.showSuggestions = true
+		#else
+		checkPasteboard()
 		#endif
 
 		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
@@ -61,10 +69,12 @@ final class AddWordViewController: UIViewController
 		debugLog()
 		super.viewWillAppear(animated)
 
-		#if true
+		#if false
 		#warning("This is just for testing")
 		self.showSuggestions = true
 		updateConstraintsForKeyboard()
+		#else
+		checkPasteboard()
 		#endif
 		
 		showKeyboard()
@@ -74,6 +84,7 @@ final class AddWordViewController: UIViewController
 	{
 		debugLog()
 		checkMigration()
+		checkPasteboard()
 	}
 }
 
@@ -132,6 +143,7 @@ extension AddWordViewController
 	{
 		debugLog()
 
+		UserDefaults.standard.set(sourcePasteboardString, forKey:_HIDDEN_PASTEBOARD_TEXT_KEY)
 		self.showSuggestions.toggle()
 
 		let duration: TimeInterval = 0.2
@@ -180,7 +192,7 @@ extension AddWordViewController
 			}
 			else {
 				self.typingViewBottomLayoutConstraint.constant = keyboardHeight
-				self.suggestionViewBottomLayoutConstraint.constant = -suggestionHeight
+				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight - suggestionHeight + suggestionHeaderHeight
 			}
 		}
 		else {
@@ -190,7 +202,7 @@ extension AddWordViewController
 			}
 			else {
 				self.typingViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom
-				self.suggestionViewBottomLayoutConstraint.constant = -suggestionHeight
+				self.suggestionViewBottomLayoutConstraint.constant = -suggestionHeight + suggestionHeaderHeight
 			}
 		}
 	}
@@ -223,7 +235,7 @@ extension AddWordViewController
 
 }
 
-private let _LAST_PASTEBOARD_TEXT_KEY = "last_pasteboard_text"
+private let _HIDDEN_PASTEBOARD_TEXT_KEY = "hidden_pasteboard_text"
 
 // MARK:- Utility
 extension AddWordViewController
@@ -310,6 +322,51 @@ extension AddWordViewController
 		}
 		remoteWords.remove()
 	}
+	
+	func checkPasteboard()
+	{
+		let hiddenPasteboardString = UserDefaults.standard.string(forKey: _HIDDEN_PASTEBOARD_TEXT_KEY)
+		
+		haveSuggestions = false
+		if let currentPasteboardString = UIPasteboard.general.string {
+			haveSuggestions = true
+			if currentPasteboardString != hiddenPasteboardString {
+				sourcePasteboardString = currentPasteboardString
+				
+				// TODO: Filter out too-simple words ("to", "and", "of", etc.).
+				// TODO: Filter out non-words and likely passwords (digits, symbols).
+				pasteboardWords = sourcePasteboardString?
+					.trimmingCharacters(in: .whitespacesAndNewlines)
+					.words
+					.deDuplicate()
+					.map(Word.init)
+					?? []
+
+				showSuggestions = true
+				
+				updateConstraintsForKeyboard()
+				tableView.reloadData()
+			}
+			
+		}
+	}
+	
+//	func createPasteboardWords()
+//	{
+//		// WILL: Computed properties can hide complexity in Swift. There is a fair amount of string processing happening each time
+//		// you access pasteboardWords (by index or getting a count). The underlying data doesn't change much (if at all) so another
+//		// mechanism is needed. This is related to the other note below about polling the clipboard.
+//
+//		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
+//		// TODO: Filter out non-words and likely passwords (digits, symbols).
+//		pasteboardWords = sourcePasteboardString?
+//			.trimmingCharacters(in: .whitespacesAndNewlines)
+//			.words
+//			.deDuplicate()
+//			.map(Word.init)
+//			?? []
+//	}
+
 }
 
 // MARK:- Text Field delegate
@@ -368,21 +425,21 @@ extension Array where Element: Hashable
 
 extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 {
-	private var pasteboardWords: [Word]
-	{
-		// WILL: Computed properties can hide complexity in Swift. There is a fair amount of string processing happening each time
-		// you access pasteboardWords (by index or getting a count). The underlying data doesn't change much (if at all) so another
-		// mechanism is needed. This is related to the other note below about polling the clipboard.
-		
-		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
-		// TODO: Filter out non-words and likely passwords (digits, symbols).
-		UIPasteboard.general.string?
-			.trimmingCharacters(in: .whitespacesAndNewlines)
-			.words
-			.deDuplicate()
-			.map(Word.init)
-			?? []
-	}
+//	private var pasteboardWords: [Word]
+//	{
+//		// WILL: Computed properties can hide complexity in Swift. There is a fair amount of string processing happening each time
+//		// you access pasteboardWords (by index or getting a count). The underlying data doesn't change much (if at all) so another
+//		// mechanism is needed. This is related to the other note below about polling the clipboard.
+//
+//		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
+//		// TODO: Filter out non-words and likely passwords (digits, symbols).
+//		UIPasteboard.general.string?
+//			.trimmingCharacters(in: .whitespacesAndNewlines)
+//			.words
+//			.deDuplicate()
+//			.map(Word.init)
+//			?? []
+//	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
