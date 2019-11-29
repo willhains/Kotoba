@@ -92,7 +92,7 @@ final class AddWordViewController: UIViewController
 	@objc func applicationDidBecomeActive(notification: NSNotification)
 	{
 		debugLog()
-		checkMigration()
+//		checkMigration()
 		
 		let duration: TimeInterval = 0.2
 		UIView.animate(withDuration: duration) {
@@ -259,128 +259,128 @@ extension AddWordViewController
 		self.textField.becomeFirstResponder()
 	}
 	
-	func checkMigration()
-	{
-		if WordList.useRemote
-		{
-			if WordList.hasLocalData
-			{
-				let alert = UIAlertController(
-					title: "Migrate to iCloud",
-					message: "Do you want to add the words in the local list to iCloud?",
-					preferredStyle: .alert)
-				let alertAction = UIAlertAction(title: "Keep on Local", style: .default)
-				{
-					_ in
-					WordList.useRemote = false
-				}
-				alert.addAction(alertAction)
-				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default)
-				{
-					_ in
-					self.migrateWordsToRemote()
-				}
-				alert.addAction(preferredAction)
-				alert.preferredAction = preferredAction
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-		else
-		{
-			if WordList.hasRemoteData
-			{
-				let alert = UIAlertController(
-					title: "Migrate to Local Storage",
-					message: "Do you want to move the word list from iCloud to local storage?",
-					preferredStyle: .alert)
-				let alertAction = UIAlertAction(title: "Move to Local", style: .default)
-				{
-					_ in
-					debugLog("migrating remote data")
-					self.migrateWordsToLocal()
-				}
-				alert.addAction(alertAction)
-				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default)
-				{
-					_ in
-					debugLog("keeping remote data")
-					WordList.useRemote = true
-				}
-				alert.addAction(preferredAction)
-				alert.preferredAction = preferredAction
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-	}
-	
-	func migrateWordsToRemote()
-	{
-		let localWords = WordList(local: true)
-		let indices = 0..<localWords.count // NOTE: would be cleaner if WordList was a Sequence
-		for index in indices
-		{
-			let localWord = localWords[index]
-			words.add(word: localWord)
-		}
-		localWords.remove()
-	}
-
-	func migrateWordsToLocal()
-	{
-		let remoteWords = WordList(local: false)
-		let indices = 0..<remoteWords.count // NOTE: would be cleaner if WordList was a Sequence
-		for index in indices
-		{
-			let remoteWord = remoteWords[index]
-			words.add(word: remoteWord)
-		}
-		remoteWords.remove()
-	}
-	
 	func checkPasteboard()
 	{
-		let hiddenPasteboardString = UserDefaults.standard.string(forKey: _HIDDEN_PASTEBOARD_TEXT_KEY)
-		
-		haveSuggestions = false
-		if let currentPasteboardString = UIPasteboard.general.string {
-			haveSuggestions = true
-			if currentPasteboardString != hiddenPasteboardString {
-				sourcePasteboardString = UserDefaults.standard.CHOCKTUBA_DUH ? currentPasteboardString.uppercased() : currentPasteboardString
-				
-				// TODO: Filter out too-simple words ("to", "and", "of", etc.).
-				// TODO: Filter out non-words and likely passwords (digits, symbols).
-				pasteboardWords = sourcePasteboardString?
-					.trimmingCharacters(in: .whitespacesAndNewlines)
-					.words
-					.deDuplicate()
-					.map(Word.init)
-					?? []
-
-				showSuggestions = true
-				
-				updateConstraintsForKeyboard()
-				tableView.reloadData()
+		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+		{
+			// ignore text that has newlines in it
+			if text.rangeOfCharacter(from: CharacterSet.newlines) == nil
+			{
+				// ignore text that hasn't changed since the last time we ran
+				let lastPasteboardText = UserDefaults.standard.string(forKey: _LAST_PASTEBOARD_TEXT_KEY)
+				if text != lastPasteboardText
+				{
+					self.textField.text = text
+					
+					let alert = UIAlertController(
+						title: "Search with Clipboard",
+						message: """
+						This text is on the clipboard:
+						
+						\(text)
+						
+						Do you want to use it for a search?
+						""",
+						preferredStyle: .alert)
+					let alertAction = UIAlertAction(title: "Search", style: .default)
+					{
+						_ in
+						let word = Word.init(text: text)
+						self.initiateSearch(forWord: word)
+					}
+					alert.addAction(alertAction)
+					let preferredAction = UIAlertAction(title: "Ignore", style: .default)
+					{
+						_ in
+						self.textField.text = nil
+					}
+					alert.addAction(preferredAction)
+					alert.preferredAction = preferredAction
+					self.present(alert, animated: true, completion: nil)
+					
+					UserDefaults.standard.set(text, forKey: _LAST_PASTEBOARD_TEXT_KEY)
+				}
 			}
-			
 		}
 	}
 	
-//	func createPasteboardWords()
+//	func checkMigration()
 //	{
-//		// WILL: Computed properties can hide complexity in Swift. There is a fair amount of string processing happening each time
-//		// you access pasteboardWords (by index or getting a count). The underlying data doesn't change much (if at all) so another
-//		// mechanism is needed. This is related to the other note below about polling the clipboard.
-//
-//		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
-//		// TODO: Filter out non-words and likely passwords (digits, symbols).
-//		pasteboardWords = sourcePasteboardString?
-//			.trimmingCharacters(in: .whitespacesAndNewlines)
-//			.words
-//			.deDuplicate()
-//			.map(Word.init)
-//			?? []
+//		if WordList.useRemote
+//		{
+//			if WordList.hasLocalData
+//			{
+//				let alert = UIAlertController(
+//					title: "Migrate to iCloud",
+//					message: "Do you want to add the words in the local list to iCloud?",
+//					preferredStyle: .alert)
+//				let alertAction = UIAlertAction(title: "Keep on Local", style: .default)
+//				{
+//					_ in
+//					WordList.useRemote = false
+//				}
+//				alert.addAction(alertAction)
+//				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default)
+//				{
+//					_ in
+//					self.migrateWordsToRemote()
+//				}
+//				alert.addAction(preferredAction)
+//				alert.preferredAction = preferredAction
+//				self.present(alert, animated: true, completion: nil)
+//			}
+//		}
+//		else
+//		{
+//			if WordList.hasRemoteData
+//			{
+//				let alert = UIAlertController(
+//					title: "Migrate to Local Storage",
+//					message: "Do you want to move the word list from iCloud to local storage?",
+//					preferredStyle: .alert)
+//				let alertAction = UIAlertAction(title: "Move to Local", style: .default)
+//				{
+//					_ in
+//					debugLog("migrating remote data")
+//					self.migrateWordsToLocal()
+//				}
+//				alert.addAction(alertAction)
+//				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default)
+//				{
+//					_ in
+//					debugLog("keeping remote data")
+//					WordList.useRemote = true
+//				}
+//				alert.addAction(preferredAction)
+//				alert.preferredAction = preferredAction
+//				self.present(alert, animated: true, completion: nil)
+//			}
+//		}
 //	}
-
+//
+//	func migrateWordsToRemote()
+//	{
+//		let localWords = WordList(local: true)
+//		let indices = 0..<localWords.count // NOTE: would be cleaner if WordList was a Sequence
+//		for index in indices
+//		{
+//			let localWord = localWords[index]
+//			words.add(word: localWord)
+//		}
+//		localWords.remove()
+//	}
+//
+//	func migrateWordsToLocal()
+//	{
+//		let remoteWords = WordList(local: false)
+//		let indices = 0..<remoteWords.count // NOTE: would be cleaner if WordList was a Sequence
+//		for index in indices
+//		{
+//			let remoteWord = remoteWords[index]
+//			words.add(word: remoteWord)
+//		}
+//		remoteWords.remove()
+//	}
 }
 
 // MARK:- Text Field delegate
