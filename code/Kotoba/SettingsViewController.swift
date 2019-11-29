@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MobileCoreServices
 
 // TODO: Localise these strings.
 private let _WORD_COUNT_LABEL = "%d words"
@@ -16,7 +17,7 @@ private let _REPLACE_BUTTON_LABEL = "Replace with Words from %@"
 private let _LOCAL = "This Device"
 private let _ICLOUD = "iCloud"
 
-final class SettingsViewController: UITableViewController
+final class SettingsViewController: UITableViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
 	@IBOutlet weak var localStoreCell: UITableViewCell!
 	@IBOutlet weak var iCloudStoreCell: UITableViewCell!
@@ -24,6 +25,11 @@ final class SettingsViewController: UITableViewController
 	@IBOutlet weak var iCloudWordCountLabel: UILabel!
 	@IBOutlet weak var mergeButtonLabel: UILabel!
 	@IBOutlet weak var replaceButtonLabel: UILabel!
+	
+	override func viewWillAppear(_ animated: Bool)
+	{
+		_updateLabels()
+	}
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
@@ -50,12 +56,25 @@ final class SettingsViewController: UITableViewController
 			if indexPath.row == 0
 			{
 				debugLog("Merging word list")
+				switch wordListStore
+				{
+					case .local: words.merge(from: dataSourceCloud)
+					case .iCloud: words.merge(from: dataSourceLocal)
+				}
 			}
 			
+			// Replace current store with other store
 			else if indexPath.row == 1
 			{
 				debugLog("Replacing word list")
+				switch wordListStore
+				{
+					case .local: words.replace(with: dataSourceCloud)
+					case .iCloud: words.replace(with: dataSourceLocal)
+				}
 			}
+			
+			_updateLabels()
 		}
 		
 		// Import Words
@@ -65,12 +84,14 @@ final class SettingsViewController: UITableViewController
 			if indexPath.row == 0
 			{
 				debugLog("Importing from clipboard")
+				if let text = UIPasteboard.general.string { _import(newlineDelimitedWords: text) }
 			}
 			
 			// Import words from a file
 			else if indexPath.row == 1
 			{
 				debugLog("Importing from file")
+				_importFromFile()
 			}
 		}
 		
@@ -78,32 +99,66 @@ final class SettingsViewController: UITableViewController
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
-	private var _currentStore = WordListStore.local // TODO: This is temporary; delete it!
 	private func _updateLabels()
 	{
-		// TODO: Read real word counts
-		localWordCountLabel.text = String(format: _WORD_COUNT_LABEL, Int.random(in: 0...100000))
-		iCloudWordCountLabel.text = String(format: _WORD_COUNT_LABEL, Int.random(in: 0...100000))
+		localWordCountLabel.text = String(format: _WORD_COUNT_LABEL, dataSourceLocal.count)
+		iCloudWordCountLabel.text = String(format: _WORD_COUNT_LABEL, dataSourceCloud.count)
 		
-		// TODO: Read real state of word list store
-		localStoreCell.accessoryType = _currentStore == .local ? .checkmark : .none
-		iCloudStoreCell.accessoryType = _currentStore == .iCloud ? .checkmark : .none
+		localStoreCell.accessoryType = wordListStore == .local ? .checkmark : .none
+		iCloudStoreCell.accessoryType = wordListStore == .iCloud ? .checkmark : .none
 		mergeButtonLabel.text = String(
 			format: _MERGE_BUTTON_LABEL,
-			_currentStore == .local ? _ICLOUD : _LOCAL,
-			_currentStore == .local ? _LOCAL : _ICLOUD)
+			wordListStore == .local ? _ICLOUD : _LOCAL,
+			wordListStore == .local ? _LOCAL : _ICLOUD)
 		replaceButtonLabel.text = String(
 			format: _REPLACE_BUTTON_LABEL,
-			_currentStore == .local ? _ICLOUD : _LOCAL)
+			wordListStore == .local ? _ICLOUD : _LOCAL)
 	}
 	
 	private func _switchWordListStore(to store: WordListStore)
 	{
 		debugLog("Switching word list store to \(store)")
-		
-		// TODO: Set the real state of the word list store
-		_currentStore = _currentStore == .local ? .iCloud : .local
-		
+		wordListStore = store
 		_updateLabels()
+	}
+	
+	private func _import(newlineDelimitedWords text: String)
+	{
+		text.split(separator: "\n")
+			.map { $0.trimmingCharacters(in: .whitespaces) }
+			.forEach { words.add(word: Word(text: $0)) }
+		_updateLabels()
+	}
+	
+	private func _importFromFile()
+	{
+		let types: [String] = [kUTTypeText as String]
+		let documentPicker = UIDocumentPickerViewController(documentTypes: types, in: .import)
+		documentPicker.delegate = self
+		documentPicker.modalPresentationStyle = .formSheet
+		self.present(documentPicker, animated: true, completion: nil)
+	}
+	
+	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL])
+	{
+		guard let fileURL = urls.first else { return }
+		debugLog("importing: \(fileURL)")
+		do
+		{
+			let text = try String(contentsOf: fileURL, encoding: .utf8)
+			_import(newlineDelimitedWords: text)
+			// TODO: Alert user of success
+		}
+		catch
+		{
+			debugLog("Import failed: \(error)")
+			// TODO: Alert user of failure
+		}
+	}
+	
+	func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController)
+	{
+		debugLog("import was cancelled")
+		dismiss(animated: true, completion: nil)
 	}
 }

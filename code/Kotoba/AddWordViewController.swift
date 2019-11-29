@@ -41,7 +41,7 @@ final class AddWordViewController: UIViewController
 	{
 		debugLog()
 		checkPasteboard()
-		checkMigration()
+//		checkMigration()
 	}
 }
 
@@ -186,83 +186,83 @@ extension AddWordViewController
 		}
 	}
 	
-	func checkMigration()
-	{
-		if WordList.useRemote
-		{
-			if WordList.hasLocalData
-			{
-				let alert = UIAlertController(
-					title: "Migrate to iCloud",
-					message: "Do you want to add the words in the local list to iCloud?",
-					preferredStyle: .alert)
-				let alertAction = UIAlertAction(title: "Keep on Local", style: .default)
-				{
-					_ in
-					WordList.useRemote = false
-				}
-				alert.addAction(alertAction)
-				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default)
-				{
-					_ in
-					self.migrateWordsToRemote()
-				}
-				alert.addAction(preferredAction)
-				alert.preferredAction = preferredAction
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-		else
-		{
-			if WordList.hasRemoteData
-			{
-				let alert = UIAlertController(
-					title: "Migrate to Local Storage",
-					message: "Do you want to move the word list from iCloud to local storage?",
-					preferredStyle: .alert)
-				let alertAction = UIAlertAction(title: "Move to Local", style: .default)
-				{
-					_ in
-					debugLog("migrating remote data")
-					self.migrateWordsToLocal()
-				}
-				alert.addAction(alertAction)
-				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default)
-				{
-					_ in
-					debugLog("keeping remote data")
-					WordList.useRemote = true
-				}
-				alert.addAction(preferredAction)
-				alert.preferredAction = preferredAction
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-	}
-	
-	func migrateWordsToRemote()
-	{
-		let localWords = WordList(local: true)
-		let indices = 0..<localWords.count // NOTE: would be cleaner if WordList was a Sequence
-		for index in indices
-		{
-			let localWord = localWords[index]
-			words.add(word: localWord)
-		}
-		localWords.remove()
-	}
-
-	func migrateWordsToLocal()
-	{
-		let remoteWords = WordList(local: false)
-		let indices = 0..<remoteWords.count // NOTE: would be cleaner if WordList was a Sequence
-		for index in indices
-		{
-			let remoteWord = remoteWords[index]
-			words.add(word: remoteWord)
-		}
-		remoteWords.remove()
-	}
+//	func checkMigration()
+//	{
+//		if WordList.useRemote
+//		{
+//			if WordList.hasLocalData
+//			{
+//				let alert = UIAlertController(
+//					title: "Migrate to iCloud",
+//					message: "Do you want to add the words in the local list to iCloud?",
+//					preferredStyle: .alert)
+//				let alertAction = UIAlertAction(title: "Keep on Local", style: .default)
+//				{
+//					_ in
+//					WordList.useRemote = false
+//				}
+//				alert.addAction(alertAction)
+//				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default)
+//				{
+//					_ in
+//					self.migrateWordsToRemote()
+//				}
+//				alert.addAction(preferredAction)
+//				alert.preferredAction = preferredAction
+//				self.present(alert, animated: true, completion: nil)
+//			}
+//		}
+//		else
+//		{
+//			if WordList.hasRemoteData
+//			{
+//				let alert = UIAlertController(
+//					title: "Migrate to Local Storage",
+//					message: "Do you want to move the word list from iCloud to local storage?",
+//					preferredStyle: .alert)
+//				let alertAction = UIAlertAction(title: "Move to Local", style: .default)
+//				{
+//					_ in
+//					debugLog("migrating remote data")
+//					self.migrateWordsToLocal()
+//				}
+//				alert.addAction(alertAction)
+//				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default)
+//				{
+//					_ in
+//					debugLog("keeping remote data")
+//					WordList.useRemote = true
+//				}
+//				alert.addAction(preferredAction)
+//				alert.preferredAction = preferredAction
+//				self.present(alert, animated: true, completion: nil)
+//			}
+//		}
+//	}
+//
+//	func migrateWordsToRemote()
+//	{
+//		let localWords = WordList(local: true)
+//		let indices = 0..<localWords.count // NOTE: would be cleaner if WordList was a Sequence
+//		for index in indices
+//		{
+//			let localWord = localWords[index]
+//			words.add(word: localWord)
+//		}
+//		localWords.remove()
+//	}
+//
+//	func migrateWordsToLocal()
+//	{
+//		let remoteWords = WordList(local: false)
+//		let indices = 0..<remoteWords.count // NOTE: would be cleaner if WordList was a Sequence
+//		for index in indices
+//		{
+//			let remoteWord = remoteWords[index]
+//			words.add(word: remoteWord)
+//		}
+//		remoteWords.remove()
+//	}
 }
 
 // MARK:- Text Field delegate
