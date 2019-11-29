@@ -133,7 +133,6 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" name="appBackground"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
