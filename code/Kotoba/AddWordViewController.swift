@@ -63,14 +63,18 @@ final class AddWordViewController: UIViewController
 		#endif
 
 		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
-		updateConstraintsForKeyboard()
+//		updateConstraintsForKeyboard()
 		
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
 		self.view.layoutIfNeeded()
-
+		// it also generates this warning
+/*
+		[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window). This may cause bugs by forcing views inside the table view to load and perform layout without accurate information (e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action altogether if possible, or defer it until the table view has been added to a window. Table view: <UITableView: 0x7f8064035e00; frame = (0 44; 414 156); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x600001310b10>; layer = <CALayer: 0x600001d2d2c0>; contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 0, 0}; dataSource: <Kotoba.AddWordViewController: 0x7f806370ac80>>
+		*/
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
 		
-		startMonitoringPasteboard()
+		//startMonitoringPasteboard()
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -78,6 +82,7 @@ final class AddWordViewController: UIViewController
 		debugLog()
 		super.viewWillAppear(animated)
 
+		
 		#if false
 		#warning("This is just for testing")
 		self.showSuggestions = true
@@ -86,7 +91,24 @@ final class AddWordViewController: UIViewController
 		//checkPasteboard()
 		#endif
 		
+		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
+//		self.view.layoutIfNeeded()
+//		tableView.reloadData()
+		
 		showKeyboard()
+
+//		updateConstraintsForKeyboard()
+
+		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
+//		self.view.setNeedsLayout()
+
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		debugLog()
+		super.viewDidAppear(animated)
+
+//		self.view.layoutIfNeeded()
 	}
 	
 	@objc func applicationDidBecomeActive(notification: NSNotification)
@@ -258,7 +280,37 @@ extension AddWordViewController
 	{
 		self.textField.becomeFirstResponder()
 	}
-	
+
+	func checkPasteboard()
+	{
+		let hiddenPasteboardString = UserDefaults.standard.string(forKey: _HIDDEN_PASTEBOARD_TEXT_KEY)
+		
+		haveSuggestions = false
+		if let currentPasteboardString = UIPasteboard.general.string {
+			haveSuggestions = true
+			if currentPasteboardString != hiddenPasteboardString {
+				sourcePasteboardString = UserDefaults.standard.CHOCKTUBA_DUH ? currentPasteboardString.uppercased() : currentPasteboardString
+				
+				// TODO: Filter out too-simple words ("to", "and", "of", etc.).
+				// TODO: Filter out non-words and likely passwords (digits, symbols).
+				pasteboardWords = sourcePasteboardString?
+					.trimmingCharacters(in: .whitespacesAndNewlines)
+					.words
+					.deDuplicate()
+					.map(Word.init)
+					?? []
+
+				showSuggestions = true
+				
+				updateConstraintsForKeyboard()
+			}
+			
+		}
+		
+		tableView.reloadData()
+	}
+
+	/*
 	func checkPasteboard()
 	{
 		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -303,7 +355,8 @@ extension AddWordViewController
 			}
 		}
 	}
-	
+	*/
+
 //	func checkMigration()
 //	{
 //		if WordList.useRemote
@@ -477,6 +530,7 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 	}
 }
 
+/*
 extension AddWordViewController: PasteboardWatcherDelegate
 {
 	private func startMonitoringPasteboard()
@@ -497,3 +551,5 @@ extension AddWordViewController: PasteboardWatcherDelegate
 		//self.tableView.reloadData()
 	}
 }
+*/
+
