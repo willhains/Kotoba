@@ -26,23 +26,40 @@ class WordListViewController: UITableViewController
 	}
 }
 
-// MARK:- Add "Edit" button
-extension WordListViewController
+// MARK:- Export Word List
+extension WordListViewController: UIActivityItemSource
 {
-	func prepareEditButton()
+	@IBAction func exportWordList(_ sender: Any)
 	{
-		self.navigationItem.rightBarButtonItem = self.editButtonItem
+		let items = [self]
+		let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
+		present(shareSheet, animated: true)
 	}
 	
-	func prepareTextLabelForDynamicType(label: UILabel?)
+	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
 	{
-		label?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
+		return "Word\nList"
+	}
+	
+	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
+	{
+		return words.asText()
+	}
+	
+	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String
+	{
+		return "Kotoba Word List \(DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short))"
 	}
 }
 
 // MARK:- Dynamic Type
 extension WordListViewController
 {
+	func prepareTextLabelForDynamicType(label: UILabel?)
+	{
+		label?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
+	}
+	
 	func prepareSelfSizingTableCells()
 	{
 		// Self-sizing table rows
