@@ -18,6 +18,13 @@ struct Word
 	// TODO #14: This is where metadata would go.
 }
 
+/// Choices for where to store the word list.
+enum WordListStore
+{
+	case local
+	case iCloud
+}
+
 /// Model of user's saved words.
 protocol WordListable
 {
