@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4440B41C236CF92100369CE8 /* Colors.xcassets */; };
+		44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B821172391CF20004B8142 /* PasteboardWordList.swift */; };
 		44CFA6AB2381F0CB00D7ECCC /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		44FD6CD02389C90F00FF245E /* KotobaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */; };
 		44FD6CD32389CB0E00FF245E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44FD6CD22389CB0E00FF245E /* Settings.bundle */; };
@@ -15,7 +16,6 @@
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
 		B65A4E02238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		B65A4E03238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
-
 		B6C1049E238ECF94008E9C97 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */; };
 		B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F5588E21F20E8D0053F800 /* Launch.storyboard */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
@@ -49,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		4440B41C236CF92100369CE8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		44B821172391CF20004B8142 /* PasteboardWordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWordList.swift; sourceTree = "<group>"; };
 		44CFA6AA2381F0CB00D7ECCC /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaNavigationController.swift; sourceTree = "<group>"; };
 		44FD6CD22389CB0E00FF245E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -132,7 +133,7 @@
 				B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */,
 				BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */,
 				BE7599A01D04636E006FBB80 /* WordList.swift */,
-				B6F349A4238C2862002B0757 /* PasteboardWatcher.swift */,
+				44B821172391CF20004B8142 /* PasteboardWordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				691B8E1520DAB5A100B11216 /* Workarounds.swift */,
 				B6F5588E21F20E8D0053F800 /* Launch.storyboard */,
@@ -334,6 +335,7 @@
 			files = (
 				691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */,
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
+				44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */,
 				BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */,
 				B6C1049E238ECF94008E9C97 /* SettingsViewController.swift in Sources */,
 				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
@@ -342,7 +344,6 @@
 				BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */,
 				44FD6CD02389C90F00FF245E /* KotobaNavigationController.swift in Sources */,
 				BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */,
-				B6F349A5238C2862002B0757 /* PasteboardWatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

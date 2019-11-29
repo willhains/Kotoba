@@ -15,12 +15,14 @@ final class AddWordViewController: UIViewController
 	@IBOutlet weak var tableView: UITableView!
 
 	@IBOutlet weak var suggestionView: UIView!
+	@IBOutlet weak var suggestionLabel: UILabel!
+	@IBOutlet weak var suggestionToggleButton: UIButton!
 
 	@IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
 	@IBOutlet weak var suggestionViewBottomLayoutConstraint: NSLayoutConstraint!
 	@IBOutlet weak var suggestionViewHeightLayoutConstraint: NSLayoutConstraint!
 
-	var showSuggestions = false
+	var suggestionsVisible = false
 	// WILL: for now, this is a constant value, but it will eventually be computed based on the number of words on the clipboard
 	// TODO: make sure that suggestionHeight takes landscape orientation into account (e.g. compact height will require a shorter height
 	var suggestionHeight = CGFloat(200)
@@ -45,28 +47,22 @@ final class AddWordViewController: UIViewController
 
 		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "CHOCKTUBA" : "Kotoba"
 		self.textField.placeholder = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE HERE DUH" : "Type a Word"
-
-		#warning("Get rid of this ugly hack by adding and IBOutlet to storyboard")
-		let suggestionsLabel = self.suggestionView.subviews.first?.subviews.first as! UILabel?
-		suggestionsLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE IT LAZY ASS" : "Clipboard Suggestions"
+		self.suggestionLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE IT LAZY ASS" : "Clipboard Suggestions"
 		
 		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
 		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 
-		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation.
-		#if false
-		#warning("This is just for testing")
-		self.showSuggestions = true
-		#else
+		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
+		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation
 		checkPasteboard()
-		#endif
 
 		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
-//		updateConstraintsForKeyboard()
-		
+		updateConstraintsForKeyboardAndSuggestions()
+		updateLayersForSuggestions()
+
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
-		self.view.layoutIfNeeded()
+		//self.view.layoutIfNeeded()
 		// it also generates this warning
 /*
 		[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window). This may cause bugs by forcing views inside the table view to load and perform layout without accurate information (e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action altogether if possible, or defer it until the table view has been added to a window. Table view: <UITableView: 0x7f8064035e00; frame = (0 44; 414 156); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x600001310b10>; layer = <CALayer: 0x600001d2d2c0>; contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 0, 0}; dataSource: <Kotoba.AddWordViewController: 0x7f806370ac80>>
@@ -83,19 +79,12 @@ final class AddWordViewController: UIViewController
 		super.viewWillAppear(animated)
 
 		
-		#if false
-		#warning("This is just for testing")
-		self.showSuggestions = true
-		updateConstraintsForKeyboard()
-		#else
-		//checkPasteboard()
-		#endif
 		
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
 //		self.view.layoutIfNeeded()
 //		tableView.reloadData()
 		
-		showKeyboard()
+		//showKeyboard()
 
 //		updateConstraintsForKeyboard()
 
@@ -109,6 +98,7 @@ final class AddWordViewController: UIViewController
 		super.viewDidAppear(animated)
 
 //		self.view.layoutIfNeeded()
+		showKeyboard()
 	}
 	
 	@objc func applicationDidBecomeActive(notification: NSNotification)
@@ -179,12 +169,14 @@ extension AddWordViewController
 	{
 		debugLog()
 
-		UserDefaults.standard.set(sourcePasteboardString, forKey:_HIDDEN_PASTEBOARD_TEXT_KEY)
-		self.showSuggestions.toggle()
+		//UserDefaults.standard.set(sourcePasteboardString, forKey:_HIDDEN_PASTEBOARD_TEXT_KEY)
+		self.suggestionsVisible.toggle()
+		UIPasteboard.general.ignoreSuggestions = !suggestionsVisible
 
 		let duration: TimeInterval = 0.2
 		UIView.animate(withDuration: duration) {
-			self.updateConstraintsForKeyboard()
+			self.updateConstraintsForKeyboardAndSuggestions()
+			self.updateLayersForSuggestions()
 			self.view.layoutIfNeeded()
 		}
 	}
@@ -208,7 +200,7 @@ extension AddWordViewController
 			object: nil);
 	}
 
-	private func updateConstraintsForKeyboard()
+	private func updateConstraintsForKeyboardAndSuggestions()
 	{
 		// NOTE: There are two primary views, each with a layout contraint for the bottom of the view.
 		//
@@ -218,31 +210,38 @@ extension AddWordViewController
 		// The second view is the "typing view" that is either attached to the top of the suggestion view (when its visible) or
 		// to the bottom safe area inset (when its not.)
 		
-		// WILL: The approach you took adding safe area insets works fine for a more static layout. With the size & location of
-		// the suggestion view changing as the app is used, that's no longer the case, so I switched to more explicit layout.
-		
-		if self.keyboardVisible {
-			if self.showSuggestions	{
+		if self.suggestionsVisible	{
+			if self.keyboardVisible {
 				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeight
 				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight
 			}
 			else {
-				self.typingViewBottomLayoutConstraint.constant = keyboardHeight
-				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight - suggestionHeight + suggestionHeaderHeight
-			}
-		}
-		else {
-			if self.showSuggestions	{
 				self.typingViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom + suggestionHeight
 				self.suggestionViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom
 			}
+		}
+		else {
+			if self.keyboardVisible {
+				self.typingViewBottomLayoutConstraint.constant = keyboardHeight
+				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight - suggestionHeight + suggestionHeaderHeight
+			}
 			else {
 				self.typingViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom
-				self.suggestionViewBottomLayoutConstraint.constant = -suggestionHeight + suggestionHeaderHeight
+				self.suggestionViewBottomLayoutConstraint.constant = 0 - suggestionHeight + suggestionHeaderHeight
 			}
 		}
 	}
 	
+	private func updateLayersForSuggestions()
+	{
+		if self.suggestionsVisible	{
+			self.suggestionToggleButton.layer.transform = CATransform3DIdentity;
+		}
+		else {
+			self.suggestionToggleButton.layer.transform = CATransform3DMakeRotation(CGFloat.pi * 1/4, 0, 0, 1);
+		}
+	}
+
 	@objc func keyboardWillShow(notification: Notification)
 	{
 		let info = notification.userInfo!
@@ -251,7 +250,7 @@ extension AddWordViewController
 		
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) {
-			self.updateConstraintsForKeyboard()
+			self.updateConstraintsForKeyboardAndSuggestions()
 			self.view.layoutIfNeeded()
 		}
 	}
@@ -264,14 +263,14 @@ extension AddWordViewController
 
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) {
-			self.updateConstraintsForKeyboard()
+			self.updateConstraintsForKeyboardAndSuggestions()
 			self.view.layoutIfNeeded()
 		}
 	}
 
 }
 
-private let _HIDDEN_PASTEBOARD_TEXT_KEY = "hidden_pasteboard_text"
+//private let _HIDDEN_PASTEBOARD_TEXT_KEY = "hidden_pasteboard_text"
 
 // MARK:- Utility
 extension AddWordViewController
@@ -283,32 +282,46 @@ extension AddWordViewController
 
 	func checkPasteboard()
 	{
-		let hiddenPasteboardString = UserDefaults.standard.string(forKey: _HIDDEN_PASTEBOARD_TEXT_KEY)
-		
-		haveSuggestions = false
-		if let currentPasteboardString = UIPasteboard.general.string {
-			haveSuggestions = true
-			if currentPasteboardString != hiddenPasteboardString {
-				sourcePasteboardString = UserDefaults.standard.CHOCKTUBA_DUH ? currentPasteboardString.uppercased() : currentPasteboardString
-				
-				// TODO: Filter out too-simple words ("to", "and", "of", etc.).
-				// TODO: Filter out non-words and likely passwords (digits, symbols).
-				pasteboardWords = sourcePasteboardString?
-					.trimmingCharacters(in: .whitespacesAndNewlines)
-					.words
-					.deDuplicate()
-					.map(Word.init)
-					?? []
+		if !UIPasteboard.general.ignoreSuggestions {
+			pasteboardWords = UIPasteboard.general.suggestedWords
 
-				showSuggestions = true
-				
-				updateConstraintsForKeyboard()
-			}
+			suggestionsVisible = true
 			
+			updateConstraintsForKeyboardAndSuggestions()
+			updateLayersForSuggestions()
+			tableView.reloadData()
 		}
-		
-		tableView.reloadData()
 	}
+
+//	func checkPasteboard()
+//	{
+//		let hiddenPasteboardString = UserDefaults.standard.string(forKey: _HIDDEN_PASTEBOARD_TEXT_KEY)
+//
+//		haveSuggestions = false
+//		if let currentPasteboardString = UIPasteboard.general.string {
+//			haveSuggestions = true
+//			if currentPasteboardString != hiddenPasteboardString {
+//				sourcePasteboardString = UserDefaults.standard.CHOCKTUBA_DUH ? currentPasteboardString.uppercased() : currentPasteboardString
+//
+//				// TODO: Filter out too-simple words ("to", "and", "of", etc.).
+//				// TODO: Filter out non-words and likely passwords (digits, symbols).
+//				pasteboardWords = sourcePasteboardString?
+//					.trimmingCharacters(in: .whitespacesAndNewlines)
+//					.words
+//					.deDuplicate()
+//					.map(Word.init)
+//					?? []
+//
+//				suggestionsVisible = true
+//
+//				updateConstraintsForKeyboardAndSuggestions()
+//				updateLayersForSuggestions()
+//			}
+//
+//		}
+//
+//		tableView.reloadData()
+//	}
 
 	/*
 	func checkPasteboard()
@@ -453,42 +466,42 @@ extension AddWordViewController: UITextFieldDelegate
 
 // MARK:- Table View delegate/datasource
 
-//  Adapted from https://medium.com/@sorenlind/three-ways-to-enumerate-the-words-in-a-string-using-swift-7da5504f0062
-extension String
-{
-	var words: [String]
-	{
-        var words = [String]()
-		if let range = range(of: self)
-		{
-			self.enumerateSubstrings(in: range, options: .byWords)
-			{
-				(substring, _, _, _) -> () in
-				words.append(substring!)
-			}
-		}
-        return words
-    }
-}
+////  Adapted from https://medium.com/@sorenlind/three-ways-to-enumerate-the-words-in-a-string-using-swift-7da5504f0062
+//extension String
+//{
+//	var words: [String]
+//	{
+//        var words = [String]()
+//		if let range = range(of: self)
+//		{
+//			self.enumerateSubstrings(in: range, options: .byWords)
+//			{
+//				(substring, _, _, _) -> () in
+//				words.append(substring!)
+//			}
+//		}
+//        return words
+//    }
+//}
 
-extension Array where Element: Hashable
-{
-	// WILL: This name feels clumsy. Maybe go with .removingDuplicates() or something more like .trimmingCharacters()
-	func deDuplicate() -> Array<Element>
-	{
-		var deDuped: [Element] = []
-		var uniques: Set<Element> = Set()
-		for element in self
-		{
-			if !uniques.contains(element)
-			{
-				uniques.insert(element)
-				deDuped.append(element)
-			}
-		}
-		return deDuped
-	}
-}
+//extension Array where Element: Hashable
+//{
+//	// WILL: This name feels clumsy. Maybe go with .removingDuplicates() or something more like .trimmingCharacters()
+//	func deDuplicate() -> Array<Element>
+//	{
+//		var deDuped: [Element] = []
+//		var uniques: Set<Element> = Set()
+//		for element in self
+//		{
+//			if !uniques.contains(element)
+//			{
+//				uniques.insert(element)
+//				deDuped.append(element)
+//			}
+//		}
+//		return deDuped
+//	}
+//}
 
 extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 {

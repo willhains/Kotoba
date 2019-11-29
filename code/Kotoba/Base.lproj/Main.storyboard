@@ -184,6 +184,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="suggestionLabel" destination="ZZ5-YD-TOc" id="v7b-fF-DSY"/>
+                        <outlet property="suggestionToggleButton" destination="5kx-pn-jaT" id="5mR-cW-aqY"/>
                         <outlet property="suggestionView" destination="Cne-Xv-00P" id="O98-2P-ai2"/>
                         <outlet property="suggestionViewBottomLayoutConstraint" destination="b9Y-x8-FEf" id="YLH-3s-FO4"/>
                         <outlet property="suggestionViewHeightLayoutConstraint" destination="C5i-YY-2s0" id="eTp-ps-Pzh"/>
@@ -393,7 +395,7 @@
             <color red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appHeaderText">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <color key="tintColor" name="appTint"/>
