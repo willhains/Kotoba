@@ -23,8 +23,6 @@ final class AddWordViewController: UIViewController
 	@IBOutlet weak var suggestionViewHeightLayoutConstraint: NSLayoutConstraint!
 
 	var suggestionsVisible = false
-	// WILL: for now, this is a constant value, but it will eventually be computed based on the number of words on the clipboard
-	// TODO: make sure that suggestionHeight takes landscape orientation into account (e.g. compact height will require a shorter height
 	var suggestionHeight = CGFloat(200)
 	let suggestionHeaderHeight = CGFloat(44) // NOTE: This value should match "Header View" in the storyboard
 
@@ -55,11 +53,11 @@ final class AddWordViewController: UIViewController
 
 		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
 		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation
-		checkPasteboard()
+		updateFromPasteboard()
 
-		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
-		updateConstraintsForKeyboardAndSuggestions()
-		updateLayersForSuggestions()
+//		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
+//		updateConstraintsForKeyboardAndSuggestions()
+//		updateLayersForSuggestions()
 
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
 		//self.view.layoutIfNeeded()
@@ -108,7 +106,7 @@ final class AddWordViewController: UIViewController
 		
 		let duration: TimeInterval = 0.2
 		UIView.animate(withDuration: duration) {
-			self.checkPasteboard()
+			self.updateFromPasteboard()
 			self.view.layoutIfNeeded()
 		}
 	}
@@ -210,6 +208,8 @@ extension AddWordViewController
 		// The second view is the "typing view" that is either attached to the top of the suggestion view (when its visible) or
 		// to the bottom safe area inset (when its not.)
 		
+		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
+		
 		if self.suggestionsVisible	{
 			if self.keyboardVisible {
 				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeight
@@ -280,17 +280,42 @@ extension AddWordViewController
 		self.textField.becomeFirstResponder()
 	}
 
-	func checkPasteboard()
+	func updateFromPasteboard()
 	{
-		if !UIPasteboard.general.ignoreSuggestions {
-			pasteboardWords = UIPasteboard.general.suggestedWords
-
-			suggestionsVisible = true
-			
-			updateConstraintsForKeyboardAndSuggestions()
-			updateLayersForSuggestions()
-			tableView.reloadData()
+		// TODO: layout isn't right if pasteboard is empty
+		
+		pasteboardWords = UIPasteboard.general.suggestedWords
+		tableView.reloadData()
+		if (pasteboardWords.count > 0) {
+			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
 		}
+		
+		// TODO: make sure that maximumHeight takes landscape orientation into account (e.g. compact height will require a shorter height
+		let maximumHeight = CGFloat(200)
+		
+		var computedSuggestionHeight = suggestionHeaderHeight
+		for row in 0..<pasteboardWords.count {
+			if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) {
+				computedSuggestionHeight += cell.frame.size.height
+			}
+			else {
+				computedSuggestionHeight += 44
+			}
+			if computedSuggestionHeight > maximumHeight {
+				break
+			}
+		}
+		if computedSuggestionHeight > maximumHeight {
+			suggestionHeight = maximumHeight
+		}
+		else {
+			suggestionHeight = computedSuggestionHeight
+		}
+
+		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
+		
+		updateConstraintsForKeyboardAndSuggestions()
+		updateLayersForSuggestions()
 	}
 
 //	func checkPasteboard()
