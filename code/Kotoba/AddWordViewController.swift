@@ -51,14 +51,6 @@ final class AddWordViewController: UIViewController
 		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 
-//		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
-//		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation
-//		updateFromPasteboard()
-
-//		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
-//		updateConstraintsForKeyboardAndSuggestions()
-//		updateLayersForSuggestions()
-
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear, but it also
 		// generates the warning below. If we wait until the tableView is in the view hierarchy (in viewDidAppear) the
 		// keyboard animation is already in progress and it's too late to adjust the width of the top-level view.
@@ -68,8 +60,6 @@ final class AddWordViewController: UIViewController
 		*/
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
-		
-		//startMonitoringPasteboard()
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -77,43 +67,21 @@ final class AddWordViewController: UIViewController
 		debugLog()
 		super.viewWillAppear(animated)
 
-		
-		
-		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
-//		tableView.reloadData()
-//		self.view.layoutIfNeeded()
-
-//		tableView.setNeedsLayout()
-
+		// TODO: Decide if the keyboard should appear before or after the view.
 		showKeyboard()
-
-//		updateConstraintsForKeyboard()
-
-		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
-//		self.view.setNeedsLayout()
-
 	}
 	
 //	override func viewWillLayoutSubviews() {
 //		debugLog()
-//
-////		updateConstraintsForKeyboardAndSuggestions()
 //		super.viewWillLayoutSubviews()
 //	}
 	
-	override func viewDidAppear(_ animated: Bool) {
+	override func viewDidAppear(_ animated: Bool)
+	{
 		debugLog()
 		super.viewDidAppear(animated)
 
-		#if false
-		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
-		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation
-		updateFromPasteboard()
-		updateLayersForSuggestions()
-		updateTableView()
-		#endif
-		
-//		self.view.layoutIfNeeded()
+		// TODO: Decide if the keyboard should appear before or after the view.
 		//showKeyboard()
 	}
 	
@@ -127,13 +95,12 @@ final class AddWordViewController: UIViewController
 	@objc func applicationDidBecomeActive(notification: NSNotification)
 	{
 		debugLog()
-//		checkMigration()
 
 		#if true
 		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
 		let duration: TimeInterval = 0.2
 		UIView.animate(withDuration: duration) {
-			self.updateFromPasteboard()
+			self.updateLayoutFromPasteboard()
 			self.updateLayersForSuggestions()
 			self.updateTableView()
 			self.view.layoutIfNeeded()
@@ -143,8 +110,6 @@ final class AddWordViewController: UIViewController
 }
 
 // MARK:- Async word lookup
-// Solution donated by Craig Hockenberry
-// WILL: I appreciate the nod, but it's a slippery slope considering the number of other changes I've maded and folks can dig through commits if they really want to blame someone :-)
 extension AddWordViewController
 {
 	func initiateSearch(forWord word: Word)
@@ -197,7 +162,6 @@ extension AddWordViewController
 	{
 		debugLog()
 
-		//UserDefaults.standard.set(sourcePasteboardString, forKey:_HIDDEN_PASTEBOARD_TEXT_KEY)
 		self.suggestionsVisible.toggle()
 		UIPasteboard.general.ignoreSuggestions = !suggestionsVisible
 
@@ -230,7 +194,7 @@ extension AddWordViewController
 
 	private func updateConstraintsForKeyboardAndSuggestions()
 	{
-		debugLog()
+		debugLog("keyboardHeight = \(keyboardHeight), suggestionHeight = \(suggestionHeight)")
 
 		// NOTE: There are two primary views, each with a layout contraint for the bottom of the view.
 		//
@@ -313,8 +277,6 @@ extension AddWordViewController
 
 }
 
-//private let _HIDDEN_PASTEBOARD_TEXT_KEY = "hidden_pasteboard_text"
-
 // MARK:- Utility
 extension AddWordViewController
 {
@@ -328,18 +290,14 @@ extension AddWordViewController
 		self.textField.resignFirstResponder()
 	}
 
-	func updateFromPasteboard()
+	func updateLayoutFromPasteboard()
 	{
-		// TODO: layout isn't right if pasteboard is empty
-		
 		pasteboardWords = UIPasteboard.general.suggestedWords
-//		tableView.reloadData()
-//		if (pasteboardWords.count > 0) {
-//			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
-//		}
 		
-		// TODO: make sure that maximumHeight takes landscape orientation into account (e.g. compact height will require a shorter height
-		let maximumHeight = CGFloat(200)
+		// NOTE: This isn't the most elegant way to handle the compact height layout (landscape orientation)
+		// but it gets the job done with a minimum amount of work. I'm actually questioning the need for
+		// landscape support: the entire experience feels kinda clunky.
+		let maximumHeight: CGFloat = view.frame.size.height > view.frame.size.width ? 200 : 100
 		
 		var computedSuggestionHeight = suggestionHeaderHeight
 		for row in 0..<pasteboardWords.count {
@@ -373,161 +331,6 @@ extension AddWordViewController
 			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
 		}
 	}
-	
-//	func checkPasteboard()
-//	{
-//		let hiddenPasteboardString = UserDefaults.standard.string(forKey: _HIDDEN_PASTEBOARD_TEXT_KEY)
-//
-//		haveSuggestions = false
-//		if let currentPasteboardString = UIPasteboard.general.string {
-//			haveSuggestions = true
-//			if currentPasteboardString != hiddenPasteboardString {
-//				sourcePasteboardString = UserDefaults.standard.CHOCKTUBA_DUH ? currentPasteboardString.uppercased() : currentPasteboardString
-//
-//				// TODO: Filter out too-simple words ("to", "and", "of", etc.).
-//				// TODO: Filter out non-words and likely passwords (digits, symbols).
-//				pasteboardWords = sourcePasteboardString?
-//					.trimmingCharacters(in: .whitespacesAndNewlines)
-//					.words
-//					.deDuplicate()
-//					.map(Word.init)
-//					?? []
-//
-//				suggestionsVisible = true
-//
-//				updateConstraintsForKeyboardAndSuggestions()
-//				updateLayersForSuggestions()
-//			}
-//
-//		}
-//
-//		tableView.reloadData()
-//	}
-
-	/*
-	func checkPasteboard()
-	{
-		if let text = UIPasteboard.general.string?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-		{
-			// ignore text that has newlines in it
-			if text.rangeOfCharacter(from: CharacterSet.newlines) == nil
-			{
-				// ignore text that hasn't changed since the last time we ran
-				let lastPasteboardText = UserDefaults.standard.string(forKey: _LAST_PASTEBOARD_TEXT_KEY)
-				if text != lastPasteboardText
-				{
-					self.textField.text = text
-					
-					let alert = UIAlertController(
-						title: "Search with Clipboard",
-						message: """
-						This text is on the clipboard:
-						
-						\(text)
-						
-						Do you want to use it for a search?
-						""",
-						preferredStyle: .alert)
-					let alertAction = UIAlertAction(title: "Search", style: .default)
-					{
-						_ in
-						let word = Word.init(text: text)
-						self.initiateSearch(forWord: word)
-					}
-					alert.addAction(alertAction)
-					let preferredAction = UIAlertAction(title: "Ignore", style: .default)
-					{
-						_ in
-						self.textField.text = nil
-					}
-					alert.addAction(preferredAction)
-					alert.preferredAction = preferredAction
-					self.present(alert, animated: true, completion: nil)
-					
-					UserDefaults.standard.set(text, forKey: _LAST_PASTEBOARD_TEXT_KEY)
-				}
-			}
-		}
-	}
-	*/
-
-//	func checkMigration()
-//	{
-//		if WordList.useRemote
-//		{
-//			if WordList.hasLocalData
-//			{
-//				let alert = UIAlertController(
-//					title: "Migrate to iCloud",
-//					message: "Do you want to add the words in the local list to iCloud?",
-//					preferredStyle: .alert)
-//				let alertAction = UIAlertAction(title: "Keep on Local", style: .default)
-//				{
-//					_ in
-//					WordList.useRemote = false
-//				}
-//				alert.addAction(alertAction)
-//				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default)
-//				{
-//					_ in
-//					self.migrateWordsToRemote()
-//				}
-//				alert.addAction(preferredAction)
-//				alert.preferredAction = preferredAction
-//				self.present(alert, animated: true, completion: nil)
-//			}
-//		}
-//		else
-//		{
-//			if WordList.hasRemoteData
-//			{
-//				let alert = UIAlertController(
-//					title: "Migrate to Local Storage",
-//					message: "Do you want to move the word list from iCloud to local storage?",
-//					preferredStyle: .alert)
-//				let alertAction = UIAlertAction(title: "Move to Local", style: .default)
-//				{
-//					_ in
-//					debugLog("migrating remote data")
-//					self.migrateWordsToLocal()
-//				}
-//				alert.addAction(alertAction)
-//				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default)
-//				{
-//					_ in
-//					debugLog("keeping remote data")
-//					WordList.useRemote = true
-//				}
-//				alert.addAction(preferredAction)
-//				alert.preferredAction = preferredAction
-//				self.present(alert, animated: true, completion: nil)
-//			}
-//		}
-//	}
-//
-//	func migrateWordsToRemote()
-//	{
-//		let localWords = WordList(local: true)
-//		let indices = 0..<localWords.count // NOTE: would be cleaner if WordList was a Sequence
-//		for index in indices
-//		{
-//			let localWord = localWords[index]
-//			words.add(word: localWord)
-//		}
-//		localWords.remove()
-//	}
-//
-//	func migrateWordsToLocal()
-//	{
-//		let remoteWords = WordList(local: false)
-//		let indices = 0..<remoteWords.count // NOTE: would be cleaner if WordList was a Sequence
-//		for index in indices
-//		{
-//			let remoteWord = remoteWords[index]
-//			words.add(word: remoteWord)
-//		}
-//		remoteWords.remove()
-//	}
 }
 
 // MARK:- Text Field delegate
@@ -546,62 +349,8 @@ extension AddWordViewController: UITextFieldDelegate
 }
 
 // MARK:- Table View delegate/datasource
-
-////  Adapted from https://medium.com/@sorenlind/three-ways-to-enumerate-the-words-in-a-string-using-swift-7da5504f0062
-//extension String
-//{
-//	var words: [String]
-//	{
-//        var words = [String]()
-//		if let range = range(of: self)
-//		{
-//			self.enumerateSubstrings(in: range, options: .byWords)
-//			{
-//				(substring, _, _, _) -> () in
-//				words.append(substring!)
-//			}
-//		}
-//        return words
-//    }
-//}
-
-//extension Array where Element: Hashable
-//{
-//	// WILL: This name feels clumsy. Maybe go with .removingDuplicates() or something more like .trimmingCharacters()
-//	func deDuplicate() -> Array<Element>
-//	{
-//		var deDuped: [Element] = []
-//		var uniques: Set<Element> = Set()
-//		for element in self
-//		{
-//			if !uniques.contains(element)
-//			{
-//				uniques.insert(element)
-//				deDuped.append(element)
-//			}
-//		}
-//		return deDuped
-//	}
-//}
-
 extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 {
-//	private var pasteboardWords: [Word]
-//	{
-//		// WILL: Computed properties can hide complexity in Swift. There is a fair amount of string processing happening each time
-//		// you access pasteboardWords (by index or getting a count). The underlying data doesn't change much (if at all) so another
-//		// mechanism is needed. This is related to the other note below about polling the clipboard.
-//
-//		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
-//		// TODO: Filter out non-words and likely passwords (digits, symbols).
-//		UIPasteboard.general.string?
-//			.trimmingCharacters(in: .whitespacesAndNewlines)
-//			.words
-//			.deDuplicate()
-//			.map(Word.init)
-//			?? []
-//	}
-	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
 		return pasteboardWords.count
@@ -623,27 +372,3 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 		tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 	}
 }
-
-/*
-extension AddWordViewController: PasteboardWatcherDelegate
-{
-	private func startMonitoringPasteboard()
-	{
-		let pasteboard = PasteboardWatcher()
-		pasteboard.delegate = self
-		pasteboard.startPolling(every: 1)
-	}
-	
-	func pasteboardStringDidChange(newValue: String)
-	{
-		// WILL: This is problematic in two ways:
-		//
-		// 1) It can happen during an animation and affect table view constraints.
-		//
-		// 2) It's based on polling, which uses a timer, which doesn't run in the background and may behave unpredicably entering foreground (see #1).
-		
-		//self.tableView.reloadData()
-	}
-}
-*/
-
