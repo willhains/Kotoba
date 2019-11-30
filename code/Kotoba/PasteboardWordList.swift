@@ -43,6 +43,13 @@ extension UIPasteboard
 		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
 		// TODO: Filter out non-words and likely passwords (digits, symbols).
 
+		#warning("Remove this test data")
+		//return []
+		//return [ Word(text: "CHOCKTUBA")]
+		//return [ Word(text: "CHOCKTUBA"), Word(text: "ROCKS")]
+		//return [ Word(text: "CHOCKTUBA"), Word(text: "ROCKS"), Word(text: "FOO")]
+		//return [ Word(text: "CHOCKTUBA"), Word(text: "ROCKS"), Word(text: "FOO"), Word(text: "BAR")]
+
 		if let currentPasteboardString = UIPasteboard.general.string {
 			return currentPasteboardString
 				.trimmingCharacters(in: .whitespacesAndNewlines)

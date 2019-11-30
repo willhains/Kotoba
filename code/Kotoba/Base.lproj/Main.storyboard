@@ -142,7 +142,6 @@
                                         </connections>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="C5i-YY-2s0"/>
                                     <constraint firstItem="eRG-36-TTD" firstAttribute="centerX" secondItem="Cne-Xv-00P" secondAttribute="centerX" id="Kaw-rq-A4S"/>

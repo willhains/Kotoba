@@ -41,7 +41,7 @@ final class AddWordViewController: UIViewController
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		prepareKeyboardAvoidance()
+		prepareKeyboardNotifications()
 
 		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "CHOCKTUBA" : "Kotoba"
 		self.textField.placeholder = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE HERE DUH" : "Type a Word"
@@ -51,17 +51,18 @@ final class AddWordViewController: UIViewController
 		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 
-		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
-		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation
-		updateFromPasteboard()
+//		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
+//		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation
+//		updateFromPasteboard()
 
 //		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
 //		updateConstraintsForKeyboardAndSuggestions()
 //		updateLayersForSuggestions()
 
-		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
-		//self.view.layoutIfNeeded()
-		// it also generates this warning
+		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear, but it also
+		// generates the warning below. If we wait until the tableView is in the view hierarchy (in viewDidAppear) the
+		// keyboard animation is already in progress and it's too late to adjust the width of the top-level view.
+		self.view.layoutIfNeeded()
 /*
 		[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window). This may cause bugs by forcing views inside the table view to load and perform layout without accurate information (e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action altogether if possible, or defer it until the table view has been added to a window. Table view: <UITableView: 0x7f8064035e00; frame = (0 44; 414 156); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x600001310b10>; layer = <CALayer: 0x600001d2d2c0>; contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 0, 0}; dataSource: <Kotoba.AddWordViewController: 0x7f806370ac80>>
 		*/
@@ -79,10 +80,12 @@ final class AddWordViewController: UIViewController
 		
 		
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear.
-//		self.view.layoutIfNeeded()
 //		tableView.reloadData()
-		
-		//showKeyboard()
+//		self.view.layoutIfNeeded()
+
+//		tableView.setNeedsLayout()
+
+		showKeyboard()
 
 //		updateConstraintsForKeyboard()
 
@@ -91,24 +94,51 @@ final class AddWordViewController: UIViewController
 
 	}
 	
+//	override func viewWillLayoutSubviews() {
+//		debugLog()
+//
+////		updateConstraintsForKeyboardAndSuggestions()
+//		super.viewWillLayoutSubviews()
+//	}
+	
 	override func viewDidAppear(_ animated: Bool) {
 		debugLog()
 		super.viewDidAppear(animated)
 
+		#if false
+		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
+		// NOTE: Check the pasteboard before we update the layout of the view for initial presentation
+		updateFromPasteboard()
+		updateLayersForSuggestions()
+		updateTableView()
+		#endif
+		
 //		self.view.layoutIfNeeded()
-		showKeyboard()
+		//showKeyboard()
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		debugLog()
+		super.viewWillDisappear(animated)
+		
+		hideKeyboard()
 	}
 	
 	@objc func applicationDidBecomeActive(notification: NSNotification)
 	{
 		debugLog()
 //		checkMigration()
-		
+
+		#if true
+		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
 		let duration: TimeInterval = 0.2
 		UIView.animate(withDuration: duration) {
 			self.updateFromPasteboard()
+			self.updateLayersForSuggestions()
+			self.updateTableView()
 			self.view.layoutIfNeeded()
 		}
+		#endif
 	}
 }
 
@@ -184,7 +214,7 @@ extension AddWordViewController
 // MARK:- Keyboard notifications
 extension AddWordViewController
 {
-	func prepareKeyboardAvoidance()
+	func prepareKeyboardNotifications()
 	{
 		NotificationCenter.default.addObserver(
 			self,
@@ -200,6 +230,8 @@ extension AddWordViewController
 
 	private func updateConstraintsForKeyboardAndSuggestions()
 	{
+		debugLog()
+
 		// NOTE: There are two primary views, each with a layout contraint for the bottom of the view.
 		//
 		// The first is the "suggestion view" that attaches either to the top of the keyboard (when shown) or a negative offset
@@ -222,18 +254,25 @@ extension AddWordViewController
 		}
 		else {
 			if self.keyboardVisible {
-				self.typingViewBottomLayoutConstraint.constant = keyboardHeight
+				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeaderHeight
 				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight - suggestionHeight + suggestionHeaderHeight
 			}
 			else {
-				self.typingViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom
-				self.suggestionViewBottomLayoutConstraint.constant = 0 - suggestionHeight + suggestionHeaderHeight
+				// TODO: Technically, the safeAreaInsets are the "bottom", but that leaves a weird little bit of the first
+				// sugggestion visible under the home indicator. If the offset is flush against the container view (e.g. 0),
+				// it puts the button and text in the home indicator area. Choose the lesser evil...
+				//let offset = self.view.safeAreaInsets.bottom
+				let offset = CGFloat.zero
+				self.typingViewBottomLayoutConstraint.constant = offset + suggestionHeaderHeight
+				self.suggestionViewBottomLayoutConstraint.constant = offset - suggestionHeight + suggestionHeaderHeight
 			}
 		}
 	}
 	
 	private func updateLayersForSuggestions()
 	{
+		debugLog()
+
 		if self.suggestionsVisible	{
 			self.suggestionToggleButton.layer.transform = CATransform3DIdentity;
 		}
@@ -247,7 +286,9 @@ extension AddWordViewController
 		let info = notification.userInfo!
 		keyboardVisible = true
 		keyboardHeight = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-		
+
+		debugLog("keyboardHeight = \(keyboardHeight)")
+
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration) {
 			self.updateConstraintsForKeyboardAndSuggestions()
@@ -257,6 +298,8 @@ extension AddWordViewController
 
 	@objc func keyboardWillHide(notification: Notification)
 	{
+		debugLog()
+
 		let info = notification.userInfo!
 		keyboardVisible = false
 		keyboardHeight = 0
@@ -280,15 +323,20 @@ extension AddWordViewController
 		self.textField.becomeFirstResponder()
 	}
 
+	func hideKeyboard()
+	{
+		self.textField.resignFirstResponder()
+	}
+
 	func updateFromPasteboard()
 	{
 		// TODO: layout isn't right if pasteboard is empty
 		
 		pasteboardWords = UIPasteboard.general.suggestedWords
-		tableView.reloadData()
-		if (pasteboardWords.count > 0) {
-			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
-		}
+//		tableView.reloadData()
+//		if (pasteboardWords.count > 0) {
+//			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
+//		}
 		
 		// TODO: make sure that maximumHeight takes landscape orientation into account (e.g. compact height will require a shorter height
 		let maximumHeight = CGFloat(200)
@@ -318,6 +366,14 @@ extension AddWordViewController
 		updateLayersForSuggestions()
 	}
 
+	func updateTableView()
+	{
+		tableView.reloadData()
+		if (pasteboardWords.count > 0) {
+			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
+		}
+	}
+	
 //	func checkPasteboard()
 //	{
 //		let hiddenPasteboardString = UserDefaults.standard.string(forKey: _HIDDEN_PASTEBOARD_TEXT_KEY)
