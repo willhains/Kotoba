@@ -83,9 +83,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu">
                             <connections>
                                 <action selector="openSettings:" destination="JNO-hA-UHa" id="qYM-St-E6o"/>
-                                <segue destination="BMv-B3-FIj" kind="popoverPresentation" popoverAnchorBarButtonItem="V6n-v4-Uiu" id="Er9-Zg-eeP">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="BMv-B3-FIj" kind="show" id="Er9-Zg-eeP"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" image="book" catalog="system" id="lxn-9Q-keE">
