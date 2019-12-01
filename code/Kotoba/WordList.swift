@@ -114,6 +114,7 @@ extension WordListDataSource where Self: WordListStrings
 }
 
 // MARK:- Array extensions for WordList
+// TODO #14: Consider changing Array to Set, and sorting by date added.
 extension Array where Element: Equatable
 {
 	/// Remove the first matching `element`, if it exists.
