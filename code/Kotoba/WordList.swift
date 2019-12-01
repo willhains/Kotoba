@@ -28,6 +28,35 @@ enum WordListStore
 {
 	case local
 	case iCloud
+	
+	var data: WordListDataSource
+	{
+		switch self
+		{
+			case .local: return UserDefaults.standard
+			case .iCloud: return NSUbiquitousKeyValueStore.default
+		}
+	}
+}
+
+/// Current selection of word list store.
+var wordListStore: WordListStore
+{
+	get { prefs.iCloudSyncEnabled ? .iCloud : .local }
+
+	set
+	{
+		prefs.iCloudSyncEnabled = newValue == .iCloud
+		
+		// Merge word lists
+		var local: WordListStrings = UserDefaults.standard
+		var cloud: WordListStrings = NSUbiquitousKeyValueStore.default
+		for word in local.wordStrings where !cloud.wordStrings.contains(word)
+		{
+			cloud.wordStrings.insert(word, at: 0)
+		}
+		local.wordStrings = cloud.wordStrings
+	}
 }
 
 /// Model of user's saved words.
@@ -48,16 +77,11 @@ protocol WordListDataSource
 	/// Delete all words from the word list.
 	mutating func clear()
 	
-	/// Merge all words from `another` into self, avoiding duplicates.
-	mutating func merge(from source: WordListDataSource)
-	
-	/// Replace all words in self with words from `another`.
-	mutating func replace(with source: WordListDataSource)
-	
 	/// All words, delimited by newlines
 	func asText() -> String
 }
 
+/// Internal persistence of word list as an array of strings.
 protocol WordListStrings
 {
 	var wordStrings: [String] { get set }
@@ -69,7 +93,7 @@ extension WordListDataSource where Self: WordListStrings
 	subscript(index: Int) -> Word
 	{
 		get { return Word(text: wordStrings[index]) }
-		set(newWord) { wordStrings[index] = newWord.text }
+		set { wordStrings[index] = newValue.text }
 	}
 	
 	var count: Int
@@ -93,34 +117,6 @@ extension WordListDataSource where Self: WordListStrings
 		wordStrings = []
 	}
 	
-	mutating func merge(from source: WordListDataSource)
-	{
-		for i in 0..<source.count
-		{
-			add(word: source[i])
-		}
-	}
-
-/* 
-	subscript(index: Int) -> Word
-	{
-		get {
-			let text = _words[index]
-			let word = UserDefaults.standard.CHOCKTUBA_DUH ? Word(text: text.uppercased()) : Word(text: text)
-			return word
-			
-		}
-	}
-	
-	var count: Int { return _words.count }
- */
-	
-	mutating func replace(with source: WordListDataSource)
-	{
-		clear()
-		merge(from: source)
-	}
-	
 	func asText() -> String
 	{
 		return wordStrings.joined(separator: "\n")
@@ -128,6 +124,7 @@ extension WordListDataSource where Self: WordListStrings
 }
 
 // MARK:- Array extensions for WordList
+// TODO #14: Consider changing Array to Set, and sorting by date added.
 extension Array where Element: Equatable
 {
 	/// Remove the first matching `element`, if it exists.
@@ -147,23 +144,16 @@ extension Array where Element: Equatable
 	}
 }
 
-// MARK:- WordList implementation backed by UserDefaults / NSUbiquitousKeyValueStore
+// MARK:- WordListDataSource implementation backed by UserDefaults / NSUbiquitousKeyValueStore
 
 private let _WORD_LIST_KEY = "words"
-private let _USE_REMOTE_KEY = "use_icloud"
-
-var wordListStore: WordListStore
-{
-	get { UserDefaults.standard.bool(forKey: _USE_REMOTE_KEY) ? .iCloud : .local }
-	set { UserDefaults.standard.set(newValue == .iCloud, forKey: _USE_REMOTE_KEY) }
-}
 
 extension UserDefaults: WordListStrings, WordListDataSource
 {
 	var wordStrings: [String]
 	{
 		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
-		set(words) { set(words, forKey: _WORD_LIST_KEY) }
+		set { set(newValue, forKey: _WORD_LIST_KEY) }
 	}
 }
 
@@ -172,118 +162,6 @@ extension NSUbiquitousKeyValueStore: WordListStrings, WordListDataSource
 	var wordStrings: [String]
 	{
 		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
-		set(words) { NSUbiquitousKeyValueStore.default.set(words, forKey: _WORD_LIST_KEY) }
+		set { NSUbiquitousKeyValueStore.default.set(newValue, forKey: _WORD_LIST_KEY) }
 	}
-}
-
-let dataSourceLocal: WordListDataSource = UserDefaults.standard
-let dataSourceCloud: WordListDataSource = NSUbiquitousKeyValueStore.default
-
-//class WordList
-//{
-//	class var useRemote: Bool
-//	{
-//		get
-//		{
-//			return UserDefaults.standard.bool(forKey: _USE_REMOTE_KEY)
-//		}
-//		set
-//		{
-//			UserDefaults.standard.set(newValue, forKey: _USE_REMOTE_KEY)
-//			UserDefaults.standard.synchronize()
-//		}
-//	}
-//
-//	class var hasLocalData: Bool
-//	{
-//		return (UserDefaults.standard.object(forKey: _WORD_LIST_KEY) as? [String]) != nil
-//	}
-//
-//	class var hasRemoteData: Bool
-//	{
-//		return (NSUbiquitousKeyValueStore.default.object(forKey: _WORD_LIST_KEY) as? [String]) != nil
-//	}
-//
-//	var local: Bool
-//
-//	init(local: Bool = true)
-//	{
-//		self.local = local
-//	}
-//
-//	fileprivate var _words: [String]
-//	{
-//		get
-//		{
-//			if local
-//			{
-//				return UserDefaults.standard.object(forKey: _WORD_LIST_KEY) as? [String] ?? []
-//			}
-//			else
-//			{
-//				return NSUbiquitousKeyValueStore.default.object(forKey: _WORD_LIST_KEY) as? [String] ?? []
-//			}
-//
-//		}
-//		set(words)
-//		{
-//			if local
-//			{
-//				UserDefaults.standard.set(words, forKey: _WORD_LIST_KEY)
-//			}
-//			else
-//			{
-//				NSUbiquitousKeyValueStore.default.set(words, forKey: _WORD_LIST_KEY)
-//			}
-//		}
-//	}
-//
-//	func remove()
-//	{
-//		if local
-//		{
-//			UserDefaults.standard.removeObject(forKey: _WORD_LIST_KEY)
-//		}
-//		else
-//		{
-//			NSUbiquitousKeyValueStore.default.removeObject(forKey: _WORD_LIST_KEY)
-//		}
-//	}
-//
-//	subscript(index: Int) -> Word
-//	{
-//		get { return Word(text: _words[index]) }
-//	}
-//
-//	var count: Int { return _words.count }
-//
-//	func add(word: Word)
-//	{
-//		var words = _words
-//		let lowercase = word.text.lowercased()
-//
-//		// Prevent duplicates; move to top of list instead
-//		words.add(possibleDuplicate: lowercase)
-//
-//		_words = words
-//	}
-//
-//	func delete(wordAt index: Int)
-//	{
-//		var words = _words
-//		words.remove(at: index)
-//		_words = words
-//	}
-//
-//	func clear()
-//	{
-//		_words = []
-//	}
-//}
-
-/// The word list model for current user.
-var words: WordListDataSource
-{
-	get { wordListStore == .local ? dataSourceLocal : dataSourceCloud }
-	set {}
 }
