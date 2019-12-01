@@ -63,11 +63,21 @@ final class SettingsViewController: UITableViewController, UIDocumentPickerDeleg
 	private func _import(newlineDelimitedWords text: String)
 	{
 		var words = wordListStore.data
+		let countBefore = words.count
 		text.split(separator: "\n")
 			.map { $0.trimmingCharacters(in: .whitespaces) }
+			.filter { !$0.isEmpty }
 			.forEach { words.add(word: Word(text: $0)) }
 		_refreshViews()
-		// TODO: Alert user of success
+		let countAfter = words.count
+		let addedWords = countAfter - countBefore
+		if addedWords < 0 { fatalError("Negative added words") }
+		let alert = UIAlertController(
+			title: "Import Successful",
+			message: "\(addedWords) \(addedWords == 1 ? "word" : "words") added.",
+			preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
 	}
 	
 	private func _importFromFile()
@@ -91,7 +101,12 @@ final class SettingsViewController: UITableViewController, UIDocumentPickerDeleg
 		catch
 		{
 			debugLog("Import failed: \(error)")
-			// TODO: Alert user of failure
+			let alert = UIAlertController(
+				title: "Import Failed",
+				message: error.localizedDescription,
+				preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
 		}
 	}
 	
