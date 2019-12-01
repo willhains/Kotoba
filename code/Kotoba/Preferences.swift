@@ -21,6 +21,13 @@ protocol Preferences
 	/// Called before the user actually has done so.
 	func didDisplayFirstUseDictionaryPrompt()
 	
+	/// Ask preferences if the user should be prompted to switch on iCloud syncing.
+	/// - returns: `true` if the user has never seen the prompt before; `false` otherwise.
+	func shouldDisplayFirstUseICloudPrompt() -> Bool
+	
+	/// Update preferences that the user has been prompted to enable iCloud syncing.
+	func didDisplayFirstUseICloudPrompt()
+	
 	/// Use iCloud to sync lookup history.
 	var iCloudSyncEnabled: Bool { get set }
 	
@@ -31,6 +38,7 @@ protocol Preferences
 // MARK:- Preferences implementation backed by NSUserDefaults
 
 private let _DICTIONARY_PROMPT_DISPLAYED = "firstUseDictionaryPromptDisplayed"
+private let _ICLOUD_PROMPT_DISPLAYED = "firstUseICloudPromptDisplayed"
 private let _USE_REMOTE_KEY = "use_icloud"
 
 extension UserDefaults: Preferences
@@ -45,6 +53,16 @@ extension UserDefaults: Preferences
 		set(true, forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
 	
+	func shouldDisplayFirstUseICloudPrompt() -> Bool
+	{
+		return !bool(forKey: _ICLOUD_PROMPT_DISPLAYED)
+	}
+	
+	func didDisplayFirstUseICloudPrompt()
+	{
+		set(true, forKey: _ICLOUD_PROMPT_DISPLAYED)
+	}
+	
 	var iCloudSyncEnabled: Bool
 	{
 		get { bool(forKey: _USE_REMOTE_KEY) }
@@ -54,6 +72,8 @@ extension UserDefaults: Preferences
 	func reset()
 	{
 		removeObject(forKey: _DICTIONARY_PROMPT_DISPLAYED)
+		removeObject(forKey: _ICLOUD_PROMPT_DISPLAYED)
+		removeObject(forKey: _USE_REMOTE_KEY)
 	}
 }
 
