@@ -21,6 +21,9 @@ protocol Preferences
 	/// Called before the user actually has done so.
 	func didDisplayFirstUseDictionaryPrompt()
 	
+	/// Use iCloud to sync lookup history.
+	var iCloudSyncEnabled: Bool { get set }
+	
 	/// Reset user's preferences/state.
 	func reset()
 }
@@ -28,6 +31,7 @@ protocol Preferences
 // MARK:- Preferences implementation backed by NSUserDefaults
 
 private let _DICTIONARY_PROMPT_DISPLAYED = "firstUseDictionaryPromptDisplayed"
+private let _USE_REMOTE_KEY = "use_icloud"
 
 extension UserDefaults: Preferences
 {
@@ -41,6 +45,12 @@ extension UserDefaults: Preferences
 		set(true, forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
 	
+	var iCloudSyncEnabled: Bool
+	{
+		get { bool(forKey: _USE_REMOTE_KEY) }
+		set { set(newValue, forKey: _USE_REMOTE_KEY) }
+	}
+	
 	func reset()
 	{
 		removeObject(forKey: _DICTIONARY_PROMPT_DISPLAYED)
@@ -48,4 +58,4 @@ extension UserDefaults: Preferences
 }
 
 /// The preferences/state of the current user.
-let prefs: Preferences = UserDefaults.standard
+var prefs: Preferences = UserDefaults.standard

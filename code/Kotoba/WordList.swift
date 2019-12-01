@@ -137,12 +137,11 @@ extension Array where Element: Equatable
 // MARK:- WordList implementation backed by UserDefaults / NSUbiquitousKeyValueStore
 
 private let _WORD_LIST_KEY = "words"
-private let _USE_REMOTE_KEY = "use_icloud"
 
 var wordListStore: WordListStore
 {
-	get { UserDefaults.standard.bool(forKey: _USE_REMOTE_KEY) ? .iCloud : .local }
-	set { UserDefaults.standard.set(newValue == .iCloud, forKey: _USE_REMOTE_KEY) }
+	get { prefs.iCloudSyncEnabled ? .iCloud : .local }
+	set { prefs.iCloudSyncEnabled = newValue == .iCloud }
 }
 
 extension UserDefaults: WordListStrings, WordListDataSource
