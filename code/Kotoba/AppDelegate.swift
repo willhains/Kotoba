@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		// Reset user defaults for UI tests
 		if ProcessInfo.processInfo.arguments.contains("UITEST")
 		{
+			var words = wordListStore.data
 			prefs.reset()
 			words.clear()
 		}

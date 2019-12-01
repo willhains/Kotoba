@@ -39,7 +39,7 @@ extension WordListViewController: UIActivityItemSource
 	
 	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
 	{
-		return words.asText()
+		return wordListStore.data.asText()
 	}
 	
 	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String
@@ -82,7 +82,7 @@ extension WordListViewController
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
 		// Search the dictionary
-		let word = words[indexPath.row]
+		let word = wordListStore.data[indexPath.row]
 		showDefinition(forWord: word)
 		
 		// Reset the table view
@@ -102,6 +102,7 @@ extension WordListViewController
 	{
 		if editingStyle == .delete
 		{
+			var words = wordListStore.data
 			words.delete(wordAt: indexPath.row)
 			self.tableView.deleteRows(at: [indexPath], with: .automatic)
 		}
@@ -119,13 +120,13 @@ extension WordListViewController
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return words.count
+		return wordListStore.data.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-		cell.textLabel?.text = words[indexPath.row].text
+		cell.textLabel?.text = wordListStore.data[indexPath.row].text
 		prepareTextLabelForDynamicType(label: cell.textLabel)
 		return cell
 	}

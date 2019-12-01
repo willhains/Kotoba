@@ -41,7 +41,7 @@ final class AddWordViewController: UIViewController
 	{
 		debugLog()
 		checkPasteboard()
-//		checkMigration()
+//TODO		checkMigration()
 	}
 }
 
@@ -72,6 +72,7 @@ extension AddWordViewController
 				debugLog("hasDefinition = \(hasDefinition)")
 				if hasDefinition
 				{
+					var words = wordListStore.data
 					words.add(word: word)
 					DispatchQueue.main.async { self.textField.text = nil }
 				}
