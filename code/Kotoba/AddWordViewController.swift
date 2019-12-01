@@ -13,7 +13,26 @@ final class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
 	@IBOutlet weak var tableView: UITableView!
+
+	@IBOutlet weak var suggestionView: UIView!
+	@IBOutlet weak var suggestionLabel: UILabel!
+	@IBOutlet weak var suggestionToggleButton: UIButton!
+
+	@IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
+	@IBOutlet weak var suggestionViewBottomLayoutConstraint: NSLayoutConstraint!
+	@IBOutlet weak var suggestionViewHeightLayoutConstraint: NSLayoutConstraint!
+
+	var suggestionsVisible = false
+	var suggestionHeight = CGFloat(200)
+	let suggestionHeaderHeight = CGFloat(44) // NOTE: This value should match "Header View" in the storyboard
+
+	var haveSuggestions = false // NOTE: This value is true if the pasteboard contained text the last time it was checked
+	var sourcePasteboardString: String?
+	var pasteboardWords: [Word] = []
 	
+	var keyboardVisible = false
+	var keyboardHeight = CGFloat(0)
+
 	deinit
 	{
 		NotificationCenter.default.removeObserver(self)
@@ -22,33 +41,75 @@ final class AddWordViewController: UIViewController
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		prepareKeyboardAvoidance()
+		prepareKeyboardNotifications()
+
+		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "CHOCKTUBA" : "Kotoba"
+		self.textField.placeholder = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE HERE DUH" : "Type a Word"
+		self.suggestionLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE IT LAZY ASS" : "Clipboard Suggestions"
 		
 		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
 		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
+
+		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear, but it also
+		// generates the warning below. If we wait until the tableView is in the view hierarchy (in viewDidAppear) the
+		// keyboard animation is already in progress and it's too late to adjust the width of the top-level view.
+		self.view.layoutIfNeeded()
+/*
+		[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window). This may cause bugs by forcing views inside the table view to load and perform layout without accurate information (e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action altogether if possible, or defer it until the table view has been added to a window. Table view: <UITableView: 0x7f8064035e00; frame = (0 44; 414 156); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x600001310b10>; layer = <CALayer: 0x600001d2d2c0>; contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 0, 0}; dataSource: <Kotoba.AddWordViewController: 0x7f806370ac80>>
+		*/
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
-		
-		startMonitoringPasteboard()
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
 	{
 		debugLog()
 		super.viewWillAppear(animated)
+
+		// TODO: Decide if the keyboard should appear before or after the view.
 		showKeyboard()
+	}
+	
+//	override func viewWillLayoutSubviews() {
+//		debugLog()
+//		super.viewWillLayoutSubviews()
+//	}
+	
+	override func viewDidAppear(_ animated: Bool)
+	{
+		debugLog()
+		super.viewDidAppear(animated)
+
+		// TODO: Decide if the keyboard should appear before or after the view.
+		//showKeyboard()
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		debugLog()
+		super.viewWillDisappear(animated)
+		
+		hideKeyboard()
 	}
 	
 	@objc func applicationDidBecomeActive(notification: NSNotification)
 	{
 		debugLog()
-		checkMigration()
+
+		#if true
+		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
+		let duration: TimeInterval = 0.2
+		UIView.animate(withDuration: duration) {
+			self.updateLayoutFromPasteboard()
+			self.updateLayersForSuggestions()
+			self.updateTableView()
+			self.view.layoutIfNeeded()
+		}
+		#endif
 	}
 }
 
 // MARK:- Async word lookup
-// Solution donated by Craig Hockenberry
 extension AddWordViewController
 {
 	func initiateSearch(forWord word: Word)
@@ -96,13 +157,28 @@ extension AddWordViewController
 			UIApplication.shared.open(url)
 		}
 	}
+	
+	@IBAction func dismissSuggestions(_: AnyObject)
+	{
+		debugLog()
+
+		self.suggestionsVisible.toggle()
+		UIPasteboard.general.ignoreSuggestions = !suggestionsVisible
+
+		let duration: TimeInterval = 0.2
+		UIView.animate(withDuration: duration) {
+			self.updateConstraintsForKeyboardAndSuggestions()
+			self.updateLayersForSuggestions()
+			self.view.layoutIfNeeded()
+		}
+	}
+
 }
 
-// MARK:- Keyboard avoiding
-// Solution adapted from http://stackoverflow.com/a/16044603/554518
+// MARK:- Keyboard notifications
 extension AddWordViewController
 {
-	func prepareKeyboardAvoidance()
+	func prepareKeyboardNotifications()
 	{
 		NotificationCenter.default.addObserver(
 			self,
@@ -116,112 +192,144 @@ extension AddWordViewController
 			object: nil);
 	}
 
+	private func updateConstraintsForKeyboardAndSuggestions()
+	{
+		debugLog("keyboardHeight = \(keyboardHeight), suggestionHeight = \(suggestionHeight)")
+
+		// NOTE: There are two primary views, each with a layout contraint for the bottom of the view.
+		//
+		// The first is the "suggestion view" that attaches either to the top of the keyboard (when shown) or a negative offset
+		// of its height (to hide the view.)
+		//
+		// The second view is the "typing view" that is either attached to the top of the suggestion view (when its visible) or
+		// to the bottom safe area inset (when its not.)
+		
+		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
+		
+		if self.suggestionsVisible	{
+			if self.keyboardVisible {
+				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeight
+				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight
+			}
+			else {
+				self.typingViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom + suggestionHeight
+				self.suggestionViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom
+			}
+		}
+		else {
+			if self.keyboardVisible {
+				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeaderHeight
+				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight - suggestionHeight + suggestionHeaderHeight
+			}
+			else {
+				// TODO: Technically, the safeAreaInsets are the "bottom", but that leaves a weird little bit of the first
+				// sugggestion visible under the home indicator. If the offset is flush against the container view (e.g. 0),
+				// it puts the button and text in the home indicator area. Choose the lesser evil...
+				//let offset = self.view.safeAreaInsets.bottom
+				let offset = CGFloat.zero
+				self.typingViewBottomLayoutConstraint.constant = offset + suggestionHeaderHeight
+				self.suggestionViewBottomLayoutConstraint.constant = offset - suggestionHeight + suggestionHeaderHeight
+			}
+		}
+	}
+	
+	private func updateLayersForSuggestions()
+	{
+		debugLog()
+
+		if self.suggestionsVisible	{
+			self.suggestionToggleButton.layer.transform = CATransform3DIdentity;
+		}
+		else {
+			self.suggestionToggleButton.layer.transform = CATransform3DMakeRotation(CGFloat.pi * 1/4, 0, 0, 1);
+		}
+	}
+
 	@objc func keyboardWillShow(notification: Notification)
 	{
 		let info = notification.userInfo!
-		let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-		additionalSafeAreaInsets.bottom = keyboardSize
+		keyboardVisible = true
+		keyboardHeight = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
+
+		debugLog("keyboardHeight = \(keyboardHeight)")
 
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
+		UIView.animate(withDuration: duration) {
+			self.updateConstraintsForKeyboardAndSuggestions()
+			self.view.layoutIfNeeded()
+		}
 	}
 
 	@objc func keyboardWillHide(notification: Notification)
 	{
+		debugLog()
+
 		let info = notification.userInfo!
-		additionalSafeAreaInsets.bottom = 0
+		keyboardVisible = false
+		keyboardHeight = 0
 
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		UIView.animate(withDuration: duration) { self.view.layoutIfNeeded() }
+		UIView.animate(withDuration: duration) {
+			self.updateConstraintsForKeyboardAndSuggestions()
+			self.view.layoutIfNeeded()
+		}
 	}
+
 }
 
-private let _LAST_PASTEBOARD_TEXT_KEY = "last_pasteboard_text"
-
-// MARK:- Launch behaviour
+// MARK:- Utility
 extension AddWordViewController
 {
 	func showKeyboard()
 	{
 		self.textField.becomeFirstResponder()
 	}
-	
-	func checkMigration()
+
+	func hideKeyboard()
 	{
-		if WordList.useRemote
-		{
-			if WordList.hasLocalData
-			{
-				let alert = UIAlertController(
-					title: "Migrate to iCloud",
-					message: "Do you want to add the words in the local list to iCloud?",
-					preferredStyle: .alert)
-				let alertAction = UIAlertAction(title: "Keep on Local", style: .default)
-				{
-					_ in
-					WordList.useRemote = false
-				}
-				alert.addAction(alertAction)
-				let preferredAction = UIAlertAction(title: "Add to iCloud", style: .default)
-				{
-					_ in
-					self.migrateWordsToRemote()
-				}
-				alert.addAction(preferredAction)
-				alert.preferredAction = preferredAction
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-		else
-		{
-			if WordList.hasRemoteData
-			{
-				let alert = UIAlertController(
-					title: "Migrate to Local Storage",
-					message: "Do you want to move the word list from iCloud to local storage?",
-					preferredStyle: .alert)
-				let alertAction = UIAlertAction(title: "Move to Local", style: .default)
-				{
-					_ in
-					debugLog("migrating remote data")
-					self.migrateWordsToLocal()
-				}
-				alert.addAction(alertAction)
-				let preferredAction = UIAlertAction(title: "Keep on iCloud", style: .default)
-				{
-					_ in
-					debugLog("keeping remote data")
-					WordList.useRemote = true
-				}
-				alert.addAction(preferredAction)
-				alert.preferredAction = preferredAction
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-	}
-	
-	func migrateWordsToRemote()
-	{
-		let localWords = WordList(local: true)
-		let indices = 0..<localWords.count // NOTE: would be cleaner if WordList was a Sequence
-		for index in indices
-		{
-			let localWord = localWords[index]
-			words.add(word: localWord)
-		}
-		localWords.remove()
+		self.textField.resignFirstResponder()
 	}
 
-	func migrateWordsToLocal()
+	func updateLayoutFromPasteboard()
 	{
-		let remoteWords = WordList(local: false)
-		let indices = 0..<remoteWords.count // NOTE: would be cleaner if WordList was a Sequence
-		for index in indices
-		{
-			let remoteWord = remoteWords[index]
-			words.add(word: remoteWord)
+		pasteboardWords = UIPasteboard.general.suggestedWords
+		
+		// NOTE: This isn't the most elegant way to handle the compact height layout (landscape orientation)
+		// but it gets the job done with a minimum amount of work. I'm actually questioning the need for
+		// landscape support: the entire experience feels kinda clunky.
+		let maximumHeight: CGFloat = view.frame.size.height > view.frame.size.width ? 200 : 100
+		
+		var computedSuggestionHeight = suggestionHeaderHeight
+		for row in 0..<pasteboardWords.count {
+			if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) {
+				computedSuggestionHeight += cell.frame.size.height
+			}
+			else {
+				computedSuggestionHeight += 44
+			}
+			if computedSuggestionHeight > maximumHeight {
+				break
+			}
 		}
-		remoteWords.remove()
+		if computedSuggestionHeight > maximumHeight {
+			suggestionHeight = maximumHeight
+		}
+		else {
+			suggestionHeight = computedSuggestionHeight
+		}
+
+		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
+		
+		updateConstraintsForKeyboardAndSuggestions()
+		updateLayersForSuggestions()
+	}
+
+	func updateTableView()
+	{
+		tableView.reloadData()
+		if (pasteboardWords.count > 0) {
+			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
+		}
 	}
 }
 
@@ -241,57 +349,8 @@ extension AddWordViewController: UITextFieldDelegate
 }
 
 // MARK:- Table View delegate/datasource
-
-//  Adapted from https://medium.com/@sorenlind/three-ways-to-enumerate-the-words-in-a-string-using-swift-7da5504f0062
-extension String
-{
-	var words: [String]
-	{
-        var words = [String]()
-		if let range = range(of: self)
-		{
-			self.enumerateSubstrings(in: range, options: .byWords)
-			{
-				(substring, _, _, _) -> () in
-				words.append(substring!)
-			}
-		}
-        return words
-    }
-}
-
-extension Array where Element: Hashable
-{
-	func deDuplicate() -> Array<Element>
-	{
-		var deDuped: [Element] = []
-		var uniques: Set<Element> = Set()
-		for element in self
-		{
-			if !uniques.contains(element)
-			{
-				uniques.insert(element)
-				deDuped.append(element)
-			}
-		}
-		return deDuped
-	}
-}
-
 extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 {
-	private var pasteboardWords: [Word]
-	{
-		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
-		// TODO: Filter out non-words and likely passwords (digits, symbols).
-		UIPasteboard.general.string?
-			.trimmingCharacters(in: .whitespacesAndNewlines)
-			.words
-			.deDuplicate()
-			.map(Word.init)
-			?? []
-	}
-	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
 		return pasteboardWords.count
@@ -307,24 +366,9 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
-		guard indexPath.row > 0 else { return }
+		guard indexPath.row >= 0 else { return }
 		let word = pasteboardWords[indexPath.row]
 		initiateSearch(forWord: word)
 		tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
-	}
-}
-
-extension AddWordViewController: PasteboardWatcherDelegate
-{
-	private func startMonitoringPasteboard()
-	{
-		let pasteboard = PasteboardWatcher()
-		pasteboard.delegate = self
-		pasteboard.startPolling(every: 1)
-	}
-	
-	func pasteboardStringDidChange(newValue: String)
-	{
-		self.tableView.reloadData()
 	}
 }

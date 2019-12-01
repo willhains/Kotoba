@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4440B41C236CF92100369CE8 /* Colors.xcassets */; };
+		44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B821172391CF20004B8142 /* PasteboardWordList.swift */; };
 		44CFA6AB2381F0CB00D7ECCC /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		44FD6CD02389C90F00FF245E /* KotobaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */; };
 		44FD6CD32389CB0E00FF245E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44FD6CD22389CB0E00FF245E /* Settings.bundle */; };
@@ -15,7 +16,7 @@
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
 		B65A4E02238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		B65A4E03238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
-		B6F349A5238C2862002B0757 /* PasteboardWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F349A4238C2862002B0757 /* PasteboardWatcher.swift */; };
+		B6C1049E238ECF94008E9C97 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */; };
 		B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F5588E21F20E8D0053F800 /* Launch.storyboard */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
@@ -48,13 +49,14 @@
 
 /* Begin PBXFileReference section */
 		4440B41C236CF92100369CE8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		44B821172391CF20004B8142 /* PasteboardWordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWordList.swift; sourceTree = "<group>"; };
 		44CFA6AA2381F0CB00D7ECCC /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaNavigationController.swift; sourceTree = "<group>"; };
 		44FD6CD22389CB0E00FF245E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		44FD6CD42389CEC900FF245E /* Kotoba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kotoba.entitlements; sourceTree = "<group>"; };
 		44FD6CD52389CF1B00FF245E /* Setup_iCloud.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Setup_iCloud.txt; sourceTree = "<group>"; };
 		691B8E1520DAB5A100B11216 /* Workarounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workarounds.swift; sourceTree = "<group>"; };
-		B6F349A4238C2862002B0757 /* PasteboardWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardWatcher.swift; sourceTree = "<group>"; };
+		B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B6F5588E21F20E8D0053F800 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
@@ -128,9 +130,10 @@
 				44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */,
 				BE918C511A22A5F5006043CF /* WordListViewController.swift */,
 				BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */,
+				B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */,
 				BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */,
 				BE7599A01D04636E006FBB80 /* WordList.swift */,
-				B6F349A4238C2862002B0757 /* PasteboardWatcher.swift */,
+				44B821172391CF20004B8142 /* PasteboardWordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				691B8E1520DAB5A100B11216 /* Workarounds.swift */,
 				B6F5588E21F20E8D0053F800 /* Launch.storyboard */,
@@ -240,7 +243,7 @@
 				TargetAttributes = {
 					BE918C491A22A5F5006043CF = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 8B38X92RJ6;
+						DevelopmentTeam = RYQWBTQRPT;
 						LastSwiftMigration = 1120;
 					};
 					BEA413B61D1CABB600D177C2 = {
@@ -332,14 +335,15 @@
 			files = (
 				691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */,
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
+				44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */,
 				BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */,
+				B6C1049E238ECF94008E9C97 /* SettingsViewController.swift in Sources */,
 				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
 				BE776E571D09D60700D4A315 /* Preferences.swift in Sources */,
 				44CFA6AB2381F0CB00D7ECCC /* Debug.swift in Sources */,
 				BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */,
 				44FD6CD02389C90F00FF245E /* KotobaNavigationController.swift in Sources */,
 				BE918C501A22A5F5006043CF /* AppDelegate.swift in Sources */,
-				B6F349A5238C2862002B0757 /* PasteboardWatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,11 +501,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = RYQWBTQRPT;
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.Kotoba;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iconfactory.internal.Kotoba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -515,11 +519,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = RYQWBTQRPT;
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.Kotoba;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iconfactory.internal.Kotoba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
