@@ -106,6 +106,8 @@ final class AddWordViewController: UIViewController
 			self.view.layoutIfNeeded()
 		}
 		#endif
+
+		checkMigration()
 	}
 }
 
@@ -135,6 +137,7 @@ extension AddWordViewController
 				debugLog("hasDefinition = \(hasDefinition)")
 				if hasDefinition
 				{
+					var words = wordListStore.data
 					words.add(word: word)
 					DispatchQueue.main.async
 					{
@@ -329,6 +332,34 @@ extension AddWordViewController
 		tableView.reloadData()
 		if (pasteboardWords.count > 0) {
 			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
+		}
+	}
+	
+	func checkMigration()
+	{
+		if prefs.shouldDisplayFirstUseICloudPrompt()
+		{
+			let alert = UIAlertController(
+				title: "Sync with iCloud?",
+				message: "You can turn this off later in Settings.",
+				preferredStyle: .alert)
+			
+			alert.addAction(UIAlertAction(title: "Keep Data Local", style: .default)
+			{
+				_ in
+				prefs.iCloudSyncEnabled = false
+			})
+				
+			alert.addAction(UIAlertAction(title: "Sync via iCloud", style: .default)
+			{
+				_ in
+				prefs.iCloudSyncEnabled = true
+			})
+			
+			present(alert, animated: true, completion: nil)
+			
+			// Update preferences to silence this prompt next time
+			prefs.didDisplayFirstUseICloudPrompt()
 		}
 	}
 }
