@@ -240,11 +240,13 @@ extension AddWordViewController
 	{
 		debugLog()
 
-		if self.suggestionsVisible	{
+		if self.suggestionsVisible
+		{
 			self.suggestionToggleButton.layer.transform = CATransform3DIdentity;
 		}
-		else {
-			self.suggestionToggleButton.layer.transform = CATransform3DMakeRotation(CGFloat.pi * 1/4, 0, 0, 1);
+		else
+		{
+			self.suggestionToggleButton.layer.transform = CATransform3DMakeScale(1.0, -1.0, 1.0)
 		}
 	}
 
@@ -300,6 +302,7 @@ extension AddWordViewController
 		// NOTE: This isn't the most elegant way to handle the compact height layout (landscape orientation)
 		// but it gets the job done with a minimum amount of work. I'm actually questioning the need for
 		// landscape support: the entire experience feels kinda clunky.
+		// CHOCK: I'd be happy to drop landscape support, tbh.
 		let maximumHeight: CGFloat = view.frame.size.height > view.frame.size.width ? 200 : 100
 		
 		var computedSuggestionHeight = suggestionHeaderHeight

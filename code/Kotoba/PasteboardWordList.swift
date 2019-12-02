@@ -12,7 +12,6 @@ private let _IGNORE_STRING_KEY = "ignore_string"
 
 extension UIPasteboard
 {
-
 	var ignoreSuggestions: Bool {
 		get {
 			if let currentString = UIPasteboard.general.string {
