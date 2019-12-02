@@ -240,11 +240,13 @@ extension AddWordViewController
 	{
 		debugLog()
 
-		if self.suggestionsVisible	{
+		if self.suggestionsVisible
+		{
 			self.suggestionToggleButton.layer.transform = CATransform3DIdentity;
 		}
-		else {
-			self.suggestionToggleButton.layer.transform = CATransform3DMakeRotation(CGFloat.pi * 1/4, 0, 0, 1);
+		else
+		{
+			self.suggestionToggleButton.layer.transform = CATransform3DMakeScale(1.0, -1.0, 1.0)
 		}
 	}
 
