@@ -91,7 +91,7 @@
                                                 <color key="textColor" name="appHeaderText"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kx-pn-jaT">
+                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5kx-pn-jaT">
                                                 <rect key="frame" x="270" y="2" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="B67-tk-mQz"/>
@@ -99,18 +99,19 @@
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" image="chevron.down" catalog="system"/>
-                                                <connections>
-                                                    <action selector="dismissSuggestions:" destination="JNO-hA-UHa" eventType="touchUpInside" id="5pz-qJ-Cr8"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="appHeader"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="5kx-pn-jaT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZZ5-YD-TOc" secondAttribute="trailing" constant="10" id="33Y-qP-8SR"/>
                                             <constraint firstItem="ZZ5-YD-TOc" firstAttribute="centerY" secondItem="eRG-36-TTD" secondAttribute="centerY" id="Ije-ep-niO"/>
                                             <constraint firstAttribute="height" constant="44" id="UqQ-bX-Sq4"/>
                                             <constraint firstItem="5kx-pn-jaT" firstAttribute="centerY" secondItem="eRG-36-TTD" secondAttribute="centerY" id="lIC-RP-3Bk"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="k6O-hU-tA4" appends="YES" id="HhP-Xf-Ct2"/>
+                                        </connections>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPq-oQ-a3d">
                                         <rect key="frame" x="0.0" y="44" width="320" height="56"/>
@@ -192,6 +193,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGZ-IU-TR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="k6O-hU-tA4">
+                    <connections>
+                        <action selector="dismissSuggestions:" destination="JNO-hA-UHa" id="4CW-aP-zAR"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="706.875" y="116.19718309859155"/>
         </scene>
