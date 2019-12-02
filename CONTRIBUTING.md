@@ -1,6 +1,6 @@
 ## How to Contribute
 
-1. Create an [issue](issues/).
+1. Create an [issue](/willhains/Kotoba/issues/new).
 1. Fork.
 2. Create your feature branch (`git checkout -b issues/<issue-number>`).
 3. Commit your changes (`git commit -am 'Add some feature'`).
