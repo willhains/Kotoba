@@ -14,10 +14,53 @@ import Foundation
 struct Word
 {
 	let text: String
+	
+	// TODO #14: This is where metadata would go.
+	
+	func canonicalise() -> String
+	{
+		return self.text.lowercased()
+	}
+}
+
+/// Choices for where to store the word list.
+enum WordListStore
+{
+	case local
+	case iCloud
+	
+	var data: WordListDataSource
+	{
+		switch self
+		{
+			case .local: return UserDefaults.standard
+			case .iCloud: return NSUbiquitousKeyValueStore.default
+		}
+	}
+}
+
+/// Current selection of word list store.
+var wordListStore: WordListStore
+{
+	get { prefs.iCloudSyncEnabled ? .iCloud : .local }
+
+	set
+	{
+		prefs.iCloudSyncEnabled = newValue == .iCloud
+		
+		// Merge word lists
+		var local: WordListStrings = UserDefaults.standard
+		var cloud: WordListStrings = NSUbiquitousKeyValueStore.default
+		for word in local.wordStrings where !cloud.wordStrings.contains(word)
+		{
+			cloud.wordStrings.insert(word, at: 0)
+		}
+		local.wordStrings = cloud.wordStrings
+	}
 }
 
 /// Model of user's saved words.
-protocol WordListable
+protocol WordListDataSource
 {
 	/// Access saved words by index.
 	subscript(index: Int) -> Word { get }
@@ -26,16 +69,62 @@ protocol WordListable
 	var count: Int { get }
 	
 	/// Add `word` to the word list.
-	func add(word: Word)
+	mutating func add(word: Word)
 	
 	/// Delete the word at `index` from the word list.
-	func delete(wordAt index: Int)
+	mutating func delete(wordAt index: Int)
 	
 	/// Delete all words from the word list.
-	func clear()
+	mutating func clear()
+	
+	/// All words, delimited by newlines
+	func asText() -> String
+}
+
+/// Internal persistence of word list as an array of strings.
+protocol WordListStrings
+{
+	var wordStrings: [String] { get set }
+}
+
+// Default implementations
+extension WordListDataSource where Self: WordListStrings
+{
+	subscript(index: Int) -> Word
+	{
+		get { return Word(text: wordStrings[index]) }
+		set { wordStrings[index] = newValue.text }
+	}
+	
+	var count: Int
+	{
+		return wordStrings.count
+	}
+	
+	mutating func add(word: Word)
+	{
+		// Prevent duplicates; move to top of list instead
+		wordStrings.add(possibleDuplicate: word.canonicalise())
+	}
+	
+	mutating func delete(wordAt index: Int)
+	{
+		wordStrings.remove(at: index)
+	}
+	
+	mutating func clear()
+	{
+		wordStrings = []
+	}
+	
+	func asText() -> String
+	{
+		return wordStrings.joined(separator: "\n")
+	}
 }
 
 // MARK:- Array extensions for WordList
+// TODO #14: Consider changing Array to Set, and sorting by date added.
 extension Array where Element: Equatable
 {
 	/// Remove the first matching `element`, if it exists.
@@ -55,127 +144,24 @@ extension Array where Element: Equatable
 	}
 }
 
-// MARK:- WordList implementation backed by NSUserDefaults
+// MARK:- WordListDataSource implementation backed by UserDefaults / NSUbiquitousKeyValueStore
 
 private let _WORD_LIST_KEY = "words"
-private let _USE_REMOTE_KEY = "use_icloud"
 
-class WordList
+extension UserDefaults: WordListStrings, WordListDataSource
 {
-	class var useRemote: Bool
+	var wordStrings: [String]
 	{
-		get
-		{
-			return UserDefaults.standard.bool(forKey: _USE_REMOTE_KEY)
-		}
-		set
-		{
-			UserDefaults.standard.set(newValue, forKey: _USE_REMOTE_KEY)
-			UserDefaults.standard.synchronize()
-		}
-	}
-
-	class var hasLocalData: Bool
-	{
-		return (UserDefaults.standard.object(forKey: _WORD_LIST_KEY) as? [String]) != nil
-	}
-
-	class var hasRemoteData: Bool
-	{
-		return (NSUbiquitousKeyValueStore.default.object(forKey: _WORD_LIST_KEY) as? [String]) != nil
-	}
-
-	var local: Bool
-	
-	init(local: Bool = true)
-	{
-		self.local = local
-	}
-	
-	fileprivate var _words: [String]
-	{
-		get
-		{
-			if local
-			{
-				return UserDefaults.standard.object(forKey: _WORD_LIST_KEY) as? [String] ?? []
-			}
-			else
-			{
-				return NSUbiquitousKeyValueStore.default.object(forKey: _WORD_LIST_KEY) as? [String] ?? []
-			}
-			
-		}
-		set(words)
-		{
-			if local
-			{
-				UserDefaults.standard.set(words, forKey: _WORD_LIST_KEY)
-			}
-			else
-			{
-				NSUbiquitousKeyValueStore.default.set(words, forKey: _WORD_LIST_KEY)
-			}
-		}
-	}
-	
-	func remove()
-	{
-		if local
-		{
-			UserDefaults.standard.removeObject(forKey: _WORD_LIST_KEY)
-		}
-		else
-		{
-			NSUbiquitousKeyValueStore.default.removeObject(forKey: _WORD_LIST_KEY)
-		}
-	}
-
-	subscript(index: Int) -> Word
-	{
-		get { return Word(text: _words[index]) }
-	}
-	
-	var count: Int { return _words.count }
-	
-	func add(word: Word)
-	{
-		var words = _words
-		let lowercase = word.text.lowercased()
-		
-		// Prevent duplicates; move to top of list instead
-		words.add(possibleDuplicate: lowercase)
-		
-		_words = words
-	}
-	
-	func delete(wordAt index: Int)
-	{
-		var words = _words
-		words.remove(at: index)
-		_words = words
-	}
-	
-	func clear()
-	{
-		_words = []
-	}
-	
-	func asText() -> String
-	{
-		return _words.joined(separator: "\n")
+		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
+		set { set(newValue, forKey: _WORD_LIST_KEY) }
 	}
 }
 
-/// The word list model for current user.
-var words: WordList
+extension NSUbiquitousKeyValueStore: WordListStrings, WordListDataSource
 {
-	if WordList.useRemote
+	var wordStrings: [String]
 	{
-		return WordList(local: false)
-	}
-	else
-	{
-		return WordList(local: true)
+		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
+		set { NSUbiquitousKeyValueStore.default.set(newValue, forKey: _WORD_LIST_KEY) }
 	}
 }
