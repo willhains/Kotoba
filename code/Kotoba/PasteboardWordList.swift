@@ -61,6 +61,14 @@ extension UIPasteboard
 		}
 	}
 
+	var lines: [String]
+	{
+		return string?.split(separator: "\n")
+			.map { $0.trimmingCharacters(in: .whitespaces) }
+			.filter { !$0.isEmpty }
+			.removingDuplicates()
+			?? []
+	}
 }
 
 extension Array where Element: Hashable

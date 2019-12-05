@@ -10,46 +10,45 @@ import Foundation
 import UIKit
 import MobileCoreServices
 
-final class SettingsViewController: UITableViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
+final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
-	let iCloudSyncSwitch = UISwitch()
+	@IBOutlet weak var iCloudSyncSwitch: UISwitch!
+	@IBOutlet weak var clipboardImportButton: UIView!
+	@IBOutlet weak var clipboardWordCount: UILabel!
+	@IBOutlet weak var fileImportButton: UIView!
+	@IBOutlet var clipboardButtonTap: UITapGestureRecognizer!
+	@IBOutlet var fileButtonTap: UITapGestureRecognizer!
 	
-	@IBOutlet var iCloudSyncCell: UITableViewCell!
+	override func viewDidLoad()
+	{
+		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
+		
+		let borderColour = UIColor(named: "appTint")!.cgColor
+		clipboardImportButton.layer.borderColor = borderColour
+		fileImportButton.layer.borderColor = borderColour
+	}
 	
 	override func viewWillAppear(_ animated: Bool)
 	{
 		_refreshViews()
 	}
 	
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+	@IBAction func importFromClipboard(_ sender: Any)
 	{
-		// Import Words
-		if indexPath.section == 1
-		{
-			// Import words from clipboard
-			if indexPath.row == 0
-			{
-				debugLog("Importing from clipboard")
-				if let text = UIPasteboard.general.string { _import(newlineDelimitedWords: text) }
-			}
-			
-			// Import words from a file
-			else if indexPath.row == 1
-			{
-				debugLog("Importing from file")
-				_importFromFile()
-			}
-		}
-		
-		// Un-highlight tapped row
-		tableView.deselectRow(at: indexPath, animated: true)
+		debugLog("Importing from clipboard")
+		if let text = UIPasteboard.general.string { _import(newlineDelimitedWords: text) }
+	}
+	
+	@IBAction func importFromFile(_ sender: Any)
+	{
+		debugLog("Importing from file")
+		_importFromFile()
 	}
 	
 	private func _refreshViews()
 	{
 		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)
-		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
-		iCloudSyncCell.accessoryView = iCloudSyncSwitch
+		clipboardWordCount.text = "\(UIPasteboard.general.lines.count) words"
 	}
 	
 	@objc private func _switchWordListStore()
