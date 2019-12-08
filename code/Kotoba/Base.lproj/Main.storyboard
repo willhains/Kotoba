@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -337,7 +337,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="Moe-6o-4JJ" appends="YES" id="EUq-od-tMv"/>
+                                                                    <outletCollection property="gestureRecognizers" destination="bjv-M7-Aiy" appends="YES" id="Eon-JQ-o5T"/>
                                                                 </connections>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="WLQ-dC-7XW" userLabel="File Import Button">
@@ -389,7 +389,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <outletCollection property="gestureRecognizers" destination="DjB-wH-Gsb" appends="YES" id="ibm-4B-0sF"/>
+                                                                    <outletCollection property="gestureRecognizers" destination="1Vf-gd-Fki" appends="YES" id="C3L-4z-MWh"/>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
@@ -447,32 +447,32 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="H3q-1o-Aor"/>
                     <connections>
-                        <outlet property="clipboardButtonTap" destination="Moe-6o-4JJ" id="IvK-hv-OpV"/>
+                        <outlet property="clipboardButtonTap" destination="bjv-M7-Aiy" id="btZ-RJ-fMf"/>
                         <outlet property="clipboardImportButton" destination="Kbp-3I-DOl" id="ZRg-TC-x9R"/>
                         <outlet property="clipboardWordCount" destination="NcW-3c-WBI" id="QLr-PZ-9x6"/>
-                        <outlet property="fileButtonTap" destination="DjB-wH-Gsb" id="VCH-aj-2eG"/>
+                        <outlet property="fileButtonTap" destination="1Vf-gd-Fki" id="QV4-c1-zdj"/>
                         <outlet property="fileImportButton" destination="WLQ-dC-7XW" id="yq9-dX-ox0"/>
                         <outlet property="iCloudSyncSwitch" destination="Yha-M8-X3I" id="iG8-0F-IfK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yzo-Dg-ceI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Moe-6o-4JJ">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="bjv-M7-Aiy">
                     <connections>
-                        <action selector="importFromClipboard:" destination="5vB-j0-vQp" id="f4d-MP-zev"/>
+                        <action selector="importFromClipboard:" destination="5vB-j0-vQp" id="6ga-Xq-EIR"/>
                     </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="DjB-wH-Gsb">
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.0" id="1Vf-gd-Fki" userLabel="Text File Button Tap">
                     <connections>
-                        <action selector="importFromFile:" destination="5vB-j0-vQp" id="dEh-Gz-Qpj"/>
+                        <action selector="importFromFile:" destination="5vB-j0-vQp" id="2Us-yU-lnm"/>
                     </connections>
-                </tapGestureRecognizer>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1560" y="-212.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="book" catalog="system" width="64" height="50"/>
-        <image name="chevron.down" catalog="system" width="32" height="32"/>
+        <image name="chevron.down" catalog="system" width="64" height="36"/>
         <image name="doc.on.clipboard" catalog="system" width="58" height="64"/>
         <image name="folder.fill" catalog="system" width="64" height="46"/>
         <image name="gear" catalog="system" width="64" height="58"/>

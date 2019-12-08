@@ -125,6 +125,8 @@ extension AddWordViewController
 		// proceeds on a background queue. If there's a definition, the text field is cleared: if you spend little time
 		// reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really
 		// quick, you can see it not appear in the History view, too. Better this than slowness.
+		//
+		// TODO: This has to be a regression in UIReferenceLibraryViewController. I'll file a radar for this.
 		
 		self.showDefinition(forWord: word)
 		{

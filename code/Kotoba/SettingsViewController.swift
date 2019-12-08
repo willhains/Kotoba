@@ -16,8 +16,8 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	@IBOutlet weak var clipboardImportButton: UIView!
 	@IBOutlet weak var clipboardWordCount: UILabel!
 	@IBOutlet weak var fileImportButton: UIView!
-	@IBOutlet var clipboardButtonTap: UITapGestureRecognizer!
-	@IBOutlet var fileButtonTap: UITapGestureRecognizer!
+	@IBOutlet var clipboardButtonTap: UILongPressGestureRecognizer!
+	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
 	
 	override func viewDidLoad()
 	{
@@ -33,16 +33,35 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		_refreshViews()
 	}
 	
-	@IBAction func importFromClipboard(_ sender: Any)
+	@IBAction func importFromClipboard(_ gesture: UITapGestureRecognizer)
 	{
-		debugLog("Importing from clipboard")
-		if let text = UIPasteboard.general.string { _import(newlineDelimitedWords: text) }
+		if gesture.state == .began
+		{
+			clipboardImportButton.backgroundColor = .systemFill
+		}
+		else if gesture.state == .ended
+		{
+			clipboardImportButton.backgroundColor = .tertiarySystemFill
+			debugLog("Importing from clipboard")
+			if let text = UIPasteboard.general.string
+			{
+				_import(newlineDelimitedWords: text)
+			}
+		}
 	}
 	
-	@IBAction func importFromFile(_ sender: Any)
+	@IBAction func importFromFile(_ gesture: UITapGestureRecognizer)
 	{
-		debugLog("Importing from file")
-		_importFromFile()
+		if gesture.state == .began
+		{
+			fileImportButton.backgroundColor = .systemFill
+		}
+		else if gesture.state == .ended
+		{
+			fileImportButton.backgroundColor = .tertiarySystemFill
+			debugLog("Importing from file")
+			_importFromFile()
+		}
 	}
 	
 	private func _refreshViews()
