@@ -73,7 +73,9 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	private func _refreshViews()
 	{
 		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)
-		clipboardWordCount.text = "\(UIPasteboard.general.lines.count) words"
+		// TODO: Pluralise properly, allowing localisation --> https://medium.com/@vitaliikuznetsov/plurals-localization-using-stringsdict-in-ios-a910aab8c28c
+		let count = UIPasteboard.general.lines.count
+		clipboardWordCount.text = "\(count) \(count == 1 ? "word" : "words")"
 	}
 	
 	@objc private func _switchWordListStore()
