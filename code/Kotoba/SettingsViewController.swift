@@ -12,6 +12,7 @@ import MobileCoreServices
 
 final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
+	@IBOutlet weak var titleBar: UILabel!
 	@IBOutlet weak var iCloudSyncSwitch: UISwitch!
 	@IBOutlet weak var clipboardImportButton: UIView!
 	@IBOutlet weak var clipboardWordCount: UILabel!
@@ -22,6 +23,11 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	override func viewDidLoad()
 	{
 		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
+		
+		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
+		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
+		self.titleBar?.font = titleFont
+		self.titleBar?.textColor = titleColor
 		
 		let borderColour = UIColor(named: "appTint")!.cgColor
 		clipboardImportButton.layer.borderColor = borderColour
