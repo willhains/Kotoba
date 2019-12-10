@@ -21,15 +21,20 @@ extension UIViewController
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
 		if prefs.shouldDisplayFirstUseDictionaryPrompt()
 		{
-			let alert = UIAlertController(
-				title: "Add Dictionaries",
-				message: """
-                    Have you set up your iOS dictionaries?
-                    Tap "Manage" below to download dictionaries for the languages you want.
-                    """,
-				preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "Got It", style: .default, handler: nil))
-			dictionaryViewController.present(alert, animated: true, completion: nil)
+			debugLog("First-time lookup. Let's see if the user has dictionaries set up...")
+			if !UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: "OK")
+			{
+				debugLog("No dictionaries set up. Prompting user.")
+				let alert = UIAlertController(
+					title: "Add Dictionaries",
+					message: """
+						Have you set up your iOS dictionaries?
+						Tap "Manage" below to download dictionaries for the languages you want.
+						""",
+					preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: "Got It", style: .default, handler: nil))
+				dictionaryViewController.present(alert, animated: true, completion: nil)
+			}
 			
 			// Update preferences to silence this prompt next time
 			prefs.didDisplayFirstUseDictionaryPrompt()

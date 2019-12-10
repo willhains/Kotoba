@@ -71,11 +71,6 @@ final class AddWordViewController: UIViewController
 		showKeyboard()
 	}
 	
-//	override func viewWillLayoutSubviews() {
-//		debugLog()
-//		super.viewWillLayoutSubviews()
-//	}
-	
 	override func viewDidAppear(_ animated: Bool)
 	{
 		debugLog()
