@@ -28,10 +28,6 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
 		self.titleBar?.font = titleFont
 		self.titleBar?.textColor = titleColor
-		
-		let borderColour = UIColor(named: "appTint")!.cgColor
-		clipboardImportButton.layer.borderColor = borderColour
-		fileImportButton.layer.borderColor = borderColour
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -138,6 +134,37 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 				preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
+		}
+	}
+}
+
+@IBDesignable class RoundedView: UIView
+{
+    @IBInspectable var cornerRadius: CGFloat
+	{
+        get { layer.cornerRadius }
+        set
+		{
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+	
+	@IBInspectable var borderWidth: CGFloat
+	{
+        get { layer.borderWidth }
+		set
+		{
+			layer.borderWidth = newValue
+		}
+	}
+	
+	@IBInspectable var borderColor: UIColor?
+	{
+		get { layer.borderColor.map { UIColor.init(cgColor: $0) } }
+		set
+		{
+			layer.borderColor = newValue?.cgColor
 		}
 	}
 }
