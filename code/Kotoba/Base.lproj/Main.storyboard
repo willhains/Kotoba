@@ -173,9 +173,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu">
                             <connections>
                                 <action selector="openSettings:" destination="JNO-hA-UHa" id="qYM-St-E6o"/>
-                                <segue destination="5vB-j0-vQp" kind="popoverPresentation" popoverAnchorBarButtonItem="V6n-v4-Uiu" id="yVC-Xq-t5O">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="5vB-j0-vQp" kind="presentation" id="yVC-Xq-t5O"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" image="book" catalog="system" id="lxn-9Q-keE">
@@ -234,19 +232,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C7U-xQ-mKc">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C7U-xQ-mKc" userLabel="Screen Layout">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zq7-gt-fPJ">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHH-UZ-zsA">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zq7-gt-fPJ">
+                                                <rect key="frame" x="128.5" y="12" width="63.5" height="20.5"/>
+                                                <color key="backgroundColor" name="appBarTint"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CX-UF-5v6">
+                                                <rect key="frame" x="273" y="7" width="37" height="30"/>
+                                                <state key="normal" title="Done"/>
+                                                <connections>
+                                                    <action selector="closeSettings:" destination="5vB-j0-vQp" eventType="touchUpInside" id="BNJ-8G-Xn1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" name="appBarTint"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="1r7-eW-M4f"/>
+                                            <constraint firstItem="Zq7-gt-fPJ" firstAttribute="centerY" secondItem="LHH-UZ-zsA" secondAttribute="centerY" id="DXP-iH-1zA"/>
+                                            <constraint firstItem="4CX-UF-5v6" firstAttribute="centerY" secondItem="LHH-UZ-zsA" secondAttribute="centerY" id="be7-lT-hGR"/>
+                                            <constraint firstAttribute="trailing" secondItem="4CX-UF-5v6" secondAttribute="trailing" constant="10" id="dHI-Mc-ePw"/>
+                                            <constraint firstItem="Zq7-gt-fPJ" firstAttribute="centerX" secondItem="LHH-UZ-zsA" secondAttribute="centerX" id="hbr-4y-PhA"/>
+                                            <constraint firstAttribute="height" constant="44" id="wBP-Bx-Qdi"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txi-oX-P0x">
                                         <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                                         <subviews>
@@ -476,7 +491,7 @@
                             <constraint firstItem="C7U-xQ-mKc" firstAttribute="top" secondItem="9X2-HW-hRp" secondAttribute="top" id="DAT-1J-BC0"/>
                             <constraint firstItem="C7U-xQ-mKc" firstAttribute="leading" secondItem="9X2-HW-hRp" secondAttribute="leading" id="HbV-f8-HQD"/>
                             <constraint firstItem="C7U-xQ-mKc" firstAttribute="trailing" secondItem="9X2-HW-hRp" secondAttribute="trailing" id="IMA-yh-dx5"/>
-                            <constraint firstItem="C7U-xQ-mKc" firstAttribute="bottom" secondItem="9X2-HW-hRp" secondAttribute="bottom" id="NPQ-DO-hXo"/>
+                            <constraint firstItem="C7U-xQ-mKc" firstAttribute="bottom" secondItem="aaD-5f-bHY" secondAttribute="bottom" id="NPQ-DO-hXo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9X2-HW-hRp"/>
                     </view>

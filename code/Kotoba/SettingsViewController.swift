@@ -39,6 +39,11 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		_refreshViews()
 	}
 	
+	@IBAction func closeSettings(_ sender: Any)
+	{
+		self.dismiss(animated: true, completion: nil)
+	}
+	
 	@IBAction func importFromClipboard(_ gesture: UITapGestureRecognizer)
 	{
 		if gesture.state == .began
@@ -134,11 +139,5 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
 		}
-	}
-	
-	func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController)
-	{
-		debugLog("import was cancelled")
-		dismiss(animated: true, completion: nil)
 	}
 }
