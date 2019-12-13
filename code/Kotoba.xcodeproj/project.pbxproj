@@ -240,7 +240,7 @@
 				TargetAttributes = {
 					BE918C491A22A5F5006043CF = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = RYQWBTQRPT;
+						DevelopmentTeam = 8B38X92RJ6;
 						LastSwiftMigration = 1120;
 					};
 					BEA413B61D1CABB600D177C2 = {
@@ -497,12 +497,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
-				DEVELOPMENT_TEAM = RYQWBTQRPT;
+				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iconfactory.internal.Kotoba;
+				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.Kotoba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -516,12 +516,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
-				DEVELOPMENT_TEAM = RYQWBTQRPT;
+				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iconfactory.internal.Kotoba;
+				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.Kotoba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

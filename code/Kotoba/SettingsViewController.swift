@@ -12,20 +12,22 @@ import MobileCoreServices
 
 final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
+	@IBOutlet weak var titleBar: UILabel!
 	@IBOutlet weak var iCloudSyncSwitch: UISwitch!
 	@IBOutlet weak var clipboardImportButton: UIView!
 	@IBOutlet weak var clipboardWordCount: UILabel!
 	@IBOutlet weak var fileImportButton: UIView!
-	@IBOutlet var clipboardButtonTap: UITapGestureRecognizer!
-	@IBOutlet var fileButtonTap: UITapGestureRecognizer!
+	@IBOutlet var clipboardButtonTap: UILongPressGestureRecognizer!
+	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
 	
 	override func viewDidLoad()
 	{
 		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
 		
-		let borderColour = UIColor(named: "appTint")!.cgColor
-		clipboardImportButton.layer.borderColor = borderColour
-		fileImportButton.layer.borderColor = borderColour
+		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
+		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
+		self.titleBar?.font = titleFont
+		self.titleBar?.textColor = titleColor
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -33,22 +35,48 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		_refreshViews()
 	}
 	
-	@IBAction func importFromClipboard(_ sender: Any)
+	@IBAction func closeSettings(_ sender: Any)
 	{
-		debugLog("Importing from clipboard")
-		if let text = UIPasteboard.general.string { _import(newlineDelimitedWords: text) }
+		self.dismiss(animated: true, completion: nil)
 	}
 	
-	@IBAction func importFromFile(_ sender: Any)
+	@IBAction func importFromClipboard(_ gesture: UITapGestureRecognizer)
 	{
-		debugLog("Importing from file")
-		_importFromFile()
+		if gesture.state == .began
+		{
+			clipboardImportButton.backgroundColor = .systemFill
+		}
+		else if gesture.state == .ended
+		{
+			clipboardImportButton.backgroundColor = .tertiarySystemFill
+			debugLog("Importing from clipboard")
+			if let text = UIPasteboard.general.string
+			{
+				_import(newlineDelimitedWords: text)
+			}
+		}
+	}
+	
+	@IBAction func importFromFile(_ gesture: UITapGestureRecognizer)
+	{
+		if gesture.state == .began
+		{
+			fileImportButton.backgroundColor = .systemFill
+		}
+		else if gesture.state == .ended
+		{
+			fileImportButton.backgroundColor = .tertiarySystemFill
+			debugLog("Importing from file")
+			_importFromFile()
+		}
 	}
 	
 	private func _refreshViews()
 	{
 		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)
-		clipboardWordCount.text = "\(UIPasteboard.general.lines.count) words"
+		// TODO: Pluralise properly, allowing localisation --> https://medium.com/@vitaliikuznetsov/plurals-localization-using-stringsdict-in-ios-a910aab8c28c
+		let count = UIPasteboard.general.lines.count
+		clipboardWordCount.text = "\(count) \(count == 1 ? "word" : "words")"
 	}
 	
 	@objc private func _switchWordListStore()
@@ -108,10 +136,35 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			self.present(alert, animated: true, completion: nil)
 		}
 	}
-	
-	func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController)
+}
+
+@IBDesignable class RoundedView: UIView
+{
+    @IBInspectable var cornerRadius: CGFloat
 	{
-		debugLog("import was cancelled")
-		dismiss(animated: true, completion: nil)
+        get { layer.cornerRadius }
+        set
+		{
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+	
+	@IBInspectable var borderWidth: CGFloat
+	{
+        get { layer.borderWidth }
+		set
+		{
+			layer.borderWidth = newValue
+		}
+	}
+	
+	@IBInspectable var borderColor: UIColor?
+	{
+		get { layer.borderColor.map { UIColor.init(cgColor: $0) } }
+		set
+		{
+			layer.borderColor = newValue?.cgColor
+		}
 	}
 }
