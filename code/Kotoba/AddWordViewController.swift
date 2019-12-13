@@ -46,10 +46,6 @@ final class AddWordViewController: UIViewController
 		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "CHOCKTUBA" : "Kotoba"
 		self.textField.placeholder = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE HERE DUH" : "Type a Word"
 		self.suggestionLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE IT LAZY ASS" : "Clipboard Suggestions"
-		
-		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
-		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
-		self.navigationController?.navigationBar.titleTextAttributes = [ .font: titleFont, .foregroundColor: titleColor ]
 
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear, but it also
 		// generates the warning below. If we wait until the tableView is in the view hierarchy (in viewDidAppear) the
