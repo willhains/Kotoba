@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -173,7 +173,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Settings" image="gear" catalog="system" id="V6n-v4-Uiu">
                             <connections>
                                 <action selector="openSettings:" destination="JNO-hA-UHa" id="qYM-St-E6o"/>
-                                <segue destination="5vB-j0-vQp" kind="presentation" id="yVC-Xq-t5O"/>
+                                <segue destination="iOh-Bk-xuP" kind="presentation" id="VVB-vN-LCD"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" image="book" catalog="system" id="lxn-9Q-keE">
@@ -224,6 +224,26 @@
             </objects>
             <point key="canvasLocation" x="-158" y="116"/>
         </scene>
+        <!--Kotoba Navigation Controller-->
+        <scene sceneID="OJm-QV-env">
+            <objects>
+                <navigationController id="iOh-Bk-xuP" customClass="KotobaNavigationController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ycd-Lh-bxL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="appBarTint"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="appBarText"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5vB-j0-vQp" kind="relationship" relationship="rootViewController" id="O7M-xZ-EUR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kNX-45-Qbg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="-231"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="qm9-WK-nS5">
             <objects>
@@ -233,37 +253,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C7U-xQ-mKc" userLabel="Screen Layout">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="56" width="320" height="404"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHH-UZ-zsA">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zq7-gt-fPJ">
-                                                <rect key="frame" x="128.5" y="12" width="63.5" height="20.5"/>
-                                                <color key="backgroundColor" name="appBarTint"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CX-UF-5v6">
-                                                <rect key="frame" x="273" y="7" width="37" height="30"/>
-                                                <state key="normal" title="Done"/>
-                                                <connections>
-                                                    <action selector="closeSettings:" destination="5vB-j0-vQp" eventType="touchUpInside" id="BNJ-8G-Xn1"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" name="appBarTint"/>
-                                        <constraints>
-                                            <constraint firstItem="Zq7-gt-fPJ" firstAttribute="centerY" secondItem="LHH-UZ-zsA" secondAttribute="centerY" id="DXP-iH-1zA"/>
-                                            <constraint firstItem="4CX-UF-5v6" firstAttribute="centerY" secondItem="LHH-UZ-zsA" secondAttribute="centerY" id="be7-lT-hGR"/>
-                                            <constraint firstAttribute="trailing" secondItem="4CX-UF-5v6" secondAttribute="trailing" constant="10" id="dHI-Mc-ePw"/>
-                                            <constraint firstItem="Zq7-gt-fPJ" firstAttribute="centerX" secondItem="LHH-UZ-zsA" secondAttribute="centerX" id="hbr-4y-PhA"/>
-                                            <constraint firstAttribute="height" constant="44" id="wBP-Bx-Qdi"/>
-                                        </constraints>
-                                    </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txi-oX-P0x">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="404"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="c7e-qr-Hev" userLabel="Settings Layout">
                                                 <rect key="frame" x="20" y="20" width="280" height="547.5"/>
@@ -492,7 +485,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" name="appBarTint"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="C7U-xQ-mKc" firstAttribute="top" secondItem="9X2-HW-hRp" secondAttribute="top" id="DAT-1J-BC0"/>
                             <constraint firstItem="C7U-xQ-mKc" firstAttribute="leading" secondItem="9X2-HW-hRp" secondAttribute="leading" id="HbV-f8-HQD"/>
@@ -501,7 +494,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9X2-HW-hRp"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Settings" id="H3q-1o-Aor"/>
+                    <navigationItem key="navigationItem" title="Settings" id="H3q-1o-Aor">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="5Cz-nw-gVp">
+                            <connections>
+                                <action selector="closeSettings:" destination="5vB-j0-vQp" id="RId-vV-R0V"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="clipboardButtonTap" destination="bjv-M7-Aiy" id="btZ-RJ-fMf"/>
                         <outlet property="clipboardImportButton" destination="Kbp-3I-DOl" id="ZRg-TC-x9R"/>
@@ -509,7 +508,6 @@
                         <outlet property="fileButtonTap" destination="1Vf-gd-Fki" id="QV4-c1-zdj"/>
                         <outlet property="fileImportButton" destination="WLQ-dC-7XW" id="yq9-dX-ox0"/>
                         <outlet property="iCloudSyncSwitch" destination="Yha-M8-X3I" id="iG8-0F-IfK"/>
-                        <outlet property="titleBar" destination="Zq7-gt-fPJ" id="IlV-Kl-3tl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yzo-Dg-ceI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -524,7 +522,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1560" y="-212.5"/>
+            <point key="canvasLocation" x="2453" y="-231"/>
         </scene>
     </scenes>
     <resources>
@@ -536,6 +534,9 @@
         <image name="gear" catalog="system" width="64" height="58"/>
         <namedColor name="appBackground">
             <color red="0.92100000381469727" green="0.92100000381469727" blue="0.92100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appBarText">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appBarText">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
