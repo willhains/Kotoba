@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -259,17 +259,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="404"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="c7e-qr-Hev" userLabel="Settings Layout">
-                                                <rect key="frame" x="20" y="20" width="280" height="568"/>
+                                                <rect key="frame" x="20" y="20" width="280" height="716.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5dj-d9-na8" userLabel="Sync Settings">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="101.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="117"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4FS-p4-K3X" userLabel="iCloud Sync Setting">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4FS-p4-K3X" userLabel="iCloud Sync Setting">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sync via iCloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-HZ-c9J">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="31"/>
-                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                        <rect key="frame" x="0.0" y="5.5" width="122" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -279,77 +279,74 @@
                                                                     </switch>
                                                                 </subviews>
                                                             </stackView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPe-FK-JXL" userLabel="iCloud Sync Explainer">
-                                                                <rect key="frame" x="0.0" y="39" width="280" height="62.5"/>
-                                                                <string key="text">Kotoba remembers words you look up, and can sync them privately via iCloud to your other devices. Kotoba does not send your data anywhere else.</string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPe-FK-JXL" userLabel="iCloud Sync Explainer">
+                                                                <rect key="frame" x="0.0" y="39" width="280" height="78"/>
+                                                                <string key="text">Kotoba remembers the words you look up, and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere.</string>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RuO-30-X9q" userLabel="Import">
-                                                        <rect key="frame" x="0.0" y="130.5" width="280" height="166.5"/>
+                                                        <rect key="frame" x="0.0" y="146" width="280" height="282"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Words" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llM-28-al3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15y-9S-NZ3" userLabel="Import Explainer">
-                                                                <rect key="frame" x="0.0" y="39" width="280" height="62.5"/>
-                                                                <string key="text">Import a list of words, one word per line. Kotoba won't check if imported words exist in the dictionary, but will skip words that are already in your lookup history.</string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <rect key="frame" x="0.0" y="39" width="280" height="98"/>
+                                                                <string key="text">Import a list of words, one word per line. Kotoba will not check if words exist in the dictionary, but will skip words that are already present in your lookup history.</string>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ebd-d4-mcO" userLabel="Import Buttons">
-                                                                <rect key="frame" x="0.0" y="109.5" width="280" height="57"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ebd-d4-mcO" userLabel="Import Buttons">
+                                                                <rect key="frame" x="0.0" y="145" width="280" height="137"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kbp-3I-DOl" userLabel="Clipboard Import Button" customClass="RoundedView" customModule="Kotoba" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="132" height="57"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="132" height="137"/>
                                                                         <subviews>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Cln-Gm-qu7">
-                                                                                <rect key="frame" x="6" y="10" width="120" height="37"/>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Cln-Gm-qu7">
+                                                                                <rect key="frame" x="5" y="5" width="122" height="127"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.on.clipboard" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Xdm-8n-hU8">
-                                                                                        <rect key="frame" x="0.0" y="-2" width="39" height="40.5"/>
+                                                                                        <rect key="frame" x="0.0" y="45.5" width="32" height="35.5"/>
                                                                                         <constraints>
-                                                                                            <constraint firstAttribute="width" secondItem="Xdm-8n-hU8" secondAttribute="height" multiplier="21:20" id="oLN-j1-n2s"/>
-                                                                                            <constraint firstAttribute="height" constant="37" id="yie-gL-JAm"/>
+                                                                                            <constraint firstAttribute="width" secondItem="Xdm-8n-hU8" secondAttribute="height" multiplier="1:1" id="oLN-j1-n2s"/>
+                                                                                            <constraint firstAttribute="height" constant="32" id="yie-gL-JAm"/>
                                                                                         </constraints>
                                                                                     </imageView>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="eIN-MM-R9Z">
-                                                                                        <rect key="frame" x="42" y="0.0" width="78" height="37"/>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="eIN-MM-R9Z">
+                                                                                        <rect key="frame" x="37" y="44" width="85" height="39"/>
                                                                                         <subviews>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Clipboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZi-As-Mhl">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="78" height="20.5"/>
-                                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Clipboard" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uZi-As-Mhl">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="70.5" height="19.5"/>
+                                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17 words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="NcW-3c-WBI">
-                                                                                                <rect key="frame" x="0.0" y="22.5" width="78" height="14.5"/>
-                                                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                                                                <nil key="textColor"/>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="17 words" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NcW-3c-WBI">
+                                                                                                <rect key="frame" x="0.0" y="19.5" width="50.5" height="19.5"/>
+                                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                         </subviews>
                                                                                     </stackView>
                                                                                 </subviews>
-                                                                                <constraints>
-                                                                                    <constraint firstItem="eIN-MM-R9Z" firstAttribute="top" secondItem="Cln-Gm-qu7" secondAttribute="top" id="ZzQ-Zu-6f5"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="eIN-MM-R9Z" secondAttribute="bottom" id="kfq-5g-fwT"/>
-                                                                                </constraints>
                                                                             </stackView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="tertiarySystemFillColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.50196078430000002" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <gestureRecognizers/>
                                                                         <constraints>
-                                                                            <constraint firstItem="Cln-Gm-qu7" firstAttribute="centerX" secondItem="Kbp-3I-DOl" secondAttribute="centerX" id="3c8-fg-zcF"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="Cln-Gm-qu7" secondAttribute="bottom" constant="10" id="HcW-NL-htS"/>
-                                                                            <constraint firstItem="Cln-Gm-qu7" firstAttribute="top" secondItem="Kbp-3I-DOl" secondAttribute="top" constant="10" id="wwv-Jd-Tfs"/>
+                                                                            <constraint firstItem="Cln-Gm-qu7" firstAttribute="leading" secondItem="Kbp-3I-DOl" secondAttribute="leading" constant="5" id="Bf9-qX-2M6"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="Cln-Gm-qu7" secondAttribute="trailing" constant="5" id="dxt-Qc-Nxd"/>
+                                                                            <constraint firstItem="Cln-Gm-qu7" firstAttribute="centerY" secondItem="Kbp-3I-DOl" secondAttribute="centerY" id="ezB-wc-eSJ"/>
+                                                                            <constraint firstItem="Cln-Gm-qu7" firstAttribute="top" secondItem="Kbp-3I-DOl" secondAttribute="top" constant="5" id="xqg-1f-XGi"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -367,31 +364,31 @@
                                                                         </connections>
                                                                     </view>
                                                                     <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="WLQ-dC-7XW" userLabel="File Import Button" customClass="RoundedView" customModule="Kotoba" customModuleProvider="target">
-                                                                        <rect key="frame" x="148" y="0.0" width="132" height="57"/>
+                                                                        <rect key="frame" x="148" y="0.0" width="132" height="137"/>
                                                                         <subviews>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="KGg-Yv-0df">
-                                                                                <rect key="frame" x="8.5" y="10" width="115" height="37"/>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KGg-Yv-0df">
+                                                                                <rect key="frame" x="5" y="5" width="122" height="127"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Y-Uz-aMp">
-                                                                                        <rect key="frame" x="0.0" y="1" width="39" height="34.5"/>
+                                                                                        <rect key="frame" x="0.0" y="48.5" width="32" height="30"/>
                                                                                         <constraints>
-                                                                                            <constraint firstAttribute="height" constant="37" id="ePP-8c-2Kl"/>
-                                                                                            <constraint firstAttribute="width" secondItem="Z7Y-Uz-aMp" secondAttribute="height" multiplier="21:20" id="yME-uW-jyT"/>
+                                                                                            <constraint firstAttribute="height" constant="32" id="ePP-8c-2Kl"/>
+                                                                                            <constraint firstAttribute="width" secondItem="Z7Y-Uz-aMp" secondAttribute="height" multiplier="1:1" id="yME-uW-jyT"/>
                                                                                         </constraints>
                                                                                     </imageView>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="f27-uu-AXt">
-                                                                                        <rect key="frame" x="42" y="0.0" width="73" height="37"/>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f27-uu-AXt">
+                                                                                        <rect key="frame" x="37" y="44" width="85" height="39"/>
                                                                                         <subviews>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Text File" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Miw-u9-hXE">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="73" height="20.5"/>
-                                                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Text File" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Miw-u9-hXE">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="85" height="19.5"/>
+                                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                                                                 <nil key="textColor"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
-                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="tmh-XL-7aW">
-                                                                                                <rect key="frame" x="0.0" y="22.5" width="73" height="14.5"/>
-                                                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                                                                <nil key="textColor"/>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Tap to Open" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="tmh-XL-7aW">
+                                                                                                <rect key="frame" x="0.0" y="19.5" width="85" height="19.5"/>
+                                                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                         </subviews>
@@ -402,9 +399,10 @@
                                                                         <color key="backgroundColor" systemColor="tertiarySystemFillColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.50196078430000002" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <gestureRecognizers/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="bottom" secondItem="KGg-Yv-0df" secondAttribute="bottom" constant="10" id="E26-4R-YbC"/>
-                                                                            <constraint firstItem="KGg-Yv-0df" firstAttribute="centerX" secondItem="WLQ-dC-7XW" secondAttribute="centerX" id="bqF-nD-2sg"/>
-                                                                            <constraint firstItem="KGg-Yv-0df" firstAttribute="top" secondItem="WLQ-dC-7XW" secondAttribute="top" constant="10" id="o8T-UQ-QHX"/>
+                                                                            <constraint firstItem="KGg-Yv-0df" firstAttribute="top" secondItem="WLQ-dC-7XW" secondAttribute="top" constant="5" id="aPo-eB-ARB"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="KGg-Yv-0df" secondAttribute="trailing" constant="5" id="fdf-dL-ByH"/>
+                                                                            <constraint firstItem="KGg-Yv-0df" firstAttribute="leading" secondItem="WLQ-dC-7XW" secondAttribute="leading" constant="5" id="tuu-H4-iyb"/>
+                                                                            <constraint firstItem="KGg-Yv-0df" firstAttribute="centerY" secondItem="WLQ-dC-7XW" secondAttribute="centerY" id="yag-Dt-fj5"/>
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -423,30 +421,31 @@
                                                                     </view>
                                                                 </subviews>
                                                                 <constraints>
+                                                                    <constraint firstItem="uZi-As-Mhl" firstAttribute="firstBaseline" secondItem="Miw-u9-hXE" secondAttribute="firstBaseline" id="EHx-Ax-wHF"/>
                                                                     <constraint firstItem="WLQ-dC-7XW" firstAttribute="width" secondItem="Kbp-3I-DOl" secondAttribute="width" id="HO3-AX-BSO"/>
                                                                 </constraints>
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gkD-f6-8Oa" userLabel="Credits">
-                                                        <rect key="frame" x="0.0" y="326" width="280" height="137.5"/>
+                                                        <rect key="frame" x="0.0" y="457" width="280" height="155"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acknowledgements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dof-TQ-9k5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q31-y2-2SU" userLabel="Credits Explainer">
-                                                                <rect key="frame" x="0.0" y="39" width="280" height="62.5"/>
+                                                                <rect key="frame" x="0.0" y="39" width="280" height="78"/>
                                                                 <string key="text">Kotoba was conceived by John Gruber, and developed by Will Hains, Craig Hockenberry, Troy Gaul, Ryan Forsythe, Gabor Halasz, and others.</string>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywm-6n-NGB">
-                                                                <rect key="frame" x="0.0" y="109.5" width="280" height="28"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <rect key="frame" x="0.0" y="125" width="280" height="30"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <state key="normal" title="Learn more and contribute…"/>
                                                                 <connections>
                                                                     <action selector="openGithub:" destination="5vB-j0-vQp" eventType="touchUpInside" id="E10-hj-tKI"/>
@@ -455,7 +454,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTU-b0-TtE">
-                                                        <rect key="frame" x="0.0" y="492.5" width="280" height="75.5"/>
+                                                        <rect key="frame" x="0.0" y="641" width="280" height="75.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Book" translatesAutoresizingMaskIntoConstraints="NO" id="QdD-9K-2Ft">
                                                                 <rect key="frame" x="105" y="0.0" width="70" height="75.5"/>
@@ -535,11 +534,11 @@
     </scenes>
     <resources>
         <image name="Book" width="480" height="302"/>
-        <image name="book" catalog="system" width="64" height="50"/>
-        <image name="chevron.down" catalog="system" width="64" height="36"/>
+        <image name="book" catalog="system" width="64" height="52"/>
+        <image name="chevron.down" catalog="system" width="64" height="34"/>
         <image name="doc.on.clipboard" catalog="system" width="58" height="64"/>
-        <image name="folder.fill" catalog="system" width="64" height="46"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="folder.fill" catalog="system" width="64" height="48"/>
+        <image name="gear" catalog="system" width="64" height="60"/>
         <namedColor name="appBackground">
             <color red="0.92100000381469727" green="0.92100000381469727" blue="0.92100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
