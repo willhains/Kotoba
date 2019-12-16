@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -208,7 +208,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uqs-b9-3Ik" customClass="KotobaNavigationController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I2T-4W-xZ2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="appBarTint"/>
                         <textAttributes key="titleTextAttributes">
@@ -281,7 +281,7 @@
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPe-FK-JXL" userLabel="iCloud Sync Explainer">
                                                                 <rect key="frame" x="0.0" y="39" width="280" height="78"/>
-                                                                <string key="text">Kotoba remembers the words you look up, and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere.</string>
+                                                                <string key="text">Kotoba remembers the words you look up and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere.</string>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -370,7 +370,7 @@
                                                                                 <rect key="frame" x="5" y="5" width="122" height="127"/>
                                                                                 <subviews>
                                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Y-Uz-aMp">
-                                                                                        <rect key="frame" x="0.0" y="48.5" width="32" height="30"/>
+                                                                                        <rect key="frame" x="0.0" y="48.5" width="32" height="29.5"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="32" id="ePP-8c-2Kl"/>
                                                                                             <constraint firstAttribute="width" secondItem="Z7Y-Uz-aMp" secondAttribute="height" multiplier="1:1" id="yME-uW-jyT"/>
@@ -534,11 +534,11 @@
     </scenes>
     <resources>
         <image name="Book" width="480" height="302"/>
-        <image name="book" catalog="system" width="64" height="52"/>
-        <image name="chevron.down" catalog="system" width="64" height="34"/>
+        <image name="book" catalog="system" width="64" height="50"/>
+        <image name="chevron.down" catalog="system" width="64" height="36"/>
         <image name="doc.on.clipboard" catalog="system" width="58" height="64"/>
-        <image name="folder.fill" catalog="system" width="64" height="48"/>
-        <image name="gear" catalog="system" width="64" height="60"/>
+        <image name="folder.fill" catalog="system" width="64" height="46"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
         <namedColor name="appBackground">
             <color red="0.92100000381469727" green="0.92100000381469727" blue="0.92100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
