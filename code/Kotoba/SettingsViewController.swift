@@ -71,6 +71,13 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		}
 	}
 	
+	@IBAction func openGithub(_ sender: Any)
+	{
+		if let url = URL(string: "https://github.com/willhains/Kotoba") {
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
+		}
+	}
+
 	private func _refreshViews()
 	{
 		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)

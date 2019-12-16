@@ -259,15 +259,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="404"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="c7e-qr-Hev" userLabel="Settings Layout">
-                                                <rect key="frame" x="20" y="20" width="280" height="547.5"/>
+                                                <rect key="frame" x="20" y="20" width="280" height="568"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5dj-d9-na8" userLabel="Sync Settings">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="117"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="101.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4FS-p4-K3X" userLabel="iCloud Sync Setting">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sync via iCloud" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-HZ-c9J">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sync via iCloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-HZ-c9J">
                                                                         <rect key="frame" x="0.0" y="0.0" width="125" height="31"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                         <nil key="textColor"/>
@@ -280,8 +280,8 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPe-FK-JXL" userLabel="iCloud Sync Explainer">
-                                                                <rect key="frame" x="0.0" y="39" width="280" height="78"/>
-                                                                <string key="text">Kotoba remembers words you looked up, and can sync them privately via iCloud with your other devices. Other than your own iCloud account, Kotoba never sends your data anywhere.</string>
+                                                                <rect key="frame" x="0.0" y="39" width="280" height="62.5"/>
+                                                                <string key="text">Kotoba remembers words you look up, and can sync them privately via iCloud to your other devices. Kotoba does not send your data anywhere else.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -289,7 +289,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RuO-30-X9q" userLabel="Import">
-                                                        <rect key="frame" x="0.0" y="146" width="280" height="166.5"/>
+                                                        <rect key="frame" x="0.0" y="130.5" width="280" height="166.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Words" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llM-28-al3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
@@ -299,7 +299,7 @@
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15y-9S-NZ3" userLabel="Import Explainer">
                                                                 <rect key="frame" x="0.0" y="39" width="280" height="62.5"/>
-                                                                <string key="text">Import a list of words, one word per line. Kotoba doesn’t check whether imported words exist in the dictionary, but it will skip words that are already in your lookup history.</string>
+                                                                <string key="text">Import a list of words, one word per line. Kotoba won't check if imported words exist in the dictionary, but will skip words that are already in your lookup history.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -429,9 +429,9 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gkD-f6-8Oa" userLabel="Credits">
-                                                        <rect key="frame" x="0.0" y="341.5" width="280" height="101.5"/>
+                                                        <rect key="frame" x="0.0" y="326" width="280" height="137.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits &amp; Acknowledgements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dof-TQ-9k5">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acknowledgements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dof-TQ-9k5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -444,10 +444,18 @@
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywm-6n-NGB">
+                                                                <rect key="frame" x="0.0" y="109.5" width="280" height="28"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <state key="normal" title="Learn more and contribute…"/>
+                                                                <connections>
+                                                                    <action selector="openGithub:" destination="5vB-j0-vQp" eventType="touchUpInside" id="E10-hj-tKI"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTU-b0-TtE">
-                                                        <rect key="frame" x="0.0" y="472" width="280" height="75.5"/>
+                                                        <rect key="frame" x="0.0" y="492.5" width="280" height="75.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Book" translatesAutoresizingMaskIntoConstraints="NO" id="QdD-9K-2Ft">
                                                                 <rect key="frame" x="105" y="0.0" width="70" height="75.5"/>
@@ -522,7 +530,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2453" y="-231"/>
+            <point key="canvasLocation" x="2452.5" y="-231.25"/>
         </scene>
     </scenes>
     <resources>
@@ -534,9 +542,6 @@
         <image name="gear" catalog="system" width="64" height="58"/>
         <namedColor name="appBackground">
             <color red="0.92100000381469727" green="0.92100000381469727" blue="0.92100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="appBarText">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appBarText">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
