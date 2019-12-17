@@ -47,10 +47,6 @@ final class AddWordViewController: UIViewController
 			self.textField.autocapitalizationType = .allCharacters
 		}
 		
-//		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "CHOCKTUBA" : "Kotoba"
-//		self.textField.placeholder = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE HERE DUH" : "Type a Word"
-//		self.suggestionLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE IT LAZY ASS" : "Clipboard Suggestions"
-
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear, but it also
 		// generates the warning below. If we wait until the tableView is in the view hierarchy (in viewDidAppear) the
 		// keyboard animation is already in progress and it's too late to adjust the width of the top-level view.
