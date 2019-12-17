@@ -258,8 +258,8 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txi-oX-P0x">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="492"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="c7e-qr-Hev" userLabel="Settings Layout">
-                                                <rect key="frame" x="20" y="20" width="280" height="1087"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="c7e-qr-Hev" userLabel="Settings Layout">
+                                                <rect key="frame" x="20" y="20" width="280" height="1135"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5dj-d9-na8" userLabel="Sync Settings">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="117"/>
@@ -289,7 +289,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RuO-30-X9q" userLabel="Import">
-                                                        <rect key="frame" x="0.0" y="137" width="280" height="282"/>
+                                                        <rect key="frame" x="0.0" y="157" width="280" height="282"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Words" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llM-28-al3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
@@ -428,20 +428,8 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="CHOCKTUBA" translatesAutoresizingMaskIntoConstraints="NO" id="9DD-gv-ZrJ">
-                                                        <rect key="frame" x="0.0" y="439" width="280" height="377.5"/>
-                                                        <color key="backgroundColor" red="0.78368252520000004" green="1" blue="0.35060030219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="9DD-gv-ZrJ" secondAttribute="height" multiplier="460:620" id="C99-OP-Ltq"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <integer key="value" value="10"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gkD-f6-8Oa" userLabel="Credits">
-                                                        <rect key="frame" x="0.0" y="836.5" width="280" height="155"/>
+                                                        <rect key="frame" x="0.0" y="479" width="280" height="540.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acknowledgements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dof-TQ-9k5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
@@ -449,15 +437,27 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="CHOCKTUBA" translatesAutoresizingMaskIntoConstraints="NO" id="9DD-gv-ZrJ">
+                                                                <rect key="frame" x="0.0" y="39" width="280" height="377.5"/>
+                                                                <color key="backgroundColor" red="0.78368252520000004" green="1" blue="0.35060030219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="9DD-gv-ZrJ" secondAttribute="height" multiplier="460:620" id="C99-OP-Ltq"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <integer key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q31-y2-2SU" userLabel="Credits Explainer">
-                                                                <rect key="frame" x="0.0" y="39" width="280" height="78"/>
+                                                                <rect key="frame" x="0.0" y="424.5" width="280" height="78"/>
                                                                 <string key="text">Kotoba was conceived by John Gruber, and developed by Will Hains, Craig Hockenberry, Troy Gaul, Ryan Forsythe, Gabor Halasz, and others.</string>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywm-6n-NGB">
-                                                                <rect key="frame" x="0.0" y="125" width="280" height="30"/>
+                                                                <rect key="frame" x="0.0" y="510.5" width="280" height="30"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <state key="normal" title="Learn more and contribute…"/>
                                                                 <connections>
@@ -467,7 +467,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTU-b0-TtE">
-                                                        <rect key="frame" x="0.0" y="1011.5" width="280" height="75.5"/>
+                                                        <rect key="frame" x="0.0" y="1059.5" width="280" height="75.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Book" translatesAutoresizingMaskIntoConstraints="NO" id="QdD-9K-2Ft">
                                                                 <rect key="frame" x="105" y="0.0" width="70" height="75.5"/>
