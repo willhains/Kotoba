@@ -434,6 +434,11 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="9DD-gv-ZrJ" secondAttribute="height" multiplier="460:620" id="C99-OP-Ltq"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gkD-f6-8Oa" userLabel="Credits">
                                                         <rect key="frame" x="0.0" y="836.5" width="280" height="155"/>
