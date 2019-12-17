@@ -47,7 +47,7 @@ extension UIPasteboard
 		//return [ Word(text: "CHOCKTUBA")]
 		//return [ Word(text: "CHOCKTUBA"), Word(text: "ROCKS")]
 		//return [ Word(text: "CHOCKTUBA"), Word(text: "ROCKS"), Word(text: "FOO")]
-		return [ Word(text: "CHOCKTUBA"), Word(text: "Rocks"), Word(text: "foo"), Word(text: "bar")]
+		//return [ Word(text: "CHOCKTUBA"), Word(text: "Rocks"), Word(text: "foo"), Word(text: "bar")]
 
 		if let currentPasteboardString = UIPasteboard.general.string {
 			return currentPasteboardString
