@@ -26,13 +26,10 @@ extension UIViewController
 			{
 				debugLog("No dictionaries set up. Prompting user.")
 				let alert = UIAlertController(
-					title: "Add Dictionaries",
-					message: """
-						Have you set up your iOS dictionaries?
-						Tap "Manage" below to download dictionaries for the languages you want.
-						""",
+					title: NSLocalizedString("DICTIONARY_TITLE", comment: "Title for dictionary prompt"),
+					message: NSLocalizedString("DICTIONARY_MESSAGE", comment: "Message for dictionary prompt"),
 					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: "Got It", style: .default, handler: nil))
+				alert.addAction(UIAlertAction(title: NSLocalizedString("DICTIONARY_ACTION", comment: "Action for dictionary prompt"), style: .default, handler: nil))
 				dictionaryViewController.present(alert, animated: true, completion: nil)
 			}
 			
