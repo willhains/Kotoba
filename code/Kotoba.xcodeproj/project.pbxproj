@@ -10,6 +10,7 @@
 		4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4440B41C236CF92100369CE8 /* Colors.xcassets */; };
 		44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B821172391CF20004B8142 /* PasteboardWordList.swift */; };
 		44CFA6AB2381F0CB00D7ECCC /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
+		44D1096623A84262007C477C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44D1096423A84262007C477C /* Localizable.strings */; };
 		44FD6CD02389C90F00FF245E /* KotobaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */; };
 		44FD6CD62389CF1B00FF245E /* Setup_iCloud.txt in Resources */ = {isa = PBXBuildFile; fileRef = 44FD6CD52389CF1B00FF245E /* Setup_iCloud.txt */; };
 		691B8E1620DAB5A100B11216 /* Workarounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691B8E1520DAB5A100B11216 /* Workarounds.swift */; };
@@ -50,6 +51,10 @@
 		4440B41C236CF92100369CE8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		44B821172391CF20004B8142 /* PasteboardWordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWordList.swift; sourceTree = "<group>"; };
 		44CFA6AA2381F0CB00D7ECCC /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		44D1095D23A83116007C477C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		44D1096323A833AB007C477C /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = CHOCK.lproj/Main.strings; sourceTree = "<group>"; };
+		44D1096523A84262007C477C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		44D1096723A84283007C477C /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Localizable.strings; sourceTree = "<group>"; };
 		44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaNavigationController.swift; sourceTree = "<group>"; };
 		44FD6CD42389CEC900FF245E /* Kotoba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kotoba.entitlements; sourceTree = "<group>"; };
 		44FD6CD52389CF1B00FF245E /* Setup_iCloud.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Setup_iCloud.txt; sourceTree = "<group>"; };
@@ -140,6 +145,7 @@
 				4440B41C236CF92100369CE8 /* Colors.xcassets */,
 				44CFA6AA2381F0CB00D7ECCC /* Debug.swift */,
 				BE918C4D1A22A5F5006043CF /* Supporting Files */,
+				44D1096423A84262007C477C /* Localizable.strings */,
 			);
 			path = Kotoba;
 			sourceTree = "<group>";
@@ -265,6 +271,8 @@
 				English,
 				en,
 				Base,
+				CHOCK,
+				chock,
 			);
 			mainGroup = BE918C411A22A5F5006043CF;
 			productRefGroup = BE918C4B1A22A5F5006043CF /* Products */;
@@ -284,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44FD6CD62389CF1B00FF245E /* Setup_iCloud.txt in Resources */,
+				44D1096623A84262007C477C /* Localizable.strings in Resources */,
 				BE918C551A22A5F5006043CF /* Main.storyboard in Resources */,
 				4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */,
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
@@ -377,10 +386,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		44D1096423A84262007C477C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44D1096523A84262007C477C /* en */,
+				44D1096723A84283007C477C /* chock */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BE918C531A22A5F5006043CF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BE918C541A22A5F5006043CF /* Base */,
+				44D1095D23A83116007C477C /* en */,
+				44D1096323A833AB007C477C /* chock */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

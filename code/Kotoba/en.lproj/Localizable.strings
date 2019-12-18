@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Kotoba
+
+  Created by Craig Hockenberry on 12/16/19.
+  Copyright © 2019 Will Hains. All rights reserved.
+*/
+
+"OK" = "OK";
+
+/* SettingsViewController */
+"WORD_EMPTY" = "No words";
+"WORD" = "word";
+"WORDS" = "words";
+
+"IMPORT_SUCCESS_TITLE" = "Import Successful";
+"IMPORT_SUCCESS_MESSAGE" = "%@ added.";
+"IMPORT_FAIL_TITLE" = "Import Failed";
+
+/* AddWordViewController */
+"MIGRATION_TITLE" = "Sync with iCloud?";
+"MIGRATION_MESSAGE" = "You can turn this off later in Settings.";
+"MIGRATION_LOCAL" = "Keep Data Local";
+"MIGRATION_ICLOUD" = "Sync via iCloud";
+
+/* UIViewController+Dictionary */
+"DICTIONARY_TITLE" = "Add Dictionaries";
+"DICTIONARY_MESSAGE" = "Have you set up your iOS dictionaries?\n\nTap \"Manage\" below to download dictionaries for the languages you want.";
+"DICTIONARY_ACTION" = "Got It";

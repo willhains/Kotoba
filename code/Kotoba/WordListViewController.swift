@@ -14,9 +14,6 @@ class WordListViewController: UITableViewController
 	{
 		super.viewDidLoad()
 		
-		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "BIGGER IS BETTER" : "History"
-
-		//prepareEditButton()
 		prepareSelfSizingTableCells()
 	}
 	
@@ -130,7 +127,8 @@ extension WordListViewController
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-		cell.textLabel?.text = wordListStore.data[indexPath.row].text
+		let text = wordListStore.data[indexPath.row].text
+		cell.textLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? text.uppercased() : text
 		prepareTextLabelForDynamicType(label: cell.textLabel)
 		return cell
 	}

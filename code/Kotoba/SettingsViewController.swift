@@ -12,22 +12,19 @@ import MobileCoreServices
 
 final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
-	@IBOutlet weak var titleBar: UILabel!
 	@IBOutlet weak var iCloudSyncSwitch: UISwitch!
 	@IBOutlet weak var clipboardImportButton: UIView!
 	@IBOutlet weak var clipboardWordCount: UILabel!
 	@IBOutlet weak var fileImportButton: UIView!
 	@IBOutlet var clipboardButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
-	
+	@IBOutlet weak var CHOCKTUBA: UIView!
+
 	override func viewDidLoad()
 	{
 		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
 		
-		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
-		let titleColor = UIColor.init(named: "appBarText") ?? UIColor.white
-		self.titleBar?.font = titleFont
-		self.titleBar?.textColor = titleColor
+		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -71,12 +68,36 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		}
 	}
 	
+	@IBAction func openGithub(_ sender: Any)
+	{
+		if let url = URL(string: "https://github.com/willhains/Kotoba") {
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
+		}
+	}
+
+	private func _pluralizedWordCount(_ count: Int) -> String
+	{
+		// TODO: Pluralise properly, allowing localisation --> https://medium.com/@vitaliikuznetsov/plurals-localization-using-stringsdict-in-ios-a910aab8c28c
+		if count == 0 {
+			return NSLocalizedString("WORD_EMPTY", comment: "No words")
+		}
+		else {
+			let pluralized: String
+			switch count {
+			case 1:
+				pluralized = NSLocalizedString("WORD", comment: "Singluar word")
+			default:
+				pluralized = NSLocalizedString("WORDS", comment: "Pluralized word")
+			}
+			return String(format: "%u %@", count, pluralized)
+		}
+	}
+	
 	private func _refreshViews()
 	{
 		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)
-		// TODO: Pluralise properly, allowing localisation --> https://medium.com/@vitaliikuznetsov/plurals-localization-using-stringsdict-in-ios-a910aab8c28c
 		let count = UIPasteboard.general.lines.count
-		clipboardWordCount.text = "\(count) \(count == 1 ? "word" : "words")"
+		clipboardWordCount.text = _pluralizedWordCount(count)
 	}
 	
 	@objc private func _switchWordListStore()
@@ -99,11 +120,12 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		let countAfter = words.count
 		let addedWords = countAfter - countBefore
 		if addedWords < 0 { fatalError("Negative added words") }
+		let message = String(format: NSLocalizedString("IMPORT_SUCCESS_MESSAGE", comment: "Message for successful import"), _pluralizedWordCount(addedWords))
 		let alert = UIAlertController(
-			title: "Import Successful",
-			message: "\(addedWords) \(addedWords == 1 ? "word" : "words") added.",
+			title: NSLocalizedString("IMPORT_SUCCESS_TITLE", comment: "Title for successful import"),
+			message: message,
 			preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+		alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
 	
@@ -129,10 +151,10 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		{
 			debugLog("Import failed: \(error)")
 			let alert = UIAlertController(
-				title: "Import Failed",
+				title: NSLocalizedString("IMPORT_FAIL_TITLE", comment: "Title for failed import"),
 				message: error.localizedDescription,
 				preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
 		}
 	}

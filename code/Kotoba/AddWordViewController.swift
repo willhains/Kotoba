@@ -43,10 +43,10 @@ final class AddWordViewController: UIViewController
 		super.viewDidLoad()
 		prepareKeyboardNotifications()
 
-		self.title = UserDefaults.standard.CHOCKTUBA_DUH ? "CHOCKTUBA" : "Kotoba"
-		self.textField.placeholder = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE HERE DUH" : "Type a Word"
-		self.suggestionLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? "TYPE IT LAZY ASS" : "Clipboard Suggestions"
-
+		if UserDefaults.standard.CHOCKTUBA_DUH {
+			self.textField.autocapitalizationType = .allCharacters
+		}
+		
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear, but it also
 		// generates the warning below. If we wait until the tableView is in the view hierarchy (in viewDidAppear) the
 		// keyboard animation is already in progress and it's too late to adjust the width of the top-level view.
@@ -336,17 +336,17 @@ extension AddWordViewController
 		if prefs.shouldDisplayFirstUseICloudPrompt()
 		{
 			let alert = UIAlertController(
-				title: "Sync with iCloud?",
-				message: "You can turn this off later in Settings.",
+				title: NSLocalizedString("MIGRATION_TITLE", comment: "Title for migration alert"),
+				message: NSLocalizedString("MIGRATION_MESSAGE", comment: "Message for migration alert"),
 				preferredStyle: .alert)
 			
-			alert.addAction(UIAlertAction(title: "Keep Data Local", style: .default)
+			alert.addAction(UIAlertAction(title: NSLocalizedString("MIGRATION_LOCAL", comment: "Action for keeping local"), style: .default)
 			{
 				_ in
 				prefs.iCloudSyncEnabled = false
 			})
 				
-			alert.addAction(UIAlertAction(title: "Sync via iCloud", style: .default)
+			alert.addAction(UIAlertAction(title: NSLocalizedString("MIGRATION_ICLOUD", comment: "Action for using iCloud"), style: .default)
 			{
 				_ in
 				prefs.iCloudSyncEnabled = true
@@ -367,8 +367,41 @@ extension AddWordViewController: UITextFieldDelegate
 	{
 		if let text = textField.text
 		{
-			let word = Word(text: text)
-			initiateSearch(forWord: word)
+			if text == "CHOCKTUBA" {
+				UserDefaults.standard.CHOCKTUBA_DUH = !UserDefaults.standard.CHOCKTUBA_DUH
+				if UserDefaults.standard.CHOCKTUBA_DUH {
+					UserDefaults.standard.set(["chock"], forKey: "AppleLanguages")
+				}
+				else {
+					UserDefaults.standard.removeObject(forKey: "AppleLanguages")
+				}
+				UserDefaults.standard.synchronize()
+				
+				var title: String
+				var message: String
+				if UserDefaults.standard.CHOCKTUBA_DUH {
+					title = "CHOCKTUBA ON"
+					message = "YOU JUST MADE THIS APP A BILLION TIMES BETTER CONGRATS"
+				}
+				else {
+					title = "CHOCKTUBA OFF"
+					message = "WHAT THE HELL ARE YOU THINKING"
+				}
+
+				let alert = UIAlertController(
+					title: title,
+					message: message,
+					preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: "CTL ALT DEL TO RESTART", style: .default, handler: { action in
+					exit(0)
+				}))
+				self.present(alert, animated: true, completion: nil)
+
+			}
+			else {
+				let word = Word(text: text)
+				initiateSearch(forWord: word)
+			}
 		}
 		
 		return true
@@ -386,7 +419,8 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-		cell.textLabel?.text = pasteboardWords[indexPath.row].text
+		let text = pasteboardWords[indexPath.row].text
+		cell.textLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? text.uppercased() : text
 		cell.textLabel?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body) // TODO: Move to extension of UILabel
 		return cell
 	}
