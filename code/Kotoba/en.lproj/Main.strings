@@ -54,7 +54,7 @@
 "lxn-9Q-keE.title" = "History";
 
 /* Class = "UILabel"; text = "Kotoba was conceived by John Gruber, and developed by Will Hains, Craig Hockenberry, Troy Gaul, Ryan Forsythe, Gabor Halasz, and others."; ObjectID = "q31-y2-2SU"; */
-"q31-y2-2SU.text" = "Kotoba was conceived by John Gruber, and developed by Will Hains, Craig Hockenberry, Troy Gaul, Ryan Forsythe, Gabor Halasz, and others.";
+"q31-y2-2SU.text" = "Kotoba was conceived by John Gruber; and developed by Will Hains, Craig Hockenberry, Troy Gaul, Ryan Forsythe, Gabor Halasz, and others.";
 
 /* Class = "UILabel"; text = "Kotoba remembers the words you look up and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere."; ObjectID = "rPe-FK-JXL"; */
 "rPe-FK-JXL.text" = "Kotoba remembers the words you look up and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere.";
