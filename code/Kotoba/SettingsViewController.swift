@@ -13,9 +13,9 @@ import MobileCoreServices
 final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
 	@IBOutlet weak var iCloudSyncSwitch: UISwitch!
-	@IBOutlet weak var clipboardImportButton: UIView!
+	@IBOutlet weak var clipboardImportButton: RoundedView!
 	@IBOutlet weak var clipboardWordCount: UILabel!
-	@IBOutlet weak var fileImportButton: UIView!
+	@IBOutlet weak var fileImportButton: RoundedView!
 	@IBOutlet var clipboardButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet weak var CHOCKTUBA: UIView!
@@ -39,6 +39,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	
 	@IBAction func importFromClipboard(_ gesture: UITapGestureRecognizer)
 	{
+        guard UIPasteboard.general.lines.count > 0 else { return }
 		if gesture.state == .began
 		{
 			clipboardImportButton.backgroundColor = .systemFill
@@ -98,6 +99,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)
 		let count = UIPasteboard.general.lines.count
 		clipboardWordCount.text = _pluralizedWordCount(count)
+        self.clipboardImportButton.enabled = count > 0
 	}
 	
 	@objc private func _switchWordListStore()
@@ -162,6 +164,14 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 
 @IBDesignable class RoundedView: UIView
 {
+    var enabled: Bool = true
+    {
+        willSet(newValue)
+        {
+            layer.opacity = newValue ? 1.0 : 0.3
+        }
+    }
+    
     @IBInspectable var cornerRadius: CGFloat
 	{
         get { layer.cornerRadius }
