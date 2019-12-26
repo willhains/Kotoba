@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LinkPresentation
 
 class WordListViewController: UITableViewController
 {
@@ -46,6 +47,13 @@ extension WordListViewController: UIActivityItemSource
 	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String
 	{
 		return "Kotoba Word List \(DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short))"
+	}
+
+	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?
+	{
+		let metadata = LPLinkMetadata()
+		metadata.title = "Export \(wordListStore.data.count) words" // TODO: localise, pluralise.
+		return metadata
 	}
 }
 
