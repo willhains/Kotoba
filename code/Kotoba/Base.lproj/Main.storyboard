@@ -48,6 +48,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="shareButton" destination="qsq-9b-iFP" id="Qpg-A6-FxW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9s3-di-ABt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -208,7 +211,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uqs-b9-3Ik" customClass="KotobaNavigationController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I2T-4W-xZ2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="appBarTint"/>
                         <textAttributes key="titleTextAttributes">

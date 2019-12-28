@@ -11,6 +11,13 @@ import LinkPresentation
 
 class WordListViewController: UITableViewController
 {
+	@IBOutlet weak var shareButton: UIBarButtonItem!
+	
+	override func viewWillAppear(_ animated: Bool)
+	{
+		self.shareButton.isEnabled = wordListStore.data.count > 0
+	}
+	
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
