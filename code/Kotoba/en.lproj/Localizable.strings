@@ -8,11 +8,6 @@
 
 "OK" = "OK";
 
-/* SettingsViewController */
-"WORD_EMPTY" = "No words";
-"WORD" = "word";
-"WORDS" = "words";
-
 "IMPORT_SUCCESS_TITLE" = "Import Successful";
 "IMPORT_SUCCESS_MESSAGE" = "%@ added.";
 "IMPORT_FAIL_TITLE" = "Import Failed";
