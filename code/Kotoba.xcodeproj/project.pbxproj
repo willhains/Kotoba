@@ -53,15 +53,15 @@
 		44B821172391CF20004B8142 /* PasteboardWordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWordList.swift; sourceTree = "<group>"; };
 		44CFA6AA2381F0CB00D7ECCC /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		44D1095D23A83116007C477C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		44D1096323A833AB007C477C /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = CHOCK.lproj/Main.strings; sourceTree = "<group>"; };
 		44D1096523A84262007C477C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		44D1096723A84283007C477C /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Localizable.strings; sourceTree = "<group>"; };
 		44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaNavigationController.swift; sourceTree = "<group>"; };
 		44FD6CD42389CEC900FF245E /* Kotoba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kotoba.entitlements; sourceTree = "<group>"; };
 		44FD6CD52389CF1B00FF245E /* Setup_iCloud.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Setup_iCloud.txt; sourceTree = "<group>"; };
 		691B8E1520DAB5A100B11216 /* Workarounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workarounds.swift; sourceTree = "<group>"; };
 		B62B309923B7F60900583D3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		B62B309C23B7F89F00583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = chock; path = chock.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		B62B309D23B7FA0B00583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Main.strings; sourceTree = "<group>"; };
+		B62B309E23B7FA2B00583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B62B309F23B7FA3100583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = chock; path = chock.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B6F5588E21F20E8D0053F800 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
@@ -275,7 +275,6 @@
 				English,
 				en,
 				Base,
-				CHOCK,
 				chock,
 			);
 			mainGroup = BE918C411A22A5F5006043CF;
@@ -395,7 +394,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				44D1096523A84262007C477C /* en */,
-				44D1096723A84283007C477C /* chock */,
+				B62B309E23B7FA2B00583D3D /* chock */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -404,7 +403,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B62B309923B7F60900583D3D /* en */,
-				B62B309C23B7F89F00583D3D /* chock */,
+				B62B309F23B7FA3100583D3D /* chock */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -414,7 +413,7 @@
 			children = (
 				BE918C541A22A5F5006043CF /* Base */,
 				44D1095D23A83116007C477C /* en */,
-				44D1096323A833AB007C477C /* chock */,
+				B62B309D23B7FA0B00583D3D /* chock */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
