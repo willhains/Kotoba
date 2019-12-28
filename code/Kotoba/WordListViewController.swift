@@ -52,7 +52,10 @@ extension WordListViewController: UIActivityItemSource
 	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?
 	{
 		let metadata = LPLinkMetadata()
-		metadata.title = "Export \(wordListStore.data.count) words" // TODO: localise, pluralise.
+		let count = wordListStore.data.count
+		let format = NSLocalizedString("WordCount", comment: "Count of words available")
+		let wordCount = String.localizedStringWithFormat(format, count)
+		metadata.title = "Export \(wordCount)"
 		return metadata
 	}
 }

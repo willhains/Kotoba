@@ -78,20 +78,9 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 
 	private func _pluralizedWordCount(_ count: Int) -> String
 	{
-		// TODO: Pluralise properly, allowing localisation --> https://medium.com/@vitaliikuznetsov/plurals-localization-using-stringsdict-in-ios-a910aab8c28c
-		if count == 0 {
-			return NSLocalizedString("WORD_EMPTY", comment: "No words")
-		}
-		else {
-			let pluralized: String
-			switch count {
-			case 1:
-				pluralized = NSLocalizedString("WORD", comment: "Singluar word")
-			default:
-				pluralized = NSLocalizedString("WORDS", comment: "Pluralized word")
-			}
-			return String(format: "%u %@", count, pluralized)
-		}
+		let format = NSLocalizedString("WordCount", comment: "Count of words available")
+		let wordCount = String.localizedStringWithFormat(format, count)
+		return wordCount
 	}
 	
 	private func _refreshViews()
