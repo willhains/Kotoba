@@ -11,6 +11,7 @@
 "IMPORT_SUCCESS_TITLE" = "Import Successful";
 "IMPORT_SUCCESS_MESSAGE" = "%@ added.";
 "IMPORT_FAIL_TITLE" = "Import Failed";
+"EXPORT_WORDS_MESSAGE" = "Export %@";
 
 /* AddWordViewController */
 "MIGRATION_TITLE" = "Sync with iCloud?";

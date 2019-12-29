@@ -62,7 +62,8 @@ extension WordListViewController: UIActivityItemSource
 		let count = wordListStore.data.count
 		let format = NSLocalizedString("WordCount", comment: "Count of words available")
 		let wordCount = String.localizedStringWithFormat(format, count)
-		metadata.title = "Export \(wordCount)"
+		let exportMessage = NSLocalizedString("EXPORT_WORDS_MESSAGE", comment: "Count of words to be exported")
+		metadata.title = String(format: exportMessage, wordCount)
 		return metadata
 	}
 }
