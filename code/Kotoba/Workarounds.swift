@@ -18,7 +18,7 @@ extension NSDictionary
 	// should be removed in the future if it's not needed because the underlying code is fixed.
 
 	@objc func boolValue() -> Bool
-    {
+	{
 		return false
 	}
 }

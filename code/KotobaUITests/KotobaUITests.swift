@@ -11,19 +11,19 @@ import XCTest
 
 class KotobaUITests: XCTestCase
 {
-    override func setUp()
+	override func setUp()
 	{
-        super.setUp()
+		super.setUp()
 		
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
+		// In UI tests it is usually best to stop immediately when a failure occurs.
+		continueAfterFailure = false
 		
-        // UI tests must launch the application that they test.
+		// UI tests must launch the application that they test.
 		// Doing this in setup will make sure it happens for each test method.
-        let app = XCUIApplication()
+		let app = XCUIApplication()
 		app.launchArguments = ["UITEST"]
 		app.launch()
-    }
+	}
 	
 	func enter(word: String)
 	{
@@ -63,8 +63,8 @@ class KotobaUITests: XCTestCase
 			XCTAssert(text.exists)
 		}
 	}
-    
-    func testShouldDisplayDictionaryDownloadPromptOnlyFirstTime()
+	
+	func testShouldDisplayDictionaryDownloadPromptOnlyFirstTime()
 	{
 		let app = XCUIApplication()
 		enter(word: "test")

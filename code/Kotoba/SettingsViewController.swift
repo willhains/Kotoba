@@ -39,7 +39,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	
 	@IBAction func importFromClipboard(_ gesture: UITapGestureRecognizer)
 	{
-        guard UIPasteboard.general.lines.count > 0 else { return }
+		guard UIPasteboard.general.lines.count > 0 else { return }
 		if gesture.state == .began
 		{
 			clipboardImportButton.backgroundColor = .systemFill
@@ -88,7 +88,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)
 		let count = UIPasteboard.general.lines.count
 		clipboardWordCount.text = _pluralizedWordCount(count)
-        self.clipboardImportButton.enabled = count > 0
+		self.clipboardImportButton.enabled = count > 0
 	}
 	
 	@objc private func _switchWordListStore()
@@ -153,27 +153,27 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 
 @IBDesignable class RoundedView: UIView
 {
-    var enabled: Bool = true
-    {
-        willSet(newValue)
-        {
-            layer.opacity = newValue ? 1.0 : 0.3
-        }
-    }
-    
-    @IBInspectable var cornerRadius: CGFloat
+	var enabled: Bool = true
 	{
-        get { layer.cornerRadius }
-        set
+		willSet(newValue)
 		{
-            layer.cornerRadius = newValue
-            layer.masksToBounds = newValue > 0
-        }
-    }
+			layer.opacity = newValue ? 1.0 : 0.3
+		}
+	}
+	
+	@IBInspectable var cornerRadius: CGFloat
+	{
+		get { layer.cornerRadius }
+		set
+		{
+			layer.cornerRadius = newValue
+			layer.masksToBounds = newValue > 0
+		}
+	}
 	
 	@IBInspectable var borderWidth: CGFloat
 	{
-        get { layer.borderWidth }
+		get { layer.borderWidth }
 		set
 		{
 			layer.borderWidth = newValue

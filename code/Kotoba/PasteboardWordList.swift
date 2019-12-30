@@ -94,7 +94,7 @@ extension String
 {
 	var words: [String]
 	{
-        var result = [String]()
+		var result = [String]()
 		if let range = range(of: self)
 		{
 			self.enumerateSubstrings(in: range, options: .byWords)
@@ -103,6 +103,6 @@ extension String
 				result.append(substring!)
 			}
 		}
-        return result
-    }
+		return result
+	}
 }
