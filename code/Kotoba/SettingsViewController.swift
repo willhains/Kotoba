@@ -103,15 +103,16 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	{
 		var words = wordListStore.data
 		let countBefore = words.count
-		text.split(separator: "\n")
+		let importWords = text.split(separator: "\n")
 			.map { $0.trimmingCharacters(in: .whitespaces) }
 			.filter { !$0.isEmpty }
-			.forEach { words.add(word: Word(text: $0)) }
+		importWords.forEach { words.add(word: Word(text: $0)) }
 		_refreshViews()
 		let countAfter = words.count
 		let addedWords = countAfter - countBefore
+		let duplicateWords = importWords.count - addedWords
 		if addedWords < 0 { fatalError("Negative added words") }
-		let message = String(format: NSLocalizedString("IMPORT_SUCCESS_MESSAGE", comment: "Message for successful import"), _pluralizedWordCount(addedWords))
+		let message = String(format: NSLocalizedString("IMPORT_SUCCESS_MESSAGE", comment: "Message for successful import"), _pluralizedWordCount(importWords.count), _pluralizedWordCount(duplicateWords), _pluralizedWordCount(addedWords))
 		let alert = UIAlertController(
 			title: NSLocalizedString("IMPORT_SUCCESS_TITLE", comment: "Title for successful import"),
 			message: message,

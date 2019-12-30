@@ -9,7 +9,7 @@
 "OK" = "OK";
 
 "IMPORT_SUCCESS_TITLE" = "Import Successful";
-"IMPORT_SUCCESS_MESSAGE" = "%@ added.";
+"IMPORT_SUCCESS_MESSAGE" = "%@ found in import source.\n%@ duplicated.\n%@ added.";
 "IMPORT_FAIL_TITLE" = "Import Failed";
 "EXPORT_WORDS_MESSAGE" = "Export %@";
 
