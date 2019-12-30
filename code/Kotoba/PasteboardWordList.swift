@@ -39,21 +39,13 @@ extension UIPasteboard
 	
 	var suggestedWords: [Word]
 	{
-		// TODO: Filter out too-simple words ("to", "and", "of", etc.).
-		// TODO: Filter out non-words and likely passwords (digits, symbols).
-
-		#warning("Remove this test data")
-		//return []
-		//return [ Word(text: "CHOCKTUBA")]
-		//return [ Word(text: "CHOCKTUBA"), Word(text: "ROCKS")]
-		//return [ Word(text: "CHOCKTUBA"), Word(text: "ROCKS"), Word(text: "FOO")]
-		//return [ Word(text: "CHOCKTUBA"), Word(text: "Rocks"), Word(text: "foo"), Word(text: "bar")]
-
 		if let currentPasteboardString = UIPasteboard.general.string {
 			return currentPasteboardString
 				.trimmingCharacters(in: .whitespacesAndNewlines)
-				.words
+				.asWords()
 				.removingDuplicates()
+				.removingPossiblePasswords()
+				.removingTrivialEnglishWords()
 				.map(Word.init)
 		}
 		else {
@@ -71,7 +63,12 @@ extension UIPasteboard
 	}
 }
 
-extension Array where Element: Hashable
+let _TRIVIAL_WORDS = Set(arrayLiteral:
+	"a", "an", "the", // articles
+	"for", "and", "nor", "but", "or", "so", "if", // conjunctions
+	"but", "at", "by", "from", "in", "into", "of", "on", "off", "to", "with") // prepositions
+
+extension Array where Element == String
 {
 	func removingDuplicates() -> Array<Element>
 	{
@@ -87,12 +84,25 @@ extension Array where Element: Hashable
 		}
 		return result
 	}
+	
+	func removingPossiblePasswords() -> Array<Element>
+	{
+		return self.filter
+		{
+			return !$0.contains { $0.isSymbol || $0.isNumber || $0.isPunctuation }
+		}
+	}
+	
+	func removingTrivialEnglishWords() -> Array<Element>
+	{
+		return self.filter { !_TRIVIAL_WORDS.contains($0) }
+	}
 }
 
 //  Adapted from https://medium.com/@sorenlind/three-ways-to-enumerate-the-words-in-a-string-using-swift-7da5504f0062
 extension String
 {
-	var words: [String]
+	func asWords() -> [String]
 	{
 		var result = [String]()
 		if let range = range(of: self)
