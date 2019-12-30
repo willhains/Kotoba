@@ -67,3 +67,6 @@
 
 /* Class = "UIButton"; normalTitle = "Learn more and contribute…"; ObjectID = "ywm-6n-NGB"; */
 "ywm-6n-NGB.normalTitle" = "Learn more and contribute…";
+
+/* Class = "UIButton"; normalTitle = "Enable iCloud in Settings…"; ObjectID = "M76-a4-lPz"; */
+"M76-a4-lPz.normalTitle" = "Enable iCloud in Settings…";
