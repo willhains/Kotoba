@@ -6,7 +6,7 @@
 //  Copyright © 2016 Will Hains. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // MARK:- Model
 
@@ -163,5 +163,10 @@ extension NSUbiquitousKeyValueStore: WordListStrings, WordListDataSource
 	{
 		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
 		set { NSUbiquitousKeyValueStore.default.set(newValue, forKey: _WORD_LIST_KEY) }
+	}
+	
+	var iCloudEnabledInSettings: Bool
+	{
+		return FileManager.default.ubiquityIdentityToken != nil
 	}
 }

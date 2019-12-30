@@ -19,7 +19,8 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	@IBOutlet var clipboardButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet weak var CHOCKTUBA: UIView!
-
+	@IBOutlet weak var enableICloudButton: UIButton!
+	
 	override func viewDidLoad()
 	{
 		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
@@ -76,6 +77,14 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		}
 	}
 
+	@IBAction func openICloudSettings(_ sender: Any)
+	{
+		if let url = URL(string: "App-prefs:root=CASTLE")
+		{
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
+		}
+	}
+	
 	private func _pluralizedWordCount(_ count: Int) -> String
 	{
 		let format = NSLocalizedString("WordCount", comment: "Count of words available")
@@ -85,7 +94,11 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	
 	private func _refreshViews()
 	{
+		// iCloud settings
 		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)
+		enableICloudButton.isHidden = wordListStore != .iCloud || NSUbiquitousKeyValueStore.default.iCloudEnabledInSettings
+		
+		// Import settings
 		let count = UIPasteboard.general.lines.count
 		clipboardWordCount.text = _pluralizedWordCount(count)
 		self.clipboardImportButton.enabled = count > 0
