@@ -13,6 +13,8 @@
 "IMPORT_FAIL_TITLE" = "Import Failed";
 "EXPORT_WORDS_MESSAGE" = "Export %@";
 
+"INSTALLATION_INSTRUCTIONS_TITLE" = "Kotoba Installation Instructions";
+
 /* AddWordViewController */
 "MIGRATION_TITLE" = "Sync with iCloud?";
 "MIGRATION_MESSAGE" = "You can turn this off later in Settings.";

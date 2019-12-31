@@ -63,7 +63,7 @@ extension UIPasteboard
 	}
 }
 
-let _TRIVIAL_WORDS = Set(arrayLiteral:
+private let _TRIVIAL_WORDS = Set(arrayLiteral:
 	"a", "an", "the", // articles
 	"for", "and", "nor", "but", "or", "so", "if", // conjunctions
 	"but", "at", "by", "from", "in", "into", "of", "on", "off", "to", "with") // prepositions

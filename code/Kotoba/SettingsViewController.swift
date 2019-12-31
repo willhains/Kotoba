@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MobileCoreServices
+import LinkPresentation
 
 final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
@@ -76,7 +77,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
 	}
-
+	
 	@IBAction func openICloudSettings(_ sender: Any)
 	{
 		if let url = URL(string: "App-prefs:root=CASTLE")
@@ -201,5 +202,46 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		{
 			layer.borderColor = newValue?.cgColor
 		}
+	}
+}
+
+private let _INSTALLATION_INSTRUCTIONS = """
+# How to Install Kotoba #
+
+**Note:** An Apple Developer account is required.
+
+1. Download the Kotoba
+"""
+
+// MARK:- Export Word List
+extension SettingsViewController: UIActivityItemSource
+{
+	@IBAction func shareInstallationInstructions(_ sender: Any)
+	{
+		let items = [self]
+		let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
+		present(shareSheet, animated: true)
+	}
+	
+	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
+	{
+		return "Kotoba Installation Instructions"
+	}
+	
+	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
+	{
+		return _INSTALLATION_INSTRUCTIONS
+	}
+	
+	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String
+	{
+		return "Kotoba Installation Instructions"
+	}
+
+	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?
+	{
+		let metadata = LPLinkMetadata()
+		metadata.title = NSLocalizedString("INSTALLATION_INSTRUCTIONS_TITLE", comment: "Kotoba Installation Instructions")
+		return metadata
 	}
 }

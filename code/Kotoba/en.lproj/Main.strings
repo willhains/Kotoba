@@ -70,3 +70,6 @@
 
 /* Class = "UIButton"; normalTitle = "Enable iCloud in Settings…"; ObjectID = "M76-a4-lPz"; */
 "M76-a4-lPz.normalTitle" = "Enable iCloud in Settings…";
+
+/* Class = "UIButton"; normalTitle = "Share Kotoba installation instructions…"; ObjectID = "5N3-08-QgN"; */
+"5N3-08-QgN.normalTitle" = "Share Kotoba installation instructions…";
