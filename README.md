@@ -2,7 +2,7 @@
 
 Quickly search the built-in iOS dictionary to see definitions of words. Collect words you want to remember.
 
-## Installation (iPhone only)
+## Installation (iPhone or iPad)
 
 If you have Xcode:
 
@@ -11,6 +11,8 @@ If you have Xcode:
 3. Connect your iPhone via USB.
 4. Select your iPhone from the scheme selector.
 5. Product > Run.
+
+More detail, including how to set up iCloud sync, [here](INSTALLATION.md).
 
 ## How to Use
 
