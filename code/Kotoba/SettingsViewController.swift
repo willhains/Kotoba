@@ -205,14 +205,6 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	}
 }
 
-private let _INSTALLATION_INSTRUCTIONS = """
-# How to Install Kotoba #
-
-**Note:** An Apple Developer account is required.
-
-1. Download the Kotoba
-"""
-
 // MARK:- Export Word List
 extension SettingsViewController: UIActivityItemSource
 {
@@ -230,7 +222,7 @@ extension SettingsViewController: UIActivityItemSource
 	
 	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
 	{
-		return _INSTALLATION_INSTRUCTIONS
+		return Bundle.main.url(forResource: "INSTALLATION", withExtension: "md")
 	}
 	
 	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String
