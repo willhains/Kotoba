@@ -30,7 +30,7 @@
 "Miw-u9-hXE.text" = "Text File";
 
 /* Class = "UILabel"; text = "17 words"; ObjectID = "NcW-3c-WBI"; */
-"NcW-3c-WBI.text" = "17 words";
+"NcW-3c-WBI.text" = "12,345 words";
 
 /* Class = "UITextField"; placeholder = "Type a Word"; ObjectID = "NcX-Q6-lwW"; */
 "NcX-Q6-lwW.placeholder" = "Type a Word";
