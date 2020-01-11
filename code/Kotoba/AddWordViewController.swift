@@ -13,7 +13,8 @@ final class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
 	@IBOutlet weak var tableView: UITableView!
-
+	@IBOutlet weak var searchingIndicator: UIActivityIndicatorView!
+	
 	@IBOutlet weak var suggestionView: UIView!
 	@IBOutlet weak var suggestionLabel: UILabel!
 	@IBOutlet weak var suggestionToggleButton: UIButton!
@@ -108,6 +109,7 @@ extension AddWordViewController
 	func initiateSearch(forWord word: Word)
 	{
 		debugLog("word = \(word)")
+		self.searchingIndicator.startAnimating()
 		
 		// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do
 		// a definition lookup. Previously, Kotoba did both these things at the same time on the same queue.
@@ -134,6 +136,7 @@ extension AddWordViewController
 					words.add(word: word)
 					DispatchQueue.main.async
 					{
+						self.searchingIndicator.stopAnimating()
 						self.textField.text = nil
 					}
 				}

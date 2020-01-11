@@ -156,10 +156,14 @@
                                     <constraint firstAttribute="trailing" secondItem="dPq-oQ-a3d" secondAttribute="trailing" id="xoZ-DB-68D"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="goC-7l-LSN">
+                                <rect key="frame" x="150" y="256" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="W0c-l2-07F" firstAttribute="trailing" secondItem="5kx-pn-jaT" secondAttribute="trailing" constant="10" id="Ljk-8V-cbz"/>
+                            <constraint firstItem="goC-7l-LSN" firstAttribute="top" secondItem="NcX-Q6-lwW" secondAttribute="bottom" constant="19.5" id="NAf-x6-XTa"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="width" secondItem="4xg-Iq-PCO" secondAttribute="width" id="T6o-6h-0Pf"/>
                             <constraint firstItem="Cne-Xv-00P" firstAttribute="width" secondItem="4xg-Iq-PCO" secondAttribute="width" id="YZ9-hh-zjL"/>
                             <constraint firstItem="ZZ5-YD-TOc" firstAttribute="leading" secondItem="W0c-l2-07F" secondAttribute="leading" constant="20" id="Zrd-UP-EZf"/>
@@ -167,6 +171,7 @@
                             <constraint firstAttribute="bottom" secondItem="Cne-Xv-00P" secondAttribute="bottom" id="b9Y-x8-FEf"/>
                             <constraint firstAttribute="bottom" secondItem="eAn-oO-h9i" secondAttribute="bottom" constant="100" id="oAI-bC-jjT"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="centerX" secondItem="4xg-Iq-PCO" secondAttribute="centerX" id="sA8-sN-FSa"/>
+                            <constraint firstItem="goC-7l-LSN" firstAttribute="centerX" secondItem="eAn-oO-h9i" secondAttribute="centerX" id="sX1-pc-cfA"/>
                             <constraint firstItem="eAn-oO-h9i" firstAttribute="top" secondItem="W0c-l2-07F" secondAttribute="top" id="wvW-9T-YdZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="W0c-l2-07F"/>
@@ -186,6 +191,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchingIndicator" destination="goC-7l-LSN" id="xYZ-nr-kk0"/>
                         <outlet property="suggestionLabel" destination="ZZ5-YD-TOc" id="v7b-fF-DSY"/>
                         <outlet property="suggestionToggleButton" destination="5kx-pn-jaT" id="5mR-cW-aqY"/>
                         <outlet property="suggestionView" destination="Cne-Xv-00P" id="O98-2P-ai2"/>
