@@ -31,6 +31,8 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	
 	override func viewWillAppear(_ animated: Bool)
 	{
+		super.viewWillAppear(animated)
+		
 		_refreshViews()
 	}
 	

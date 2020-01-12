@@ -15,6 +15,8 @@ class WordListViewController: UITableViewController
 	
 	override func viewWillAppear(_ animated: Bool)
 	{
+		super.viewWillAppear(animated)
+		
 		self.shareButton.isEnabled = wordListStore.data.count > 0
 	}
 	
