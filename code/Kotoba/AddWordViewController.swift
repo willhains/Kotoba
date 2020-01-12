@@ -74,9 +74,6 @@ final class AddWordViewController: UIViewController
 	{
 		debugLog()
 		super.viewDidAppear(animated)
-
-		// TODO: Decide if the keyboard should appear before or after the view.
-		//showKeyboard()
 	}
 	
 	override func viewWillDisappear(_ animated: Bool)
