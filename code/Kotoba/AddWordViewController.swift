@@ -44,7 +44,8 @@ final class AddWordViewController: UIViewController
 		super.viewDidLoad()
 		prepareKeyboardNotifications()
 
-		if UserDefaults.standard.CHOCKTUBA_DUH {
+		if UserDefaults.standard.CHOCKTUBA_DUH
+		{
 			self.textField.autocapitalizationType = .allCharacters
 		}
 		
@@ -52,7 +53,8 @@ final class AddWordViewController: UIViewController
 		// generates the warning below. If we wait until the tableView is in the view hierarchy (in viewDidAppear) the
 		// keyboard animation is already in progress and it's too late to adjust the width of the top-level view.
 		self.view.layoutIfNeeded()
-/*
+		
+		/*
 		[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window). This may cause bugs by forcing views inside the table view to load and perform layout without accurate information (e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action altogether if possible, or defer it until the table view has been added to a window. Table view: <UITableView: 0x7f8064035e00; frame = (0 44; 414 156); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x600001310b10>; layer = <CALayer: 0x600001d2d2c0>; contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 0, 0}; dataSource: <Kotoba.AddWordViewController: 0x7f806370ac80>>
 		*/
 		
@@ -77,7 +79,8 @@ final class AddWordViewController: UIViewController
 		//showKeyboard()
 	}
 	
-	override func viewWillDisappear(_ animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool)
+	{
 		debugLog()
 		super.viewWillDisappear(animated)
 		
@@ -91,7 +94,8 @@ final class AddWordViewController: UIViewController
 		#if true
 		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
 		let duration: TimeInterval = 0.2
-		UIView.animate(withDuration: duration) {
+		UIView.animate(withDuration: duration)
+		{
 			self.updateLayoutFromPasteboard()
 			self.updateLayersForSuggestions()
 			self.updateTableView()
@@ -165,7 +169,8 @@ extension AddWordViewController
 		UIPasteboard.general.ignoreSuggestions = !suggestionsVisible
 
 		let duration: TimeInterval = 0.2
-		UIView.animate(withDuration: duration) {
+		UIView.animate(withDuration: duration)
+		{
 			self.updateConstraintsForKeyboardAndSuggestions()
 			self.updateLayersForSuggestions()
 			self.view.layoutIfNeeded()
@@ -205,22 +210,28 @@ extension AddWordViewController
 		
 		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
 		
-		if self.suggestionsVisible	{
-			if self.keyboardVisible {
+		if self.suggestionsVisible
+		{
+			if self.keyboardVisible
+			{
 				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeight
 				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight
 			}
-			else {
+			else
+			{
 				self.typingViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom + suggestionHeight
 				self.suggestionViewBottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom
 			}
 		}
-		else {
-			if self.keyboardVisible {
+		else
+		{
+			if self.keyboardVisible
+			{
 				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeaderHeight
 				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight - suggestionHeight + suggestionHeaderHeight
 			}
-			else {
+			else
+			{
 				// TODO: Technically, the safeAreaInsets are the "bottom", but that leaves a weird little bit of the first
 				// sugggestion visible under the home indicator. If the offset is flush against the container view (e.g. 0),
 				// it puts the button and text in the home indicator area. Choose the lesser evil...
@@ -255,7 +266,8 @@ extension AddWordViewController
 		debugLog("keyboardHeight = \(keyboardHeight)")
 
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		UIView.animate(withDuration: duration) {
+		UIView.animate(withDuration: duration)
+		{
 			self.updateConstraintsForKeyboardAndSuggestions()
 			self.view.layoutIfNeeded()
 		}
@@ -270,7 +282,8 @@ extension AddWordViewController
 		keyboardHeight = 0
 
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-		UIView.animate(withDuration: duration) {
+		UIView.animate(withDuration: duration)
+		{
 			self.updateConstraintsForKeyboardAndSuggestions()
 			self.view.layoutIfNeeded()
 		}
@@ -302,21 +315,27 @@ extension AddWordViewController
 		let maximumHeight: CGFloat = view.frame.size.height > view.frame.size.width ? 200 : 100
 		
 		var computedSuggestionHeight = suggestionHeaderHeight
-		for row in 0..<pasteboardWords.count {
-			if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) {
+		for row in 0..<pasteboardWords.count
+		{
+			if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0))
+			{
 				computedSuggestionHeight += cell.frame.size.height
 			}
-			else {
+			else
+			{
 				computedSuggestionHeight += 44
 			}
-			if computedSuggestionHeight > maximumHeight {
+			if computedSuggestionHeight > maximumHeight
+			{
 				break
 			}
 		}
-		if computedSuggestionHeight > maximumHeight {
+		if computedSuggestionHeight > maximumHeight
+		{
 			suggestionHeight = maximumHeight
 		}
-		else {
+		else
+		{
 			suggestionHeight = computedSuggestionHeight
 		}
 
@@ -329,7 +348,8 @@ extension AddWordViewController
 	func updateTableView()
 	{
 		tableView.reloadData()
-		if (pasteboardWords.count > 0) {
+		if (pasteboardWords.count > 0)
+		{
 			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
 		}
 	}
@@ -370,23 +390,28 @@ extension AddWordViewController: UITextFieldDelegate
 	{
 		if let text = textField.text
 		{
-			if text == "CHOCKTUBA" {
+			if text == "CHOCKTUBA"
+			{
 				UserDefaults.standard.CHOCKTUBA_DUH = !UserDefaults.standard.CHOCKTUBA_DUH
-				if UserDefaults.standard.CHOCKTUBA_DUH {
+				if UserDefaults.standard.CHOCKTUBA_DUH
+				{
 					UserDefaults.standard.set(["chock"], forKey: "AppleLanguages")
 				}
-				else {
+				else
+				{
 					UserDefaults.standard.removeObject(forKey: "AppleLanguages")
 				}
 				UserDefaults.standard.synchronize()
 				
 				var title: String
 				var message: String
-				if UserDefaults.standard.CHOCKTUBA_DUH {
+				if UserDefaults.standard.CHOCKTUBA_DUH
+				{
 					title = "CHOCKTUBA ON"
 					message = "YOU JUST MADE THIS APP A BILLION TIMES BETTER CONGRATS"
 				}
-				else {
+				else
+				{
 					title = "CHOCKTUBA OFF"
 					message = "WHAT THE HELL ARE YOU THINKING"
 				}
@@ -401,7 +426,8 @@ extension AddWordViewController: UITextFieldDelegate
 				self.present(alert, animated: true, completion: nil)
 
 			}
-			else {
+			else
+			{
 				let word = Word(text: text)
 				initiateSearch(forWord: word)
 			}

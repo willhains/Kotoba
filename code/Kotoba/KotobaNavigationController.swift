@@ -10,7 +10,8 @@ import UIKit
 
 class KotobaNavigationController: UINavigationController
 {
-	override func viewDidLoad() {
+	override func viewDidLoad()
+	{
 		super.viewDidLoad()
 		
 		let titleFont = UIFont.init(name: "AmericanTypewriter-Semibold", size: 22) ?? UIFont.systemFont(ofSize: 22.0, weight: .bold)

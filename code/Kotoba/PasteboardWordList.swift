@@ -12,26 +12,28 @@ private let _IGNORE_STRING_KEY = "ignore_string"
 
 extension UIPasteboard
 {
-	var ignoreSuggestions: Bool {
-		get {
-			if let currentString = UIPasteboard.general.string {
+	var ignoreSuggestions: Bool
+	{
+		get
+		{
+			if let currentString = UIPasteboard.general.string
+			{
 				let ignoreString = UserDefaults.standard.string(forKey: _IGNORE_STRING_KEY)
-				if currentString != ignoreString {
-					return false
-				}
-				else {
-					return true
-				}
+				return currentString == ignoreString
 			}
-			else {
+			else
+			{
 				return true
 			}
 		}
-		set {
-			if newValue == true {
+		set
+		{
+			if newValue == true
+			{
 				UserDefaults.standard.set(UIPasteboard.general.string, forKey: _IGNORE_STRING_KEY)
 			}
-			else {
+			else
+			{
 				UserDefaults.standard.removeObject(forKey: _IGNORE_STRING_KEY)
 			}
 		}
@@ -39,7 +41,8 @@ extension UIPasteboard
 	
 	var suggestedWords: [Word]
 	{
-		if let currentPasteboardString = UIPasteboard.general.string {
+		if let currentPasteboardString = UIPasteboard.general.string
+		{
 			return currentPasteboardString
 				.trimmingCharacters(in: .whitespacesAndNewlines)
 				.asWords()
@@ -48,7 +51,8 @@ extension UIPasteboard
 				.removingTrivialEnglishWords()
 				.map(Word.init)
 		}
-		else {
+		else
+		{
 			return []
 		}
 	}

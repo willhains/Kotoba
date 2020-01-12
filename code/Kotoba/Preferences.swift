@@ -81,12 +81,15 @@ private let _CHOCKTUBA_DUH = "FIXTHISAPP"
 
 extension UserDefaults
 {
-	var CHOCKTUBA_DUH: Bool {
-		get {
+	var CHOCKTUBA_DUH: Bool
+	{
+		get
+		{
 			//return true
 			return bool(forKey: _CHOCKTUBA_DUH)
 		}
-		set {
+		set
+		{
 			set(newValue, forKey: _CHOCKTUBA_DUH)
 		}
 	}

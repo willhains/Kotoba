@@ -73,7 +73,8 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	
 	@IBAction func openGithub(_ sender: Any)
 	{
-		if let url = URL(string: "https://github.com/willhains/Kotoba") {
+		if let url = URL(string: "https://github.com/willhains/Kotoba")
+		{
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
 	}
@@ -189,19 +190,13 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	@IBInspectable var borderWidth: CGFloat
 	{
 		get { layer.borderWidth }
-		set
-		{
-			layer.borderWidth = newValue
-		}
+		set { layer.borderWidth = newValue }
 	}
 	
 	@IBInspectable var borderColor: UIColor?
 	{
 		get { layer.borderColor.map { UIColor.init(cgColor: $0) } }
-		set
-		{
-			layer.borderColor = newValue?.cgColor
-		}
+		set { layer.borderColor = newValue?.cgColor }
 	}
 }
 
