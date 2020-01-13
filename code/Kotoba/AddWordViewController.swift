@@ -137,9 +137,12 @@ extension AddWordViewController
 					words.add(word: word)
 					DispatchQueue.main.async
 					{
-						self.searchingIndicator.stopAnimating()
 						self.textField.text = nil
 					}
+				}
+				DispatchQueue.main.async
+				{
+					self.searchingIndicator.stopAnimating()
 				}
 			}
 		}
