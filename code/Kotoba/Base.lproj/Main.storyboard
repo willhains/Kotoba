@@ -616,7 +616,7 @@
         <image name="Book" width="480" height="302"/>
         <image name="CHOCKTUBA" width="460" height="620"/>
         <image name="book" catalog="system" width="64" height="50"/>
-        <image name="chevron.down" catalog="system" width="32" height="32"/>
+        <image name="chevron.down" catalog="system" width="64" height="36"/>
         <image name="doc.on.clipboard" catalog="system" width="58" height="64"/>
         <image name="folder.fill" catalog="system" width="64" height="46"/>
         <image name="gear" catalog="system" width="64" height="58"/>
@@ -636,7 +636,7 @@
             <color red="0.12999999523162842" green="0.12999999523162842" blue="0.12999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appTint">
-            <color red="1" green="0.32899999618530273" blue="0.27099999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89411764705882357" green="0.45098039215686275" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <color key="tintColor" name="appTint"/>
