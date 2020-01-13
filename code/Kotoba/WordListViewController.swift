@@ -31,6 +31,11 @@ class WordListViewController: UITableViewController
 	{
 		NotificationCenter.default.removeObserver(self)
 	}
+	
+	@IBAction func closeHistory(_ sender: Any)
+	{
+		self.dismiss(animated: true, completion: nil)
+	}
 }
 
 // MARK:- Export Word List

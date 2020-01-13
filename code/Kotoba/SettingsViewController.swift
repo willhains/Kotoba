@@ -21,12 +21,20 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet weak var CHOCKTUBA: UIView!
 	@IBOutlet weak var enableICloudButton: UIButton!
-	
+	@IBOutlet weak var versionInfo: UILabel!
+
 	override func viewDidLoad()
 	{
 		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
 		
 		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH
+		
+		if let productVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
+			if let productBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") {
+				let version = "Version \(productVersion) (\(productBuild))"
+				self.versionInfo.text = version
+			}
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -210,6 +218,10 @@ extension SettingsViewController: UIActivityItemSource
 		let items = [self]
 		let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
 		present(shareSheet, animated: true)
+		if let popOver = shareSheet.popoverPresentationController
+		{
+			popOver.sourceView = self.view // TODO: If we decide that sharing is needed, the sourceView should be set to the button that initated the action.
+		}
 	}
 	
 	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
