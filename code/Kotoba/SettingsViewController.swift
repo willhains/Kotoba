@@ -210,6 +210,10 @@ extension SettingsViewController: UIActivityItemSource
 		let items = [self]
 		let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
 		present(shareSheet, animated: true)
+		if let popOver = shareSheet.popoverPresentationController
+		{
+			popOver.sourceView = self.view // TODO: If we decide that sharing is needed, the sourceView should be set to the button that initated the action.
+		}
 	}
 	
 	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
