@@ -41,6 +41,10 @@ extension WordListViewController: UIActivityItemSource
 		let items = [self]
 		let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
 		present(shareSheet, animated: true)
+		if let popOver = shareSheet.popoverPresentationController
+		{
+			popOver.barButtonItem = self.shareButton
+		}
 	}
 	
 	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any

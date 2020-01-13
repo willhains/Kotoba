@@ -14,7 +14,7 @@
             <objects>
                 <tableViewController id="PII-AL-jNA" userLabel="Word List VC" customClass="WordListViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kNU-bZ-hng">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="separatorColor" name="appBarTint"/>
@@ -54,7 +54,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9s3-di-ABt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="492"/>
+            <point key="canvasLocation" x="2453" y="491"/>
         </scene>
         <!--Add Word VC-->
         <scene sceneID="SoF-qW-FaW">
@@ -186,7 +186,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="History" image="book" catalog="system" id="lxn-9Q-keE">
                             <connections>
-                                <segue destination="PII-AL-jNA" kind="show" id="KTZ-QU-EDq"/>
+                                <segue destination="flc-Vi-tu7" kind="presentation" id="KTZ-QU-EDq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -572,6 +572,25 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2452.5" y="-231.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yDZ-5z-rdb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="flc-Vi-tu7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mcJ-Op-7Dm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="appBarTint"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PII-AL-jNA" kind="relationship" relationship="rootViewController" id="f95-II-9sR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hJR-NW-H6j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1561.875" y="491.25"/>
         </scene>
     </scenes>
     <resources>
