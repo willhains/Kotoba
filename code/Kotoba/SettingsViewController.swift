@@ -21,12 +21,20 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet weak var CHOCKTUBA: UIView!
 	@IBOutlet weak var enableICloudButton: UIButton!
-	
+	@IBOutlet weak var versionInfo: UILabel!
+
 	override func viewDidLoad()
 	{
 		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
 		
 		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH
+		
+		if let productVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
+			if let productBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") {
+				let version = "Version \(productVersion) (\(productBuild))"
+				self.versionInfo.text = version
+			}
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
