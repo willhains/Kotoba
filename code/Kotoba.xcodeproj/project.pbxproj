@@ -16,7 +16,6 @@
 		B62B309823B7F60900583D3D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = B62B309A23B7F60900583D3D /* Localizable.stringsdict */; };
 		B65A4E02238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		B65A4E03238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
-		B686808023C37AF2009D0A5D /* INSTALLATION.md in Resources */ = {isa = PBXBuildFile; fileRef = B686807F23C37AF2009D0A5D /* INSTALLATION.md */; };
 		B6C1049E238ECF94008E9C97 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */; };
 		B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F5588E21F20E8D0053F800 /* Launch.storyboard */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
@@ -61,7 +60,6 @@
 		B62B309D23B7FA0B00583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Main.strings; sourceTree = "<group>"; };
 		B62B309E23B7FA2B00583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B62B309F23B7FA3100583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = chock; path = chock.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		B686807F23C37AF2009D0A5D /* INSTALLATION.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = INSTALLATION.md; sourceTree = SOURCE_ROOT; };
 		B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B6F5588E21F20E8D0053F800 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 		BE918C4C1A22A5F5006043CF /* Kotoba */ = {
 			isa = PBXGroup;
 			children = (
-				B686807F23C37AF2009D0A5D /* INSTALLATION.md */,
 				44FD6CD42389CEC900FF245E /* Kotoba.entitlements */,
 				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
 				44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */,
@@ -295,7 +292,6 @@
 			files = (
 				44D1096623A84262007C477C /* Localizable.strings in Resources */,
 				BE918C551A22A5F5006043CF /* Main.storyboard in Resources */,
-				B686808023C37AF2009D0A5D /* INSTALLATION.md in Resources */,
 				4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */,
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
 				B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */,
