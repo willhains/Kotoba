@@ -43,7 +43,7 @@ extension WordListViewController: UIActivityItemSource
 {
 	@IBAction func exportWordList(_ sender: Any)
 	{
-		let path = NSTemporaryDirectory() + "Kotoba Words.txt"
+		let path = NSTemporaryDirectory() + "Kotoba Word List.txt"
 		let exportText = wordListStore.data.asText()
 		if let data = exportText.data(using: .utf8) {
 			let url = URL.init(fileURLWithPath: path)
