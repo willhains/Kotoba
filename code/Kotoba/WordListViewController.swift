@@ -43,28 +43,33 @@ extension WordListViewController: UIActivityItemSource
 {
 	@IBAction func exportWordList(_ sender: Any)
 	{
-		let items = [self]
-		let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
-		present(shareSheet, animated: true)
-		if let popOver = shareSheet.popoverPresentationController
-		{
-			popOver.barButtonItem = self.shareButton
+		let path = NSTemporaryDirectory() + "Kotoba Word List.txt"
+		let exportText = wordListStore.data.asText()
+		if let data = exportText.data(using: .utf8) {
+			let url = URL.init(fileURLWithPath: path)
+			try? data.write(to: url)
+			
+			let items = [url]
+			let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
+			shareSheet.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
+				try? FileManager.default.removeItem(at: url)
+			}
+			present(shareSheet, animated: true)
+			if let popOver = shareSheet.popoverPresentationController
+			{
+				popOver.barButtonItem = self.shareButton
+			}
 		}
 	}
 	
 	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
 	{
-		return "Word\nList"
+		return "placeholder\nword\nlist\n"
 	}
 	
 	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
 	{
-		return wordListStore.data.asText()
-	}
-	
-	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String
-	{
-		return "Kotoba Word List \(DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short))"
+		return nil
 	}
 
 	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?

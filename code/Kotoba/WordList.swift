@@ -119,7 +119,9 @@ extension WordListDataSource where Self: WordListStrings
 	
 	func asText() -> String
 	{
-		return wordStrings.joined(separator: "\n")
+		// NOTE: Adding a newline at the end makes it easier to edit in a text editor like Notes. It also conforms to the POSIX standard.
+		// https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline#729795
+		return wordStrings.joined(separator: "\n") + "\n"
 	}
 }
 
