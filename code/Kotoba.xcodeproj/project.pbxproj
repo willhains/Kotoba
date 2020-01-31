@@ -328,7 +328,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\nbuildVersion=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\necho \"Build version = \" $buildVersion\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%d\" $buildNumber)\necho \"Build version = \" $buildVersion\n";
+			shellScript = "#!/bin/bash\nbuildVersion=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\necho \"Build version = \" $buildVersion\n\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\nbuildNumber=$(printf \"%d\" $buildNumber)\necho \"Build number = \" $buildNumber\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
