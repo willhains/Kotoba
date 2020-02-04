@@ -17,6 +17,7 @@
 		B65A4E02238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		B65A4E03238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		B6C1049E238ECF94008E9C97 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */; };
+		B6D7CC7723EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D7CC7623EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift */; };
 		B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F5588E21F20E8D0053F800 /* Launch.storyboard */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
@@ -61,6 +62,7 @@
 		B62B309E23B7FA2B00583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B62B309F23B7FA3100583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = chock; path = chock.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B6D7CC7623EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaAppStoreScreenshots.swift; sourceTree = "<group>"; };
 		B6F5588E21F20E8D0053F800 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				BEB2324E1D1DD3B800369560 /* KotobaUITests.swift */,
+				B6D7CC7623EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift */,
 				BEB232501D1DD3B800369560 /* Info.plist */,
 			);
 			path = KotobaUITests;
@@ -366,6 +369,7 @@
 			files = (
 				BEB2324F1D1DD3B800369560 /* KotobaUITests.swift in Sources */,
 				B65A4E03238435ED000C9A4F /* Debug.swift in Sources */,
+				B6D7CC7723EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

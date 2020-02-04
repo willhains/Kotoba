@@ -365,6 +365,7 @@
                                                                             </stackView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="tertiarySystemFillColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.50196078430000002" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="clipboardButton" label="Clipboard Import"/>
                                                                         <gestureRecognizers/>
                                                                         <constraints>
                                                                             <constraint firstItem="Cln-Gm-qu7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kbp-3I-DOl" secondAttribute="leading" constant="5" id="167-cR-2da"/>
@@ -423,6 +424,7 @@
                                                                             </stackView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="tertiarySystemFillColor" red="0.46274509800000002" green="0.46274509800000002" blue="0.50196078430000002" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <accessibility key="accessibilityConfiguration" identifier="fileImportButton" label="Text File Import"/>
                                                                         <gestureRecognizers/>
                                                                         <constraints>
                                                                             <constraint firstItem="KGg-Yv-0df" firstAttribute="centerX" secondItem="WLQ-dC-7XW" secondAttribute="centerX" id="6Hx-un-8uj"/>
