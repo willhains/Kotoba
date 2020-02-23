@@ -29,8 +29,10 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		
 		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH
 		
-		if let productVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") {
-			if let productBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") {
+		if let productVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+		{
+			if let productBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion")
+			{
 				let version = "Version \(productVersion) (\(productBuild))"
 				self.versionInfo.text = version
 			}
@@ -207,42 +209,5 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	{
 		get { layer.borderColor.map { UIColor.init(cgColor: $0) } }
 		set { layer.borderColor = newValue?.cgColor }
-	}
-}
-
-// MARK:- Export Word List
-extension SettingsViewController: UIActivityItemSource
-{
-	@IBAction func shareInstallationInstructions(_ sender: Any)
-	{
-		let items = [self]
-		let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
-		present(shareSheet, animated: true)
-		if let popOver = shareSheet.popoverPresentationController
-		{
-			popOver.sourceView = self.view // TODO: If we decide that sharing is needed, the sourceView should be set to the button that initated the action.
-		}
-	}
-	
-	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
-	{
-		return "Kotoba Installation Instructions"
-	}
-	
-	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
-	{
-		return Bundle.main.url(forResource: "INSTALLATION", withExtension: "md")
-	}
-	
-	func activityViewController(_ activityViewController: UIActivityViewController, subjectForActivityType activityType: UIActivity.ActivityType?) -> String
-	{
-		return "Kotoba Installation Instructions"
-	}
-
-	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?
-	{
-		let metadata = LPLinkMetadata()
-		metadata.title = NSLocalizedString("INSTALLATION_INSTRUCTIONS_TITLE", comment: "Kotoba Installation Instructions")
-		return metadata
 	}
 }
