@@ -96,4 +96,4 @@ extension UserDefaults
 }
 
 /// The preferences/state of the current user.
-var prefs: Preferences = UserDefaults.standard
+var prefs: Preferences = UserDefaults.init(suiteName: "group.com.willhains.Kotoba")!

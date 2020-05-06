@@ -156,6 +156,9 @@ extension WordListViewController
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
+		debugLog("_____ tableView")
+		debugLog("iCloud=\(prefs.iCloudSyncEnabled)")
+		debugLog("wordListStore.data=\(wordListStore.data.asText())")
 		return wordListStore.data.count
 	}
 	

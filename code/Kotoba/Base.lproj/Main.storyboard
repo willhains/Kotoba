@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
     <device id="retina3_5" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -14,7 +14,7 @@
             <objects>
                 <tableViewController id="PII-AL-jNA" userLabel="Word List VC" customClass="WordListViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kNU-bZ-hng">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="separatorColor" name="appBarTint"/>
@@ -75,7 +75,7 @@
                                 <rect key="frame" x="0.0" y="44" width="320" height="336"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Type a Word" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-Q6-lwW" userLabel="Text Field">
-                                        <rect key="frame" x="8" y="143.5" width="304" height="49"/>
+                                        <rect key="frame" x="8" y="143" width="304" height="50"/>
                                         <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
@@ -164,7 +164,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="goC-7l-LSN">
-                                <rect key="frame" x="150" y="256" width="20" height="20"/>
+                                <rect key="frame" x="150" y="256.5" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -224,7 +224,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uqs-b9-3Ik" customClass="KotobaNavigationController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I2T-4W-xZ2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="appBarTint"/>
                         <textAttributes key="titleTextAttributes">
@@ -265,7 +265,7 @@
             <objects>
                 <viewController title="Settings" id="5vB-j0-vQp" customClass="SettingsViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aaD-5f-bHY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C7U-xQ-mKc" userLabel="Screen Layout">
@@ -597,14 +597,15 @@
             <point key="canvasLocation" x="1561.875" y="491.25"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="appTint"/>
     <resources>
         <image name="Book" width="480" height="302"/>
         <image name="CHOCKTUBA" width="460" height="620"/>
-        <image name="book" catalog="system" width="64" height="50"/>
-        <image name="chevron.down" catalog="system" width="64" height="36"/>
-        <image name="doc.on.clipboard" catalog="system" width="58" height="64"/>
-        <image name="folder.fill" catalog="system" width="64" height="46"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="book" catalog="system" width="128" height="101"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
+        <image name="doc.on.clipboard" catalog="system" width="117" height="128"/>
+        <image name="folder.fill" catalog="system" width="128" height="95"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <namedColor name="appBackground">
             <color red="0.92100000381469727" green="0.92100000381469727" blue="0.92100000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -624,5 +625,4 @@
             <color red="0.89399999380111694" green="0.45100000500679016" blue="0.39599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <color key="tintColor" name="appTint"/>
 </document>

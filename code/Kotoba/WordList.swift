@@ -33,7 +33,7 @@ enum WordListStore
 	{
 		switch self
 		{
-			case .local: return UserDefaults.standard
+			case .local: return UserDefaults.init(suiteName: "group.com.willhains.Kotoba")!
 			case .iCloud: return NSUbiquitousKeyValueStore.default
 		}
 	}
