@@ -43,6 +43,10 @@ class ShareViewController: UIViewController
 	
 	override func viewDidAppear(_ animated: Bool)
 	{
+		debugLog("_____ tableView")
+		debugLog("iCloud=\(prefs.iCloudSyncEnabled)")
+		debugLog("wordListStore.data=\(wordListStore.data.asText())")
+		
 		// Skip straight to definition if there is only one word
 		if words.count == 1 { initiateSearch(forWord: words[0]) }
 	}

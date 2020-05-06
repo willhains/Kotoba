@@ -20,6 +20,8 @@
 		B6D7CC7723EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D7CC7623EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift */; };
 		B6F3964324624C93009E0B7C /* PasteboardWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B821172391CF20004B8142 /* PasteboardWordList.swift */; };
 		B6F39644246281CE009E0B7C /* KotobaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */; };
+		B6F3964724629E77009E0B7C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F3964624629E77009E0B7C /* CloudKit.framework */; };
+		B6F3964824629E7A009E0B7C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F3964624629E77009E0B7C /* CloudKit.framework */; };
 		B6F40BC02461771100CDB013 /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F40BBF2461771100CDB013 /* DictionaryViewController.swift */; };
 		B6F40BC12461771100CDB013 /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F40BBF2461771100CDB013 /* DictionaryViewController.swift */; };
 		B6F4594E2460E15100E2174D /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4594D2460E15100E2174D /* ShareViewController.swift */; };
@@ -94,6 +96,7 @@
 		B62B309F23B7FA3100583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = chock; path = chock.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B6D7CC7623EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaAppStoreScreenshots.swift; sourceTree = "<group>"; };
+		B6F3964624629E77009E0B7C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		B6F40BBF2461771100CDB013 /* DictionaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewController.swift; sourceTree = "<group>"; };
 		B6F4594B2460E15100E2174D /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F4594D2460E15100E2174D /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F3964724629E77009E0B7C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F3964824629E7A009E0B7C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +156,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6F3964524629E77009E0B7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6F3964624629E77009E0B7C /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B6F4594C2460E15100E2174D /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +183,7 @@
 				BEB2324D1D1DD3B800369560 /* KotobaUITests */,
 				B6F4594C2460E15100E2174D /* ShareExtension */,
 				BE918C4B1A22A5F5006043CF /* Products */,
+				B6F3964524629E77009E0B7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

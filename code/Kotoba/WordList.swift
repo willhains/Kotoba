@@ -34,7 +34,7 @@ enum WordListStore
 		switch self
 		{
 			case .local: return UserDefaults.init(suiteName: "group.com.willhains.Kotoba")!
-			case .iCloud: return NSUbiquitousKeyValueStore.default
+			case .iCloud: return NSUbiquitousKeyValueStore.default;
 		}
 	}
 }
@@ -49,7 +49,7 @@ var wordListStore: WordListStore
 		prefs.iCloudSyncEnabled = newValue == .iCloud
 		
 		// Merge word lists
-		var local: WordListStrings = UserDefaults.standard
+		var local: WordListStrings = UserDefaults.init(suiteName: "group.com.willhains.Kotoba")!
 		var cloud: WordListStrings = NSUbiquitousKeyValueStore.default
 		for word in local.wordStrings where !cloud.wordStrings.contains(word)
 		{

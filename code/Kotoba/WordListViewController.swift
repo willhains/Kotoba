@@ -17,6 +17,10 @@ class WordListViewController: UITableViewController
 	{
 		super.viewWillAppear(animated)
 		
+		debugLog("_____ tableView")
+		debugLog("iCloud=\(prefs.iCloudSyncEnabled)")
+		debugLog("wordListStore.data=\(wordListStore.data.asText())")
+		
 		self.shareButton.isEnabled = wordListStore.data.count > 0
 	}
 	
@@ -156,9 +160,6 @@ extension WordListViewController
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		debugLog("_____ tableView")
-		debugLog("iCloud=\(prefs.iCloudSyncEnabled)")
-		debugLog("wordListStore.data=\(wordListStore.data.asText())")
 		return wordListStore.data.count
 	}
 	
