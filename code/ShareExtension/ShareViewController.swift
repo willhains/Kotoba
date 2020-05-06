@@ -41,6 +41,12 @@ class ShareViewController: UIViewController
         }
 	}
 	
+	override func viewDidAppear(_ animated: Bool)
+	{
+		// Skip straight to definition if there is only one word
+		if words.count == 1 { initiateSearch(forWord: words[0]) }
+	}
+	
 	func cancelShare()
 	{
 		extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
