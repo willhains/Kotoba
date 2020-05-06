@@ -40,6 +40,16 @@ class ShareViewController: UIViewController
             print("error")
         }
 	}
+	
+	func cancelShare()
+	{
+		extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+	}
+	
+	@IBAction func didTapCancel(_ sender: UIBarButtonItem)
+	{
+		cancelShare()
+	}
 }
 
 // MARK:- Kotoba and Dictionary Integration
@@ -59,7 +69,7 @@ extension ShareViewController
 					var words = wordListStore.data
 					words.add(word: word)
 					
-					self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+					self.cancelShare()
 				}
 			}
 		}

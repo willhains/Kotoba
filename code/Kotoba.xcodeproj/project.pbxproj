@@ -19,6 +19,7 @@
 		B6C1049E238ECF94008E9C97 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */; };
 		B6D7CC7723EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D7CC7623EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift */; };
 		B6F3964324624C93009E0B7C /* PasteboardWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B821172391CF20004B8142 /* PasteboardWordList.swift */; };
+		B6F39644246281CE009E0B7C /* KotobaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */; };
 		B6F40BC02461771100CDB013 /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F40BBF2461771100CDB013 /* DictionaryViewController.swift */; };
 		B6F40BC12461771100CDB013 /* DictionaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F40BBF2461771100CDB013 /* DictionaryViewController.swift */; };
 		B6F4594E2460E15100E2174D /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4594D2460E15100E2174D /* ShareViewController.swift */; };
@@ -435,6 +436,7 @@
 				B6F4594E2460E15100E2174D /* ShareViewController.swift in Sources */,
 				B6F4595C24611D9200E2174D /* Debug.swift in Sources */,
 				B6F4595E24611F0100E2174D /* Preferences.swift in Sources */,
+				B6F39644246281CE009E0B7C /* KotobaNavigationController.swift in Sources */,
 				B6F4595D24611E8300E2174D /* WordList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
