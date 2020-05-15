@@ -12,6 +12,8 @@ import CoreServices
 
 class ShareViewController: UIViewController
 {
+	@IBOutlet weak var wordLabel: UILabel!
+	
 	var contentText: String = ""
 
 	required init?(coder: NSCoder)
@@ -33,6 +35,7 @@ class ShareViewController: UIViewController
 				(item, error) -> Void in
 				guard let text = item as? String else { return }
 				self.contentText = text
+				self.wordLabel.text = text
             })
         }
 		else
@@ -48,7 +51,7 @@ class ShareViewController: UIViewController
 		debugLog("wordListStore.data=\(wordListStore.data.asText())")
 		
 		// Skip straight to definition if there is only one word
-		if words.count == 1 { initiateSearch(forWord: words[0]) }
+		initiateSearch(forWord: Word(text: contentText))
 	}
 	
 	func cancelShare()
@@ -83,40 +86,5 @@ extension ShareViewController
 				}
 			}
 		}
-	}
-}
-
-// MARK:- Table View delegate/datasource
-extension ShareViewController: UITableViewDelegate, UITableViewDataSource
-{
-	var words: [Word]
-	{
-		return contentText
-			.trimmingCharacters(in: .whitespacesAndNewlines)
-			.asWords()
-			.removingTrivialEnglishWords()
-			.map(Word.init)
-	}
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-	{
-		return words.count
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-	{
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-		let text = words[indexPath.row].text
-		cell.textLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? text.uppercased() : text
-		cell.textLabel?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body) // TODO: Move to extension of UILabel
-		return cell
-	}
-	
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-	{
-		guard indexPath.row >= 0 else { return }
-		let word = words[indexPath.row]
-		initiateSearch(forWord: word)
-		tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 	}
 }

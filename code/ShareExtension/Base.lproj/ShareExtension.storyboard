@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,34 +12,30 @@
         <scene sceneID="ceB-am-kn3">
             <objects>
                 <viewController id="j1y-V4-xli" customClass="ShareViewController" customModule="ShareExtension" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" id="UPA-7A-xvr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <view key="view" contentMode="scaleToFill" id="kPb-aW-MXX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="5Sh-OS-OL5">
+                                <rect key="frame" x="150" y="218" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Kotoba" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBC-T2-Q7d">
+                                <rect key="frame" x="16" y="149.5" width="288" height="49"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="42"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="separatorColor" name="appBarTint"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Word" textLabel="xP3-gA-phT" style="IBUITableViewCellStyleDefault" id="bWs-pe-5dT">
-                                <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bWs-pe-5dT" id="C8C-N6-35c">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xP3-gA-phT">
-                                            <rect key="frame" x="16" y="0.0" width="288" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="j1y-V4-xli" id="ZWO-FS-Cn6"/>
-                            <outlet property="delegate" destination="j1y-V4-xli" id="Dvn-YI-AOu"/>
-                        </connections>
-                    </tableView>
+                        <constraints>
+                            <constraint firstItem="5Sh-OS-OL5" firstAttribute="top" secondItem="gBC-T2-Q7d" secondAttribute="bottom" constant="19.5" id="8L9-gX-Ufl"/>
+                            <constraint firstItem="5Sh-OS-OL5" firstAttribute="centerX" secondItem="xd8-4d-UwS" secondAttribute="centerX" id="IPv-o0-hN6"/>
+                            <constraint firstItem="gBC-T2-Q7d" firstAttribute="width" secondItem="kPb-aW-MXX" secondAttribute="width" multiplier="0.9" id="fg2-zR-UEG"/>
+                            <constraint firstItem="gBC-T2-Q7d" firstAttribute="centerX" secondItem="xd8-4d-UwS" secondAttribute="centerX" id="ggF-vO-OPN"/>
+                            <constraint firstItem="gBC-T2-Q7d" firstAttribute="centerY" secondItem="xd8-4d-UwS" secondAttribute="centerY" constant="-44" id="qRv-mV-bWr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xd8-4d-UwS"/>
+                    </view>
                     <navigationItem key="navigationItem" title="Kotoba" id="oR8-4J-OYh">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="8f9-JV-ykK">
                             <connections>
@@ -46,10 +43,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="wordLabel" destination="gBC-T2-Q7d" id="phf-ld-dJY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEy-Cv-SGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039.1304347826087" y="137.94642857142856"/>
+            <point key="canvasLocation" x="1038.75" y="137.5"/>
         </scene>
         <!--Kotoba Navigation Controller-->
         <scene sceneID="VD3-xx-9l2">
