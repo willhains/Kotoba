@@ -123,6 +123,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		let importWords = text.split(separator: "\n")
 			.map { $0.trimmingCharacters(in: .whitespaces) }
 			.filter { !$0.isEmpty }
+			.reversed()
 		importWords.forEach { words.add(word: Word(text: $0)) }
 		_refreshViews()
 		let countAfter = words.count
