@@ -458,6 +458,7 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 	{
 		guard indexPath.row >= 0 else { return }
 		let word = pasteboardWords[indexPath.row]
+		self.textField.text = word.text
 		initiateSearch(forWord: word)
 		tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 	}
