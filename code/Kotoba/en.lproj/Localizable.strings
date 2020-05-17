@@ -16,7 +16,7 @@
 /* AddWordViewController */
 "MIGRATION_TITLE" = "Sync with iCloud?";
 "MIGRATION_MESSAGE" = "You can change this at any time in Settings.";
-"MIGRATION_LOCAL" = "Keep Data on Device";
+"MIGRATION_LOCAL" = "Keep History Only on This Device";
 "MIGRATION_ICLOUD" = "Sync Data via iCloud";
 
 /* UIViewController+Dictionary */
