@@ -233,7 +233,7 @@ extension AddWordViewController
 			else
 			{
 				// TODO: Technically, the safeAreaInsets are the "bottom", but that leaves a weird little bit of the first
-				// sugggestion visible under the home indicator. If the offset is flush against the container view (e.g. 0),
+				// suggestion visible under the home indicator. If the offset is flush against the container view (e.g. 0),
 				// it puts the button and text in the home indicator area. Choose the lesser evil...
 				//let offset = self.view.safeAreaInsets.bottom
 				let offset = CGFloat.zero
