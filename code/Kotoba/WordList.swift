@@ -42,12 +42,10 @@ enum WordListStore
 /// Current selection of word list store.
 var wordListStore: WordListStore
 {
-	get { prefs.iCloudSyncEnabled ? .iCloud : .local }
+	get { NSUbiquitousKeyValueStore.iCloudEnabledInSettings ? .iCloud : .local }
 
 	set
 	{
-		prefs.iCloudSyncEnabled = newValue == .iCloud
-		
 		// Merge word lists
 		var local: WordListStrings = UserDefaults.init(suiteName: "group.com.willhains.Kotoba")!
 		var cloud: WordListStrings = NSUbiquitousKeyValueStore.default
@@ -167,7 +165,7 @@ extension NSUbiquitousKeyValueStore: WordListStrings, WordListDataSource
 		set { NSUbiquitousKeyValueStore.default.set(newValue, forKey: _WORD_LIST_KEY) }
 	}
 	
-	var iCloudEnabledInSettings: Bool
+	static var iCloudEnabledInSettings: Bool
 	{
 		return FileManager.default.ubiquityIdentityToken != nil
 	}

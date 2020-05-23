@@ -99,8 +99,6 @@ final class AddWordViewController: UIViewController
 			self.view.layoutIfNeeded()
 		}
 		#endif
-
-		checkMigration()
 	}
 }
 
@@ -351,34 +349,6 @@ extension AddWordViewController
 		if (pasteboardWords.count > 0)
 		{
 			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
-		}
-	}
-	
-	func checkMigration()
-	{
-		if prefs.shouldDisplayFirstUseICloudPrompt()
-		{
-			let alert = UIAlertController(
-				title: NSLocalizedString("MIGRATION_TITLE", comment: "Title for migration alert"),
-				message: NSLocalizedString("MIGRATION_MESSAGE", comment: "Message for migration alert"),
-				preferredStyle: .alert)
-			
-			alert.addAction(UIAlertAction(title: NSLocalizedString("MIGRATION_LOCAL", comment: "Action for keeping local"), style: .default)
-			{
-				_ in
-				prefs.iCloudSyncEnabled = false
-			})
-				
-			alert.addAction(UIAlertAction(title: NSLocalizedString("MIGRATION_ICLOUD", comment: "Action for using iCloud"), style: .default)
-			{
-				_ in
-				prefs.iCloudSyncEnabled = true
-			})
-			
-			present(alert, animated: true, completion: nil)
-			
-			// Update preferences to silence this prompt next time
-			prefs.didDisplayFirstUseICloudPrompt()
 		}
 	}
 }

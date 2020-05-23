@@ -47,7 +47,7 @@ class ShareViewController: UIViewController
 	override func viewDidAppear(_ animated: Bool)
 	{
 		debugLog("_____ tableView")
-		debugLog("iCloud=\(prefs.iCloudSyncEnabled)")
+		debugLog("iCloud=\(NSUbiquitousKeyValueStore.iCloudEnabledInSettings)")
 		debugLog("wordListStore.data=\(wordListStore.data.asText())")
 		
 		// Skip straight to definition if there is only one word

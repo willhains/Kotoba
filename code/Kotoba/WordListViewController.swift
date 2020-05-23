@@ -18,7 +18,7 @@ class WordListViewController: UITableViewController
 		super.viewWillAppear(animated)
 		
 		debugLog("_____ tableView")
-		debugLog("iCloud=\(prefs.iCloudSyncEnabled)")
+		debugLog("iCloud=\(NSUbiquitousKeyValueStore.iCloudEnabledInSettings)")
 		debugLog("wordListStore.data=\(wordListStore.data.asText())")
 		
 		self.shareButton.isEnabled = wordListStore.data.count > 0

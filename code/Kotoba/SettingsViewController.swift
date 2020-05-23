@@ -107,7 +107,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	private func _refreshViews()
 	{
 		// iCloud settings
-		self.iCloudEnabledLabel.text = NSUbiquitousKeyValueStore.default.iCloudEnabledInSettings
+		self.iCloudEnabledLabel.text = NSUbiquitousKeyValueStore.iCloudEnabledInSettings
 			? NSLocalizedString("ICLOUD_SYNC_ENABLED", comment: "Title when iCloud Sync is enabled")
 			: NSLocalizedString("ICLOUD_SYNC_DISABLED", comment: "Title when iCloud Sync is disabled")
 		
