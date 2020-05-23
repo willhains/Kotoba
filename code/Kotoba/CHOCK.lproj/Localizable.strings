@@ -1,25 +1,44 @@
-/* 
-  Localizable.strings
-  Kotoba
+/* Action for dictionary prompt */
+"DICTIONARY_ACTION" = "YOU GOT IT BUSTER";
 
-  Created by Craig Hockenberry on 12/16/19.
-  Copyright © 2019 Will Hains. All rights reserved.
-*/
-
-"OK" = "OKIE DOKEY";
-
-"IMPORT_SUCCESS_TITLE" = "IMPORT WORKED";
-"IMPORT_SUCCESS_MESSAGE" = "TRYED TO IMPORT %@.\n%@ DOPED.\n%@ ADDED.";
-"IMPORT_FAIL_TITLE" = "IMPORT BUSTED";
-"EXPORT_WORDS_MESSAGE" = "SAVE %@ TO FLOPPY";
-
-/* AddWordViewController */
-"MIGRATION_TITLE" = "SINK WITH CLOUD";
-"MIGRATION_MESSAGE" = "YOU CAN TURN IT OFF LATER IN KNOBS";
-"MIGRATION_LOCAL" = "DONT TOUCH MY TXT";
-"MIGRATION_ICLOUD" = "SINK WITH EYE CLOUD";
+/* Message for dictionary prompt */
+"DICTIONARY_MESSAGE" = "DID YOU SET UP YOUR IPHONE WORD BOOKS\n\nHIT MANGE TO GET WORD BOOKS FOR THINGS I DONT UNDERSTAND";
 
 /* UIViewController+Dictionary */
 "DICTIONARY_TITLE" = "ADD WORD BOOK";
-"DICTIONARY_MESSAGE" = "DID YOU SET UP YOUR IPHONE WORD BOOKS\n\nHIT MANGE TO GET WORD BOOKS FOR THINGS I DONT UNDERSTAND";
-"DICTIONARY_ACTION" = "YOU GOT IT BUSTER";
+
+/* Count of words to be exported */
+"EXPORT_WORDS_MESSAGE" = "SAVE %@ TO FLOPPY";
+
+/* Title when iCloud Sync is disabled */
+"ICLOUD_SYNC_DISABLED" = "SINK WITH CLOUD OFF";
+
+/* Title when iCloud Sync is enabled */
+"ICLOUD_SYNC_ENABLED" = "SINK WITH CLOUD ON";
+
+/* Title for failed import */
+"IMPORT_FAIL_TITLE" = "IMPORT BUSTED";
+
+/* Message for successful import */
+"IMPORT_SUCCESS_MESSAGE" = "TRYED TO IMPORT %@.\n%@ DOPED.\n%@ ADDED.";
+
+/* SettingsViewController */
+"IMPORT_SUCCESS_TITLE" = "IMPORT WORKED";
+
+/* Action for using iCloud */
+"MIGRATION_ICLOUD" = "SINK WITH EYE CLOUD";
+
+/* Action for keeping local */
+"MIGRATION_LOCAL" = "DONT TOUCH MY TXT";
+
+/* Message for migration alert */
+"MIGRATION_MESSAGE" = "YOU CAN TURN IT OFF LATER IN KNOBS";
+
+/* AddWordViewController */
+"MIGRATION_TITLE" = "SINK WITH CLOUD";
+
+/* No comment provided by engineer. */
+"OK" = "OKIE DOKEY";
+
+/* Count of words available */
+"WordCount" = "12,345 THINGS WITH LETTERS";

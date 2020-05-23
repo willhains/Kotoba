@@ -31,6 +31,10 @@
 		B6F4595D24611E8300E2174D /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
 		B6F4595E24611F0100E2174D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE776E561D09D60700D4A315 /* Preferences.swift */; };
 		B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F5588E21F20E8D0053F800 /* Launch.storyboard */; };
+		B6F73C4D2478FCC60003F394 /* BartyCrouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F73C4C2478FCC60003F394 /* BartyCrouch.swift */; };
+		B6F73C4E2478FCC60003F394 /* BartyCrouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F73C4C2478FCC60003F394 /* BartyCrouch.swift */; };
+		B6F73C532478FE1A0003F394 /* .bartycrouch.toml in Resources */ = {isa = PBXBuildFile; fileRef = B6F73C522478FE1A0003F394 /* .bartycrouch.toml */; };
+		B6F73C542478FE1A0003F394 /* .bartycrouch.toml in Resources */ = {isa = PBXBuildFile; fileRef = B6F73C522478FE1A0003F394 /* .bartycrouch.toml */; };
 		BE0CD1141D178D3700BB6E4A /* UIViewController+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */; };
 		BE7599A11D04636E006FBB80 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7599A01D04636E006FBB80 /* WordList.swift */; };
 		BE776E571D09D60700D4A315 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE776E561D09D60700D4A315 /* Preferences.swift */; };
@@ -94,6 +98,8 @@
 		B62B309D23B7FA0B00583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Main.strings; sourceTree = "<group>"; };
 		B62B309E23B7FA2B00583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B62B309F23B7FA3100583D3D /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = chock; path = chock.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		B6A919592478F34D00B08C37 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShareExtension.strings; sourceTree = "<group>"; };
+		B6A9195B2478F34E00B08C37 /* chock */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = chock; path = chock.lproj/ShareExtension.strings; sourceTree = "<group>"; };
 		B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B6D7CC7623EA0EC8007F36DF /* KotobaAppStoreScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaAppStoreScreenshots.swift; sourceTree = "<group>"; };
 		B6F3964624629E77009E0B7C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -104,6 +110,8 @@
 		B6F459522460E15100E2174D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B6F4595F2461265000E2174D /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
 		B6F5588E21F20E8D0053F800 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		B6F73C4C2478FCC60003F394 /* BartyCrouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartyCrouch.swift; sourceTree = "<group>"; };
+		B6F73C522478FE1A0003F394 /* .bartycrouch.toml */ = {isa = PBXFileReference; lastKnownFileType = file; path = .bartycrouch.toml; sourceTree = SOURCE_ROOT; };
 		BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dictionary.swift"; sourceTree = "<group>"; };
 		BE7599A01D04636E006FBB80 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		BE776E561D09D60700D4A315 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -228,7 +236,9 @@
 		BE918C4D1A22A5F5006043CF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B6F73C522478FE1A0003F394 /* .bartycrouch.toml */,
 				BE918C4E1A22A5F5006043CF /* Info.plist */,
+				B6F73C4C2478FCC60003F394 /* BartyCrouch.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -276,6 +286,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE918C691A22A5F5006043CF /* Build configuration list for PBXNativeTarget "Kotoba" */;
 			buildPhases = (
+				B6A919572478F32800B08C37 /* ShellScript */,
 				BE918C461A22A5F5006043CF /* Sources */,
 				BE918C471A22A5F5006043CF /* Frameworks */,
 				BE918C481A22A5F5006043CF /* Resources */,
@@ -390,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F459512460E15100E2174D /* ShareExtension.storyboard in Resources */,
+				B6F73C542478FE1A0003F394 /* .bartycrouch.toml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +415,7 @@
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
 				B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */,
 				B62B309823B7F60900583D3D /* Localizable.stringsdict in Resources */,
+				B6F73C532478FE1A0003F394 /* .bartycrouch.toml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +435,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B6A919572478F32800B08C37 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which bartycrouch > /dev/null; then\n    bartycrouch update -x\n    bartycrouch lint -x\nelse\n    echo \"warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B6F459472460E15100E2174D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -429,6 +462,7 @@
 			files = (
 				B6F3964324624C93009E0B7C /* PasteboardWordList.swift in Sources */,
 				B6F40BC12461771100CDB013 /* DictionaryViewController.swift in Sources */,
+				B6F73C4E2478FCC60003F394 /* BartyCrouch.swift in Sources */,
 				B6F4594E2460E15100E2174D /* ShareViewController.swift in Sources */,
 				B6F4595C24611D9200E2174D /* Debug.swift in Sources */,
 				B6F4595E24611F0100E2174D /* Preferences.swift in Sources */,
@@ -445,6 +479,7 @@
 				BE7599A11D04636E006FBB80 /* WordList.swift in Sources */,
 				44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */,
 				BE918C521A22A5F5006043CF /* WordListViewController.swift in Sources */,
+				B6F73C4D2478FCC60003F394 /* BartyCrouch.swift in Sources */,
 				B6C1049E238ECF94008E9C97 /* SettingsViewController.swift in Sources */,
 				BE820C601D14717400CD6ABA /* AddWordViewController.swift in Sources */,
 				B6F40BC02461771100CDB013 /* DictionaryViewController.swift in Sources */,
@@ -518,6 +553,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				B6F459502460E15100E2174D /* Base */,
+				B6A919592478F34D00B08C37 /* en */,
+				B6A9195B2478F34E00B08C37 /* chock */,
 			);
 			name = ShareExtension.storyboard;
 			sourceTree = "<group>";

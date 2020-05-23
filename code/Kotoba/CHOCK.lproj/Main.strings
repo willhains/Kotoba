@@ -1,4 +1,3 @@
-
 /* Class = "UIBarButtonItem"; title = " "; ObjectID = "12J-us-Q9r"; */
 "12J-us-Q9r.title" = " ";
 
@@ -11,41 +10,32 @@
 /* Class = "UIViewController"; title = "Settings"; ObjectID = "5vB-j0-vQp"; */
 "5vB-j0-vQp.title" = "KNOBS";
 
-/* Class = "UILabel"; text = "Sync via iCloud"; ObjectID = "ADH-HZ-c9J"; */
+/* Class = "UILabel"; text = "iCloud Sync Enabled"; ObjectID = "ADH-HZ-c9J"; */
 "ADH-HZ-c9J.text" = "SINK WITH CLOUD";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "Cjq-1A-qED"; */
 "Cjq-1A-qED.text" = "Title";
 
+/* Class = "UINavigationItem"; title = "History"; ObjectID = "d1d-CM-VoC"; */
+"d1d-CM-VoC.title" = "BIGGER IS BETTER";
+
 /* Class = "UILabel"; text = "Acknowledgements"; ObjectID = "Dof-TQ-9k5"; */
 "Dof-TQ-9k5.text" = "ME AND SOME OTHER DUDES";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "e72-Uw-DnT"; Note = "iCloud Settings"; */
+"e72-Uw-DnT.normalTitle" = "KNOBS";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "Eh3-mK-Sxg"; */
 "Eh3-mK-Sxg.text" = "Title";
 
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "GtE-od-9Nf"; */
+"GtE-od-9Nf.title" = "DONE";
+
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "H3q-1o-Aor"; */
 "H3q-1o-Aor.title" = "KNOBS";
 
-/* Class = "UILabel"; text = "Text File"; ObjectID = "Miw-u9-hXE"; */
-"Miw-u9-hXE.text" = "TXT FILES";
-
-/* Class = "UILabel"; text = "17 words"; ObjectID = "NcW-3c-WBI"; */
-"NcW-3c-WBI.text" = "12,345 THINGS WITH LETTERS";
-
-/* Class = "UITextField"; placeholder = "Type a Word"; ObjectID = "NcX-Q6-lwW"; */
-"NcX-Q6-lwW.placeholder" = "TYPE HERE DUH";
-
-/* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "V6n-v4-Uiu"; */
-"V6n-v4-Uiu.title" = "KNOBS";
-
-/* Class = "UINavigationItem"; title = "Kotoba"; ObjectID = "YQw-TU-c8o"; */
-"YQw-TU-c8o.title" = "CHOCKTUBA";
-
-/* Class = "UILabel"; text = "Clipboard Suggestions"; ObjectID = "ZZ5-YD-TOc"; */
-"ZZ5-YD-TOc.text" = "CLIPPY SUGGESTS";
-
-/* Class = "UINavigationItem"; title = "History"; ObjectID = "d1d-CM-VoC"; */
-"d1d-CM-VoC.title" = "BIGGER IS BETTER";
+/* Class = "UIView"; accessibilityLabel = "Clipboard Import"; ObjectID = "Kbp-3I-DOl"; */
+"Kbp-3I-DOl.accessibilityLabel" = "CLIPPY IMPORT";
 
 /* Class = "UILabel"; text = "Import Words"; ObjectID = "llM-28-al3"; */
 "llM-28-al3.text" = "IMPORT BEER";
@@ -53,10 +43,19 @@
 /* Class = "UIBarButtonItem"; title = "History"; ObjectID = "lxn-9Q-keE"; */
 "lxn-9Q-keE.title" = "OLD STUFF";
 
-/* Class = "UILabel"; text = "Kotoba was conceived by John Gruber, and developed by Will Hains, Craig Hockenberry, Troy Gaul, Ryan Forsythe, Gabor Halasz, and others."; ObjectID = "q31-y2-2SU"; */
+/* Class = "UILabel"; text = "Text File"; ObjectID = "Miw-u9-hXE"; */
+"Miw-u9-hXE.text" = "TXT FILES";
+
+/* Class = "UILabel"; text = "12,345 words"; ObjectID = "NcW-3c-WBI"; */
+"NcW-3c-WBI.text" = "12,345 THINGS WITH LETTERS";
+
+/* Class = "UITextField"; placeholder = "Type a Word"; ObjectID = "NcX-Q6-lwW"; */
+"NcX-Q6-lwW.placeholder" = "TYPE HERE DUH";
+
+/* Class = "UILabel"; text = "Kotoba was conceived by John Gruber; and developed by Will Hains, Craig Hockenberry, Troy Gaul, Ryan Forsythe, Gabor Halasz, and others."; ObjectID = "q31-y2-2SU"; */
 "q31-y2-2SU.text" = "CHOCKTUBA IS A BRAIN CHILD OF CHOCK DUH BUT THERE WAS ALSO GUY NAMED GRUBER WHO THOUGHT OF IT FIRST AND BILL HAINS DID MOST OF THE WORK SO DID TORY GAUL AND RYAN FOURSYTHE AND A GUY NAMED GABOR WITH A NAME I CANT SPELL THEIR WERE OTHERS TO";
 
-/* Class = "UILabel"; text = "Kotoba remembers the words you look up and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere."; ObjectID = "rPe-FK-JXL"; */
+/* Class = "UILabel"; text = "Kotoba remembers the words you look up and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere. This can be disabled in Settings."; ObjectID = "rPe-FK-JXL"; */
 "rPe-FK-JXL.text" = "CHOCKTUBA REMEMBERS EVERY THING YOU TYPE AND COPYS IT TOO THE EYE CLOUD DO YOU TRUST ME BECAUSE YOU SHOULD";
 
 /* Class = "UILabel"; text = "Tap to Open"; ObjectID = "tmh-XL-7aW"; */
@@ -65,8 +64,20 @@
 /* Class = "UILabel"; text = "Clipboard"; ObjectID = "uZi-As-Mhl"; */
 "uZi-As-Mhl.text" = "CLIPPY BOARD";
 
+/* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "V6n-v4-Uiu"; */
+"V6n-v4-Uiu.title" = "KNOBS";
+
+/* Class = "UIView"; accessibilityLabel = "Text File Import"; ObjectID = "WLQ-dC-7XW"; */
+"WLQ-dC-7XW.accessibilityLabel" = "FILE IMPORT";
+
+/* Class = "UILabel"; text = "Version 2.0 (123)"; ObjectID = "WM9-c7-NwX"; */
+"WM9-c7-NwX.text" = "VERSION TO";
+
+/* Class = "UINavigationItem"; title = "Kotoba"; ObjectID = "YQw-TU-c8o"; */
+"YQw-TU-c8o.title" = "CHOCKTUBA";
+
 /* Class = "UIButton"; normalTitle = "Learn more and contribute…"; ObjectID = "ywm-6n-NGB"; */
 "ywm-6n-NGB.normalTitle" = "CODE FOR FREE DOT DOT DOT";
 
-/* Class = "UIButton"; normalTitle = "Enable iCloud in Settings…"; ObjectID = "M76-a4-lPz"; */
-"M76-a4-lPz.normalTitle" = "EYE CLOUD TURNS ME ON DOT DOT DOT";
+/* Class = "UILabel"; text = "Clipboard Suggestions"; ObjectID = "ZZ5-YD-TOc"; */
+"ZZ5-YD-TOc.text" = "CLIPPY SUGGESTS";

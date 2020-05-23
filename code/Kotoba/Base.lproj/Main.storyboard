@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uqs-b9-3Ik">
     <device id="retina3_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -14,7 +14,7 @@
             <objects>
                 <tableViewController id="PII-AL-jNA" userLabel="Word List VC" customClass="WordListViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kNU-bZ-hng">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="separatorColor" name="appBarTint"/>
@@ -224,7 +224,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uqs-b9-3Ik" customClass="KotobaNavigationController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I2T-4W-xZ2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="appBarTint"/>
                         <textAttributes key="titleTextAttributes">
@@ -265,7 +265,7 @@
             <objects>
                 <viewController title="Settings" id="5vB-j0-vQp" customClass="SettingsViewController" customModule="Kotoba" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aaD-5f-bHY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C7U-xQ-mKc" userLabel="Screen Layout">
@@ -275,29 +275,35 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="404"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="c7e-qr-Hev" userLabel="Settings Layout">
-                                                <rect key="frame" x="20" y="20" width="280" height="1073.5"/>
+                                                <rect key="frame" x="20" y="20" width="280" height="1090.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5dj-d9-na8" userLabel="Sync Settings">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="117"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="136"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4FS-p4-K3X" userLabel="iCloud Sync Setting">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sync via iCloud" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-HZ-c9J">
-                                                                        <rect key="frame" x="0.0" y="5.5" width="122" height="20.5"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iCloud Sync Enabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADH-HZ-c9J">
+                                                                        <rect key="frame" x="0.0" y="5" width="163.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <switch opaque="NO" contentMode="right" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yha-M8-X3I">
-                                                                        <rect key="frame" x="231" y="0.0" width="51" height="31"/>
-                                                                        <color key="onTintColor" name="appTint"/>
-                                                                    </switch>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e72-Uw-DnT">
+                                                                        <rect key="frame" x="223" y="0.0" width="57" height="30"/>
+                                                                        <state key="normal" title="Settings"/>
+                                                                        <attributedString key="userComments">
+                                                                            <fragment content="iCloud Settings"/>
+                                                                        </attributedString>
+                                                                        <connections>
+                                                                            <action selector="openICloudSettings:" destination="5vB-j0-vQp" eventType="touchUpInside" id="nUz-aO-O9v"/>
+                                                                        </connections>
+                                                                    </button>
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPe-FK-JXL" userLabel="iCloud Sync Explainer">
-                                                                <rect key="frame" x="0.0" y="39" width="280" height="78"/>
-                                                                <string key="text">Kotoba remembers the words you look up and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere.</string>
+                                                                <rect key="frame" x="0.0" y="38" width="280" height="98"/>
+                                                                <string key="text">Kotoba remembers the words you look up and can sync them via iCloud to your other devices. Kotoba does this privately and does not send your data elsewhere. This can be disabled in Settings.</string>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -305,23 +311,23 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RuO-30-X9q" userLabel="Import">
-                                                        <rect key="frame" x="0.0" y="157" width="280" height="206"/>
+                                                        <rect key="frame" x="0.0" y="176" width="280" height="205"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Words" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llM-28-al3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15y-9S-NZ3" userLabel="Import Explainer">
-                                                                <rect key="frame" x="0.0" y="39" width="280" height="98"/>
+                                                                <rect key="frame" x="0.0" y="38" width="280" height="98"/>
                                                                 <string key="text">Import a list of words, one word per line. Kotoba will not check if words exist in the dictionary, but will skip words that are already present in your lookup history.</string>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ebd-d4-mcO" userLabel="Import Buttons">
-                                                                <rect key="frame" x="0.0" y="145" width="280" height="61"/>
+                                                                <rect key="frame" x="0.0" y="144" width="280" height="61"/>
                                                                 <subviews>
                                                                     <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Kbp-3I-DOl" userLabel="Clipboard Import Button" customClass="RoundedView" customModule="Kotoba" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="61"/>
@@ -450,16 +456,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gkD-f6-8Oa" userLabel="Credits">
-                                                        <rect key="frame" x="0.0" y="403" width="280" height="540.5"/>
+                                                        <rect key="frame" x="0.0" y="421" width="280" height="539.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acknowledgements" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dof-TQ-9k5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="31"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="CHOCKTUBA" translatesAutoresizingMaskIntoConstraints="NO" id="9DD-gv-ZrJ">
-                                                                <rect key="frame" x="0.0" y="39" width="280" height="377.5"/>
+                                                                <rect key="frame" x="0.0" y="38" width="280" height="377.5"/>
                                                                 <color key="backgroundColor" red="0.78368252520000004" green="1" blue="0.35060030219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="9DD-gv-ZrJ" secondAttribute="height" multiplier="460:620" id="C99-OP-Ltq"/>
@@ -471,14 +477,14 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q31-y2-2SU" userLabel="Credits Explainer">
-                                                                <rect key="frame" x="0.0" y="424.5" width="280" height="78"/>
+                                                                <rect key="frame" x="0.0" y="423.5" width="280" height="78"/>
                                                                 <string key="text">Kotoba was conceived by John Gruber; and developed by Will Hains, Craig Hockenberry, Troy Gaul, Ryan Forsythe, Gabor Halasz, and others.</string>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywm-6n-NGB">
-                                                                <rect key="frame" x="0.0" y="510.5" width="280" height="30"/>
+                                                                <rect key="frame" x="0.0" y="509.5" width="280" height="30"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <state key="normal" title="Learn more and contribute…"/>
                                                                 <connections>
@@ -488,7 +494,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Oi4-GB-GVH">
-                                                        <rect key="frame" x="0.0" y="983.5" width="280" height="90"/>
+                                                        <rect key="frame" x="0.0" y="1000.5" width="280" height="90"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTU-b0-TtE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="75.5"/>
@@ -559,7 +565,8 @@
                         <outlet property="clipboardWordCount" destination="NcW-3c-WBI" id="QLr-PZ-9x6"/>
                         <outlet property="fileButtonTap" destination="1Vf-gd-Fki" id="QV4-c1-zdj"/>
                         <outlet property="fileImportButton" destination="WLQ-dC-7XW" id="yq9-dX-ox0"/>
-                        <outlet property="iCloudSyncSwitch" destination="Yha-M8-X3I" id="iG8-0F-IfK"/>
+                        <outlet property="iCloudEnabledLabel" destination="ADH-HZ-c9J" id="bGA-Ho-LPa"/>
+                        <outlet property="iCloudExplainerLabel" destination="rPe-FK-JXL" id="2xf-eI-O8h"/>
                         <outlet property="versionInfo" destination="WM9-c7-NwX" id="Wje-7q-K6i"/>
                     </connections>
                 </viewController>

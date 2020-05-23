@@ -13,7 +13,8 @@ import LinkPresentation
 
 final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
-	@IBOutlet weak var iCloudSyncSwitch: UISwitch!
+	@IBOutlet weak var iCloudEnabledLabel: UILabel!
+	@IBOutlet weak var iCloudExplainerLabel: UILabel!
 	@IBOutlet weak var clipboardImportButton: RoundedView!
 	@IBOutlet weak var clipboardWordCount: UILabel!
 	@IBOutlet weak var fileImportButton: RoundedView!
@@ -24,8 +25,6 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 
 	override func viewDidLoad()
 	{
-		iCloudSyncSwitch.addTarget(self, action: #selector(_switchWordListStore), for: .valueChanged)
-		
 		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH
 		
 		if let productVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
@@ -41,7 +40,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	override func viewWillAppear(_ animated: Bool)
 	{
 		super.viewWillAppear(animated)
-		
+//		self.iCloudExplainerLabel.sizeToFit()
 		_refreshViews()
 	}
 	
@@ -90,6 +89,14 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		}
 	}
 	
+	@IBAction func openICloudSettings(_ sender: Any)
+	{
+		if let url = URL(string: "App-prefs:root=CASTLE")
+		{
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
+		}
+	}
+	
 	private func _pluralizedWordCount(_ count: Int) -> String
 	{
 		let format = NSLocalizedString("WordCount", comment: "Count of words available")
@@ -100,20 +107,14 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	private func _refreshViews()
 	{
 		// iCloud settings
-		iCloudSyncSwitch.setOn(wordListStore == .iCloud, animated: true)
+		self.iCloudEnabledLabel.text = NSUbiquitousKeyValueStore.default.iCloudEnabledInSettings
+			? NSLocalizedString("ICLOUD_SYNC_ENABLED", comment: "Title when iCloud Sync is enabled")
+			: NSLocalizedString("ICLOUD_SYNC_DISABLED", comment: "Title when iCloud Sync is disabled")
 		
 		// Import settings
 		let count = UIPasteboard.general.lines.count
 		clipboardWordCount.text = _pluralizedWordCount(count)
 		self.clipboardImportButton.enabled = count > 0
-	}
-	
-	@objc private func _switchWordListStore()
-	{
-		let store: WordListStore = iCloudSyncSwitch.isOn ? .iCloud : .local
-		debugLog("Switching word list store to \(store)")
-		wordListStore = store
-		_refreshViews()
 	}
 	
 	private func _import(newlineDelimitedWords text: String)

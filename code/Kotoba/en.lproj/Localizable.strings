@@ -1,25 +1,44 @@
-/* 
-  Localizable.strings
-  Kotoba
+/* Action for dictionary prompt */
+"DICTIONARY_ACTION" = "Got It";
 
-  Created by Craig Hockenberry on 12/16/19.
-  Copyright © 2019 Will Hains. All rights reserved.
-*/
-
-"OK" = "OK";
-
-"IMPORT_SUCCESS_TITLE" = "Import Successful";
-"IMPORT_SUCCESS_MESSAGE" = "%@ found in import source.\n%@ duplicated.\n%@ added.";
-"IMPORT_FAIL_TITLE" = "Import Failed";
-"EXPORT_WORDS_MESSAGE" = "Export %@";
-
-/* AddWordViewController */
-"MIGRATION_TITLE" = "Sync with iCloud?";
-"MIGRATION_MESSAGE" = "You can change this at any time in Settings.";
-"MIGRATION_LOCAL" = "Keep History Only on This Device";
-"MIGRATION_ICLOUD" = "Sync Data via iCloud";
+/* Message for dictionary prompt */
+"DICTIONARY_MESSAGE" = "Have you set up your iOS dictionaries?\n\nTap \"Manage\" below to download dictionaries for the languages you want.";
 
 /* UIViewController+Dictionary */
 "DICTIONARY_TITLE" = "Add Dictionaries";
-"DICTIONARY_MESSAGE" = "Have you set up your iOS dictionaries?\n\nTap \"Manage\" below to download dictionaries for the languages you want.";
-"DICTIONARY_ACTION" = "Got It";
+
+/* Count of words to be exported */
+"EXPORT_WORDS_MESSAGE" = "Export %@";
+
+/* Title when iCloud Sync is disabled */
+"ICLOUD_SYNC_DISABLED" = "iCloud Sync Disabled";
+
+/* Title when iCloud Sync is enabled */
+"ICLOUD_SYNC_ENABLED" = "iCloud Sync Enabled";
+
+/* Title for failed import */
+"IMPORT_FAIL_TITLE" = "Import Failed";
+
+/* Message for successful import */
+"IMPORT_SUCCESS_MESSAGE" = "%@ found in import source.\n%@ duplicated.\n%@ added.";
+
+/* SettingsViewController */
+"IMPORT_SUCCESS_TITLE" = "Import Successful";
+
+/* Action for using iCloud */
+"MIGRATION_ICLOUD" = "Sync Data via iCloud";
+
+/* Action for keeping local */
+"MIGRATION_LOCAL" = "Keep History Only on This Device";
+
+/* Message for migration alert */
+"MIGRATION_MESSAGE" = "You can change this at any time in Settings.";
+
+/* AddWordViewController */
+"MIGRATION_TITLE" = "Sync with iCloud?";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Count of words available */
+"WordCount" = "THINGS WITH LETTERS";
