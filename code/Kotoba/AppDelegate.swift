@@ -37,6 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 			words.clear()
 		}
 		
+		// Migrate to/from iCloud
+		else
+		{
+			wordListStore = NSUbiquitousKeyValueStore.iCloudEnabledInSettings ? .iCloud : .local
+		}
+		
 		debugLog("libraryDirectory = \(NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true))")
 		
 		// Set tint colour to match icon
