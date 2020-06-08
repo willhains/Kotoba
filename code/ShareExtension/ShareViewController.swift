@@ -46,7 +46,6 @@ class ShareViewController: UIViewController
 	
 	override func viewDidAppear(_ animated: Bool)
 	{
-		debugLog("_____ tableView")
 		debugLog("iCloud=\(NSUbiquitousKeyValueStore.iCloudEnabledInSettings)")
 		debugLog("wordListStore.data=\(wordListStore.data.asText())")
 		
