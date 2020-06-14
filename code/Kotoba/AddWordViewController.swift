@@ -110,13 +110,9 @@ extension AddWordViewController
 		debugLog("word = \(word)")
 		self.searchingIndicator.startAnimating()
 		
-		// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do
-		// a definition lookup. Previously, Kotoba did both these things at the same time on the same queue.
+		// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do a definition lookup. Previously, Kotoba did both these things at the same time on the same queue.
 		//
-		// The gymnastics below are to hide the slowness: after the view controller is presented, the definition lookup
-		// proceeds on a background queue. If there's a definition, the text field is cleared: if you spend little time
-		// reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really
-		// quick, you can see it not appear in the History view, too. Better this than slowness.
+		// The gymnastics below are to hide the slowness: after the view controller is presented, the definition lookup proceeds on a background queue. If there's a definition, the text field is cleared: if you spend little time reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really quick, you can see it not appear in the History view, too. Better this than slowness.
 		//
 		// TODO: This has to be a regression in UIReferenceLibraryViewController. I'll file a radar for this.
 		

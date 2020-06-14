@@ -12,7 +12,7 @@ import CoreServices
 
 class ShareViewController: UIViewController
 {
-	@IBOutlet weak var wordLabel: UILabel!
+	@IBOutlet var wordLabel: UILabel!
 	
 	var contentText: String = ""
 
@@ -34,8 +34,11 @@ class ShareViewController: UIViewController
 			{
 				(item, error) -> Void in
 				guard let text = item as? String else { return }
-				self.contentText = text
-				self.wordLabel.text = text
+				DispatchQueue.main.async
+				{
+					self.contentText = text
+					self.wordLabel.text = text
+				}
             })
         }
 		else
@@ -48,19 +51,17 @@ class ShareViewController: UIViewController
 	{
 		debugLog("iCloud=\(NSUbiquitousKeyValueStore.iCloudEnabledInSettings)")
 		debugLog("wordListStore.data=\(wordListStore.data.asText())")
-		
-		// Skip straight to definition if there is only one word
 		initiateSearch(forWord: Word(text: contentText))
 	}
 	
-	func cancelShare()
+	func completeShare()
 	{
 		extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
 	}
 	
 	@IBAction func didTapCancel(_ sender: UIBarButtonItem)
 	{
-		cancelShare()
+		completeShare()
 	}
 }
 
@@ -71,19 +72,15 @@ extension ShareViewController
 	{
 		let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
 		debugLog("hasDefinition = \(hasDefinition)")
+		if hasDefinition
+		{
+			var words = wordListStore.data
+			words.add(word: word)
+		}
 		let dictionaryViewController = DictionaryViewController(term: word.text)
 		self.present(dictionaryViewController, animated: true)
 		{
-			dictionaryViewController.onDismiss =
-			{
-				if hasDefinition
-				{
-					var words = wordListStore.data
-					words.add(word: word)
-					
-					self.cancelShare()
-				}
-			}
+			dictionaryViewController.onDismiss = self.completeShare
 		}
 	}
 }
