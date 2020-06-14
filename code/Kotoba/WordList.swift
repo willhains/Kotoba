@@ -104,11 +104,13 @@ extension WordListDataSource where Self: WordListStrings
 	{
 		// Prevent duplicates; move to top of list instead
 		wordStrings.add(possibleDuplicate: word.canonicalise())
+		debugLog("add: wordStrings=\(wordStrings.first ?? "")..\(wordStrings.last ?? "")")
 	}
 	
 	mutating func delete(wordAt index: Int)
 	{
 		wordStrings.remove(at: index)
+		debugLog("remove: wordStrings=\(wordStrings.first ?? "")..\(wordStrings.last ?? "")")
 	}
 	
 	mutating func clear()
