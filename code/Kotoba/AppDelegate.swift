@@ -44,6 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 			wordListStore = NSUbiquitousKeyValueStore.iCloudEnabledInSettings ? .iCloud : .local
 		}
 		
+		// Subscribe to iCloud key/value update notifications
+		NotificationCenter.default.addObserver(
+			forName: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+			object: NSUbiquitousKeyValueStore.default, queue: OperationQueue.main) { _ in }
+		
 		debugLog("libraryDirectory = \(NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true))")
 		
 		// Set tint colour to match icon
