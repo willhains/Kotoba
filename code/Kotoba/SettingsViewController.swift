@@ -22,7 +22,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet weak var CHOCKTUBA: UIView!
 	@IBOutlet weak var versionInfo: UILabel!
-
+	
 	override func viewDidLoad()
 	{
 		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH

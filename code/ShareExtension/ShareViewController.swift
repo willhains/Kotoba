@@ -15,7 +15,7 @@ class ShareViewController: UIViewController
 	@IBOutlet var wordLabel: UILabel!
 	
 	var contentText: String = ""
-
+	
 	required init?(coder: NSCoder)
 	{
 		super.init(coder: coder)
@@ -25,9 +25,9 @@ class ShareViewController: UIViewController
 	{
 		super.viewDidLoad()
 		
-        let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem
+		let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem
 		let itemProvider = extensionItem.attachments?.first!
-        let propertyList = String(kUTTypeText)
+		let propertyList = String(kUTTypeText)
 		if itemProvider?.hasItemConformingToTypeIdentifier(propertyList) ?? false
 		{
 			itemProvider?.loadItem(forTypeIdentifier: propertyList, options: nil, completionHandler:
@@ -39,12 +39,12 @@ class ShareViewController: UIViewController
 					self.contentText = text
 					self.wordLabel.text = text
 				}
-            })
-        }
+			})
+		}
 		else
 		{
-            print("error")
-        }
+			print("error")
+		}
 	}
 	
 	override func viewDidAppear(_ animated: Bool)

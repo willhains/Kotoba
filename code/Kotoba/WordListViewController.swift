@@ -49,15 +49,14 @@ extension WordListViewController: UIActivityItemSource
 	{
 		let path = NSTemporaryDirectory() + "Kotoba Word List.txt"
 		let exportText = wordListStore.data.asText()
-		if let data = exportText.data(using: .utf8) {
+		if let data = exportText.data(using: .utf8)
+		{
 			let url = URL.init(fileURLWithPath: path)
 			try? data.write(to: url)
 			
 			let items = [url]
 			let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
-			shareSheet.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
-				try? FileManager.default.removeItem(at: url)
-			}
+			shareSheet.completionWithItemsHandler = { (_, _, _, _) in try? FileManager.default.removeItem(at: url) }
 			present(shareSheet, animated: true)
 			if let popOver = shareSheet.popoverPresentationController
 			{
@@ -75,7 +74,7 @@ extension WordListViewController: UIActivityItemSource
 	{
 		return nil
 	}
-
+	
 	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?
 	{
 		let metadata = LPLinkMetadata()

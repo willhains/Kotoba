@@ -18,22 +18,22 @@ final class AddWordViewController: UIViewController
 	@IBOutlet weak var suggestionView: UIView!
 	@IBOutlet weak var suggestionLabel: UILabel!
 	@IBOutlet weak var suggestionToggleButton: UIButton!
-
+	
 	@IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
 	@IBOutlet weak var suggestionViewBottomLayoutConstraint: NSLayoutConstraint!
 	@IBOutlet weak var suggestionViewHeightLayoutConstraint: NSLayoutConstraint!
-
+	
 	var suggestionsVisible = false
 	var suggestionHeight = CGFloat(200)
 	let suggestionHeaderHeight = CGFloat(44) // NOTE: This value should match "Header View" in the storyboard
-
+	
 	var haveSuggestions = false // NOTE: This value is true if the pasteboard contained text the last time it was checked
 	var sourcePasteboardString: String?
 	var pasteboardWords: [Word] = []
 	
 	var keyboardVisible = false
 	var keyboardHeight = CGFloat(0)
-
+	
 	deinit
 	{
 		NotificationCenter.default.removeObserver(self)
@@ -43,7 +43,7 @@ final class AddWordViewController: UIViewController
 	{
 		super.viewDidLoad()
 		prepareKeyboardNotifications()
-
+		
 		if UserDefaults.standard.CHOCKTUBA_DUH
 		{
 			self.textField.autocapitalizationType = .allCharacters
@@ -65,7 +65,7 @@ final class AddWordViewController: UIViewController
 	{
 		debugLog()
 		super.viewWillAppear(animated)
-
+		
 		// TODO: Decide if the keyboard should appear before or after the view.
 		showKeyboard()
 	}
@@ -87,17 +87,17 @@ final class AddWordViewController: UIViewController
 	@objc func applicationDidBecomeActive(notification: NSNotification)
 	{
 		debugLog()
-
+		
 		#if true
-		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
-		let duration: TimeInterval = 0.2
-		UIView.animate(withDuration: duration)
-		{
-			self.updateLayoutFromPasteboard()
-			self.updateLayersForSuggestions()
-			self.updateTableView()
-			self.view.layoutIfNeeded()
-		}
+			suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
+			let duration: TimeInterval = 0.2
+			UIView.animate(withDuration: duration)
+			{
+				self.updateLayoutFromPasteboard()
+				self.updateLayersForSuggestions()
+				self.updateTableView()
+				self.view.layoutIfNeeded()
+			}
 		#endif
 	}
 }
@@ -158,10 +158,10 @@ extension AddWordViewController
 	@IBAction func dismissSuggestions(_: AnyObject)
 	{
 		debugLog()
-
+		
 		self.suggestionsVisible.toggle()
 		UIPasteboard.general.ignoreSuggestions = !suggestionsVisible
-
+		
 		let duration: TimeInterval = 0.2
 		UIView.animate(withDuration: duration)
 		{
@@ -170,7 +170,6 @@ extension AddWordViewController
 			self.view.layoutIfNeeded()
 		}
 	}
-
 }
 
 // MARK:- Keyboard notifications
@@ -181,19 +180,19 @@ extension AddWordViewController
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(AddWordViewController.keyboardWillShow(notification:)),
-			name:UIResponder.keyboardWillShowNotification,
+			name: UIResponder.keyboardWillShowNotification,
 			object: nil);
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(AddWordViewController.keyboardWillHide(notification:)),
-			name:UIResponder.keyboardWillHideNotification,
+			name: UIResponder.keyboardWillHideNotification,
 			object: nil);
 	}
-
+	
 	private func updateConstraintsForKeyboardAndSuggestions()
 	{
 		debugLog("keyboardHeight = \(keyboardHeight), suggestionHeight = \(suggestionHeight)")
-
+		
 		// NOTE: There are two primary views, each with a layout contraint for the bottom of the view.
 		//
 		// The first is the "suggestion view" that attaches either to the top of the keyboard (when shown) or a negative offset
@@ -240,7 +239,7 @@ extension AddWordViewController
 	private func updateLayersForSuggestions()
 	{
 		debugLog()
-
+		
 		if self.suggestionsVisible
 		{
 			self.suggestionToggleButton.layer.transform = CATransform3DIdentity;
@@ -250,15 +249,15 @@ extension AddWordViewController
 			self.suggestionToggleButton.layer.transform = CATransform3DMakeScale(1.0, -1.0, 1.0)
 		}
 	}
-
+	
 	@objc func keyboardWillShow(notification: Notification)
 	{
 		let info = notification.userInfo!
 		keyboardVisible = true
 		keyboardHeight = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-
+		
 		debugLog("keyboardHeight = \(keyboardHeight)")
-
+		
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration)
 		{
@@ -266,15 +265,15 @@ extension AddWordViewController
 			self.view.layoutIfNeeded()
 		}
 	}
-
+	
 	@objc func keyboardWillHide(notification: Notification)
 	{
 		debugLog()
-
+		
 		let info = notification.userInfo!
 		keyboardVisible = false
 		keyboardHeight = 0
-
+		
 		let duration: TimeInterval = (info[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 		UIView.animate(withDuration: duration)
 		{
@@ -282,7 +281,6 @@ extension AddWordViewController
 			self.view.layoutIfNeeded()
 		}
 	}
-
 }
 
 // MARK:- Utility
@@ -292,12 +290,12 @@ extension AddWordViewController
 	{
 		self.textField.becomeFirstResponder()
 	}
-
+	
 	func hideKeyboard()
 	{
 		self.textField.resignFirstResponder()
 	}
-
+	
 	func updateLayoutFromPasteboard()
 	{
 		pasteboardWords = UIPasteboard.general.suggestedWords
@@ -332,13 +330,13 @@ extension AddWordViewController
 		{
 			suggestionHeight = computedSuggestionHeight
 		}
-
+		
 		suggestionsVisible = !UIPasteboard.general.ignoreSuggestions
 		
 		updateConstraintsForKeyboardAndSuggestions()
 		updateLayersForSuggestions()
 	}
-
+	
 	func updateTableView()
 	{
 		tableView.reloadData()
@@ -381,16 +379,17 @@ extension AddWordViewController: UITextFieldDelegate
 					title = "CHOCKTUBA OFF"
 					message = "WHAT THE HELL ARE YOU THINKING"
 				}
-
+				
 				let alert = UIAlertController(
 					title: title,
 					message: message,
 					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: "CTL ALT DEL TO RESTART", style: .default, handler: { action in
+				alert.addAction(UIAlertAction(title: "CTL ALT DEL TO RESTART", style: .default)
+				{
+					action in
 					exit(0)
-				}))
+				})
 				self.present(alert, animated: true, completion: nil)
-
 			}
 			else
 			{

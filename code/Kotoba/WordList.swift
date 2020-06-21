@@ -43,7 +43,7 @@ enum WordListStore
 var wordListStore: WordListStore
 {
 	get { NSUbiquitousKeyValueStore.iCloudEnabledInSettings ? .iCloud : .local }
-
+	
 	set
 	{
 		// Merge local history with iCloud history
@@ -82,7 +82,10 @@ protocol WordListDataSource
 /// Internal persistence of word list as an array of strings.
 protocol WordListStrings
 {
-	var wordStrings: [String] { get set }
+	var wordStrings: [String]
+	{
+		get set
+	}
 }
 
 // Default implementations
