@@ -12,6 +12,9 @@ import UIKit
 private let _RED_THEME_COLOUR = UIColor(named: "appTint")
 	?? UIColor(hue: 5.0, saturation: 0.73, brightness: 0.65, alpha: 1.0)
 
+// App group ID
+let APP_GROUP_ID = "group.com.willhains.Kotoba"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
