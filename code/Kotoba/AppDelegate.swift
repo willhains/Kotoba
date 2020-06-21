@@ -9,7 +9,8 @@
 import UIKit
 
 // Theme colour for app icon and tint
-let redThemeColour = UIColor(named: "appTint") ?? UIColor(hue: 5.0, saturation: 0.73, brightness: 0.65, alpha: 1.0)
+private let _RED_THEME_COLOUR = UIColor(named: "appTint")
+	?? UIColor(hue: 5.0, saturation: 0.73, brightness: 0.65, alpha: 1.0)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -34,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		{
 			wordListStore = .local
 			var words = wordListStore.data
-			prefs.reset()
+			USER_PREFS.reset()
 			words.clear()
 		}
 		
@@ -52,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		debugLog("libraryDirectory = \(NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true))")
 		
 		// Set tint colour to match icon
-		UIView.appearance().tintColor = redThemeColour
+		UIView.appearance().tintColor = _RED_THEME_COLOUR
 		return true
 	}
 }

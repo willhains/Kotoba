@@ -19,7 +19,7 @@ extension UIViewController
 		self.present(dictionaryViewController, animated: true, completion: completion)
 		
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
-		if prefs.shouldDisplayFirstUseDictionaryPrompt()
+		if USER_PREFS.shouldDisplayFirstUseDictionaryPrompt()
 		{
 			debugLog("First-time lookup. Let's see if the user has dictionaries set up...")
 			if !UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: "OK")
@@ -34,7 +34,7 @@ extension UIViewController
 			}
 			
 			// Update preferences to silence this prompt next time
-			prefs.didDisplayFirstUseDictionaryPrompt()
+			USER_PREFS.didDisplayFirstUseDictionaryPrompt()
 		}
 	}
 }
