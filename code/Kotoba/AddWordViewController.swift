@@ -136,17 +136,14 @@ extension AddWordViewController
 				debugLog("checking definition")
 				let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
 				debugLog("hasDefinition = \(hasDefinition)")
-				if hasDefinition
-				{
-					var words = wordListStore.data
-					words.add(word: word)
-					DispatchQueue.main.async
-					{
-						self.textField.text = nil
-					}
-				}
 				DispatchQueue.main.async
 				{
+					if hasDefinition
+					{
+						var words = wordListStore.data
+						words.add(word: word)
+						self.textField.text = nil
+					}
 					self.searchingIndicator.stopAnimating()
 				}
 			}
@@ -248,7 +245,7 @@ extension AddWordViewController
 		}
 	}
 	
-	private func updateLayersForSuggestions()
+	func updateLayersForSuggestions()
 	{
 		debugLog()
 		
