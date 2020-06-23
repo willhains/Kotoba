@@ -8,7 +8,7 @@ import UIKit
 import MobileCoreServices
 import LinkPresentation
 
-final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
+class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
 	@IBOutlet weak var iCloudEnabledLabel: UILabel!
 	@IBOutlet weak var iCloudExplainerLabel: UILabel!
@@ -22,8 +22,6 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 	
 	override func viewDidLoad()
 	{
-		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH
-		
 		if let productVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
 		{
 			if let productBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion")

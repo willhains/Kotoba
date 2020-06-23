@@ -21,6 +21,7 @@
 		967E998BC07D453DE26EEE83 /* WordListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E990F894B4E27CE8337A4 /* WordListDataSource.swift */; };
 		967E99DE08067E1B31567C98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE918C4F1A22A5F5006043CF /* AppDelegate.swift */; };
 		967E9E3969BCBD8408ADCB69 /* WordListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E990F894B4E27CE8337A4 /* WordListDataSource.swift */; };
+		B6232DEF24A7881700B0CC38 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967E98DD562220BBE20A8C1F /* RoundedView.swift */; };
 		B62B309823B7F60900583D3D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = B62B309A23B7F60900583D3D /* Localizable.stringsdict */; };
 		B65A4E02238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		B65A4E03238435ED000C9A4F /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
@@ -223,31 +224,31 @@
 		BE918C4C1A22A5F5006043CF /* Kotoba */ = {
 			isa = PBXGroup;
 			children = (
-				44FD6CD42389CEC900FF245E /* Kotoba.entitlements */,
-				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
-				44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */,
-				BE918C511A22A5F5006043CF /* WordListViewController.swift */,
 				BE820C5F1D14717400CD6ABA /* AddWordViewController.swift */,
-				B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */,
-				BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */,
-				BE7599A01D04636E006FBB80 /* Word.swift */,
-				44B821172391CF20004B8142 /* PasteboardWordList.swift */,
-				BE776E561D09D60700D4A315 /* Preferences.swift */,
-				691B8E1520DAB5A100B11216 /* NSDictionary+Workaround.swift */,
-				B6F5588E21F20E8D0053F800 /* Launch.storyboard */,
-				BE918C531A22A5F5006043CF /* Main.storyboard */,
-				BE918C561A22A5F5006043CF /* Images.xcassets */,
+				BE918C4F1A22A5F5006043CF /* AppDelegate.swift */,
+				967E9C49B74C80223D273414 /* Chocktuba.swift */,
 				4440B41C236CF92100369CE8 /* Colors.xcassets */,
 				44CFA6AA2381F0CB00D7ECCC /* Debug.swift */,
-				BE918C4D1A22A5F5006043CF /* Supporting Files */,
+				B6F40BBF2461771100CDB013 /* DictionaryViewController.swift */,
+				BE918C561A22A5F5006043CF /* Images.xcassets */,
+				44FD6CD42389CEC900FF245E /* Kotoba.entitlements */,
+				44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */,
+				B6F5588E21F20E8D0053F800 /* Launch.storyboard */,
 				44D1096423A84262007C477C /* Localizable.strings */,
 				B62B309A23B7F60900583D3D /* Localizable.stringsdict */,
-				B6F40BBF2461771100CDB013 /* DictionaryViewController.swift */,
-				967E9C49B74C80223D273414 /* Chocktuba.swift */,
+				BE918C531A22A5F5006043CF /* Main.storyboard */,
+				691B8E1520DAB5A100B11216 /* NSDictionary+Workaround.swift */,
+				44B821172391CF20004B8142 /* PasteboardWordList.swift */,
+				BE776E561D09D60700D4A315 /* Preferences.swift */,
 				967E98DD562220BBE20A8C1F /* RoundedView.swift */,
-				967E9CB9914B758828733936 /* WordListStore.swift */,
+				B6C1049D238ECF94008E9C97 /* SettingsViewController.swift */,
+				BE918C4D1A22A5F5006043CF /* Supporting Files */,
+				BE0CD1131D178D3700BB6E4A /* UIViewController+Dictionary.swift */,
+				BE7599A01D04636E006FBB80 /* Word.swift */,
 				967E990F894B4E27CE8337A4 /* WordListDataSource.swift */,
+				967E9CB9914B758828733936 /* WordListStore.swift */,
 				967E9EDA541A0A73088A86DC /* WordListStrings.swift */,
+				BE918C511A22A5F5006043CF /* WordListViewController.swift */,
 			);
 			path = Kotoba;
 			sourceTree = "<group>";
@@ -505,6 +506,7 @@
 				B6F4595C24611D9200E2174D /* Debug.swift in Sources */,
 				B6F4595E24611F0100E2174D /* Preferences.swift in Sources */,
 				B6F39644246281CE009E0B7C /* KotobaNavigationController.swift in Sources */,
+				B6232DEF24A7881700B0CC38 /* RoundedView.swift in Sources */,
 				B6F4595D24611E8300E2174D /* Word.swift in Sources */,
 				967E9945AE60D607F51330FF /* WordListStore.swift in Sources */,
 				967E9E3969BCBD8408ADCB69 /* WordListDataSource.swift in Sources */,

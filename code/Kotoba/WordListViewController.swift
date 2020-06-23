@@ -167,7 +167,7 @@ extension WordListViewController
 	{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
 		let text = wordListStore.data[indexPath.row].text
-		cell.textLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? text.uppercased() : text
+		cell.textLabel?.text = text
 		prepareTextLabelForDynamicType(label: cell.textLabel)
 		return cell
 	}

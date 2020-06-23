@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-final class AddWordViewController: UIViewController
+class AddWordViewController: UIViewController
 {
 	@IBOutlet weak var textField: UITextField!
 	@IBOutlet weak var tableView: UITableView!
@@ -36,11 +36,6 @@ final class AddWordViewController: UIViewController
 	{
 		super.viewDidLoad()
 		prepareKeyboardNotifications()
-		
-		if UserDefaults.standard.CHOCKTUBA_DUH
-		{
-			self.textField.autocapitalizationType = .allCharacters
-		}
 		
 		// NOTE: This improves the initial view animation, when the keyboard and suggestions appear, but it also
 		// generates the warning below. If we wait until the tableView is in the view hierarchy (in viewDidAppear) the
@@ -363,48 +358,8 @@ extension AddWordViewController: UITextFieldDelegate
 	{
 		if let text = textField.text
 		{
-			if text == "CHOCKTUBA"
-			{
-				UserDefaults.standard.CHOCKTUBA_DUH = !UserDefaults.standard.CHOCKTUBA_DUH
-				if UserDefaults.standard.CHOCKTUBA_DUH
-				{
-					UserDefaults.standard.set(["chock"], forKey: "AppleLanguages")
-				}
-				else
-				{
-					UserDefaults.standard.removeObject(forKey: "AppleLanguages")
-				}
-				UserDefaults.standard.synchronize()
-				
-				var title: String
-				var message: String
-				if UserDefaults.standard.CHOCKTUBA_DUH
-				{
-					title = "CHOCKTUBA ON"
-					message = "YOU JUST MADE THIS APP A BILLION TIMES BETTER CONGRATS"
-				}
-				else
-				{
-					title = "CHOCKTUBA OFF"
-					message = "WHAT THE HELL ARE YOU THINKING"
-				}
-				
-				let alert = UIAlertController(
-					title: title,
-					message: message,
-					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: "CTL ALT DEL TO RESTART", style: .default)
-				{
-					action in
-					exit(0)
-				})
-				self.present(alert, animated: true, completion: nil)
-			}
-			else
-			{
-				let word = Word(text: text)
-				initiateSearch(forWord: word)
-			}
+			let word = Word(text: text)
+			initiateSearch(forWord: word)
 		}
 		
 		return true
@@ -423,7 +378,7 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 	{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
 		let text = pasteboardWords[indexPath.row].text
-		cell.textLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? text.uppercased() : text
+		cell.textLabel?.text = text
 		cell.textLabel?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body) // TODO: Move to extension of UILabel
 		return cell
 	}
