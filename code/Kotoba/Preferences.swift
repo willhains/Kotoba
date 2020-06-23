@@ -49,4 +49,4 @@ extension UserDefaults: Preferences
 }
 
 /// The preferences/state of the current user.
-var USER_PREFS: Preferences = UserDefaults.init(suiteName: APP_GROUP_ID)!
+var USER_PREFS: Preferences = UserDefaults(suiteName: APP_GROUP_ID)!

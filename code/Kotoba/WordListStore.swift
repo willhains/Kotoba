@@ -18,7 +18,7 @@ enum WordListStore
 	{
 		switch self
 		{
-			case .local: return UserDefaults.init(suiteName: APP_GROUP_ID)!
+			case .local: return UserDefaults(suiteName: APP_GROUP_ID)!
 			case .iCloud: return NSUbiquitousKeyValueStore.default;
 		}
 	}
@@ -32,7 +32,7 @@ var wordListStore: WordListStore
 	set
 	{
 		// Merge local history with iCloud history
-		var local: WordListStrings = UserDefaults.init(suiteName: APP_GROUP_ID)!
+		var local: WordListStrings = UserDefaults(suiteName: APP_GROUP_ID)!
 		var cloud: WordListStrings = NSUbiquitousKeyValueStore.default
 		for word in local.wordStrings where !cloud.wordStrings.contains(word)
 		{

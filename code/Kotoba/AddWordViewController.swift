@@ -160,7 +160,7 @@ extension AddWordViewController
 	@IBAction func openSettings(_: AnyObject)
 	{
 		debugLog()
-		if let url = URL.init(string: UIApplication.openSettingsURLString)
+		if let url = URL(string: UIApplication.openSettingsURLString)
 		{
 			UIApplication.shared.open(url)
 		}
@@ -354,7 +354,7 @@ extension AddWordViewController
 		tableView.reloadData()
 		if (pasteboardWords.count > 0)
 		{
-			tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: false)
+			tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
 		}
 	}
 }

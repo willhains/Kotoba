@@ -51,7 +51,7 @@ extension WordListViewController: UIActivityItemSource
 		let exportText = wordListStore.data.asText()
 		if let data = exportText.data(using: .utf8)
 		{
-			let url = URL.init(fileURLWithPath: path)
+			let url = URL(fileURLWithPath: path)
 			try? data.write(to: url)
 			
 			let items = [url]

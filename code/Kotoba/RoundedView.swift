@@ -33,7 +33,7 @@ import UIKit
 	
 	@IBInspectable var borderColor: UIColor?
 	{
-		get { layer.borderColor.map { UIColor.init(cgColor: $0) } }
+		get { layer.borderColor.map { UIColor(cgColor: $0) } }
 		set { layer.borderColor = newValue?.cgColor }
 	}
 }
