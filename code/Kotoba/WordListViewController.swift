@@ -67,13 +67,17 @@ extension WordListViewController: UIActivityItemSource
 	
 	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
 	{
-		return "placeholder\nword\nlist\n"
+		"""
+		placeholder
+		word
+		list
+		
+		"""
 	}
 	
-	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
-	{
-		return nil
-	}
+	func activityViewController(
+		_ activityViewController: UIActivityViewController,
+		itemForActivityType activityType: UIActivity.ActivityType?) -> Any? { nil }
 	
 	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?
 	{
@@ -132,12 +136,12 @@ extension WordListViewController
 // MARK:- Swipe left to delete words
 extension WordListViewController
 {
-	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-	{
-		return true
-	}
+	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { true }
 	
-	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+	override func tableView(
+		_ tableView: UITableView,
+		commit editingStyle: UITableViewCell.EditingStyle,
+		forRowAt indexPath: IndexPath)
 	{
 		if editingStyle == .delete
 		{
@@ -151,15 +155,12 @@ extension WordListViewController
 // MARK:- Data source
 extension WordListViewController
 {
-	override func numberOfSections(in tableView: UITableView) -> Int
-	{
-		// Just a single, simple list
-		return 1
-	}
+	// Just a single, simple list
+	override func numberOfSections(in tableView: UITableView) -> Int { 1 }
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return wordListStore.data.count
+		wordListStore.data.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

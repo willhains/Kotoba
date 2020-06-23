@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		willFinishLaunchingWithOptions
 		launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool
 	{
-		return true
+		true
 	}
 	
 	func application(

@@ -32,14 +32,11 @@ extension WordListDataSource where Self: WordListStrings
 {
 	subscript(index: Int) -> Word
 	{
-		get { return Word(text: wordStrings[index]) }
+		get { Word(text: wordStrings[index]) }
 		set { wordStrings[index] = newValue.text }
 	}
 	
-	var count: Int
-	{
-		return wordStrings.count
-	}
+	var count: Int { wordStrings.count }
 	
 	mutating func add(word: Word)
 	{
@@ -64,7 +61,7 @@ extension WordListDataSource where Self: WordListStrings
 		// NOTE: Adding a newline at the end makes it easier to edit in a text editor like Notes.
 		// It also conforms to the POSIX standard.
 		// https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline#729795
-		return wordStrings.joined(separator: "\n") + "\n"
+		wordStrings.joined(separator: "\n") + "\n"
 	}
 }
 
@@ -97,7 +94,7 @@ extension UserDefaults: WordListStrings, WordListDataSource
 {
 	var wordStrings: [String]
 	{
-		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
+		get { object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
 		set { set(newValue, forKey: _WORD_LIST_KEY) }
 	}
 }
@@ -106,12 +103,9 @@ extension NSUbiquitousKeyValueStore: WordListStrings, WordListDataSource
 {
 	var wordStrings: [String]
 	{
-		get { return object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
+		get { object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
 		set { NSUbiquitousKeyValueStore.default.set(newValue, forKey: _WORD_LIST_KEY) }
 	}
 	
-	static var iCloudEnabledInSettings: Bool
-	{
-		return FileManager.default.ubiquityIdentityToken != nil
-	}
+	static var iCloudEnabledInSettings: Bool { FileManager.default.ubiquityIdentityToken != nil }
 }

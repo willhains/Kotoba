@@ -56,7 +56,7 @@ extension UIPasteboard
 	
 	var lines: [String]
 	{
-		return string?.split(separator: "\n")
+		string?.split(separator: "\n")
 			.map { $0.trimmingCharacters(in: .whitespaces) }
 			.filter { !$0.isEmpty }
 			.removingDuplicates()
@@ -89,15 +89,12 @@ extension Array where Element == String
 	
 	func removingPossiblePasswords() -> Array<Element>
 	{
-		return self.filter
-		{
-			return !$0.contains { $0.isSymbol || $0.isNumber || $0.isPunctuation }
-		}
+		self.filter { !$0.contains { $0.isSymbol || $0.isNumber || $0.isPunctuation } }
 	}
 	
 	func removingTrivialEnglishWords() -> Array<Element>
 	{
-		return self.filter { !_TRIVIAL_WORDS.contains($0) }
+		self.filter { !_TRIVIAL_WORDS.contains($0) }
 	}
 }
 

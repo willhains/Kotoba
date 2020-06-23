@@ -13,8 +13,7 @@ extension UserDefaults
 	{
 		get
 		{
-			//return true
-			return bool(forKey: _CHOCKTUBA_DUH)
+			bool(forKey: _CHOCKTUBA_DUH)
 		}
 		set
 		{

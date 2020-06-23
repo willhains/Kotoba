@@ -32,7 +32,7 @@ extension UserDefaults: Preferences
 {
 	func shouldDisplayFirstUseDictionaryPrompt() -> Bool
 	{
-		return !bool(forKey: _DICTIONARY_PROMPT_DISPLAYED)
+		!bool(forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
 	
 	func didDisplayFirstUseDictionaryPrompt()

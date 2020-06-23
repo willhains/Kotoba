@@ -127,7 +127,11 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		let addedWords = countAfter - countBefore
 		let duplicateWords = importWords.count - addedWords
 		if addedWords < 0 { fatalError("Negative added words") }
-		let message = String(format: NSLocalizedString("IMPORT_SUCCESS_MESSAGE", comment: "Message for successful import"), _pluralizedWordCount(importWords.count), _pluralizedWordCount(duplicateWords), _pluralizedWordCount(addedWords))
+		let message = String(
+			format: NSLocalizedString("IMPORT_SUCCESS_MESSAGE", comment: "Message for successful import"),
+			_pluralizedWordCount(importWords.count),
+			_pluralizedWordCount(duplicateWords),
+			_pluralizedWordCount(addedWords))
 		let alert = UIAlertController(
 			title: NSLocalizedString("IMPORT_SUCCESS_TITLE", comment: "Title for successful import"),
 			message: message,

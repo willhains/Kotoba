@@ -26,7 +26,10 @@ extension UIViewController
 					title: NSLocalizedString("DICTIONARY_TITLE", comment: "Title for dictionary prompt"),
 					message: NSLocalizedString("DICTIONARY_MESSAGE", comment: "Message for dictionary prompt"),
 					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: NSLocalizedString("DICTIONARY_ACTION", comment: "Action for dictionary prompt"), style: .default, handler: nil))
+				alert.addAction(UIAlertAction(
+					title: NSLocalizedString("DICTIONARY_ACTION", comment: "Action for dictionary prompt"),
+					style: .default,
+					handler: nil))
 				dictionaryViewController.present(alert, animated: true, completion: nil)
 			}
 			

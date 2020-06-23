@@ -52,10 +52,24 @@ final class AddWordViewController: UIViewController
 		self.view.layoutIfNeeded()
 		
 		/*
-		[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window). This may cause bugs by forcing views inside the table view to load and perform layout without accurate information (e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action altogether if possible, or defer it until the table view has been added to a window. Table view: <UITableView: 0x7f8064035e00; frame = (0 44; 414 156); clipsToBounds = YES; autoresize = RM+BM; gestureRecognizers = <NSArray: 0x600001310b10>; layer = <CALayer: 0x600001d2d2c0>; contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 0, 0}; dataSource: <Kotoba.AddWordViewController: 0x7f806370ac80>>
+		[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without
+		being in the view hierarchy (the table view or one of its superviews has not been added to a window). This
+		may cause bugs by forcing views inside the table view to load and perform layout without accurate information
+		(e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause
+		unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at
+		UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to
+		occur, so you can avoid this action altogether if possible, or defer it until the table view has been added
+		to a window. Table view: <UITableView: 0x7f8064035e00; frame = (0 44; 414 156); clipsToBounds = YES;
+		autoresize = RM+BM; gestureRecognizers = <NSArray: 0x600001310b10>; layer = <CALayer: 0x600001d2d2c0>;
+		contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 0, 0}; dataSource: <Kotoba
+		.AddWordViewController: 0x7f806370ac80>>
 		*/
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(applicationDidBecomeActive(notification:)),
+			name: UIApplication.didBecomeActiveNotification,
+			object: nil)
 	}
 	
 	override func viewWillAppear(_ animated: Bool)
@@ -107,9 +121,13 @@ extension AddWordViewController
 		debugLog("word = \(word)")
 		self.searchingIndicator.startAnimating()
 		
-		// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do a definition lookup. Previously, Kotoba did both these things at the same time on the same queue.
+		// NOTE: On iOS 13, UIReferenceLibraryViewController got slow, both to return a view controller and do a
+		// definition lookup. Previously, Kotoba did both these things at the same time on the same queue.
 		//
-		// The gymnastics below are to hide the slowness: after the view controller is presented, the definition lookup proceeds on a background queue. If there's a definition, the text field is cleared: if you spend little time reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really quick, you can see it not appear in the History view, too. Better this than slowness.
+		// The gymnastics below are to hide the slowness: after the view controller is presented, the definition lookup
+		// proceeds on a background queue. If there's a definition, the text field is cleared: if you spend little time
+		// reading the definition, you'll notice that the field is cleared while you're looking at it. If you're really
+		// quick, you can see it not appear in the History view, too. Better this than slowness.
 		//
 		// TODO: This has to be a regression in UIReferenceLibraryViewController. I'll file a radar for this.
 		
@@ -192,11 +210,11 @@ extension AddWordViewController
 		
 		// NOTE: There are two primary views, each with a layout contraint for the bottom of the view.
 		//
-		// The first is the "suggestion view" that attaches either to the top of the keyboard (when shown) or a negative offset
-		// of its height (to hide the view.)
+		// The first is the "suggestion view" that attaches either to the top of the keyboard (when shown) or a
+		// negative offset of its height (to hide the view.)
 		//
-		// The second view is the "typing view" that is either attached to the top of the suggestion view (when its visible) or
-		// to the bottom safe area inset (when its not.)
+		// The second view is the "typing view" that is either attached to the top of the suggestion view (when it's
+		// visible) or to the bottom safe area inset (when it's not.)
 		
 		self.suggestionViewHeightLayoutConstraint.constant = suggestionHeight
 		
@@ -218,14 +236,15 @@ extension AddWordViewController
 			if self.keyboardVisible
 			{
 				self.typingViewBottomLayoutConstraint.constant = keyboardHeight + suggestionHeaderHeight
-				self.suggestionViewBottomLayoutConstraint.constant = keyboardHeight - suggestionHeight + suggestionHeaderHeight
+				self.suggestionViewBottomLayoutConstraint.constant =
+					keyboardHeight - suggestionHeight + suggestionHeaderHeight
 			}
 			else
 			{
-				// TODO: Technically, the safeAreaInsets are the "bottom", but that leaves a weird little bit of the first
-				// suggestion visible under the home indicator. If the offset is flush against the container view (e.g. 0),
-				// it puts the button and text in the home indicator area. Choose the lesser evil...
-				//let offset = self.view.safeAreaInsets.bottom
+				// TODO: Technically, the safeAreaInsets are the "bottom", but that leaves a weird little bit of the
+				//  first suggestion visible under the home indicator. If the offset is flush against the container view
+				// (e.g. 0), it puts the button and text in the home indicator area. Choose the lesser evil...
+//				let offset = self.view.safeAreaInsets.bottom
 				let offset = CGFloat.zero
 				self.typingViewBottomLayoutConstraint.constant = offset + suggestionHeaderHeight
 				self.suggestionViewBottomLayoutConstraint.constant = offset - suggestionHeight + suggestionHeaderHeight
@@ -404,7 +423,7 @@ extension AddWordViewController: UITableViewDelegate, UITableViewDataSource
 {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return pasteboardWords.count
+		pasteboardWords.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

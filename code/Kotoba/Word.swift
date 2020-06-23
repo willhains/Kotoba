@@ -19,6 +19,6 @@ struct Word
 	
 	func canonicalise() -> String
 	{
-		return self.text.lowercased()
+		self.text.lowercased()
 	}
 }
