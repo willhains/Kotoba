@@ -1,7 +1,4 @@
 //
-//  AddWordViewController.swift
-//  Kotoba
-//
 //  Created by Will Hains on 06/17.
 //  Copyright © 2016 Will Hains. All rights reserved.
 //

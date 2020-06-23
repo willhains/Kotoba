@@ -1,7 +1,4 @@
 //
-//  DictionaryViewController.swift
-//  Kotoba
-//
 //  Created by Will Hains on 2020-05-05.
 //  Copyright © 2020 Will Hains. All rights reserved.
 //

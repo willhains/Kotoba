@@ -1,7 +1,4 @@
 //
-//  Workarounds.swift
-//  Kotoba
-//
 //  Created by Troy Gaul on 6/20/18.
 //  Copyright © 2018 Will Hains. All rights reserved.
 //

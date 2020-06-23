@@ -1,7 +1,4 @@
 //
-//  Preferences.swift
-//  Kotoba
-//
 //  Created by Will Hains on 2016-06-10.
 //  Copyright © 2016 Will Hains. All rights reserved.
 //
@@ -48,24 +45,6 @@ extension UserDefaults: Preferences
 		removeObject(forKey: _DICTIONARY_PROMPT_DISPLAYED)
 		removeObject(forKey: _ICLOUD_PROMPT_DISPLAYED)
 		removeObject(forKey: _USE_REMOTE_KEY)
-	}
-}
-
-private let _CHOCKTUBA_DUH = "FIXTHISAPP"
-
-extension UserDefaults
-{
-	var CHOCKTUBA_DUH: Bool
-	{
-		get
-		{
-			//return true
-			return bool(forKey: _CHOCKTUBA_DUH)
-		}
-		set
-		{
-			set(newValue, forKey: _CHOCKTUBA_DUH)
-		}
 	}
 }
 

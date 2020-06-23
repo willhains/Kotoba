@@ -1,7 +1,4 @@
 //
-//  PasteboardWordList.swift
-//  Kotoba
-//
 //  Created by Craig Hockenberry on 11/29/19.
 //  Copyright © 2019 Will Hains. All rights reserved.
 //

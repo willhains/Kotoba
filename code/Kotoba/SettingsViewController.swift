@@ -1,7 +1,4 @@
 //
-//  SettingsViewController.swift
-//  Kotoba
-//
 //  Created by Will Hains on 2019-11-27.
 //  Copyright © 2019 Will Hains. All rights reserved.
 //
@@ -167,38 +164,5 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
 		}
-	}
-}
-
-@IBDesignable class RoundedView: UIView
-{
-	var enabled: Bool = true
-	{
-		willSet(newValue)
-		{
-			layer.opacity = newValue ? 1.0 : 0.3
-		}
-	}
-	
-	@IBInspectable var cornerRadius: CGFloat
-	{
-		get { layer.cornerRadius }
-		set
-		{
-			layer.cornerRadius = newValue
-			layer.masksToBounds = newValue > 0
-		}
-	}
-	
-	@IBInspectable var borderWidth: CGFloat
-	{
-		get { layer.borderWidth }
-		set { layer.borderWidth = newValue }
-	}
-	
-	@IBInspectable var borderColor: UIColor?
-	{
-		get { layer.borderColor.map { UIColor.init(cgColor: $0) } }
-		set { layer.borderColor = newValue?.cgColor }
 	}
 }

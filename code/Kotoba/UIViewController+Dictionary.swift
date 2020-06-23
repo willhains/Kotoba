@@ -1,7 +1,4 @@
 //
-//  UIViewController+Dictionary.swift
-//  Kotoba
-//
 //  Created by Will Hains on 2016-06-20.
 //  Copyright © 2016 Will Hains. All rights reserved.
 //

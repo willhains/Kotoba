@@ -1,7 +1,4 @@
 //
-//  BartyCrouch.swift
-//  Kotoba
-//
 //  Created by Will Hains on 2020-05-23.
 //  Copyright © 2020 Will Hains. All rights reserved.
 //

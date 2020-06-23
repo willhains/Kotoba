@@ -1,61 +1,9 @@
 //
-//  WordList.swift
-//  Words
-//
-//  Created by Will Hains on 2016-06-05.
-//  Copyright © 2016 Will Hains. All rights reserved.
+// Created by Will Hains on 2020-06-21.
+// Copyright (c) 2020 Will Hains. All rights reserved.
 //
 
-import UIKit
-
-// MARK:- Model
-
-/// Represents a saved word.
-struct Word
-{
-	let text: String
-	
-	// TODO #14: This is where metadata would go.
-	
-	func canonicalise() -> String
-	{
-		return self.text.lowercased()
-	}
-}
-
-/// Choices for where to store the word list.
-enum WordListStore
-{
-	case local
-	case iCloud
-	
-	var data: WordListDataSource
-	{
-		switch self
-		{
-			case .local: return UserDefaults.init(suiteName: APP_GROUP_ID)!
-			case .iCloud: return NSUbiquitousKeyValueStore.default;
-		}
-	}
-}
-
-/// Current selection of word list store.
-var wordListStore: WordListStore
-{
-	get { NSUbiquitousKeyValueStore.iCloudEnabledInSettings ? .iCloud : .local }
-	
-	set
-	{
-		// Merge local history with iCloud history
-		var local: WordListStrings = UserDefaults.init(suiteName: APP_GROUP_ID)!
-		var cloud: WordListStrings = NSUbiquitousKeyValueStore.default
-		for word in local.wordStrings where !cloud.wordStrings.contains(word)
-		{
-			cloud.wordStrings.insert(word, at: 0)
-		}
-		local.wordStrings = cloud.wordStrings
-	}
-}
+import Foundation
 
 /// Model of user's saved words.
 protocol WordListDataSource
@@ -77,15 +25,6 @@ protocol WordListDataSource
 	
 	/// All words, delimited by newlines
 	func asText() -> String
-}
-
-/// Internal persistence of word list as an array of strings.
-protocol WordListStrings
-{
-	var wordStrings: [String]
-	{
-		get set
-	}
 }
 
 // Default implementations
@@ -122,7 +61,8 @@ extension WordListDataSource where Self: WordListStrings
 	
 	func asText() -> String
 	{
-		// NOTE: Adding a newline at the end makes it easier to edit in a text editor like Notes. It also conforms to the POSIX standard.
+		// NOTE: Adding a newline at the end makes it easier to edit in a text editor like Notes.
+		// It also conforms to the POSIX standard.
 		// https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline#729795
 		return wordStrings.joined(separator: "\n") + "\n"
 	}
