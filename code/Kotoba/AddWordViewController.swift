@@ -12,8 +12,6 @@ final class AddWordViewController: UIViewController
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var searchingIndicator: UIActivityIndicatorView!
 	
-	@IBOutlet weak var suggestionView: UIView!
-	@IBOutlet weak var suggestionLabel: UILabel!
 	@IBOutlet weak var suggestionToggleButton: UIButton!
 	
 	@IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
@@ -24,8 +22,6 @@ final class AddWordViewController: UIViewController
 	var suggestionHeight = CGFloat(200)
 	let suggestionHeaderHeight = CGFloat(44) // NOTE: This value should match "Header View" in the storyboard
 	
-	var haveSuggestions = false // NOTE: This value is true if the pasteboard contained text the last time it was checked
-	var sourcePasteboardString: String?
 	var pasteboardWords: [Word] = []
 	
 	var keyboardVisible = false
