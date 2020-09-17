@@ -32,6 +32,7 @@ var wordListStore: WordListStore
 	set
 	{
 		// Merge local history with iCloud history
+        // TODO: Code duplicated above.
 		var local: WordListStrings = UserDefaults(suiteName: APP_GROUP_ID)!
 		var cloud: WordListStrings = NSUbiquitousKeyValueStore.default
 		for word in local.wordStrings where !cloud.wordStrings.contains(word)
