@@ -25,6 +25,9 @@ protocol WordListDataSource
 	
 	/// All words, delimited by newlines
 	func asText() -> String
+    
+    /// Latest word
+    var latestWord: Word? { get }
 }
 
 // Default implementations
@@ -63,6 +66,8 @@ extension WordListDataSource where Self: WordListStrings
 		// https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline#729795
 		wordStrings.joined(separator: "\n") + "\n"
 	}
+    
+    var latestWord: Word? { wordStrings.first.map(Word.init) }
 }
 
 // MARK:- Array extensions for WordList
@@ -78,7 +83,7 @@ extension Array where Element: Equatable
 		}
 	}
 	
-	/// Add `element` to the head without deleting existing parliament approval
+	/// Add `element` to the head without duplicating existing
 	mutating func add(possibleDuplicate element: Element)
 	{
 		remove(element)

@@ -23,6 +23,7 @@ class ShareViewController: UIViewController
 	
 	override func viewDidLoad()
 	{
+        debugLog("ShareExtension: viewDidLoad()")
 		super.viewDidLoad()
 		
 		let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem
@@ -33,9 +34,15 @@ class ShareViewController: UIViewController
 			itemProvider?.loadItem(forTypeIdentifier: propertyList, options: nil, completionHandler:
 			{
 				(item, error) -> Void in
-				guard let text = item as? String else { return }
+				guard let text = item as? String else
+                {
+                    debugLog("ShareExtension: no word text found when loading from itemProvider")
+                    return
+                }
+                debugLog("ShareExtension: got word text = \(text); now invoking main queue...")
 				DispatchQueue.main.async
 				{
+                    debugLog("ShareExtension: [main queue] setting word content")
 					self.contentText = text
 					self.wordLabel.text = text
 				}
@@ -43,24 +50,29 @@ class ShareViewController: UIViewController
 		}
 		else
 		{
-			print("error")
+			debugLog("ShareExtension: no word text found in extensionItem")
 		}
 	}
 	
 	override func viewDidAppear(_ animated: Bool)
 	{
-		debugLog("iCloud=\(NSUbiquitousKeyValueStore.iCloudEnabledInSettings)")
-		debugLog("wordListStore.data=\(wordListStore.data.asText())")
+        debugLog("ShareExtension: viewDidAppear()")
+		debugLog("ShareExtension: iCloud=\(NSUbiquitousKeyValueStore.iCloudEnabledInSettings)")
+        debugLog("ShareExtension: self.contentText=\(self.contentText)")
+        debugLog("ShareExtension: self.wordLabel.text=\(self.wordLabel.text ?? "NONE")")
+        debugLog("ShareExtension: wordListStore.latestWord=\(wordListStore.data.latestWord?.text ?? "NONE")")
 		initiateSearch(forWord: Word(text: contentText))
 	}
 	
 	func completeShare()
 	{
+        debugLog("ShareExtension: completeShare()")
 		extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
 	}
 	
 	@IBAction func didTapCancel(_ sender: UIBarButtonItem)
 	{
+        debugLog("ShareExtension: didTapCancel()")
 		completeShare()
 	}
 }
@@ -70,10 +82,12 @@ extension ShareViewController
 {
 	func initiateSearch(forWord word: Word)
 	{
+        debugLog("ShareExtension: initiateSearch(forWord: \(word))")
 		let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word.text)
 		debugLog("hasDefinition = \(hasDefinition)")
 		if hasDefinition
 		{
+            debugLog("ShareExtension: adding word '\(word)' to store")
 			var words = wordListStore.data
 			words.add(word: word)
 		}
