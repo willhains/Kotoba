@@ -25,18 +25,6 @@
 /* SettingsViewController */
 "IMPORT_SUCCESS_TITLE" = "Import Successful";
 
-/* Action for using iCloud */
-"MIGRATION_ICLOUD" = "Sync Data via iCloud";
-
-/* Action for keeping local */
-"MIGRATION_LOCAL" = "Keep History Only on This Device";
-
-/* Message for migration alert */
-"MIGRATION_MESSAGE" = "You can change this at any time in Settings.";
-
-/* AddWordViewController */
-"MIGRATION_TITLE" = "Sync with iCloud?";
-
 /* No comment provided by engineer. */
 "OK" = "OK";
 

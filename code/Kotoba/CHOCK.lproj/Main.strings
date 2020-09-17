@@ -22,9 +22,6 @@
 /* Class = "UILabel"; text = "Acknowledgements"; ObjectID = "Dof-TQ-9k5"; */
 "Dof-TQ-9k5.text" = "ME AND SOME OTHER DUDES";
 
-/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "e72-Uw-DnT"; Note = "iCloud Settings"; */
-"e72-Uw-DnT.normalTitle" = "KNOBS";
-
 /* Class = "UILabel"; text = "Title"; ObjectID = "Eh3-mK-Sxg"; */
 "Eh3-mK-Sxg.text" = "Title";
 
@@ -33,9 +30,6 @@
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "H3q-1o-Aor"; */
 "H3q-1o-Aor.title" = "KNOBS";
-
-/* Class = "UIView"; accessibilityLabel = "Clipboard Import"; ObjectID = "Kbp-3I-DOl"; */
-"Kbp-3I-DOl.accessibilityLabel" = "CLIPPY IMPORT";
 
 /* Class = "UILabel"; text = "Import Words"; ObjectID = "llM-28-al3"; */
 "llM-28-al3.text" = "IMPORT BEER";
@@ -67,17 +61,23 @@
 /* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "V6n-v4-Uiu"; */
 "V6n-v4-Uiu.title" = "KNOBS";
 
-/* Class = "UIView"; accessibilityLabel = "Text File Import"; ObjectID = "WLQ-dC-7XW"; */
-"WLQ-dC-7XW.accessibilityLabel" = "FILE IMPORT";
-
 /* Class = "UILabel"; text = "Version 2.0 (123)"; ObjectID = "WM9-c7-NwX"; */
 "WM9-c7-NwX.text" = "VERSION TO";
 
 /* Class = "UINavigationItem"; title = "Kotoba"; ObjectID = "YQw-TU-c8o"; */
 "YQw-TU-c8o.title" = "CHOCKTUBA";
 
-/* Class = "UIButton"; normalTitle = "Learn more and contribute…"; ObjectID = "ywm-6n-NGB"; */
-"ywm-6n-NGB.normalTitle" = "CODE FOR FREE DOT DOT DOT";
-
 /* Class = "UILabel"; text = "Clipboard Suggestions"; ObjectID = "ZZ5-YD-TOc"; */
 "ZZ5-YD-TOc.text" = "CLIPPY SUGGESTS";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "e72-Uw-DnT"; Note = "iCloud Settings"; */
+"e72-Uw-DnT.normalTitle" = "";
+
+/* Class = "UIView"; accessibilityLabel = "Clipboard Import"; ObjectID = "Kbp-3I-DOl"; */
+"Kbp-3I-DOl.accessibilityLabel" = "";
+
+/* Class = "UIView"; accessibilityLabel = "Text File Import"; ObjectID = "WLQ-dC-7XW"; */
+"WLQ-dC-7XW.accessibilityLabel" = "";
+
+/* Class = "UIButton"; normalTitle = "Learn more and contribute…"; ObjectID = "ywm-6n-NGB"; */
+"ywm-6n-NGB.normalTitle" = "";
