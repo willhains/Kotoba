@@ -289,6 +289,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6F459592460E15100E2174D /* Build configuration list for PBXNativeTarget "ShareExtension" */;
 			buildPhases = (
+				B68C1AD725134F57000019CD /* ShellScript */,
 				B6F459472460E15100E2174D /* Sources */,
 				B6F459482460E15100E2174D /* Frameworks */,
 				B6F459492460E15100E2174D /* Resources */,
@@ -474,6 +475,23 @@
 			shellPath = /bin/bash;
 			shellScript = "#!/bin/bash\nbuildNumber=$(git show -s --format=format:%at HEAD)\necho \"Build number = \" $buildNumber\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
 		};
+		B68C1AD725134F57000019CD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\nbuildNumber=$(git show -s --format=format:%at HEAD)\necho \"Build number = \" $buildNumber\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+		};
 		B6A919572478F32800B08C37 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -631,7 +649,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1072;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -661,7 +678,6 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1072;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
