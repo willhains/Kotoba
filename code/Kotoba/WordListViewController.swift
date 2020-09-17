@@ -29,7 +29,16 @@ class WordListViewController: UITableViewController
 		super.viewDidLoad()
 		
 		prepareSelfSizingTableCells()
-	}
+        
+        // Subscribe to iCloud key/value update notifications
+        NotificationCenter.default.addObserver(
+            forName: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+            object: NSUbiquitousKeyValueStore.default, queue: OperationQueue.main)
+        {
+            _ in
+            self.tableView.reloadData()
+        }
+    }
 	
 	deinit
 	{
