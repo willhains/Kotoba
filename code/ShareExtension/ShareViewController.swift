@@ -88,8 +88,12 @@ extension ShareViewController
 		if hasDefinition
 		{
             debugLog("ShareExtension: adding word '\(word)' to store")
-			var words = wordListStore.data
-			words.add(word: word)
+            
+			// Update local store and iCloud store (if enabled)
+			var localData = WordListStore.local.data
+			localData.add(word: word)
+			var maybeCloudData = wordListStore.data
+			maybeCloudData.add(word: word)
 		}
 		let dictionaryViewController = DictionaryViewController(term: word.text)
 		self.present(dictionaryViewController, animated: true)
