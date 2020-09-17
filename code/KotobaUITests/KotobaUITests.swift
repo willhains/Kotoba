@@ -14,24 +14,24 @@ class KotobaUITests: XCTestCase
 	override func setUp()
 	{
 		super.setUp()
-		
+
 		// In UI tests it is usually best to stop immediately when a failure occurs.
 		continueAfterFailure = false
-		
+
 		// UI tests must launch the application that they test.
 		// Doing this in setup will make sure it happens for each test method.
 		let app = XCUIApplication()
 		app.launchArguments = ["UITEST"]
 		app.launch()
 	}
-	
+
 	func enter(word: String)
 	{
 		let app = XCUIApplication()
 		let textField = app.textFields["Type a Word"]
 		textField.typeText("\(word)\r")
 	}
-	
+
 	func closeDictionary()
 	{
 		let app = XCUIApplication()
@@ -40,14 +40,14 @@ class KotobaUITests: XCTestCase
 		let done = app.buttons["Done"]
 		done.tap()
 	}
-	
+
 	func showHistory()
 	{
 		let app = XCUIApplication()
 		let history = app.buttons["History"]
 		history.tap()
 	}
-	
+
 	func assertTableContents(_ words: String...)
 	{
 		let app = XCUIApplication()
@@ -63,31 +63,31 @@ class KotobaUITests: XCTestCase
 			XCTAssert(text.exists)
 		}
 	}
-	
+
 	func testShouldDisplayDictionaryDownloadPromptOnlyFirstTime()
 	{
 		let app = XCUIApplication()
 		enter(word: "test")
-		
+
 		let gotItButton = app.buttons["Got It"]
 		XCTAssert(gotItButton.exists)
-		
+
 		gotItButton.tap()
 		app.buttons["Done"].tap()
 		enter(word: "another")
 		XCTAssert(app.alerts.count == 0)
 	}
-	
+
 	func testHistoryShouldBeEmpty()
 	{
 		let app = XCUIApplication()
 		showHistory()
-		
+
 		let table = app.tables.element
 		XCTAssert(table.exists)
 		XCTAssert(table.cells.count == 0)
 	}
-	
+
 	func testHistoryShowsAddedWordsInReverseOrder()
 	{
 		let app = XCUIApplication()
@@ -99,32 +99,32 @@ class KotobaUITests: XCTestCase
 		closeDictionary()
 		showHistory()
 		assertTableContents("three", "two", "one")
-		
+
 		app.navigationBars.buttons["Kotoba"].tap()
 		enter(word: "two")
 		closeDictionary()
 		showHistory()
-		
+
 		// Should move duplicate entry to top
 		assertTableContents("two", "three", "one")
 	}
-	
+
 	func testTappingWordInHistoryShowsDefinition()
 	{
 		let app = XCUIApplication()
 		enter(word: "one")
 		closeDictionary()
 		showHistory()
-		
+
 		let table = app.tables.element
 		let oneCell = table.cells.element
 		oneCell.tap()
-		
+
 		sleep(1)
-		
+
 		XCTAssert(app.buttons["Manage"].exists)
 	}
-	
+
 	func testDeleteWords()
 	{
 		let app = XCUIApplication()
@@ -135,13 +135,13 @@ class KotobaUITests: XCTestCase
 		enter(word: "three")
 		closeDictionary()
 		showHistory()
-		
+
 		// Swipe left to delete
 		let table = app.tables.element
 		table.cells.element(boundBy: 1).swipeLeft()
 		app.buttons["Delete"].tap()
 		assertTableContents("three", "one")
-		
+
 		// Edit mode to delete
 		app.buttons["Edit"].tap()
 		table.buttons["Delete one"].tap()

@@ -1,7 +1,4 @@
 //
-//  UIViewController+Dictionary.swift
-//  Kotoba
-//
 //  Created by Will Hains on 2016-06-20.
 //  Copyright © 2016 Will Hains. All rights reserved.
 //
@@ -17,9 +14,9 @@ extension UIViewController
 	{
 		let dictionaryViewController = UIReferenceLibraryViewController(term: word.text)
 		self.present(dictionaryViewController, animated: true, completion: completion)
-		
+
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
-		if prefs.shouldDisplayFirstUseDictionaryPrompt()
+		if USER_PREFS.shouldDisplayFirstUseDictionaryPrompt()
 		{
 			debugLog("First-time lookup. Let's see if the user has dictionaries set up...")
 			if !UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: "OK")
@@ -29,12 +26,15 @@ extension UIViewController
 					title: NSLocalizedString("DICTIONARY_TITLE", comment: "Title for dictionary prompt"),
 					message: NSLocalizedString("DICTIONARY_MESSAGE", comment: "Message for dictionary prompt"),
 					preferredStyle: .alert)
-				alert.addAction(UIAlertAction(title: NSLocalizedString("DICTIONARY_ACTION", comment: "Action for dictionary prompt"), style: .default, handler: nil))
+				alert.addAction(UIAlertAction(
+					title: NSLocalizedString("DICTIONARY_ACTION", comment: "Action for dictionary prompt"),
+					style: .default,
+					handler: nil))
 				dictionaryViewController.present(alert, animated: true, completion: nil)
 			}
-			
+
 			// Update preferences to silence this prompt next time
-			prefs.didDisplayFirstUseDictionaryPrompt()
+			USER_PREFS.didDisplayFirstUseDictionaryPrompt()
 		}
 	}
 }

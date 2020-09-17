@@ -12,30 +12,39 @@ import LinkPresentation
 class WordListViewController: UITableViewController
 {
 	@IBOutlet weak var shareButton: UIBarButtonItem!
-	
+
 	override func viewWillAppear(_ animated: Bool)
 	{
 		super.viewWillAppear(animated)
-		
+
 		debugLog("_____ tableView")
 		debugLog("iCloud=\(NSUbiquitousKeyValueStore.iCloudEnabledInSettings)")
 		debugLog("wordListStore.data=\(wordListStore.data.asText())")
-		
+
 		self.shareButton.isEnabled = wordListStore.data.count > 0
 	}
-	
+
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		
+
 		prepareSelfSizingTableCells()
+
+		// Subscribe to iCloud key/value update notifications
+		NotificationCenter.default.addObserver(
+			forName: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+			object: NSUbiquitousKeyValueStore.default, queue: OperationQueue.main)
+		{
+			_ in
+			self.tableView.reloadData()
+		}
 	}
-	
+
 	deinit
 	{
 		NotificationCenter.default.removeObserver(self)
 	}
-	
+
 	@IBAction func closeHistory(_ sender: Any)
 	{
 		self.dismiss(animated: true, completion: nil)
@@ -49,15 +58,14 @@ extension WordListViewController: UIActivityItemSource
 	{
 		let path = NSTemporaryDirectory() + "Kotoba Word List.txt"
 		let exportText = wordListStore.data.asText()
-		if let data = exportText.data(using: .utf8) {
-			let url = URL.init(fileURLWithPath: path)
+		if let data = exportText.data(using: .utf8)
+		{
+			let url = URL(fileURLWithPath: path)
 			try? data.write(to: url)
-			
+
 			let items = [url]
 			let shareSheet = UIActivityViewController(activityItems: items, applicationActivities: nil)
-			shareSheet.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
-				try? FileManager.default.removeItem(at: url)
-			}
+			shareSheet.completionWithItemsHandler = { (_, _, _, _) in try? FileManager.default.removeItem(at: url) }
 			present(shareSheet, animated: true)
 			if let popOver = shareSheet.popoverPresentationController
 			{
@@ -65,16 +73,20 @@ extension WordListViewController: UIActivityItemSource
 			}
 		}
 	}
-	
+
 	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any
 	{
-		return "placeholder\nword\nlist\n"
+		"""
+		placeholder
+		word
+		list
+
+		"""
 	}
-	
-	func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any?
-	{
-		return nil
-	}
+
+	func activityViewController(
+		_ activityViewController: UIActivityViewController,
+		itemForActivityType activityType: UIActivity.ActivityType?) -> Any? { nil }
 
 	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?
 	{
@@ -95,13 +107,13 @@ extension WordListViewController
 	{
 		label?.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
 	}
-	
+
 	func prepareSelfSizingTableCells()
 	{
 		// Self-sizing table rows
 		tableView.estimatedRowHeight = 44
 		tableView.rowHeight = UITableView.automaticDimension
-		
+
 		// Update view when dynamic type changes
 		NotificationCenter.default.addObserver(
 			self,
@@ -109,7 +121,7 @@ extension WordListViewController
 			name: UIContentSizeCategory.didChangeNotification,
 			object: nil)
 	}
-	
+
 	@objc func dynamicTypeSizeDidChange()
 	{
 		self.tableView.reloadData()
@@ -124,7 +136,7 @@ extension WordListViewController
 		// Search the dictionary
 		let word = wordListStore.data[indexPath.row]
 		showDefinition(forWord: word)
-		
+
 		// Reset the table view
 		self.tableView.deselectRow(at: indexPath, animated: true)
 	}
@@ -133,12 +145,12 @@ extension WordListViewController
 // MARK:- Swipe left to delete words
 extension WordListViewController
 {
-	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-	{
-		return true
-	}
-	
-	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+	override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { true }
+
+	override func tableView(
+		_ tableView: UITableView,
+		commit editingStyle: UITableViewCell.EditingStyle,
+		forRowAt indexPath: IndexPath)
 	{
 		if editingStyle == .delete
 		{
@@ -152,22 +164,19 @@ extension WordListViewController
 // MARK:- Data source
 extension WordListViewController
 {
-	override func numberOfSections(in tableView: UITableView) -> Int
-	{
-		// Just a single, simple list
-		return 1
-	}
-	
+	// Just a single, simple list
+	override func numberOfSections(in tableView: UITableView) -> Int { 1 }
+
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return wordListStore.data.count
+		wordListStore.data.count
 	}
-	
+
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
 		let text = wordListStore.data[indexPath.row].text
-		cell.textLabel?.text = UserDefaults.standard.CHOCKTUBA_DUH ? text.uppercased() : text
+		cell.textLabel?.text = text
 		prepareTextLabelForDynamicType(label: cell.textLabel)
 		return cell
 	}

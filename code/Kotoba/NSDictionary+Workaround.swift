@@ -1,7 +1,4 @@
 //
-//  Workarounds.swift
-//  Kotoba
-//
 //  Created by Troy Gaul on 6/20/18.
 //  Copyright © 2018 Will Hains. All rights reserved.
 //
@@ -16,9 +13,5 @@ extension NSDictionary
 	// this OS version, the value it's getting back is a dictionary.  This workaround fixes that
 	// by implementing that method in an extension of NSDictionary to always return false.  This
 	// should be removed in the future if it's not needed because the underlying code is fixed.
-
-	@objc func boolValue() -> Bool
-	{
-		return false
-	}
+	@objc func boolValue() -> Bool { false }
 }

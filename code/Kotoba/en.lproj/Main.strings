@@ -22,9 +22,6 @@
 /* Class = "UILabel"; text = "Acknowledgements"; ObjectID = "Dof-TQ-9k5"; */
 "Dof-TQ-9k5.text" = "Acknowledgements";
 
-/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "e72-Uw-DnT"; Note = "iCloud Settings"; */
-"e72-Uw-DnT.normalTitle" = "Settings";
-
 /* Class = "UILabel"; text = "Title"; ObjectID = "Eh3-mK-Sxg"; */
 "Eh3-mK-Sxg.text" = "Title";
 
@@ -33,9 +30,6 @@
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "H3q-1o-Aor"; */
 "H3q-1o-Aor.title" = "Settings";
-
-/* Class = "UIView"; accessibilityLabel = "Clipboard Import"; ObjectID = "Kbp-3I-DOl"; */
-"Kbp-3I-DOl.accessibilityLabel" = "Clipboard Import";
 
 /* Class = "UILabel"; text = "Import Words"; ObjectID = "llM-28-al3"; */
 "llM-28-al3.text" = "Import Words";
@@ -67,17 +61,23 @@
 /* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "V6n-v4-Uiu"; */
 "V6n-v4-Uiu.title" = "Settings";
 
-/* Class = "UIView"; accessibilityLabel = "Text File Import"; ObjectID = "WLQ-dC-7XW"; */
-"WLQ-dC-7XW.accessibilityLabel" = "Text File Import";
-
 /* Class = "UILabel"; text = "Version 2.0 (123)"; ObjectID = "WM9-c7-NwX"; */
 "WM9-c7-NwX.text" = "Version Number";
 
 /* Class = "UINavigationItem"; title = "Kotoba"; ObjectID = "YQw-TU-c8o"; */
 "YQw-TU-c8o.title" = "Kotoba";
 
-/* Class = "UIButton"; normalTitle = "Learn more and contribute…"; ObjectID = "ywm-6n-NGB"; */
-"ywm-6n-NGB.normalTitle" = "Learn more and contribute…";
-
 /* Class = "UILabel"; text = "Clipboard Suggestions"; ObjectID = "ZZ5-YD-TOc"; */
 "ZZ5-YD-TOc.text" = "Clipboard Suggestions";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "e72-Uw-DnT"; Note = "iCloud Settings"; */
+"e72-Uw-DnT.normalTitle" = "";
+
+/* Class = "UIView"; accessibilityLabel = "Clipboard Import"; ObjectID = "Kbp-3I-DOl"; */
+"Kbp-3I-DOl.accessibilityLabel" = "";
+
+/* Class = "UIView"; accessibilityLabel = "Text File Import"; ObjectID = "WLQ-dC-7XW"; */
+"WLQ-dC-7XW.accessibilityLabel" = "";
+
+/* Class = "UIButton"; normalTitle = "Learn more and contribute…"; ObjectID = "ywm-6n-NGB"; */
+"ywm-6n-NGB.normalTitle" = "";

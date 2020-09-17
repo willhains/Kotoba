@@ -1,7 +1,4 @@
 //
-//  SettingsViewController.swift
-//  Kotoba
-//
 //  Created by Will Hains on 2019-11-27.
 //  Copyright © 2019 Will Hains. All rights reserved.
 //
@@ -11,7 +8,7 @@ import UIKit
 import MobileCoreServices
 import LinkPresentation
 
-final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
+class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
 	@IBOutlet weak var iCloudEnabledLabel: UILabel!
 	@IBOutlet weak var iCloudExplainerLabel: UILabel!
@@ -25,8 +22,6 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 
 	override func viewDidLoad()
 	{
-		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH
-		
 		if let productVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
 		{
 			if let productBuild = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion")
@@ -36,18 +31,18 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			}
 		}
 	}
-	
+
 	override func viewWillAppear(_ animated: Bool)
 	{
 		super.viewWillAppear(animated)
 		_refreshViews()
 	}
-	
+
 	@IBAction func closeSettings(_ sender: Any)
 	{
 		self.dismiss(animated: true, completion: nil)
 	}
-	
+
 	@IBAction func importFromClipboard(_ gesture: UITapGestureRecognizer)
 	{
 		guard UIPasteboard.general.lines.count > 0 else { return }
@@ -65,7 +60,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			}
 		}
 	}
-	
+
 	@IBAction func importFromFile(_ gesture: UITapGestureRecognizer)
 	{
 		if gesture.state == .began
@@ -79,7 +74,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			_importFromFile()
 		}
 	}
-	
+
 	@IBAction func openGithub(_ sender: Any)
 	{
 		if let url = URL(string: "https://github.com/willhains/Kotoba")
@@ -87,7 +82,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
 	}
-	
+
 	@IBAction func openICloudSettings(_ sender: Any)
 	{
 		if let url = URL(string: "App-prefs:root=CASTLE")
@@ -95,27 +90,27 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
 	}
-	
+
 	private func _pluralizedWordCount(_ count: Int) -> String
 	{
 		let format = NSLocalizedString("WordCount", comment: "Count of words available")
 		let wordCount = String.localizedStringWithFormat(format, count)
 		return wordCount
 	}
-	
+
 	private func _refreshViews()
 	{
 		// iCloud settings
 		self.iCloudEnabledLabel.text = NSUbiquitousKeyValueStore.iCloudEnabledInSettings
 			? NSLocalizedString("ICLOUD_SYNC_ENABLED", comment: "Title when iCloud Sync is enabled")
 			: NSLocalizedString("ICLOUD_SYNC_DISABLED", comment: "Title when iCloud Sync is disabled")
-		
+
 		// Import settings
 		let count = UIPasteboard.general.lines.count
 		clipboardWordCount.text = _pluralizedWordCount(count)
 		self.clipboardImportButton.enabled = count > 0
 	}
-	
+
 	private func _import(newlineDelimitedWords text: String)
 	{
 		var words = wordListStore.data
@@ -130,7 +125,11 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		let addedWords = countAfter - countBefore
 		let duplicateWords = importWords.count - addedWords
 		if addedWords < 0 { fatalError("Negative added words") }
-		let message = String(format: NSLocalizedString("IMPORT_SUCCESS_MESSAGE", comment: "Message for successful import"), _pluralizedWordCount(importWords.count), _pluralizedWordCount(duplicateWords), _pluralizedWordCount(addedWords))
+		let message = String(
+			format: NSLocalizedString("IMPORT_SUCCESS_MESSAGE", comment: "Message for successful import"),
+			_pluralizedWordCount(importWords.count),
+			_pluralizedWordCount(duplicateWords),
+			_pluralizedWordCount(addedWords))
 		let alert = UIAlertController(
 			title: NSLocalizedString("IMPORT_SUCCESS_TITLE", comment: "Title for successful import"),
 			message: message,
@@ -138,7 +137,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
-	
+
 	private func _importFromFile()
 	{
 		let types: [String] = [kUTTypeText as String]
@@ -147,7 +146,7 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 		documentPicker.modalPresentationStyle = .formSheet
 		self.present(documentPicker, animated: true, completion: nil)
 	}
-	
+
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL])
 	{
 		guard let fileURL = urls.first else { return }
@@ -167,38 +166,5 @@ final class SettingsViewController: UIViewController, UIDocumentPickerDelegate, 
 			alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
 		}
-	}
-}
-
-@IBDesignable class RoundedView: UIView
-{
-	var enabled: Bool = true
-	{
-		willSet(newValue)
-		{
-			layer.opacity = newValue ? 1.0 : 0.3
-		}
-	}
-	
-	@IBInspectable var cornerRadius: CGFloat
-	{
-		get { layer.cornerRadius }
-		set
-		{
-			layer.cornerRadius = newValue
-			layer.masksToBounds = newValue > 0
-		}
-	}
-	
-	@IBInspectable var borderWidth: CGFloat
-	{
-		get { layer.borderWidth }
-		set { layer.borderWidth = newValue }
-	}
-	
-	@IBInspectable var borderColor: UIColor?
-	{
-		get { layer.borderColor.map { UIColor.init(cgColor: $0) } }
-		set { layer.borderColor = newValue?.cgColor }
 	}
 }

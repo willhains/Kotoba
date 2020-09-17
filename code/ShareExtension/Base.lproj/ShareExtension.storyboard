@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vy8-3u-m8U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vy8-3u-m8U">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +28,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="xd8-4d-UwS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5Sh-OS-OL5" firstAttribute="top" secondItem="gBC-T2-Q7d" secondAttribute="bottom" constant="19.5" id="8L9-gX-Ufl"/>
                             <constraint firstItem="5Sh-OS-OL5" firstAttribute="centerX" secondItem="xd8-4d-UwS" secondAttribute="centerX" id="IPv-o0-hN6"/>
@@ -34,7 +37,6 @@
                             <constraint firstItem="gBC-T2-Q7d" firstAttribute="centerX" secondItem="xd8-4d-UwS" secondAttribute="centerX" id="ggF-vO-OPN"/>
                             <constraint firstItem="gBC-T2-Q7d" firstAttribute="centerY" secondItem="xd8-4d-UwS" secondAttribute="centerY" constant="-44" id="qRv-mV-bWr"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="xd8-4d-UwS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Kotoba" id="oR8-4J-OYh">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="8f9-JV-ykK">
@@ -86,5 +88,8 @@
         <namedColor name="appTint">
             <color red="0.89399999380111694" green="0.45100000500679016" blue="0.39599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

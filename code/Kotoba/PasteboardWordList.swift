@@ -1,7 +1,4 @@
 //
-//  PasteboardWordList.swift
-//  Kotoba
-//
 //  Created by Craig Hockenberry on 11/29/19.
 //  Copyright © 2019 Will Hains. All rights reserved.
 //
@@ -38,7 +35,7 @@ extension UIPasteboard
 			}
 		}
 	}
-	
+
 	var suggestedWords: [Word]
 	{
 		if let currentPasteboardString = UIPasteboard.general.string
@@ -59,7 +56,7 @@ extension UIPasteboard
 
 	var lines: [String]
 	{
-		return string?.split(separator: "\n")
+		string?.split(separator: "\n")
 			.map { $0.trimmingCharacters(in: .whitespaces) }
 			.filter { !$0.isEmpty }
 			.removingDuplicates()
@@ -67,7 +64,8 @@ extension UIPasteboard
 	}
 }
 
-private let _TRIVIAL_WORDS = Set(arrayLiteral:
+private let _TRIVIAL_WORDS = Set(
+	arrayLiteral:
 	"a", "an", "the", // articles
 	"for", "and", "nor", "but", "or", "so", "if", // conjunctions
 	"but", "at", "by", "from", "in", "into", "of", "on", "off", "to", "with") // prepositions
@@ -88,18 +86,15 @@ extension Array where Element == String
 		}
 		return result
 	}
-	
+
 	func removingPossiblePasswords() -> Array<Element>
 	{
-		return self.filter
-		{
-			return !$0.contains { $0.isSymbol || $0.isNumber || $0.isPunctuation }
-		}
+		self.filter { !$0.contains { $0.isSymbol || $0.isNumber || $0.isPunctuation } }
 	}
-	
+
 	func removingTrivialEnglishWords() -> Array<Element>
 	{
-		return self.filter { !_TRIVIAL_WORDS.contains($0) }
+		self.filter { !_TRIVIAL_WORDS.contains($0) }
 	}
 }
 

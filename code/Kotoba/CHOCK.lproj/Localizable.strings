@@ -25,18 +25,6 @@
 /* SettingsViewController */
 "IMPORT_SUCCESS_TITLE" = "IMPORT WORKED";
 
-/* Action for using iCloud */
-"MIGRATION_ICLOUD" = "SINK WITH EYE CLOUD";
-
-/* Action for keeping local */
-"MIGRATION_LOCAL" = "DONT TOUCH MY TXT";
-
-/* Message for migration alert */
-"MIGRATION_MESSAGE" = "YOU CAN TURN IT OFF LATER IN KNOBS";
-
-/* AddWordViewController */
-"MIGRATION_TITLE" = "SINK WITH CLOUD";
-
 /* No comment provided by engineer. */
 "OK" = "OKIE DOKEY";
 
