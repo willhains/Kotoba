@@ -25,18 +25,18 @@ class ChocktubaAddWordViewController: AddWordViewController
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
-		
+
 		if UserDefaults.standard.CHOCKTUBA_DUH
 		{
 			self.textField.autocapitalizationType = .allCharacters
 		}
 	}
-	
+
 	override func textFieldShouldReturn(_ textField: UITextField) -> Bool
 	{
 		guard let text = textField.text else { return true }
 		guard text == "CHOCKTUBA" else { return super.textFieldShouldReturn(textField) }
-		
+
 		UserDefaults.standard.CHOCKTUBA_DUH.toggle()
 		if UserDefaults.standard.CHOCKTUBA_DUH
 		{
@@ -47,7 +47,7 @@ class ChocktubaAddWordViewController: AddWordViewController
 			UserDefaults.standard.removeObject(forKey: "AppleLanguages")
 		}
 		UserDefaults.standard.synchronize()
-		
+
 		var title: String
 		var message: String
 		if UserDefaults.standard.CHOCKTUBA_DUH
@@ -60,7 +60,7 @@ class ChocktubaAddWordViewController: AddWordViewController
 			title = "CHOCKTUBA OFF"
 			message = "WHAT THE HELL ARE YOU THINKING"
 		}
-		
+
 		let alert = UIAlertController(
 			title: title,
 			message: message,
@@ -73,7 +73,7 @@ class ChocktubaAddWordViewController: AddWordViewController
 		self.present(alert, animated: true, completion: nil)
 		return true
 	}
-	
+
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = super.tableView(tableView, cellForRowAt: indexPath)

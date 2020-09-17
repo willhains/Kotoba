@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 	@IBOutlet var fileButtonTap: UILongPressGestureRecognizer!
 	@IBOutlet weak var CHOCKTUBA: UIView!
 	@IBOutlet weak var versionInfo: UILabel!
-	
+
 	override func viewDidLoad()
 	{
 		if let productVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
@@ -31,18 +31,18 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 			}
 		}
 	}
-	
+
 	override func viewWillAppear(_ animated: Bool)
 	{
 		super.viewWillAppear(animated)
 		_refreshViews()
 	}
-	
+
 	@IBAction func closeSettings(_ sender: Any)
 	{
 		self.dismiss(animated: true, completion: nil)
 	}
-	
+
 	@IBAction func importFromClipboard(_ gesture: UITapGestureRecognizer)
 	{
 		guard UIPasteboard.general.lines.count > 0 else { return }
@@ -60,7 +60,7 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 			}
 		}
 	}
-	
+
 	@IBAction func importFromFile(_ gesture: UITapGestureRecognizer)
 	{
 		if gesture.state == .began
@@ -74,7 +74,7 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 			_importFromFile()
 		}
 	}
-	
+
 	@IBAction func openGithub(_ sender: Any)
 	{
 		if let url = URL(string: "https://github.com/willhains/Kotoba")
@@ -82,7 +82,7 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
 	}
-	
+
 	@IBAction func openICloudSettings(_ sender: Any)
 	{
 		if let url = URL(string: "App-prefs:root=CASTLE")
@@ -90,27 +90,27 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 		}
 	}
-	
+
 	private func _pluralizedWordCount(_ count: Int) -> String
 	{
 		let format = NSLocalizedString("WordCount", comment: "Count of words available")
 		let wordCount = String.localizedStringWithFormat(format, count)
 		return wordCount
 	}
-	
+
 	private func _refreshViews()
 	{
 		// iCloud settings
 		self.iCloudEnabledLabel.text = NSUbiquitousKeyValueStore.iCloudEnabledInSettings
 			? NSLocalizedString("ICLOUD_SYNC_ENABLED", comment: "Title when iCloud Sync is enabled")
 			: NSLocalizedString("ICLOUD_SYNC_DISABLED", comment: "Title when iCloud Sync is disabled")
-		
+
 		// Import settings
 		let count = UIPasteboard.general.lines.count
 		clipboardWordCount.text = _pluralizedWordCount(count)
 		self.clipboardImportButton.enabled = count > 0
 	}
-	
+
 	private func _import(newlineDelimitedWords text: String)
 	{
 		var words = wordListStore.data
@@ -137,7 +137,7 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 		alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
-	
+
 	private func _importFromFile()
 	{
 		let types: [String] = [kUTTypeText as String]
@@ -146,7 +146,7 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 		documentPicker.modalPresentationStyle = .formSheet
 		self.present(documentPicker, animated: true, completion: nil)
 	}
-	
+
 	public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL])
 	{
 		guard let fileURL = urls.first else { return }

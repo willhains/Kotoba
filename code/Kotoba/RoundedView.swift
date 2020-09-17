@@ -14,7 +14,7 @@ import UIKit
 			layer.opacity = newValue ? 1.0 : 0.3
 		}
 	}
-	
+
 	@IBInspectable var cornerRadius: CGFloat
 	{
 		get { layer.cornerRadius }
@@ -24,13 +24,13 @@ import UIKit
 			layer.masksToBounds = newValue > 0
 		}
 	}
-	
+
 	@IBInspectable var borderWidth: CGFloat
 	{
 		get { layer.borderWidth }
 		set { layer.borderWidth = newValue }
 	}
-	
+
 	@IBInspectable var borderColor: UIColor?
 	{
 		get { layer.borderColor.map { UIColor(cgColor: $0) } }

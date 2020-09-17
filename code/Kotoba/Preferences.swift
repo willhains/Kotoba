@@ -13,11 +13,11 @@ protocol Preferences
 	/// Ask preferences if the user should be prompted to download system dictionaries.
 	/// - returns: `true` if the user has never seen the prompt before; `false` otherwise.
 	func shouldDisplayFirstUseDictionaryPrompt() -> Bool
-	
+
 	/// Update preferences that the user has been prompted to download system dictionaries.
 	/// Called before the user actually has done so.
 	func didDisplayFirstUseDictionaryPrompt()
-	
+
 	/// Reset user's preferences/state.
 	func reset()
 }
@@ -34,12 +34,12 @@ extension UserDefaults: Preferences
 	{
 		!bool(forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
-	
+
 	func didDisplayFirstUseDictionaryPrompt()
 	{
 		set(true, forKey: _DICTIONARY_PROMPT_DISPLAYED)
 	}
-	
+
 	func reset()
 	{
 		removeObject(forKey: _DICTIONARY_PROMPT_DISPLAYED)

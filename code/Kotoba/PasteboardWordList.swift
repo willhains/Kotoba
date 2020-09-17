@@ -35,7 +35,7 @@ extension UIPasteboard
 			}
 		}
 	}
-	
+
 	var suggestedWords: [Word]
 	{
 		if let currentPasteboardString = UIPasteboard.general.string
@@ -53,7 +53,7 @@ extension UIPasteboard
 			return []
 		}
 	}
-	
+
 	var lines: [String]
 	{
 		string?.split(separator: "\n")
@@ -86,12 +86,12 @@ extension Array where Element == String
 		}
 		return result
 	}
-	
+
 	func removingPossiblePasswords() -> Array<Element>
 	{
 		self.filter { !$0.contains { $0.isSymbol || $0.isNumber || $0.isPunctuation } }
 	}
-	
+
 	func removingTrivialEnglishWords() -> Array<Element>
 	{
 		self.filter { !_TRIVIAL_WORDS.contains($0) }

@@ -13,7 +13,7 @@ enum WordListStore
 {
 	case local
 	case iCloud
-	
+
 	var data: WordListDataSource
 	{
 		switch self

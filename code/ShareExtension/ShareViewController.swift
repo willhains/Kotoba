@@ -13,19 +13,19 @@ import CoreServices
 class ShareViewController: UIViewController
 {
 	@IBOutlet var wordLabel: UILabel!
-	
+
 	var contentText: String = ""
-	
+
 	required init?(coder: NSCoder)
 	{
 		super.init(coder: coder)
 	}
-	
+
 	override func viewDidLoad()
 	{
 		debugLog("ShareExtension: viewDidLoad()")
 		super.viewDidLoad()
-		
+
 		let extensionItem = extensionContext?.inputItems.first as! NSExtensionItem
 		let itemProvider = extensionItem.attachments?.first!
 		let propertyList = String(kUTTypeText)
@@ -53,7 +53,7 @@ class ShareViewController: UIViewController
 			debugLog("ShareExtension: no word text found in extensionItem")
 		}
 	}
-	
+
 	override func viewDidAppear(_ animated: Bool)
 	{
 		debugLog("ShareExtension: viewDidAppear()")
@@ -63,13 +63,13 @@ class ShareViewController: UIViewController
 		debugLog("ShareExtension: wordListStore.latestWord=\(wordListStore.data.latestWord?.text ?? "NONE")")
 		initiateSearch(forWord: Word(text: contentText))
 	}
-	
+
 	func completeShare()
 	{
 		debugLog("ShareExtension: completeShare()")
 		extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
 	}
-	
+
 	@IBAction func didTapCancel(_ sender: UIBarButtonItem)
 	{
 		debugLog("ShareExtension: didTapCancel()")

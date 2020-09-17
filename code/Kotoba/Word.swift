@@ -14,11 +14,11 @@ import UIKit
 struct Word
 {
 	let text: String
-	
+
 	// TODO #14: This is where metadata would go.
-	
+
 	func canonicalise() -> String
 	{
-        self.text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+		self.text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 }

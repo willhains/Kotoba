@@ -16,18 +16,18 @@ protocol WordListDataSource
 	
 	/// Add `word` to the word list.
 	mutating func add(word: Word)
-	
+
 	/// Delete the word at `index` from the word list.
 	mutating func delete(wordAt index: Int)
-	
+
 	/// Delete all words from the word list.
 	mutating func clear()
-	
+
 	/// All words, delimited by newlines
 	func asText() -> String
-    
-    /// Latest word
-    var latestWord: Word? { get }
+
+	/// Latest word
+	var latestWord: Word? { get }
 }
 
 // Default implementations
@@ -38,27 +38,27 @@ extension WordListDataSource where Self: WordListStrings
 		get { Word(text: wordStrings[index]) }
 		set { wordStrings[index] = newValue.text }
 	}
-	
+
 	var count: Int { wordStrings.count }
-	
+
 	mutating func add(word: Word)
 	{
 		// Prevent duplicates; move to top of list instead
 		wordStrings.add(possibleDuplicate: word.canonicalise())
 		debugLog("add: wordStrings=\(wordStrings.first ?? "")..\(wordStrings.last ?? "")")
 	}
-	
+
 	mutating func delete(wordAt index: Int)
 	{
 		wordStrings.remove(at: index)
 		debugLog("remove: wordStrings=\(wordStrings.first ?? "")..\(wordStrings.last ?? "")")
 	}
-	
+
 	mutating func clear()
 	{
 		wordStrings = []
 	}
-	
+
 	func asText() -> String
 	{
 		// NOTE: Adding a newline at the end makes it easier to edit in a text editor like Notes.
@@ -66,8 +66,8 @@ extension WordListDataSource where Self: WordListStrings
 		// https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline#729795
 		wordStrings.joined(separator: "\n") + "\n"
 	}
-    
-    var latestWord: Word? { wordStrings.first.map(Word.init) }
+
+	var latestWord: Word? { wordStrings.first.map(Word.init) }
 }
 
 // MARK:- Array extensions for WordList
@@ -82,7 +82,7 @@ extension Array where Element: Equatable
 			self.remove(at: existingIndex)
 		}
 	}
-	
+
 	/// Add `element` to the head without duplicating existing
 	mutating func add(possibleDuplicate element: Element)
 	{

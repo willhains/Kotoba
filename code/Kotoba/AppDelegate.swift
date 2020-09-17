@@ -29,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 			USER_PREFS.reset()
 			words.clear()
 		}
-		
+
 		debugLog("libraryDirectory = \(NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true))")
-		
+
 		// Set tint colour to match icon
 		UIView.appearance().tintColor = _RED_THEME_COLOUR
 		return true

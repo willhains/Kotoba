@@ -8,17 +8,17 @@ import UIKit
 class DictionaryViewController: UIReferenceLibraryViewController
 {
 	var onDismiss: (() -> Void)?
-	
+
 	override init(term: String)
 	{
 		super.init(term: term)
 	}
-	
+
 	required init(coder: NSCoder)
 	{
 		super.init(coder: coder)
 	}
-	
+
 	override func viewDidDisappear(_ animated: Bool)
 	{
 		self.onDismiss?()

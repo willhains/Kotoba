@@ -14,7 +14,7 @@ extension UIViewController
 	{
 		let dictionaryViewController = UIReferenceLibraryViewController(term: word.text)
 		self.present(dictionaryViewController, animated: true, completion: completion)
-		
+
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
 		if USER_PREFS.shouldDisplayFirstUseDictionaryPrompt()
 		{
@@ -32,7 +32,7 @@ extension UIViewController
 					handler: nil))
 				dictionaryViewController.present(alert, animated: true, completion: nil)
 			}
-			
+
 			// Update preferences to silence this prompt next time
 			USER_PREFS.didDisplayFirstUseDictionaryPrompt()
 		}
