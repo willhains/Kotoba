@@ -19,6 +19,6 @@ struct Word
 	
 	func canonicalise() -> String
 	{
-		self.text.lowercased()
+        self.text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 }
