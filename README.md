@@ -11,6 +11,8 @@ Quickly search the built-in iOS dictionary to see definitions of words. Collect 
 3. Select the Kotoba project file in Navigator, select the "Kotoba" target, then select the "Signing & Capabilities" tab.
 4. Change the "Team" to your Apple Developer account team.
 5. Change the "Bundle Identifier" to com.*yourdomain*.Kotoba.
+6. Change the "App Groups" to groups.com.*yourdomain*.Kotoba by adding yours, and deleting the current one.
+7. Select the "ShareExtension" target, and repeat the three steps above. 
 6. Open the "Devices and Simulators" window (Shift-Cmd-2) and confirm your device is connected. If not, connect it via USB.
 7. Product > Run.
 
