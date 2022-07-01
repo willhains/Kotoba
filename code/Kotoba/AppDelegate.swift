@@ -16,7 +16,7 @@ let APP_GROUP_ID = "group.com.willhains.Kotoba"
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
 	var window: UIWindow?
-
+	
 	func application(
 		_ application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool
@@ -24,22 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		// Reset user defaults for UI tests
 		if ProcessInfo.processInfo.arguments.contains("UITEST")
 		{
-			wordListStore = .local
 			var words = wordListStore.data
 			USER_PREFS.reset()
 			words.clear()
 		}
-
+		
 		debugLog("libraryDirectory = \(NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true))")
-
+		
 		// Set tint colour to match icon
 		UIView.appearance().tintColor = _RED_THEME_COLOUR
 		return true
 	}
-
-	func applicationWillEnterForeground(_ application: UIApplication)
-	{
-		// Migrate to/from iCloud
-		wordListStore.synchroniseStores()
-	}
+	
 }

@@ -89,13 +89,11 @@ extension ShareViewController
 		{
 			debugLog("ShareExtension: adding word '\(word)' to store")
 
-			// Update local store and iCloud store (if enabled)
-			var localData = WordListStore.local.data
-			localData.add(word: word)
-			var maybeCloudData = wordListStore.data
-			maybeCloudData.add(word: word)
+			var data = wordListStore.data
+			data.add(word: word)
 		}
 		let dictionaryViewController = DictionaryViewController(term: word.text)
+		dictionaryViewController.view.tintColor = UIColor(named: "appTint")
 		self.present(dictionaryViewController, animated: true)
 		{
 			dictionaryViewController.onDismiss = self.completeShare

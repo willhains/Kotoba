@@ -95,15 +95,6 @@ extension Array where Element: Equatable
 
 private let _WORD_LIST_KEY = "words"
 
-extension UserDefaults: WordListStrings, WordListDataSource
-{
-	var wordStrings: [String]
-	{
-		get { object(forKey: _WORD_LIST_KEY) as? [String] ?? [] }
-		set { set(newValue, forKey: _WORD_LIST_KEY) }
-	}
-}
-
 extension NSUbiquitousKeyValueStore: WordListStrings, WordListDataSource
 {
 	var wordStrings: [String]

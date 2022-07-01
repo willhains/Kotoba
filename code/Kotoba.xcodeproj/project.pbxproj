@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4440B41C236CF92100369CE8 /* Colors.xcassets */; };
+		4475E234286F8A2200E2B0B3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4440B41C236CF92100369CE8 /* Colors.xcassets */; };
 		44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B821172391CF20004B8142 /* PasteboardWordList.swift */; };
 		44CFA6AB2381F0CB00D7ECCC /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		44D1096623A84262007C477C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44D1096423A84262007C477C /* Localizable.strings */; };
@@ -422,6 +423,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4475E234286F8A2200E2B0B3 /* Colors.xcassets in Resources */,
 				B6F459512460E15100E2174D /* ShareExtension.storyboard in Resources */,
 				B6F73C542478FE1A0003F394 /* .bartycrouch.toml in Resources */,
 			);

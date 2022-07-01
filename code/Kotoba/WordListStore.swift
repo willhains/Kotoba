@@ -8,43 +8,21 @@
 
 import UIKit
 
-/// Choices for where to store the word list.
-enum WordListStore
-{
-	case local
-	case iCloud
+// NOTE: WordListStore used to be an enum that supported both local and iCloud storage, but there's really only one data source now: iCloud.
+// (If a user isn't signed into iCloud, the ubiquitous key value store behaves like user defaults. An extension can also access the same data.)
+//
+// To simplify this refactor, WordListStore is now a struct that returns a single data source.
 
+/// Where to store the word list.
+struct WordListStore
+{
+	
 	var data: WordListDataSource
 	{
-		switch self
-		{
-			case .local: return UserDefaults(suiteName: APP_GROUP_ID)!
-			case .iCloud: return NSUbiquitousKeyValueStore.default;
-		}
+		return NSUbiquitousKeyValueStore.default
 	}
-
-	func synchroniseStores()
-	{
-		// Merge local history with iCloud history
-		debugLog("Synchronise/merge local and iCloud word stores")
-		// TODO: Code duplicated above.
-		var local: WordListStrings = UserDefaults(suiteName: APP_GROUP_ID)!
-		var cloud: WordListStrings = NSUbiquitousKeyValueStore.default
-		debugLog("add: BEFORE local=\(local.wordStrings.first ?? "")..\(local.wordStrings.last ?? "")")
-		debugLog("add: BEFORE cloud=\(cloud.wordStrings.first ?? "")..\(cloud.wordStrings.last ?? "")")
-		for word in local.wordStrings where !cloud.wordStrings.contains(word)
-		{
-			cloud.wordStrings.insert(word, at: 0)
-		}
-		local.wordStrings = cloud.wordStrings
-		debugLog("add: AFTER local=\(local.wordStrings.first ?? "")..\(local.wordStrings.last ?? "")")
-		debugLog("add: AFTER cloud=\(cloud.wordStrings.first ?? "")..\(cloud.wordStrings.last ?? "")")
-	}
+	
 }
 
 /// Current selection of word list store.
-var wordListStore: WordListStore
-{
-	get { NSUbiquitousKeyValueStore.iCloudEnabledInSettings ? .iCloud : .local }
-	set { newValue.synchroniseStores() }
-}
+var wordListStore = WordListStore()
