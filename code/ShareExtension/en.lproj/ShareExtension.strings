@@ -1,8 +1,8 @@
-/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "8f9-JV-ykK"; */
-"8f9-JV-ykK.title" = "Cancel";
-
 /* Class = "UILabel"; text = "Add to Kotoba"; ObjectID = "gBC-T2-Q7d"; */
 "gBC-T2-Q7d.text" = "Add to Kotoba";
 
-/* Class = "UINavigationItem"; title = "Kotoba"; ObjectID = "oR8-4J-OYh"; */
-"oR8-4J-OYh.title" = "Kotoba";
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "D5E-b8-wpB"; */
+"D5E-b8-wpB.title" = "";
+
+/* Class = "UINavigationItem"; title = "Kotoba"; ObjectID = "o1z-wW-gRV"; */
+"o1z-wW-gRV.title" = "";
