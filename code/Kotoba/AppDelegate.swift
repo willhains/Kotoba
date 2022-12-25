@@ -35,5 +35,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		UIView.appearance().tintColor = _RED_THEME_COLOUR
 		return true
 	}
-	
 }
