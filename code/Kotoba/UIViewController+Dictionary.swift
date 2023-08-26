@@ -13,7 +13,7 @@ extension UIViewController
 	func showDefinition(forWord word: Word, completion: (() -> Void)? = nil)
 	{
 		let dictionaryViewController = UIReferenceLibraryViewController(term: word.text)
-		dictionaryViewController.modalPresentationStyle = .popover
+		dictionaryViewController.modalPresentationStyle = .pageSheet
 		self.present(dictionaryViewController, animated: true, completion: completion)
 
 		// Prompt the user to set up their iOS dictionaries, the first time they use this only
