@@ -39,6 +39,7 @@ class ShareViewController: UIViewController
 					debugLog("ShareExtension: no word text found when loading from itemProvider")
 					return
 				}
+				
 				debugLog("ShareExtension: got word text = \(text); now invoking main queue...")
 				DispatchQueue.main.async
 				{
