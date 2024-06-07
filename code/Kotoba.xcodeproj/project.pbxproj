@@ -813,7 +813,9 @@
 				CURRENT_PROJECT_VERSION = 1592141211;
 				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				INFOPLIST_FILE = Kotoba/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_CFBundleDisplayName = Kotoba;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.Kotoba;
@@ -838,7 +840,9 @@
 				CURRENT_PROJECT_VERSION = 1592141211;
 				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				INFOPLIST_FILE = Kotoba/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_CFBundleDisplayName = Kotoba;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.willhains.Kotoba;
