@@ -16,12 +16,14 @@ class KotobaNavigationController: UINavigationController
 		let barTextColor = UIColor(named: "appBarText") ?? UIColor.white
 		let barTintColor = UIColor(named: "appBarTint") ?? UIColor.red
 
-		let titleTextAttributes: [NSAttributedString.Key : Any] = [
+		let titleTextAttributes: [NSAttributedString.Key : Any] =
+		[
 			.font: titleFont,
 			.foregroundColor: barTextColor,
 		]
 
-		if #available(iOS 15, *) {
+		if #available(iOS 15, *)
+		{
 			// NOTE: The following code is derived from David Duncan's post in the Apple Developer Forums:
 			// https://developer.apple.com/forums/thread/682420
 
@@ -33,7 +35,8 @@ class KotobaNavigationController: UINavigationController
 			navigationBar.standardAppearance = appearance;
 			navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
 		}
-		else {
+		else
+		{
 			self.navigationBar.titleTextAttributes = titleTextAttributes
 			self.navigationBar.barTintColor = barTintColor
 		}
