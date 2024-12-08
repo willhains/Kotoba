@@ -13,12 +13,17 @@ import UIKit
 /// Represents a saved word.
 struct Word
 {
+	private static let QUOTES = CharacterSet(charactersIn: "\"'“”‘’")
+
 	let text: String
 
-	// TODO #14: This is where metadata would go.
-
-	func canonicalise() -> String
+	init(text: String)
 	{
-		self.text.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+		self.text = text
+			.lowercased()
+			.trimmingCharacters(in: .whitespacesAndNewlines)
+			.trimmingCharacters(in: Word.QUOTES)
 	}
+
+	// TODO #14: This is where metadata would go.
 }

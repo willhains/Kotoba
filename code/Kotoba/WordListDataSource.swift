@@ -44,7 +44,7 @@ extension WordListDataSource where Self: WordListStrings
 	mutating func add(word: Word)
 	{
 		// Prevent duplicates; move to top of list instead
-		wordStrings.add(possibleDuplicate: word.canonicalise())
+		wordStrings.add(possibleDuplicate: word.text)
 		debugLog("add: wordStrings=\(wordStrings.first ?? "")..\(wordStrings.last ?? "")")
 	}
 
