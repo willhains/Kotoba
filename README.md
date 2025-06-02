@@ -16,7 +16,8 @@ Quickly search the built-in iOS dictionary to see definitions of words. Collect 
 6. Open the "Devices and Simulators" window (Shift-Cmd-2) and confirm your device is connected. If not, connect it via USB.
 7. Product > Run.
 
-We also provide an unsigned application archive, [Kotoba.ipa](Kotoba.ipa), for installation via alternate methods. **Note that you must have a properly configured `.mobileprovision` in which the corresponding App ID matches Kotoba's Bundle ID, com.willhains.Kotoba. The app ID also must have the capabilities App Groups, iCloud, and Push Notifications.**
+We also provide an unsigned application archive, Kotoba.ipa, for installation via alternate methods. Download the latest version in [Releases](https://github.com/willhains/Kotoba/releases) .**Note that you must have a properly configured `.mobileprovision` in which the corresponding App ID matches Kotoba's Bundle ID, com.willhains.Kotoba. The app ID also must have the capabilities App Groups, iCloud, and Push Notifications.**
+
 ## How to Use
 
 1. Tap "Add a new word".
