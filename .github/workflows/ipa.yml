@@ -1,0 +1,60 @@
+name: Build .ipa
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Initialize Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+
+      - name: Archive
+        run: |
+          set -euo pipefail
+          rm -rf build
+          mkdir -p build
+          xcodebuild archive -project code/Kotoba.xcodeproj -scheme Kotoba -configuration Release -archivePath "$PWD/build/Kotoba.xcarchive" CODE_SIGNING_ALLOWED=NO SKIP_INSTALL=NO BUILD_LIBRARY_FOR_DISTRIBUTION=NO
+          cp -R "build/Kotoba.xcarchive/Products/Applications/Kotoba.app" "$PWD/build/Kotoba.app"
+          rm -rf Payload
+          mkdir -p Payload
+          cp -R "$PWD/build/Kotoba.app" "Payload/"
+          mkdir -p packages
+          cd Payload
+          zip -r9 "../packages/Kotoba.ipa" Kotoba.app
+          cd ..
+          mkdir -p upload
+          mv packages/Kotoba.ipa upload/
+
+      - name: Grab version
+        id: get_version
+        run: |
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "build/Kotoba.app/Info.plist")
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+
+      - name: short SHA
+        run: |
+          echo "SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Kotoba v${{ env.VERSION }}-${{ env.SHORT_SHA }}
+          tag_name: v${{ env.VERSION }}-${{ env.SHORT_SHA }}
+          files: |
+            upload/*.ipa
+          generate_release_notes: true
+          fail_on_unmatched_files: true
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
