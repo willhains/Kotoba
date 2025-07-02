@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  Kotoba
+//
+//  Created by Jacob Prezant on 7/2/25.
+//  Copyright © 2025 Will Hains. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+DEVELOPMENT_TEAM = //YOURTEAMID

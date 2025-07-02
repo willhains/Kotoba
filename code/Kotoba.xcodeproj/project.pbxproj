@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1610E12F2E14EDCF0097E437 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */; };
+		1610E1302E14EDCF0097E437 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */; };
+		1610E1312E14EDCF0097E437 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */; };
+		1610E1322E14EDCF0097E437 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */; };
 		4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4440B41C236CF92100369CE8 /* Colors.xcassets */; };
 		4475E234286F8A2200E2B0B3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4440B41C236CF92100369CE8 /* Colors.xcassets */; };
 		44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B821172391CF20004B8142 /* PasteboardWordList.swift */; };
@@ -97,6 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1610E12E2E14EDCF0097E437 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		4440B41C236CF92100369CE8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		44B821172391CF20004B8142 /* PasteboardWordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardWordList.swift; sourceTree = "<group>"; };
 		44CFA6AA2381F0CB00D7ECCC /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -202,6 +207,7 @@
 		BE918C411A22A5F5006043CF = {
 			isa = PBXGroup;
 			children = (
+				1610E12E2E14EDCF0097E437 /* Config.xcconfig */,
 				BE918C4C1A22A5F5006043CF /* Kotoba */,
 				BEA413B81D1CABB600D177C2 /* KotobaTests */,
 				BEB2324D1D1DD3B800369560 /* KotobaUITests */,
@@ -423,6 +429,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1610E1322E14EDCF0097E437 /* Config.xcconfig in Resources */,
 				4475E234286F8A2200E2B0B3 /* Colors.xcassets in Resources */,
 				B6F459512460E15100E2174D /* ShareExtension.storyboard in Resources */,
 				B6F73C542478FE1A0003F394 /* .bartycrouch.toml in Resources */,
@@ -437,6 +444,7 @@
 				BE918C551A22A5F5006043CF /* Main.storyboard in Resources */,
 				4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */,
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
+				1610E12F2E14EDCF0097E437 /* Config.xcconfig in Resources */,
 				B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */,
 				B62B309823B7F60900583D3D /* Localizable.stringsdict in Resources */,
 				B6F73C532478FE1A0003F394 /* .bartycrouch.toml in Resources */,
@@ -447,6 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1610E1302E14EDCF0097E437 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1610E1312E14EDCF0097E437 /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +652,7 @@
 /* Begin XCBuildConfiguration section */
 		B6F459572460E15100E2174D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -652,7 +663,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -671,6 +682,7 @@
 		};
 		B6F459582460E15100E2174D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -682,7 +694,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -700,6 +712,7 @@
 		};
 		BE918C671A22A5F5006043CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -730,6 +743,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -757,6 +771,7 @@
 		};
 		BE918C681A22A5F5006043CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -787,6 +802,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -806,12 +822,13 @@
 		};
 		BE918C6A1A22A5F5006043CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
 				CURRENT_PROJECT_VERSION = 1592141211;
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Kotoba;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -833,12 +850,13 @@
 		};
 		BE918C6B1A22A5F5006043CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
 				CURRENT_PROJECT_VERSION = 1592141211;
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Kotoba;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -860,12 +878,13 @@
 		};
 		BEA413BE1D1CABB600D177C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = KotobaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -878,13 +897,14 @@
 		};
 		BEA413BF1D1CABB600D177C2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = KotobaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -898,10 +918,11 @@
 		};
 		BEB232531D1DD3B800369560 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = KotobaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -914,11 +935,12 @@
 		};
 		BEB232541D1DD3B800369560 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1610E12E2E14EDCF0097E437 /* Config.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 8B38X92RJ6;
+				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = KotobaUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
