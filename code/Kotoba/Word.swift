@@ -11,9 +11,9 @@ import UIKit
 // MARK:- Model
 
 /// Represents a saved word.
-struct Word
+struct Word: Equatable, Hashable
 {
-	private static let QUOTES = CharacterSet(charactersIn: "\"'“”‘’")
+	static let QUOTES = CharacterSet(charactersIn: "\"'“”‘’")
 
 	let text: String
 

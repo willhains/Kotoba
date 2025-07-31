@@ -7,6 +7,7 @@ import Foundation
 import UIKit
 import MobileCoreServices
 import LinkPresentation
+import SwiftUI
 
 class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavigationControllerDelegate
 {
@@ -167,4 +168,20 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 			self.present(alert, animated: true, completion: nil)
 		}
 	}
+}
+
+struct SettingsView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
+
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .pageSheet
+
+        return navigationController
+    }
+
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
+        // Nothing to update
+    }
 }
