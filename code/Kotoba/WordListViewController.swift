@@ -8,6 +8,7 @@
 
 import UIKit
 import LinkPresentation
+import SwiftUI
 
 class WordListViewController: UITableViewController
 {
@@ -180,4 +181,20 @@ extension WordListViewController
 		prepareTextLabelForDynamicType(label: cell.textLabel)
 		return cell
 	}
+}
+
+struct WordListView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "WordListViewController")
+
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .pageSheet
+
+        return navigationController
+    }
+
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
+        // Nothing to update
+    }
 }
