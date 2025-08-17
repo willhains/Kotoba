@@ -1,14 +1,14 @@
 /* Accessibility label for the History toolbar button. */
 "ADD_WORD_HISTORY_ACCESSIBILITY_LABEL" = "OLD STUFF";
 
-/* Accessibility label for the settings toolbar button. */
-"ADD_WORD_SETTINGS_ACCESSIBILITY_LABEL" = "KNOBS";
-
 /* Placeholder text for main lookup text field. */
 "ADD_WORD_LOOKUP_PLACEHOLDER" = "TYPE HERE DUH";
 
 /* Header text above the clipboard suggestions list. */
 "ADD_WORD_LOOKUP_SUGGESTIONS_HEADER" = "CLIPPY SUGGESTS";
+
+/* Accessibility label for the settings toolbar button. */
+"ADD_WORD_SETTINGS_ACCESSIBILITY_LABEL" = "KNOBS";
 
 /* Main app navigation title shown in the navigation bar. */
 "APP_NAVIGATION_TITLE" = "CHOCKTUBA";
