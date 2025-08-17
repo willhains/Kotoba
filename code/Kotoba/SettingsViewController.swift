@@ -170,18 +170,21 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 	}
 }
 
-struct SettingsView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UINavigationController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
+struct SettingsView: UIViewControllerRepresentable
+{
+	func makeUIViewController(context: Context) -> UINavigationController
+	{
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
 
-        let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.modalPresentationStyle = .pageSheet
+		let navigationController = UINavigationController(rootViewController: vc)
+		navigationController.modalPresentationStyle = .pageSheet
 
-        return navigationController
-    }
+		return navigationController
+	}
 
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-        // Nothing to update
-    }
+	func updateUIViewController(_ uiViewController: UINavigationController, context: Context)
+	{
+		// Nothing to update
+	}
 }

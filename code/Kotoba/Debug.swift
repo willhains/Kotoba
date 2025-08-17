@@ -50,6 +50,6 @@ func debugLog(_ message: String = "called", file: String = #file, function: Stri
 
 	// weed out NSLog usage
 	@available(iOS, deprecated: 1.0, message: "Convert to debugLog")
-	public func NSLog(_ format: String, _ args: CVarArg...) {}
+	public func NSLog(_ format: String, _ args: CVarArg...) { }
 
 #endif

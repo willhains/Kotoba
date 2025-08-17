@@ -10,10 +10,10 @@ protocol WordListDataSource
 {
 	/// Access saved words by index.
 	subscript(index: Int) -> Word { get }
-	
+
 	/// The number of saved words.
 	var count: Int { get }
-	
+
 	/// Add `word` to the word list.
 	mutating func add(word: Word)
 
