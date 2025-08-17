@@ -16,12 +16,10 @@ import UIKit
 /// Where to store the word list.
 struct WordListStore
 {
-	
 	var data: WordListDataSource
 	{
 		return NSUbiquitousKeyValueStore.default
 	}
-	
 }
 
 /// Current selection of word list store.

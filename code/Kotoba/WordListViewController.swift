@@ -87,7 +87,9 @@ extension WordListViewController: UIActivityItemSource
 
 	func activityViewController(
 		_ activityViewController: UIActivityViewController,
-		itemForActivityType activityType: UIActivity.ActivityType?) -> Any? { nil }
+		itemForActivityType activityType: UIActivity.ActivityType?)
+		-> Any?
+		{ nil }
 
 	func activityViewControllerLinkMetadata(_: UIActivityViewController) -> LPLinkMetadata?
 	{
@@ -183,18 +185,21 @@ extension WordListViewController
 	}
 }
 
-struct WordListView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UINavigationController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "WordListViewController")
+struct WordListView: UIViewControllerRepresentable
+{
+	func makeUIViewController(context: Context) -> UINavigationController
+	{
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let vc = storyboard.instantiateViewController(withIdentifier: "WordListViewController")
 
-        let navigationController = UINavigationController(rootViewController: vc)
-        navigationController.modalPresentationStyle = .pageSheet
+		let navigationController = UINavigationController(rootViewController: vc)
+		navigationController.modalPresentationStyle = .pageSheet
 
-        return navigationController
-    }
+		return navigationController
+	}
 
-    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-        // Nothing to update
-    }
+	func updateUIViewController(_ uiViewController: UINavigationController, context: Context)
+	{
+		// Nothing to update
+	}
 }

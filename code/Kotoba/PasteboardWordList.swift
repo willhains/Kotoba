@@ -25,20 +25,22 @@ private let _TRIVIAL_WORDS = Set(
 
 extension Array where Element == String
 {
-    func processWords() -> [Word] {
-        self
-            .flatMap { $0.asWords() }
-            .map {
-                $0
-                    .lowercased()
-                    .trimmingCharacters(in: .whitespacesAndNewlines)
-                    .trimmingCharacters(in: Word.QUOTES)
-            }
-            .removingDuplicates()
-            .removingPossiblePasswords()
-            .removingTrivialEnglishWords()
-            .map(Word.init)
-    }
+	func processWords() -> [Word]
+	{
+		self
+			.flatMap { $0.asWords() }
+			.map
+			{
+				$0
+					.lowercased()
+					.trimmingCharacters(in: .whitespacesAndNewlines)
+					.trimmingCharacters(in: Word.QUOTES)
+			}
+			.removingDuplicates()
+			.removingPossiblePasswords()
+			.removingTrivialEnglishWords()
+			.map(Word.init)
+	}
 
 	func removingDuplicates() -> Array<Element>
 	{

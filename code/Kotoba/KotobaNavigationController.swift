@@ -12,7 +12,7 @@ class KotobaNavigationController: UINavigationController
 		super.viewDidLoad()
 
 		let titleFont = UIFont(name: "AmericanTypewriter-Semibold", size: 22)
-		?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
+			?? UIFont.systemFont(ofSize: 22.0, weight: .bold)
 		let barTextColor = UIColor(named: "appBarText") ?? UIColor.white
 		let barTintColor = UIColor(named: "appBarTint") ?? UIColor.red
 
@@ -31,7 +31,7 @@ class KotobaNavigationController: UINavigationController
 			appearance.configureWithOpaqueBackground()
 			appearance.backgroundColor = barTintColor
 			appearance.titleTextAttributes = titleTextAttributes
-			
+
 			navigationBar.standardAppearance = appearance;
 			navigationBar.scrollEdgeAppearance = navigationBar.standardAppearance
 		}

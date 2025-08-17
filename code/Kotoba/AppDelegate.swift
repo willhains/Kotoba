@@ -12,10 +12,11 @@ let APP_GROUP_ID = "group.com.willhains.Kotoba"
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
 	var window: UIWindow?
-	
+
 	func application(
 		_ application: UIApplication,
-		didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool
+		didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil)
+		-> Bool
 	{
 		// Reset user defaults for UI tests
 		if ProcessInfo.processInfo.arguments.contains("UITEST")
@@ -24,17 +25,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 			USER_PREFS.reset()
 			words.clear()
 		}
-		
+
 		debugLog("libraryDirectory = \(NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true))")
 
 		return true
 	}
 
-    func application(
-        _ application: UIApplication,
-        configurationForConnecting connectingSceneSession: UISceneSession,
-        options: UIScene.ConnectionOptions
-    ) -> UISceneConfiguration {
-        UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
+	func application(
+		_ application: UIApplication,
+		configurationForConnecting connectingSceneSession: UISceneSession,
+		options: UIScene.ConnectionOptions)
+		-> UISceneConfiguration
+	{
+		UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+	}
 }
