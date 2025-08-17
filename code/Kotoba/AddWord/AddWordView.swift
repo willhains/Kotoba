@@ -6,20 +6,6 @@ import UIKit
 /// of suggested words pulled from the pasteboard.
 struct AddWordView: View
 {
-	/// Alerts that are allowed to be displayed by this view.
-	enum Alert: Identifiable
-	{
-		case chocktuba(enabled: Bool)
-
-		var id: String
-		{
-			switch self
-			{
-				case .chocktuba(let enabled): "chocktuba:\(enabled)"
-			}
-		}
-	}
-
 	/// Sheets that are allowed to be displayed by this view.
 	enum Sheet: Identifiable
 	{
@@ -45,8 +31,6 @@ struct AddWordView: View
 	@State private var typedWord: String = ""
 	@State private var wordSuggestionsModel: WordSuggestionsModel
 
-	@Environment(\.chocktubaEnabled) var chocktubaEnabled
-
 	init(wordSuggestionsModel: WordSuggestionsModel)
 	{
 		self.wordSuggestionsModel = wordSuggestionsModel
@@ -60,21 +44,15 @@ struct AddWordView: View
 			{
 				Spacer()
 
-				TextField("ADD_WORD_LOOKUP_PLACEHOLDER", text: $typedWord)
-					.minimumScaleFactor(0.5)
-					.textInputAutocapitalization(chocktubaEnabled ? .characters : .never)
-					.focused($isTextFieldFocused)
-					.onSubmit
+				AddWordTextField(
+					"ADD_WORD_LOOKUP_PLACEHOLDER",
+					text: $typedWord,
+					onSubmit:
 					{
-						if typedWord.trimmingCharacters(in: .whitespacesAndNewlines) == Chocktuba.activationPhrase
-						{
-							toggleChocktuba()
-						}
-						else
-						{
-							lookupWord(term: Word(text: typedWord))
-						}
-					}
+						lookupWord(term: Word(text: typedWord))
+					})
+					.minimumScaleFactor(0.5)
+					.focused($isTextFieldFocused)
 					.font(.custom("AmericanTypewriter", size: 42))
 					.multilineTextAlignment(.center)
 					.padding()
@@ -169,41 +147,6 @@ struct AddWordView: View
 					WordListView()
 			}
 		}
-		.alert(
-			item: $alert,
-			title:
-			{
-				item in
-				switch item
-				{
-					case .chocktuba(let enabled):
-						Text("CHOCKTUBA \(enabled ? "ON" : "OFF")")
-				}
-			},
-			actions:
-			{
-				item in
-				Button("CTL ALT DEL TO RESTART")
-				{
-					exit(0)
-				}
-			},
-			message:
-			{
-				item in
-				switch item
-				{
-					case .chocktuba(let enabled):
-						if enabled
-						{
-							Text("YOU JUST MADE THIS APP A BILLION TIMES BETTER CONGRATS")
-						}
-						else
-						{
-							Text("WHAT THE HELL ARE YOU THINKING")
-						}
-				}
-			})
 		.tint(Color("appTint"))
 	}
 
@@ -222,12 +165,6 @@ struct AddWordView: View
 		isSearching = true
 
 		sheet = .dictionary(term: term)
-	}
-
-	private func toggleChocktuba()
-	{
-		alert = .chocktuba(enabled: !Chocktuba.isEnabled)
-		Chocktuba.toggle()
 	}
 }
 
