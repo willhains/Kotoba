@@ -1,14 +1,14 @@
 /* Accessibility label for the History toolbar button. */
 "ADD_WORD_HISTORY_ACCESSIBILITY_LABEL" = "History";
 
-/* Accessibility label for the Settings toolbar button. */
-"ADD_WORD_SETTINGS_ACCESSIBILITY_LABEL" = "Settings";
-
 /* Placeholder text for main lookup text field. */
 "ADD_WORD_LOOKUP_PLACEHOLDER" = "Type a Word";
 
 /* Header text above the clipboard suggestions list. */
 "ADD_WORD_LOOKUP_SUGGESTIONS_HEADER" = "Clipboard Suggestions";
+
+/* Accessibility label for the Settings toolbar button. */
+"ADD_WORD_SETTINGS_ACCESSIBILITY_LABEL" = "Settings";
 
 /* Main app navigation title shown in the navigation bar. */
 "APP_NAVIGATION_TITLE" = "Kotoba";
