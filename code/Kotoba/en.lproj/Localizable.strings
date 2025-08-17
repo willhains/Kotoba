@@ -17,7 +17,7 @@
 "DICTIONARY_ACTION" = "Got It";
 
 /* Message for dictionary prompt */
-"DICTIONARY_MESSAGE" = "Have you set up your iOS dictionaries?\n\nTap \"Manage\" below to download dictionaries for the languages you want.";
+"DICTIONARY_MESSAGE" = "Have you set up your iOS dictionaries?\n\nTap \"Manage Dictionaries\" to download dictionaries for the languages you want.";
 
 /* UIViewController+Dictionary */
 "DICTIONARY_TITLE" = "Add Dictionaries";
