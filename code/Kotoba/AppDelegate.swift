@@ -5,10 +5,6 @@
 
 import UIKit
 
-// Theme colour for app icon and tint
-private let _RED_THEME_COLOUR = UIColor(named: "appTint")
-	?? UIColor(hue: 5.0, saturation: 0.73, brightness: 0.65, alpha: 1.0)
-
 // App group ID
 let APP_GROUP_ID = "group.com.willhains.Kotoba"
 
@@ -30,9 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 		}
 		
 		debugLog("libraryDirectory = \(NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true))")
-		
-		// Set tint colour to match icon
-		UIView.appearance().tintColor = _RED_THEME_COLOUR
+
 		return true
 	}
+
+    func application(
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
+        UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
 }

@@ -5,55 +5,8 @@
 
 import UIKit
 
-private let _IGNORE_STRING_KEY = "ignore_string"
-
 extension UIPasteboard
 {
-	var ignoreSuggestions: Bool
-	{
-		get
-		{
-			if let currentString = UIPasteboard.general.string
-			{
-				let ignoreString = UserDefaults.standard.string(forKey: _IGNORE_STRING_KEY)
-				return currentString == ignoreString
-			}
-			else
-			{
-				return true
-			}
-		}
-		set
-		{
-			if newValue == true
-			{
-				UserDefaults.standard.set(UIPasteboard.general.string, forKey: _IGNORE_STRING_KEY)
-			}
-			else
-			{
-				UserDefaults.standard.removeObject(forKey: _IGNORE_STRING_KEY)
-			}
-		}
-	}
-
-	var suggestedWords: [Word]
-	{
-		if let currentPasteboardString = UIPasteboard.general.string
-		{
-			return currentPasteboardString
-				.trimmingCharacters(in: .whitespacesAndNewlines)
-				.asWords()
-				.removingDuplicates()
-				.removingPossiblePasswords()
-				.removingTrivialEnglishWords()
-				.map(Word.init)
-		}
-		else
-		{
-			return []
-		}
-	}
-
 	var lines: [String]
 	{
 		string?.split(separator: "\n")
@@ -72,6 +25,21 @@ private let _TRIVIAL_WORDS = Set(
 
 extension Array where Element == String
 {
+    func processWords() -> [Word] {
+        self
+            .flatMap { $0.asWords() }
+            .map {
+                $0
+                    .lowercased()
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                    .trimmingCharacters(in: Word.QUOTES)
+            }
+            .removingDuplicates()
+            .removingPossiblePasswords()
+            .removingTrivialEnglishWords()
+            .map(Word.init)
+    }
+
 	func removingDuplicates() -> Array<Element>
 	{
 		var result: [Element] = []

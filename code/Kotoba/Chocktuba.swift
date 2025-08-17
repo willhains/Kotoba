@@ -3,86 +3,61 @@
 // Copyright (c) 2020 Will Hains. All rights reserved.
 //
 
+import SwiftUI
 import UIKit
 
-// MARK:- UserDefaults
+// MARK:- Chocktuba
 
-private let _CHOCKTUBA_DUH = "FIXTHISAPP"
+enum Chocktuba {
+    private static let isEnabledStorageKey = "FIXTHISAPP"
+    static let activationPhrase = "CHOCKTUBA"
 
-extension UserDefaults
-{
-	var CHOCKTUBA_DUH: Bool
-	{
-		get { bool(forKey: _CHOCKTUBA_DUH) }
-		set { set(newValue, forKey: _CHOCKTUBA_DUH) }
-	}
+    /// Chocktuba requires an app restart to change, so only read the value from User Defaults once. This
+    /// avoids inconsistent state where some of the UI can briefly appear in one mode while the rest of the
+    /// UI is in another.
+    static private var _isEnabled: Bool?
+
+    static var isEnabled: Bool {
+        get {
+            if let enabled = _isEnabled {
+                return enabled
+            } else {
+                let enabled = UserDefaults.standard.bool(forKey: isEnabledStorageKey)
+                _isEnabled = enabled
+                return enabled
+            }
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: isEnabledStorageKey)
+        }
+    }
+
+    static func toggle() {
+        let isEnabling = !isEnabled
+        isEnabled.toggle()
+
+        // These are read and used by the system only once when the app first launches. Hence
+        // the need to restart the app after toggling.
+        if isEnabling {
+            UserDefaults.standard.set(["chock"], forKey: "AppleLanguages")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "AppleLanguages")
+        }
+        UserDefaults.standard.synchronize()
+    }
 }
 
-// MARK:- AddWordViewController
+// MARK:- SwiftUI Environment
 
-class ChocktubaAddWordViewController: AddWordViewController
-{
-	override func viewDidLoad()
-	{
-		super.viewDidLoad()
+struct ChocktubaKey: EnvironmentKey {
+    static let defaultValue: Bool = Chocktuba.isEnabled
+}
 
-		if UserDefaults.standard.CHOCKTUBA_DUH
-		{
-			self.textField.autocapitalizationType = .allCharacters
-		}
-	}
-
-	override func textFieldShouldReturn(_ textField: UITextField) -> Bool
-	{
-		guard let text = textField.text else { return true }
-		guard text == "CHOCKTUBA" else { return super.textFieldShouldReturn(textField) }
-
-		UserDefaults.standard.CHOCKTUBA_DUH.toggle()
-		if UserDefaults.standard.CHOCKTUBA_DUH
-		{
-			UserDefaults.standard.set(["chock"], forKey: "AppleLanguages")
-		}
-		else
-		{
-			UserDefaults.standard.removeObject(forKey: "AppleLanguages")
-		}
-		UserDefaults.standard.synchronize()
-
-		var title: String
-		var message: String
-		if UserDefaults.standard.CHOCKTUBA_DUH
-		{
-			title = "CHOCKTUBA ON"
-			message = "YOU JUST MADE THIS APP A BILLION TIMES BETTER CONGRATS"
-		}
-		else
-		{
-			title = "CHOCKTUBA OFF"
-			message = "WHAT THE HELL ARE YOU THINKING"
-		}
-
-		let alert = UIAlertController(
-			title: title,
-			message: message,
-			preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "CTL ALT DEL TO RESTART", style: .default)
-		{
-			action in
-			exit(0)
-		})
-		self.present(alert, animated: true, completion: nil)
-		return true
-	}
-
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-	{
-		let cell = super.tableView(tableView, cellForRowAt: indexPath)
-		if UserDefaults.standard.CHOCKTUBA_DUH
-		{
-			cell.textLabel?.text = cell.textLabel?.text!.uppercased()
-		}
-		return cell
-	}
+extension EnvironmentValues {
+    var chocktubaEnabled: Bool {
+        get { self[ChocktubaKey.self] }
+        set { self[ChocktubaKey.self] = newValue }
+    }
 }
 
 // MARK:- WordListViewController
@@ -92,7 +67,7 @@ class ChocktubaWordListViewController: WordListViewController
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
 	{
 		let cell = super.tableView(tableView, cellForRowAt: indexPath)
-		if UserDefaults.standard.CHOCKTUBA_DUH
+		if Chocktuba.isEnabled
 		{
 			cell.textLabel?.text = cell.textLabel?.text!.uppercased()
 		}
@@ -106,7 +81,7 @@ class ChocktubaSettingsViewController: SettingsViewController
 {
 	override func viewDidLoad()
 	{
-		CHOCKTUBA.isHidden = !UserDefaults.standard.CHOCKTUBA_DUH
+		CHOCKTUBA.isHidden = !Chocktuba.isEnabled
 		super.viewDidLoad()
 	}
 }

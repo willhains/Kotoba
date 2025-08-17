@@ -37,7 +37,8 @@ class KotobaUITests: XCTestCase
 		let app = XCUIApplication()
 		let gotIt = app.buttons["Got It"]
 		if gotIt.exists { gotIt.tap() }
-		let done = app.buttons["Done"]
+		let done = app.buttons["close"]
+		XCTAssertTrue(done.waitForExistence(timeout: 3))
 		done.tap()
 	}
 
@@ -73,7 +74,7 @@ class KotobaUITests: XCTestCase
 		XCTAssert(gotItButton.exists)
 
 		gotItButton.tap()
-		app.buttons["Done"].tap()
+		app.buttons["close"].tap()
 		enter(word: "another")
 		XCTAssert(app.alerts.count == 0)
 	}
@@ -100,7 +101,7 @@ class KotobaUITests: XCTestCase
 		showHistory()
 		assertTableContents("three", "two", "one")
 
-		app.navigationBars.buttons["Kotoba"].tap()
+		app.navigationBars.buttons["Done"].tap()
 		enter(word: "two")
 		closeDictionary()
 		showHistory()
@@ -120,9 +121,7 @@ class KotobaUITests: XCTestCase
 		let oneCell = table.cells.element
 		oneCell.tap()
 
-		sleep(1)
-
-		XCTAssert(app.buttons["Manage"].exists)
+		XCTAssertTrue(app.navigationBars.staticTexts["one"].waitForExistence(timeout: 3))
 	}
 
 	func testDeleteWords()
@@ -141,12 +140,5 @@ class KotobaUITests: XCTestCase
 		table.cells.element(boundBy: 1).swipeLeft()
 		app.buttons["Delete"].tap()
 		assertTableContents("three", "one")
-
-		// Edit mode to delete
-		app.buttons["Edit"].tap()
-		table.buttons["Delete one"].tap()
-		table.buttons["Delete"].tap()
-		app.buttons["Done"].tap()
-		XCTAssert(table.cells.count == 1)
 	}
 }
