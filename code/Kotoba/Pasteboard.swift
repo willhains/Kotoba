@@ -24,7 +24,6 @@ class RealPasteboard: Pasteboard
 	}
 }
 
-#if DEBUG
 /// A fake implementation of a `Pasteboard` for use in tests and playgrounds.
 class FakePasteboard: Pasteboard
 {
@@ -35,4 +34,3 @@ class FakePasteboard: Pasteboard
 		self.strings = strings
 	}
 }
-#endif
