@@ -11,8 +11,6 @@ struct WordSuggestionsView: View
 	/// be used to constrain the height of the list if the contents are sufficiently small.
 	@State var contentHeight: CGFloat = 0.0
 
-	@Environment(\.chocktubaEnabled) var chocktubaEnabled
-
 	init(
 		model: WordSuggestionsModel,
 		onTapSuggestion: @escaping (Word) -> Void)
@@ -61,7 +59,7 @@ struct WordSuggestionsView: View
 							onTapSuggestion(suggestion)
 						})
 						{
-							Text(chocktubaEnabled ? suggestion.text.uppercased() : suggestion.text)
+							Text(suggestion.text)
 						}
 					}
 				}

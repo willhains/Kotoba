@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
 				pasteboard: RealPasteboard(pasteboard: UIPasteboard.general),
 				userDefaults: .standard))
 
-		window?.rootViewController = UIHostingController(rootView: rootView)
+		window?.rootViewController = UIHostingController(rootView: rootView.kotobaView)
 		window?.makeKeyAndVisible()
 	}
 }

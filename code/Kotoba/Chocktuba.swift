@@ -3,6 +3,7 @@
 // Copyright (c) 2020 Will Hains. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
 import UIKit
 
@@ -71,6 +72,87 @@ extension EnvironmentValues
 	{
 		get { self[ChocktubaKey.self] }
 		set { self[ChocktubaKey.self] = newValue }
+	}
+}
+
+// MARK:- Root
+
+struct ChocktubaModifier: ViewModifier
+{
+	@Environment(\.chocktubaEnabled) var chocktubaEnabled
+
+	func body(content: Content) -> some View
+	{
+		content.textCase(chocktubaEnabled ? .uppercase : nil)
+	}
+}
+
+extension View
+{
+	var kotobaView: some View
+	{
+		self.modifier(ChocktubaModifier())
+	}
+}
+
+// MARK:- AddWordView
+
+struct AddWordTextField: View
+{
+	let titleKey: LocalizedStringKey
+	let text: Binding<String>
+	let onSubmit: () -> Void
+	@State var showingAlert = false
+
+	@Environment(\.chocktubaEnabled) var chocktubaEnabled
+
+	init(_ titleKey: LocalizedStringKey, text: Binding<String>, onSubmit: @escaping () -> Void)
+	{
+		self.titleKey = titleKey
+		self.text = text
+		self.onSubmit = onSubmit
+	}
+
+	var body: some View
+	{
+		TextField(titleKey, text: text)
+			.textInputAutocapitalization(chocktubaEnabled ? .characters : .never)
+			.onSubmit
+			{
+				if text.wrappedValue.trimmingCharacters(in: .whitespacesAndNewlines) == Chocktuba.activationPhrase
+				{
+					Chocktuba.toggle()
+					Task
+					{
+						showingAlert = true
+					}
+				}
+				else
+				{
+					onSubmit()
+				}
+			}
+			.alert(
+				Text("CHOCKTUBA \(!chocktubaEnabled ? "ON" : "OFF")"),
+				isPresented: $showingAlert,
+				actions:
+				{
+					Button("CTL ALT DEL TO RESTART")
+					{
+						exit(0)
+					}
+				},
+				message:
+				{
+					if !chocktubaEnabled
+					{
+						Text("YOU JUST MADE THIS APP A BILLION TIMES BETTER CONGRATS")
+					}
+					else
+					{
+						Text("WHAT THE HELL ARE YOU THINKING")
+					}
+				})
 	}
 }
 
