@@ -79,18 +79,16 @@ struct AddWordView: View
 				{
 					Button(action: { sheet = .settings })
 					{
-						Image(systemName: "gear")
+						Label("ADD_WORD_SETTINGS_ACCESSIBILITY_LABEL", systemImage: "gear")
 					}
-					.accessibilityLabel("ADD_WORD_SETTINGS_ACCESSIBILITY_LABEL")
 					.tint(Color("appBarItemTint"))
 				}
 				ToolbarItem(placement: .navigationBarTrailing)
 				{
 					Button(action: { sheet = .wordList })
 					{
-						Image(systemName: "book")
+						Label("ADD_WORD_HISTORY_ACCESSIBILITY_LABEL", systemImage: "book")
 					}
-					.accessibilityLabel("ADD_WORD_HISTORY_ACCESSIBILITY_LABEL")
 					.tint(Color("appBarItemTint"))
 				}
 				ToolbarItem(placement: .principal)
