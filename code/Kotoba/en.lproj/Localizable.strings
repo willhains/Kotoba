@@ -4,9 +4,6 @@
 /* Placeholder text for main lookup text field. */
 "ADD_WORD_LOOKUP_PLACEHOLDER" = "Type a Word";
 
-/* Header text above the clipboard suggestions list. */
-"ADD_WORD_LOOKUP_SUGGESTIONS_HEADER" = "Clipboard Suggestions";
-
 /* Accessibility label for the Settings toolbar button. */
 "ADD_WORD_SETTINGS_ACCESSIBILITY_LABEL" = "Settings";
 

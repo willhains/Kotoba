@@ -2,8 +2,7 @@ import Foundation
 import SwiftUI
 import UIKit
 
-/// The main view of the app, consisting of a text field for looking up a word, as well as a list
-/// of suggested words pulled from the pasteboard.
+/// The main view of the app, consisting of a text field for looking up a word.
 struct AddWordView: View
 {
 	/// Sheets that are allowed to be displayed by this view.
@@ -29,12 +28,6 @@ struct AddWordView: View
 	@State private var isSearching: Bool = false
 	@State private var sheet: Sheet?
 	@State private var typedWord: String = ""
-	@State private var wordSuggestionsModel: WordSuggestionsModel
-
-	init(wordSuggestionsModel: WordSuggestionsModel)
-	{
-		self.wordSuggestionsModel = wordSuggestionsModel
-	}
 
 	var body: some View
 	{
@@ -61,14 +54,6 @@ struct AddWordView: View
 					.opacity(isSearching ? 1.0 : 0.0)
 
 				Spacer()
-
-				WordSuggestionsView(
-					model: wordSuggestionsModel,
-					onTapSuggestion:
-					{
-						term in
-						lookupWord(term: term)
-					})
 			}
 			.background(Color(UIColor.systemGray6))
 			.navigationTitle("APP_NAVIGATION_TITLE")
@@ -101,18 +86,7 @@ struct AddWordView: View
 		.disabled(isSearching)
 		.onAppear
 		{
-			wordSuggestionsModel.updateSuggestions()
 			isTextFieldFocused = true
-		}
-		.onReceive(
-			NotificationCenter.default.publisher(
-				for: UIApplication.didBecomeActiveNotification))
-		{
-			_ in
-			withAnimation
-			{
-				wordSuggestionsModel.updateSuggestions()
-			}
 		}
 		.sheet(item: $sheet)
 		{
@@ -168,19 +142,5 @@ struct AddWordView: View
 
 #Preview("Empty")
 {
-	AddWordView(
-		wordSuggestionsModel: WordSuggestionsModel(
-			pasteboard: FakePasteboard(strings: [])))
-}
-
-#Preview("Suggestions")
-{
-	AddWordView(
-		wordSuggestionsModel: WordSuggestionsModel(
-			pasteboard: FakePasteboard(
-				strings: [
-					"baccarat",
-					"sharks",
-					"vesper",
-				])))
+	AddWordView()
 }

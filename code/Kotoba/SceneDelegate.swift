@@ -15,10 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
 
 		window = UIWindow(windowScene: windowScene)
 
-		let rootView = AddWordView(
-			wordSuggestionsModel: WordSuggestionsModel(
-				pasteboard: RealPasteboard(pasteboard: UIPasteboard.general),
-				userDefaults: .standard))
+		let rootView = AddWordView()
 
 		window?.rootViewController = UIHostingController(rootView: rootView.kotobaView)
 		window?.makeKeyAndVisible()
