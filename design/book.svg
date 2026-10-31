@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="479.301859px" height="301.974742px" viewBox="0 0 479.301859 301.974742" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Kotoba-red" transform="translate(-1126, -1216)" fill="#FFFFFF">
+            <g id="book" transform="translate(1126, 1216)">
+                <g id="right" transform="translate(245.4961, 0)">
+                    <path d="M0,17.2735 C95.3600883,-1.82966242 173.164897,-5.87997314 233.414425,5.12256782 L233.414425,289.33956 C173.062886,276.676426 95.2580776,280.726737 0,301.490493 L0,17.2735 Z" id="page"></path>
+                </g>
+                <g id="left" transform="translate(116.9029, 150.9874) scale(-1, 1) translate(-116.9029, -150.9874)">
+                    <path d="M0,17.2735 C95.3600883,-1.82966242 173.164897,-5.87997314 233.414425,5.12256782 L233.414425,289.33956 C173.062886,276.676426 95.2580776,280.726737 0,301.490493 L0,17.2735 Z" id="page"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
