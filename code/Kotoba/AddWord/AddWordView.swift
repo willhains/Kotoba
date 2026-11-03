@@ -66,7 +66,6 @@ struct AddWordView: View
 					{
 						Label("ADD_WORD_SETTINGS_ACCESSIBILITY_LABEL", systemImage: "gear")
 					}
-					.tint(Color("appBarItemTint"))
 				}
 				ToolbarItem(placement: .navigationBarTrailing)
 				{
@@ -74,7 +73,6 @@ struct AddWordView: View
 					{
 						Label("ADD_WORD_HISTORY_ACCESSIBILITY_LABEL", systemImage: "book")
 					}
-					.tint(Color("appBarItemTint"))
 				}
 				ToolbarItem(placement: .principal)
 				{
@@ -88,35 +86,34 @@ struct AddWordView: View
 		{
 			isTextFieldFocused = true
 		}
-		.sheet(item: $sheet)
-		{
-			sheet in
-			switch sheet
-			{
-				case .dictionary(let term):
-					DictionaryView(term: term.text)
-						.onAppear
-						{
-							isSearching = false
-
-							let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(
-								forTerm: term.text)
-
-							if hasDefinition
-							{
-								var words = wordListStore.data
-								words.add(word: term)
-								typedWord = ""
-							}
-						}
-						.onDisappear
-						{
-							isTextFieldFocused = true
-						}
-				case .settings:
-					SettingsView()
-				case .wordList:
-					WordListView()
+		.sheet(item: $sheet) { sheet in
+			switch sheet {
+			case .dictionary(let term):
+				DictionaryView(term: term.text)
+					.onAppear
+				{
+					isSearching = false
+					
+					let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(
+						forTerm: term.text)
+					
+					if hasDefinition
+					{
+						var words = wordListStore.data
+						words.add(word: term)
+						typedWord = ""
+					}
+				}
+				.onDisappear
+				{
+					isTextFieldFocused = true
+				}
+			case .settings:
+				SettingsView()
+					.ignoresSafeArea(.all) // storyboard handles safe areas
+			case .wordList:
+				WordListView()
+					.ignoresSafeArea(.all) // storyboard handles safe areas
 			}
 		}
 		.tint(Color("appTint"))

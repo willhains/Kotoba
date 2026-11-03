@@ -31,6 +31,7 @@ class SettingsViewController: UIViewController, UIDocumentPickerDelegate, UINavi
 				self.versionInfo.text = version
 			}
 		}
+		//view.backgroundColor = UIColor.systemYellow
 	}
 
 	override func viewWillAppear(_ animated: Bool)
@@ -178,7 +179,7 @@ struct SettingsView: UIViewControllerRepresentable
 		let vc = storyboard.instantiateViewController(withIdentifier: "SettingsViewController")
 
 		let navigationController = UINavigationController(rootViewController: vc)
-		navigationController.modalPresentationStyle = .pageSheet
+		navigationController.modalPresentationStyle = .formSheet
 
 		return navigationController
 	}

@@ -193,7 +193,7 @@ struct WordListView: UIViewControllerRepresentable
 		let vc = storyboard.instantiateViewController(withIdentifier: "WordListViewController")
 
 		let navigationController = UINavigationController(rootViewController: vc)
-		navigationController.modalPresentationStyle = .pageSheet
+		navigationController.modalPresentationStyle = .formSheet
 
 		return navigationController
 	}
