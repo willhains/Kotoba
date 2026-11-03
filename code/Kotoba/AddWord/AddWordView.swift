@@ -33,29 +33,32 @@ struct AddWordView: View
 	{
 		NavigationStack
 		{
-			VStack
-			{
-				Spacer()
+			ZStack {
+				Color(UIColor.systemGray6)
+					.ignoresSafeArea(.all, edges: .all)
 
-				AddWordTextField(
-					"ADD_WORD_LOOKUP_PLACEHOLDER",
-					text: $typedWord,
-					onSubmit:
-					{
-						lookupWord(term: Word(text: typedWord))
-					})
+				VStack {
+					Spacer()
+					
+					AddWordTextField(
+						"ADD_WORD_LOOKUP_PLACEHOLDER",
+						text: $typedWord,
+						onSubmit:
+							{
+								lookupWord(term: Word(text: typedWord))
+							})
 					.minimumScaleFactor(0.5)
 					.focused($isTextFieldFocused)
 					.font(.custom("AmericanTypewriter", size: 42))
 					.multilineTextAlignment(.center)
 					.padding()
-
-				ProgressView()
-					.opacity(isSearching ? 1.0 : 0.0)
-
-				Spacer()
+					
+					ProgressView()
+						.opacity(isSearching ? 1.0 : 0.0)
+					
+					Spacer()
+				}
 			}
-			.background(Color(UIColor.systemGray6))
 			.navigationTitle("APP_NAVIGATION_TITLE")
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar
@@ -90,24 +93,22 @@ struct AddWordView: View
 			switch sheet {
 			case .dictionary(let term):
 				DictionaryView(term: term.text)
-					.onAppear
-				{
-					isSearching = false
-					
-					let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(
-						forTerm: term.text)
-					
-					if hasDefinition
-					{
-						var words = wordListStore.data
-						words.add(word: term)
-						typedWord = ""
+					.ignoresSafeArea(.all)
+					.onAppear {
+						isSearching = false
+						
+						let hasDefinition = UIReferenceLibraryViewController.dictionaryHasDefinition(
+							forTerm: term.text)
+						
+						if hasDefinition {
+							var words = wordListStore.data
+							words.add(word: term)
+							typedWord = ""
+						}
 					}
-				}
-				.onDisappear
-				{
-					isTextFieldFocused = true
-				}
+					.onDisappear {
+						isTextFieldFocused = true
+					}
 			case .settings:
 				SettingsView()
 					.ignoresSafeArea(.all) // storyboard handles safe areas

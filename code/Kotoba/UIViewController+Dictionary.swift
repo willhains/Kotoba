@@ -13,7 +13,7 @@ extension UIViewController
 	func showDefinition(forWord word: Word, completion: (() -> Void)? = nil)
 	{
 		let dictionaryViewController = DictionaryViewController(term: word.text)
-		dictionaryViewController.modalPresentationStyle = .pageSheet
+		dictionaryViewController.modalPresentationStyle = .formSheet
 		self.present(dictionaryViewController, animated: true, completion: completion)
 	}
 }

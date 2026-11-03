@@ -60,7 +60,7 @@ struct DictionaryView: UIViewControllerRepresentable
 	func makeUIViewController(context: Context) -> DictionaryViewController
 	{
 		let vc = DictionaryViewController(term: term.trimmingCharacters(in: .whitespacesAndNewlines))
-		vc.modalPresentationStyle = .pageSheet
+		vc.modalPresentationStyle = .formSheet
 		return vc
 	}
 
