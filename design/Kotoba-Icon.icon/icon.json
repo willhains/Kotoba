@@ -1,0 +1,69 @@
+{
+  "features" : [
+    "refractivity",
+    "specular-location"
+  ],
+  "fill" : {
+    "automatic-gradient" : "extended-srgb:0.00000,0.53333,1.00000,1.00000"
+  },
+  "groups" : [
+    {
+      "blur-material" : 0.15,
+      "layers" : [
+        {
+          "fill" : {
+            "solid" : "srgb:1.00000,1.00000,1.00000,0.51000"
+          },
+          "image-name" : "book-flattened.svg",
+          "name" : "book-flattened",
+          "position" : {
+            "scale" : 1.72,
+            "translation-in-points" : [
+              0,
+              2.2738291878695236
+            ]
+          }
+        }
+      ],
+      "refractivity" : {
+        "depth" : 1,
+        "enabled" : true,
+        "strength" : 0.0396484375
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0
+      },
+      "specular" : "inside",
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.64
+      }
+    },
+    {
+      "blend-mode" : "normal",
+      "layers" : [
+        {
+          "hidden" : false,
+          "image-name" : "Image 2.png",
+          "name" : "Image 2"
+        }
+      ],
+      "name" : "Background",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : false,
+        "value" : 0.3
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
