@@ -1,34 +1,35 @@
 {
   "features" : [
-    "refractivity",
     "specular-location"
   ],
   "fill" : {
-    "automatic-gradient" : "extended-srgb:0.00000,0.53333,1.00000,1.00000"
+    "linear-gradient" : [
+      "display-p3:0.59961,0.24658,0.20007,1.00000",
+      "display-p3:0.68341,0.29366,0.24232,1.00000"
+    ]
   },
   "groups" : [
     {
-      "blur-material" : 0.15,
+      "blur-material" : null,
       "layers" : [
         {
-          "fill" : {
-            "solid" : "srgb:1.00000,1.00000,1.00000,0.51000"
-          },
-          "image-name" : "book-flattened.svg",
+          "image-name" : "book-flattened 2.svg",
           "name" : "book-flattened",
           "position" : {
-            "scale" : 1.72,
+            "scale" : 1.5,
             "translation-in-points" : [
-              0,
-              2.2738291878695236
+              -2.700000004551839e-05,
+              1.044928146933671
             ]
           }
         }
       ],
+      "lighting" : "individual",
+      "name" : "Book",
       "refractivity" : {
-        "depth" : 1,
-        "enabled" : true,
-        "strength" : 0.0396484375
+        "depth" : 0.373203125,
+        "enabled" : false,
+        "strength" : -0.0184375
       },
       "shadow" : {
         "kind" : "neutral",
@@ -37,19 +38,28 @@
       "specular" : "inside",
       "translucency" : {
         "enabled" : true,
-        "value" : 0.64
+        "value" : 0.55
       }
     },
     {
       "blend-mode" : "normal",
+      "hidden" : true,
       "layers" : [
         {
+          "glass" : false,
           "hidden" : false,
-          "image-name" : "Image 2.png",
-          "name" : "Image 2"
+          "image-name" : "Image 5.png",
+          "name" : "Text",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              0,
+              151
+            ]
+          }
         }
       ],
-      "name" : "Background",
+      "name" : "Text Background",
       "shadow" : {
         "kind" : "neutral",
         "opacity" : 0.5
