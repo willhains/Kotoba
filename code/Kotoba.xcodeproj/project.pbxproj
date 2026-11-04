@@ -12,6 +12,7 @@
 		44B821182391CF20004B8142 /* PasteboardWordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B821172391CF20004B8142 /* PasteboardWordList.swift */; };
 		44CFA6AB2381F0CB00D7ECCC /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CFA6AA2381F0CB00D7ECCC /* Debug.swift */; };
 		44D1096623A84262007C477C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44D1096423A84262007C477C /* Localizable.strings */; };
+		44D5ADFC309BD16000805A03 /* Kotoba-Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 44D5ADFB309BD16000805A03 /* Kotoba-Icon.icon */; };
 		44FD6CD02389C90F00FF245E /* KotobaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */; };
 		632B78BD2E38EA7D00AC495B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632B78BC2E38EA7D00AC495B /* SceneDelegate.swift */; };
 		632B78C02E38EE7800AC495B /* AddWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632B78BF2E38EE7800AC495B /* AddWordView.swift */; };
@@ -104,6 +105,7 @@
 		44CFA6AA2381F0CB00D7ECCC /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		44D1095D23A83116007C477C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		44D1096523A84262007C477C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		44D5ADFB309BD16000805A03 /* Kotoba-Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Kotoba-Icon.icon"; sourceTree = "<group>"; };
 		44FD6CCF2389C90F00FF245E /* KotobaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KotobaNavigationController.swift; sourceTree = "<group>"; };
 		44FD6CD42389CEC900FF245E /* Kotoba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kotoba.entitlements; sourceTree = "<group>"; };
 		632B78BC2E38EA7D00AC495B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				44D1096423A84262007C477C /* Localizable.strings */,
 				B62B309A23B7F60900583D3D /* Localizable.stringsdict */,
 				BE918C531A22A5F5006043CF /* Main.storyboard */,
+				44D5ADFB309BD16000805A03 /* Kotoba-Icon.icon */,
 				691B8E1520DAB5A100B11216 /* NSDictionary+Workaround.swift */,
 				44B821172391CF20004B8142 /* PasteboardWordList.swift */,
 				BE776E561D09D60700D4A315 /* Preferences.swift */,
@@ -452,6 +455,7 @@
 				4440B41D236CF92100369CE8 /* Colors.xcassets in Resources */,
 				BE918C571A22A5F5006043CF /* Images.xcassets in Resources */,
 				B6F5588F21F20E8D0053F800 /* Launch.storyboard in Resources */,
+				44D5ADFC309BD16000805A03 /* Kotoba-Icon.icon in Resources */,
 				B62B309823B7F60900583D3D /* Localizable.stringsdict in Resources */,
 				B6F73C532478FE1A0003F394 /* .bartycrouch.toml in Resources */,
 			);
@@ -824,13 +828,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Kotoba-Icon";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
 				CURRENT_PROJECT_VERSION = 1592141211;
 				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Kotoba;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Launch;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
@@ -851,13 +857,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-red";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Kotoba-Icon";
 				CODE_SIGN_ENTITLEMENTS = Kotoba/Kotoba.entitlements;
 				CURRENT_PROJECT_VERSION = 1592141211;
 				DEVELOPMENT_TEAM = 8B38X92RJ6;
 				INFOPLIST_FILE = Kotoba/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Kotoba;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Launch;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;

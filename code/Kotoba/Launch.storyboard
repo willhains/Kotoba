@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ufI-cJ-jZR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ufI-cJ-jZR">
     <device id="ipad11_0rounded" orientation="landscape" layout="splitview1_3" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,13 +16,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LaunchImage-red" translatesAutoresizingMaskIntoConstraints="NO" id="Nu0-fC-PN7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="834"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-book" translatesAutoresizingMaskIntoConstraints="NO" id="yoJ-dW-THG">
+                                <rect key="frame" x="37.5" y="267" width="300" height="300"/>
+                                <color key="tintColor" systemColor="secondarySystemFillColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Mvs-VW-uMo"/>
+                                    <constraint firstAttribute="width" constant="300" id="NPj-Y7-mH9"/>
+                                </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="92e-md-rKy"/>
+                        <viewLayoutGuide key="safeArea" id="WpE-1V-qMd"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="yoJ-dW-THG" firstAttribute="centerY" secondItem="E4E-B3-bvm" secondAttribute="centerY" id="8Xq-Cp-3cb"/>
+                            <constraint firstItem="yoJ-dW-THG" firstAttribute="centerX" secondItem="E4E-B3-bvm" secondAttribute="centerX" id="iC1-sp-s8N"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guP-eR-KGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -29,7 +38,17 @@
             <point key="canvasLocation" x="240.23437499999997" y="168.22840409956075"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="appTint"/>
     <resources>
-        <image name="LaunchImage-red" width="1024" height="1024"/>
+        <image name="launch-book" width="1024" height="1024"/>
+        <namedColor name="appTint">
+            <color red="0.89399999380111694" green="0.45100000500679016" blue="0.39599999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
